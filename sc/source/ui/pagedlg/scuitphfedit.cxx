@@ -152,6 +152,32 @@ IMPL_LINK( ScHFEditPage, ObjectSelectHdl, ScEditWindow*, pEdit )
 
 ScHFEditPage::~ScHFEditPage()
 {
+    dispose();
+}
+
+void ScHFEditPage::dispose()
+{
+    m_pWndLeft.disposeAndClear();
+    m_pWndCenter.disposeAndClear();
+    m_pWndRight.disposeAndClear();
+    m_pFtDefinedHF.disposeAndClear();
+    m_pLbDefined.disposeAndClear();
+    m_pFtCustomHF.disposeAndClear();
+    m_pBtnText.disposeAndClear();
+    m_pBtnFile.disposeAndClear();
+    m_pBtnTable.disposeAndClear();
+    m_pBtnPage.disposeAndClear();
+    m_pBtnLastPage.disposeAndClear();
+    m_pBtnDate.disposeAndClear();
+    m_pBtnTime.disposeAndClear();
+    m_pFtConfidential.disposeAndClear();
+    m_pFtPage.disposeAndClear();
+    m_pFtOfQuestion.disposeAndClear();
+    m_pFtOf.disposeAndClear();
+    m_pFtNone.disposeAndClear();
+    m_pFtCreatedBy.disposeAndClear();
+    m_pFtCustomized.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void ScHFEditPage::SetNumType(SvxNumType eNumType)

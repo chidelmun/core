@@ -60,6 +60,28 @@ ScSamplingDialog::ScSamplingDialog(
     GetRangeFromSelection();
 }
 
+ScSamplingDialog::~ScSamplingDialog()
+{
+    dispose();
+}
+
+void ScSamplingDialog::dispose()
+{
+    mpInputRangeLabel.disposeAndClear();
+    mpInputRangeEdit.disposeAndClear();
+    mpInputRangeButton.disposeAndClear();
+    mpOutputRangeLabel.disposeAndClear();
+    mpOutputRangeEdit.disposeAndClear();
+    mpOutputRangeButton.disposeAndClear();
+    mpSampleSize.disposeAndClear();
+    mpPeriod.disposeAndClear();
+    mpRandomMethodRadio.disposeAndClear();
+    mpPeriodicMethodRadio.disposeAndClear();
+    mpButtonOk.disposeAndClear();
+    mpActiveEdit.disposeAndClear();
+    ScAnyRefDlg::dispose();
+}
+
 void ScSamplingDialog::Init()
 {
     mpButtonOk->SetClickHdl( LINK( this, ScSamplingDialog, OkClicked ) );
@@ -97,9 +119,6 @@ void ScSamplingDialog::GetRangeFromSelection()
     OUString aCurrentString(mInputRange.Format(SCR_ABS_3D, mDocument, mAddressDetails));
     mpInputRangeEdit->SetText(aCurrentString);
 }
-
-ScSamplingDialog::~ScSamplingDialog()
-{}
 
 void ScSamplingDialog::SetActive()
 {

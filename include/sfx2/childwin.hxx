@@ -110,7 +110,7 @@ struct SfxChildWindow_Impl;
 class SFX2_DLLPUBLIC SfxChildWindowContext
 {
 friend class SfxChildWindow;
-    vcl::Window*           pWindow;
+    VclPtr<vcl::Window> pWindow;
     sal_uInt16          nContextId;
 
 protected:
@@ -135,12 +135,12 @@ public:
 
 class SFX2_DLLPUBLIC SfxChildWindow
 {
-    vcl::Window*               pParent;        // parent window ( Topwindow )
-    sal_uInt16              nType;          // ChildWindow-Id
+    VclPtr<vcl::Window>        pParent;        // parent window ( Topwindow )
+    sal_uInt16                 nType;          // ChildWindow-Id
 
 protected:
     SfxChildAlignment           eChildAlignment; // Current ::com::sun::star::drawing::Alignment
-    vcl::Window*                   pWindow;         // actual contents
+    VclPtr<vcl::Window>         pWindow;         // actual contents
     SfxChildWindow_Impl*        pImp;            // Implementation data
 
 private:

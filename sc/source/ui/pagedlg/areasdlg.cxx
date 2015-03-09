@@ -150,6 +150,18 @@ void ScPrintAreasDlg::dispose()
         for ( sal_uInt16 j=0; j<nCount; j++ )
             delete (OUString*)aLb[i]->GetEntryData(j);
     }
+    pLbPrintArea.disposeAndClear();
+    pEdPrintArea.disposeAndClear();
+    pRbPrintArea.disposeAndClear();
+    pLbRepeatRow.disposeAndClear();
+    pEdRepeatRow.disposeAndClear();
+    pRbRepeatRow.disposeAndClear();
+    pLbRepeatCol.disposeAndClear();
+    pEdRepeatCol.disposeAndClear();
+    pRbRepeatCol.disposeAndClear();
+    pBtnOk.disposeAndClear();
+    pBtnCancel.disposeAndClear();
+    pRefInputEdit.disposeAndClear();
     ScAnyRefDlg::dispose();
 }
 

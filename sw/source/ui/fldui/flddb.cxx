@@ -74,6 +74,24 @@ SwFldDBPage::SwFldDBPage(vcl::Window* pParent, const SfxItemSet& rCoreSet)
 
 SwFldDBPage::~SwFldDBPage()
 {
+    dispose();
+}
+
+void SwFldDBPage::dispose()
+{
+    m_pTypeLB.disposeAndClear();
+    m_pDatabaseTLB.disposeAndClear();
+    m_pAddDBPB.disposeAndClear();
+    m_pCondition.disposeAndClear();
+    m_pConditionED.disposeAndClear();
+    m_pValue.disposeAndClear();
+    m_pValueED.disposeAndClear();
+    m_pDBFormatRB.disposeAndClear();
+    m_pNewFormatRB.disposeAndClear();
+    m_pNumFormatLB.disposeAndClear();
+    m_pFormatLB.disposeAndClear();
+    m_pFormat.disposeAndClear();
+    SwFldPage::dispose();
 }
 
 // initialise TabPage

@@ -440,7 +440,12 @@ SvxTPView::~SvxTPView()
 
 void SvxTPView::dispose()
 {
-    delete m_pViewData;
+    m_pViewData.disposeAndClear();
+    m_pAccept.disposeAndClear();
+    m_pReject.disposeAndClear();
+    m_pAcceptAll.disposeAndClear();
+    m_pRejectAll.disposeAndClear();
+    m_pUndo.disposeAndClear();
     TabPage::dispose();
 }
 
@@ -606,6 +611,35 @@ SvxTPFilter::SvxTPFilter( vcl::Window * pParent)
     HideRange();
     ShowAction();
     bModified=false;
+}
+
+SvxTPFilter::~SvxTPFilter()
+{
+    dispose();
+}
+
+void SvxTPFilter::dispose()
+{
+    pRedlinTable.disposeAndClear();
+    m_pCbDate.disposeAndClear();
+    m_pLbDate.disposeAndClear();
+    m_pDfDate.disposeAndClear();
+    m_pTfDate.disposeAndClear();
+    m_pIbClock.disposeAndClear();
+    m_pFtDate2.disposeAndClear();
+    m_pDfDate2.disposeAndClear();
+    m_pTfDate2.disposeAndClear();
+    m_pIbClock2.disposeAndClear();
+    m_pCbAuthor.disposeAndClear();
+    m_pLbAuthor.disposeAndClear();
+    m_pCbRange.disposeAndClear();
+    m_pEdRange.disposeAndClear();
+    m_pBtnRange.disposeAndClear();
+    m_pCbAction.disposeAndClear();
+    m_pLbAction.disposeAndClear();
+    m_pCbComment.disposeAndClear();
+    m_pEdComment.disposeAndClear();
+    TabPage::dispose();
 }
 
 void SvxTPFilter::SetRedlinTable(SvxRedlinTable* pTable)
@@ -974,7 +1008,7 @@ void SvxTPFilter::DeactivatePage()
 {
     if(bModified)
     {
-        if(pRedlinTable!=NULL)
+        if(pRedlinTable!=nullptr)
         {
             pRedlinTable->SetFilterDate(IsDate());
             pRedlinTable->SetDateTimeMode(GetDateMode());
@@ -1027,7 +1061,7 @@ IMPL_LINK( SvxTPFilter, ModifyDate, void*,pTF)
         if(m_pDfDate->GetText().isEmpty())
            m_pDfDate->SetDate(aDate);
 
-        if(pRedlinTable!=NULL)
+        if(pRedlinTable!=nullptr)
             pRedlinTable->SetFirstDate(m_pDfDate->GetDate());
     }
     else if (m_pDfDate2==pTF)
@@ -1035,7 +1069,7 @@ IMPL_LINK( SvxTPFilter, ModifyDate, void*,pTF)
         if(m_pDfDate2->GetText().isEmpty())
            m_pDfDate2->SetDate(aDate);
 
-        if(pRedlinTable!=NULL)
+        if(pRedlinTable!=nullptr)
             pRedlinTable->SetLastDate(m_pDfDate2->GetDate());
     }
     else if (m_pTfDate==pTF)
@@ -1043,7 +1077,7 @@ IMPL_LINK( SvxTPFilter, ModifyDate, void*,pTF)
         if(m_pTfDate->GetText().isEmpty())
            m_pTfDate->SetTime(aTime);
 
-        if(pRedlinTable!=NULL)
+        if(pRedlinTable!=nullptr)
             pRedlinTable->SetFirstTime(m_pTfDate->GetTime());
     }
     else if (m_pTfDate2==pTF)
@@ -1051,7 +1085,7 @@ IMPL_LINK( SvxTPFilter, ModifyDate, void*,pTF)
         if(m_pTfDate2->GetText().isEmpty())
            m_pTfDate2->SetTime(aTime);
 
-        if(pRedlinTable!=NULL)
+        if(pRedlinTable!=nullptr)
             pRedlinTable->SetLastTime(m_pTfDate2->GetTime());
 
     }
@@ -1095,11 +1129,9 @@ SvxAcceptChgCtr::~SvxAcceptChgCtr()
 
 void SvxAcceptChgCtr::dispose()
 {
-    delete pTPView;
-    pTPView = NULL;
-    delete pTPFilter;
-    pTPFilter = NULL;
     disposeBuilder();
+    pTPFilter.disposeAndClear();
+    pTPView.disposeAndClear();
     TabControl::dispose();
 }
 

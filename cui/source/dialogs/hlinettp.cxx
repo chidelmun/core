@@ -81,6 +81,25 @@ SvxHyperlinkInternetTp::SvxHyperlinkInternetTp ( vcl::Window *pParent,
     maTimer.SetTimeoutHdl           ( LINK ( this, SvxHyperlinkInternetTp, TimeoutHdl_Impl ) );
 }
 
+SvxHyperlinkInternetTp::~SvxHyperlinkInternetTp()
+{
+    dispose();
+}
+
+void SvxHyperlinkInternetTp::dispose()
+{
+    m_pRbtLinktypInternet.disposeAndClear();
+    m_pRbtLinktypFTP.disposeAndClear();
+    m_pCbbTarget.disposeAndClear();
+    m_pBtBrowse.disposeAndClear();
+    m_pFtLogin.disposeAndClear();
+    m_pEdLogin.disposeAndClear();
+    m_pFtPassword.disposeAndClear();
+    m_pEdPassword.disposeAndClear();
+    m_pCbAnonymous.disposeAndClear();
+    SvxHyperlinkTabPageBase::dispose();
+}
+
 /*************************************************************************
 |*
 |* Fill the all dialog-controls except controls in groupbox "more..."
@@ -397,7 +416,7 @@ IMPL_LINK_NOARG(SvxHyperlinkInternetTp, ClickBrowseHdl_Impl)
     SfxBoolItem aBrowse( SID_BROWSE, true );
 
     const SfxPoolItem *ppItems[] = { &aName, &aNewView, &aSilent, &aReadOnly, &aRefererItem, &aBrowse, NULL };
-    static_cast<SvxHpLinkDlg*>(mpDialog)->GetBindings()->Execute( SID_OPENDOC, ppItems, 0, SfxCallMode::ASYNCHRON | SfxCallMode::RECORD );
+    static_cast<SvxHpLinkDlg*>(mpDialog.get())->GetBindings()->Execute( SID_OPENDOC, ppItems, 0, SfxCallMode::ASYNCHRON | SfxCallMode::RECORD );
 
     return( 0L );
 }

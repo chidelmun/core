@@ -512,6 +512,24 @@ SvxHyphenWordDialog::SvxHyphenWordDialog(
         Enable( false );
 }
 
+SvxHyphenWordDialog::~SvxHyphenWordDialog()
+{
+    dispose();
+}
+
+void SvxHyphenWordDialog::dispose()
+{
+    m_pWordEdit.disposeAndClear();
+    m_pLeftBtn.disposeAndClear();
+    m_pRightBtn.disposeAndClear();
+    m_pOkBtn.disposeAndClear();
+    m_pContBtn.disposeAndClear();
+    m_pDelBtn.disposeAndClear();
+    m_pHyphAll.disposeAndClear();
+    m_pCloseBtn.disposeAndClear();
+    SfxModalDialog::dispose();
+}
+
 
 void SvxHyphenWordDialog::SetWindowTitle( LanguageType nLang )
 {

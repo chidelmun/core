@@ -1246,6 +1246,22 @@ SvxColorWindow_Impl::SvxColorWindow_Impl( const OUString&            rCommand,
     }
 }
 
+SvxColorWindow_Impl::~SvxColorWindow_Impl()
+{
+    dispose();
+}
+
+void SvxColorWindow_Impl::dispose()
+{
+    mpColorSet.disposeAndClear();
+    mpRecentColorSet.disposeAndClear();
+    mpPaletteListBox.disposeAndClear();
+    mpButtonAutoColor.disposeAndClear();
+    mpButtonPicker.disposeAndClear();
+    mpAutomaticSeparator.disposeAndClear();
+    SfxPopupWindow::dispose();
+}
+
 void SvxColorWindow_Impl::KeyInput( const KeyEvent& rKEvt )
 {
     mpColorSet->KeyInput(rKEvt);

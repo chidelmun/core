@@ -139,7 +139,7 @@ protected:
     EditView*                  mpEditView;
     EditEngine*                mpEditEngine;
     SvxEditEngineForwarder*    mpForwarder;
-    vcl::Window*                    mpWindow;
+    VclPtr<vcl::Window>        mpWindow;
     bool                       mbIsCloned;
 };
 
@@ -285,7 +285,7 @@ private:
     typedef ::std::unique_ptr< SvxTextForwarder > TextForwarderPtr;
     typedef ::std::unique_ptr< ScCsvViewForwarder > ViewForwarderPtr;
 
-    vcl::Window*                     mpWindow;
+    VclPtr<vcl::Window>         mpWindow;
     EditEngine*                 mpEditEngine;
     TextForwarderPtr            mpTextForwarder;
     ViewForwarderPtr            mpViewForwarder;

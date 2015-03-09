@@ -36,7 +36,7 @@ IntroWindow::~IntroWindow()
 void IntroWindow::dispose()
 {
     ImplSVData* pSVData = ImplGetSVData();
-    if (pSVData->mpIntroWindow == this)
+    if (pSVData->mpIntroWindow.get() == this)
         pSVData->mpIntroWindow = VclPtr<Window>(NULL);
 
     WorkWindow::dispose();

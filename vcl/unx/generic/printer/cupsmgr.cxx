@@ -839,13 +839,14 @@ namespace
 {
     class RTSPWDialog : public ModalDialog
     {
-        FixedText* m_pText;
-        Edit*      m_pUserEdit;
-        Edit*      m_pPassEdit;
+        VclPtr<FixedText> m_pText;
+        VclPtr<Edit>      m_pUserEdit;
+        VclPtr<Edit>      m_pPassEdit;
 
     public:
         RTSPWDialog(const OString& rServer, const OString& rUserName, vcl::Window* pParent);
-
+        virtual ~RTSPWDialog();
+        virtual void dispose() SAL_OVERRIDE;
         OString getUserName() const;
         OString getPassword() const;
     };
@@ -862,6 +863,19 @@ namespace
         aText = aText.replaceFirst("%s", OStringToOUString(rServer, osl_getThreadTextEncoding()));
         m_pText->SetText(aText);
         m_pUserEdit->SetText( OStringToOUString(rUserName, osl_getThreadTextEncoding()));
+    }
+
+    RTSPWDialog::~RTSPWDialog()
+    {
+        dispose();
+    }
+
+    void RTSPWDialog::dispose()
+    {
+        m_pText.disposeAndClear();
+        m_pUserEdit.disposeAndClear();
+        m_pPassEdit.disposeAndClear();
+        ModalDialog::dispose();
     }
 
     OString RTSPWDialog::getUserName() const

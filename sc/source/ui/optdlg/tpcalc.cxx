@@ -73,6 +73,22 @@ void ScTpCalcOptions::dispose()
 {
     delete pOldOptions;
     delete pLocalOptions;
+    m_pBtnIterate.disposeAndClear();
+    m_pFtSteps.disposeAndClear();
+    m_pEdSteps.disposeAndClear();
+    m_pFtEps.disposeAndClear();
+    m_pEdEps.disposeAndClear();
+    m_pBtnDateStd.disposeAndClear();
+    m_pBtnDateSc10.disposeAndClear();
+    m_pBtnDate1904.disposeAndClear();
+    m_pBtnCase.disposeAndClear();
+    m_pBtnCalc.disposeAndClear();
+    m_pBtnMatch.disposeAndClear();
+    m_pBtnRegex.disposeAndClear();
+    m_pBtnLookUp.disposeAndClear();
+    m_pBtnGeneralPrec.disposeAndClear();
+    m_pFtPrec.disposeAndClear();
+    m_pEdPrec.disposeAndClear();
     SfxTabPage::dispose();
 }
 

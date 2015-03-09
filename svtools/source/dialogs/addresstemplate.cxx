@@ -739,6 +739,10 @@ void AssignmentPersistentData::Commit()
     void AddressBookSourceDialog::dispose()
     {
         delete m_pImpl;
+        m_pDatasource.disposeAndClear();
+        m_pAdministrateDatasources.disposeAndClear();
+        m_pTable.disposeAndClear();
+        m_pFieldScroller.disposeAndClear();
         ModalDialog::dispose();
     }
 

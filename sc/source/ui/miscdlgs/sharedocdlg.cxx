@@ -113,7 +113,9 @@ ScShareDocumentDlg::~ScShareDocumentDlg()
 
 void ScShareDocumentDlg::dispose()
 {
-    delete m_pLbUsers;
+    m_pLbUsers.disposeAndClear();
+    m_pCbShare.disposeAndClear();
+    m_pFtWarning.disposeAndClear();
     ModalDialog::dispose();
 }
 

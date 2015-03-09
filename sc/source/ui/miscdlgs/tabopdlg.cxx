@@ -76,8 +76,27 @@ ScTabOpDlg::ScTabOpDlg( SfxBindings* pB, SfxChildWindow* pCW, vcl::Window* pPare
 
 ScTabOpDlg::~ScTabOpDlg()
 {
-    Hide();
+    dispose();
 }
+
+void ScTabOpDlg::dispose()
+{
+    Hide();
+    m_pFtFormulaRange.disposeAndClear();
+    m_pEdFormulaRange.disposeAndClear();
+    m_pRBFormulaRange.disposeAndClear();
+    m_pFtRowCell.disposeAndClear();
+    m_pEdRowCell.disposeAndClear();
+    m_pRBRowCell.disposeAndClear();
+    m_pFtColCell.disposeAndClear();
+    m_pEdColCell.disposeAndClear();
+    m_pRBColCell.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    pEdActive.disposeAndClear();
+    ScAnyRefDlg::dispose();
+}
+
 
 void ScTabOpDlg::Init()
 {

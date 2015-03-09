@@ -32,6 +32,21 @@ AuthFallbackDlg::AuthFallbackDlg(Window* pParent, const OUString& instructions,
     m_pEDUrl->SetText( url );
 }
 
+AuthFallbackDlg::~AuthFallbackDlg()
+{
+    dispose();
+}
+
+void AuthFallbackDlg::dispose()
+{
+    m_pTVInstructions.disposeAndClear();
+    m_pEDUrl.disposeAndClear();
+    m_pEDCode.disposeAndClear();
+    m_pBTOk.disposeAndClear();
+    m_pBTCancel.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 IMPL_LINK ( AuthFallbackDlg,  OKHdl, Button *, EMPTYARG )
 {
     EndDialog( RET_OK );

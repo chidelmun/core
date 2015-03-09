@@ -95,11 +95,8 @@ void TaskPaneList::AddWindow( vcl::Window *pWindow )
 {
     if( pWindow )
     {
-        ::std::vector< vcl::Window* >::iterator insertionPos = mTaskPanes.end();
-        for ( ::std::vector< vcl::Window* >::iterator p = mTaskPanes.begin();
-              p != mTaskPanes.end();
-              ++p
-            )
+        auto insertionPos = mTaskPanes.end();
+        for ( auto p = mTaskPanes.begin(); p != mTaskPanes.end(); ++p )
         {
             if ( *p == pWindow )
                 // avoid duplicates
@@ -131,8 +128,7 @@ void TaskPaneList::AddWindow( vcl::Window *pWindow )
 
 void TaskPaneList::RemoveWindow( vcl::Window *pWindow )
 {
-    ::std::vector< vcl::Window* >::iterator p;
-    p = ::std::find( mTaskPanes.begin(), mTaskPanes.end(), pWindow );
+    auto p = ::std::find( mTaskPanes.begin(), mTaskPanes.end(), VclPtr<vcl::Window>(pWindow) );
     if( p != mTaskPanes.end() )
     {
         mTaskPanes.erase( p );
@@ -142,8 +138,7 @@ void TaskPaneList::RemoveWindow( vcl::Window *pWindow )
 
 bool TaskPaneList::IsInList( vcl::Window *pWindow )
 {
-    ::std::vector< vcl::Window* >::iterator p;
-    p = ::std::find( mTaskPanes.begin(), mTaskPanes.end(), pWindow );
+    auto p = ::std::find( mTaskPanes.begin(), mTaskPanes.end(), VclPtr<vcl::Window>(pWindow) );
     if( p != mTaskPanes.end() )
         return true;
     else
@@ -171,7 +166,7 @@ bool TaskPaneList::HandleKeyEvent( KeyEvent aKeyEvent )
         bSplitterOnly = aKeyCode.IsMod1() && aKeyCode.IsShift();
 
         // is the focus in the list ?
-        ::std::vector< vcl::Window* >::iterator p = mTaskPanes.begin();
+        auto p = mTaskPanes.begin();
         while( p != mTaskPanes.end() )
         {
             vcl::Window *pWin = *p;
@@ -244,7 +239,7 @@ vcl::Window* TaskPaneList::FindNextSplitter( vcl::Window *pWindow, bool bForward
     else
         ::std::stable_sort( mTaskPanes.begin(), mTaskPanes.end(), LTRSortBackward() );
 
-    ::std::vector< vcl::Window* >::iterator p = mTaskPanes.begin();
+    auto p = mTaskPanes.begin();
     while( p != mTaskPanes.end() )
     {
         if( !pWindow || *p == pWindow )
@@ -281,7 +276,7 @@ vcl::Window* TaskPaneList::FindNextFloat( vcl::Window *pWindow, bool bForward )
     else
         ::std::stable_sort( mTaskPanes.begin(), mTaskPanes.end(), LTRSortBackward() );
 
-    ::std::vector< vcl::Window* >::iterator p = mTaskPanes.begin();
+    auto p = mTaskPanes.begin();
     while( p != mTaskPanes.end() )
     {
         if( !pWindow || *p == pWindow )

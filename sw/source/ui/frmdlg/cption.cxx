@@ -51,14 +51,14 @@ using namespace ::com::sun::star;
 
 class SwSequenceOptionDialog : public SvxStandardDialog
 {
-    ListBox*        m_pLbLevel;
-    Edit*           m_pEdDelim;
+    VclPtr<ListBox>        m_pLbLevel;
+    VclPtr<Edit>           m_pEdDelim;
 
-    ListBox*        m_pLbCharStyle;
-    CheckBox*       m_pApplyBorderAndShadowCB;
+    VclPtr<ListBox>        m_pLbCharStyle;
+    VclPtr<CheckBox>       m_pApplyBorderAndShadowCB;
 
     //#i61007# order of captions
-    ListBox*        m_pLbCaptionOrder;
+    VclPtr<ListBox>        m_pLbCaptionOrder;
 
     SwView&         rView;
     OUString        aFldTypeName;
@@ -67,6 +67,7 @@ public:
     SwSequenceOptionDialog( vcl::Window *pParent, SwView &rV,
                             const OUString& rSeqFldType );
     virtual ~SwSequenceOptionDialog();
+    virtual void dispose() SAL_OVERRIDE;
     virtual void Apply() SAL_OVERRIDE;
 
     bool IsApplyBorderAndShadow( void ) { return m_pApplyBorderAndShadowCB->IsChecked(); }
@@ -416,6 +417,20 @@ SwCaptionDialog::~SwCaptionDialog()
 void SwCaptionDialog::dispose()
 {
     delete pMgr;
+    m_pTextEdit.disposeAndClear();
+    m_pCategoryBox.disposeAndClear();
+    m_pFormatText.disposeAndClear();
+    m_pFormatBox.disposeAndClear();
+    m_pNumberingSeparatorFT.disposeAndClear();
+    m_pNumberingSeparatorED.disposeAndClear();
+    m_pSepText.disposeAndClear();
+    m_pSepEdit.disposeAndClear();
+    m_pPosText.disposeAndClear();
+    m_pPosBox.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    m_pAutoCaptionButton.disposeAndClear();
+    m_pOptionButton.disposeAndClear();
+    m_pPreview.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 
@@ -460,7 +475,19 @@ SwSequenceOptionDialog::SwSequenceOptionDialog( vcl::Window *pParent, SwView &rV
 
 SwSequenceOptionDialog::~SwSequenceOptionDialog()
 {
+    dispose();
 }
+
+void SwSequenceOptionDialog::dispose()
+{
+    m_pLbLevel.disposeAndClear();
+    m_pEdDelim.disposeAndClear();
+    m_pLbCharStyle.disposeAndClear();
+    m_pApplyBorderAndShadowCB.disposeAndClear();
+    m_pLbCaptionOrder.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 
 void SwSequenceOptionDialog::Apply()
 {

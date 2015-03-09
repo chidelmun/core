@@ -529,6 +529,28 @@ void SwEditRegionDlg::dispose()
     }
 
     delete m_pDocInserter;
+    m_pCurName.disposeAndClear();
+    m_pTree.disposeAndClear();
+    m_pFileCB.disposeAndClear();
+    m_pDDECB.disposeAndClear();
+    m_pDDEFrame.disposeAndClear();
+    m_pFileNameFT.disposeAndClear();
+    m_pDDECommandFT.disposeAndClear();
+    m_pFileNameED.disposeAndClear();
+    m_pFilePB.disposeAndClear();
+    m_pSubRegionFT.disposeAndClear();
+    m_pSubRegionED.disposeAndClear();
+    m_pProtectCB.disposeAndClear();
+    m_pPasswdCB.disposeAndClear();
+    m_pPasswdPB.disposeAndClear();
+    m_pHideCB.disposeAndClear();
+    m_pConditionFT.disposeAndClear();
+    m_pConditionED.disposeAndClear();
+    m_pEditInReadonlyCB.disposeAndClear();
+    m_pOK.disposeAndClear();
+    m_pOptionsPB.disposeAndClear();
+    m_pDismiss.disposeAndClear();
+    m_pOldDefDlgParent.disposeAndClear();
     SfxModalDialog::dispose();
 }
 
@@ -1545,6 +1567,23 @@ SwInsertSectionTabPage::~SwInsertSectionTabPage()
 void SwInsertSectionTabPage::dispose()
 {
     delete m_pDocInserter;
+    m_pCurName.disposeAndClear();
+    m_pFileCB.disposeAndClear();
+    m_pDDECB.disposeAndClear();
+    m_pDDECommandFT.disposeAndClear();
+    m_pFileNameFT.disposeAndClear();
+    m_pFileNameED.disposeAndClear();
+    m_pFilePB.disposeAndClear();
+    m_pSubRegionFT.disposeAndClear();
+    m_pSubRegionED.disposeAndClear();
+    m_pProtectCB.disposeAndClear();
+    m_pPasswdCB.disposeAndClear();
+    m_pPasswdPB.disposeAndClear();
+    m_pHideCB.disposeAndClear();
+    m_pConditionFT.disposeAndClear();
+    m_pConditionED.disposeAndClear();
+    m_pEditInReadonlyCB.disposeAndClear();
+    m_pOldDefDlgParent.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1847,6 +1886,32 @@ SwSectionFtnEndTabPage::SwSectionFtnEndTabPage( vcl::Window *pParent,
 
 SwSectionFtnEndTabPage::~SwSectionFtnEndTabPage()
 {
+    dispose();
+}
+
+void SwSectionFtnEndTabPage::dispose()
+{
+    pFtnNtAtTextEndCB.disposeAndClear();
+    pFtnNtNumCB.disposeAndClear();
+    pFtnOffsetLbl.disposeAndClear();
+    pFtnOffsetFld.disposeAndClear();
+    pFtnNtNumFmtCB.disposeAndClear();
+    pFtnPrefixFT.disposeAndClear();
+    pFtnPrefixED.disposeAndClear();
+    pFtnNumViewBox.disposeAndClear();
+    pFtnSuffixFT.disposeAndClear();
+    pFtnSuffixED.disposeAndClear();
+    pEndNtAtTextEndCB.disposeAndClear();
+    pEndNtNumCB.disposeAndClear();
+    pEndOffsetLbl.disposeAndClear();
+    pEndOffsetFld.disposeAndClear();
+    pEndNtNumFmtCB.disposeAndClear();
+    pEndPrefixFT.disposeAndClear();
+    pEndPrefixED.disposeAndClear();
+    pEndNumViewBox.disposeAndClear();
+    pEndSuffixFT.disposeAndClear();
+    pEndSuffixED.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 bool SwSectionFtnEndTabPage::FillItemSet( SfxItemSet* rSet )
@@ -2108,6 +2173,15 @@ SwSectionIndentTabPage::SwSectionIndentTabPage(vcl::Window *pParent, const SfxIt
 
 SwSectionIndentTabPage::~SwSectionIndentTabPage()
 {
+    dispose();
+}
+
+void SwSectionIndentTabPage::dispose()
+{
+    m_pBeforeMF.disposeAndClear();
+    m_pAfterMF.disposeAndClear();
+    m_pPreviewWin.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 bool SwSectionIndentTabPage::FillItemSet( SfxItemSet* rSet)

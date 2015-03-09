@@ -118,6 +118,13 @@ AnnotationTextWindow::AnnotationTextWindow( AnnotationWindow* pParent, WinBits n
 
 AnnotationTextWindow::~AnnotationTextWindow()
 {
+    dispose();
+}
+
+void AnnotationTextWindow::dispose()
+{
+    mpAnnotationWindow.disposeAndClear();
+    Control::dispose();
 }
 
 void AnnotationTextWindow::Paint( const Rectangle& rRect)
@@ -289,11 +296,11 @@ AnnotationWindow::~AnnotationWindow()
 
 void AnnotationWindow::dispose()
 {
-    delete mpMeta;
+    mpMeta.disposeAndClear();
     delete mpOutlinerView;
     delete mpOutliner;
-    delete mpVScrollbar;
-    delete mpTextWindow;
+    mpVScrollbar.disposeAndClear();
+    mpTextWindow.disposeAndClear();
     FloatingWindow::dispose();
 }
 

@@ -147,8 +147,10 @@ WebConnectionInfoDialog::~WebConnectionInfoDialog()
 
 void WebConnectionInfoDialog::dispose()
 {
-    delete m_pPasswordsLB;
-    m_pPasswordsLB = NULL;
+    m_pPasswordsLB.disposeAndClear();
+    m_pRemoveBtn.disposeAndClear();
+    m_pRemoveAllBtn.disposeAndClear();
+    m_pChangeBtn.disposeAndClear();
     ModalDialog::dispose();
 }
 

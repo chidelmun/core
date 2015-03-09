@@ -86,7 +86,9 @@ CertificateChooser::~CertificateChooser()
 
 void CertificateChooser::dispose()
 {
-    delete m_pCertLB;
+    m_pCertLB.disposeAndClear();
+    m_pViewBtn.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
     ModalDialog::dispose();
 }
 

@@ -133,6 +133,26 @@ SwWrapTabPage::SwWrapTabPage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwWrapTabPage::~SwWrapTabPage()
 {
+    dispose();
+}
+
+void SwWrapTabPage::dispose()
+{
+    m_pNoWrapRB.disposeAndClear();
+    m_pWrapLeftRB.disposeAndClear();
+    m_pWrapRightRB.disposeAndClear();
+    m_pWrapParallelRB.disposeAndClear();
+    m_pWrapThroughRB.disposeAndClear();
+    m_pIdealWrapRB.disposeAndClear();
+    m_pLeftMarginED.disposeAndClear();
+    m_pRightMarginED.disposeAndClear();
+    m_pTopMarginED.disposeAndClear();
+    m_pBottomMarginED.disposeAndClear();
+    m_pWrapAnchorOnlyCB.disposeAndClear();
+    m_pWrapTransparentCB.disposeAndClear();
+    m_pWrapOutlineCB.disposeAndClear();
+    m_pWrapOutsideCB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwWrapTabPage::Create(vcl::Window *pParent, const SfxItemSet *rSet)

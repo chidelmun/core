@@ -50,6 +50,22 @@ SdInsertLayerDlg::SdInsertLayerDlg( vcl::Window* pWindow, const SfxItemSet& rInA
     get<VclContainer>("nameframe")->Enable(bDeletable);
 }
 
+SdInsertLayerDlg::~SdInsertLayerDlg()
+{
+    dispose();
+}
+
+void SdInsertLayerDlg::dispose()
+{
+    m_pEdtName.disposeAndClear();
+    m_pEdtTitle.disposeAndClear();
+    m_pEdtDesc.disposeAndClear();
+    m_pCbxVisible.disposeAndClear();
+    m_pCbxPrintable.disposeAndClear();
+    m_pCbxLocked.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void SdInsertLayerDlg::GetAttr( SfxItemSet& rAttrs )
 {
     rAttrs.Put( SdAttrLayerName( m_pEdtName->GetText() ) );

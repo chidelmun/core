@@ -239,6 +239,16 @@ void SfxManageStyleSheetPage::dispose()
     delete pFamilies;
     pItem = 0;
     pStyle = 0;
+    m_pNameRo.disposeAndClear();
+    m_pNameRw.disposeAndClear();
+    m_pAutoCB.disposeAndClear();
+    m_pFollowFt.disposeAndClear();
+    m_pFollowLb.disposeAndClear();
+    m_pBaseFt.disposeAndClear();
+    m_pBaseLb.disposeAndClear();
+    m_pFilterFt.disposeAndClear();
+    m_pFilterLb.disposeAndClear();
+    m_pDescFt.disposeAndClear();
     SfxTabPage::dispose();
 }
 

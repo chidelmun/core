@@ -712,6 +712,49 @@ SwFrmPage::SwFrmPage(vcl::Window *pParent, const SfxItemSet &rSet)
     m_pAutoHeightCB->SetClickHdl( LINK( this, SwFrmPage, AutoHeightClickHdl ) );
 }
 
+SwFrmPage::~SwFrmPage()
+{
+    dispose();
+}
+
+void SwFrmPage::dispose()
+{
+    m_pWidthFT.disposeAndClear();
+    m_pWidthAutoFT.disposeAndClear();
+    m_pRelWidthCB.disposeAndClear();
+    m_pRelWidthRelationLB.disposeAndClear();
+    m_pAutoWidthCB.disposeAndClear();
+    m_pHeightFT.disposeAndClear();
+    m_pHeightAutoFT.disposeAndClear();
+    m_pRelHeightCB.disposeAndClear();
+    m_pRelHeightRelationLB.disposeAndClear();
+    m_pAutoHeightCB.disposeAndClear();
+    m_pFixedRatioCB.disposeAndClear();
+    m_pRealSizeBT.disposeAndClear();
+    m_pAnchorFrame.disposeAndClear();
+    m_pAnchorAtPageRB.disposeAndClear();
+    m_pAnchorAtParaRB.disposeAndClear();
+    m_pAnchorAtCharRB.disposeAndClear();
+    m_pAnchorAsCharRB.disposeAndClear();
+    m_pAnchorAtFrameRB.disposeAndClear();
+    m_pHorizontalFT.disposeAndClear();
+    m_pHorizontalDLB.disposeAndClear();
+    m_pAtHorzPosFT.disposeAndClear();
+    m_pAtHorzPosED.disposeAndClear();
+    m_pHoriRelationFT.disposeAndClear();
+    m_pHoriRelationLB.disposeAndClear();
+    m_pMirrorPagesCB.disposeAndClear();
+    m_pVerticalFT.disposeAndClear();
+    m_pVerticalDLB.disposeAndClear();
+    m_pAtVertPosFT.disposeAndClear();
+    m_pAtVertPosED.disposeAndClear();
+    m_pVertRelationFT.disposeAndClear();
+    m_pVertRelationLB.disposeAndClear();
+    m_pFollowTextFlowCB.disposeAndClear();
+    m_pExampleWN.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 namespace
 {
     struct FrmMaps
@@ -813,10 +856,6 @@ void SwFrmPage::setOptimalRelWidth()
     m_pRelWidthRelationLB->set_width_request(aBiggest.Width());
     m_pRelHeightRelationLB->set_width_request(aBiggest.Width());
     m_pHoriRelationLB->Clear();
-}
-
-SwFrmPage::~SwFrmPage()
-{
 }
 
 SfxTabPage* SwFrmPage::Create(vcl::Window *pParent, const SfxItemSet *rSet)
@@ -2375,6 +2414,15 @@ SwGrfExtPage::~SwGrfExtPage()
 void SwGrfExtPage::dispose()
 {
     delete pGrfDlg;
+    m_pMirror.disposeAndClear();
+    m_pMirrorVertBox.disposeAndClear();
+    m_pMirrorHorzBox.disposeAndClear();
+    m_pAllPagesRB.disposeAndClear();
+    m_pLeftPagesRB.disposeAndClear();
+    m_pRightPagesRB.disposeAndClear();
+    m_pBmpWin.disposeAndClear();
+    m_pConnectED.disposeAndClear();
+    m_pBrowseBT.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -2714,6 +2762,18 @@ SwFrmURLPage::SwFrmURLPage( vcl::Window *pParent, const SfxItemSet &rSet ) :
 
 SwFrmURLPage::~SwFrmURLPage()
 {
+    dispose();
+}
+
+void SwFrmURLPage::dispose()
+{
+    pURLED.disposeAndClear();
+    pSearchPB.disposeAndClear();
+    pNameED.disposeAndClear();
+    pFrameCB.disposeAndClear();
+    pServerCB.disposeAndClear();
+    pClientCB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void SwFrmURLPage::Reset( const SfxItemSet *rSet )
@@ -2857,7 +2917,34 @@ SwFrmAddPage::SwFrmAddPage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwFrmAddPage::~SwFrmAddPage()
 {
+    dispose();
 }
+
+void SwFrmAddPage::dispose()
+{
+    pNameFrame.disposeAndClear();
+    pNameFT.disposeAndClear();
+    pNameED.disposeAndClear();
+    pAltNameFT.disposeAndClear();
+    pAltNameED.disposeAndClear();
+    pPrevFT.disposeAndClear();
+    pPrevLB.disposeAndClear();
+    pNextFT.disposeAndClear();
+    pNextLB.disposeAndClear();
+    pProtectFrame.disposeAndClear();
+    pProtectContentCB.disposeAndClear();
+    pProtectFrameCB.disposeAndClear();
+    pProtectSizeCB.disposeAndClear();
+    m_pContentAlignFrame.disposeAndClear();
+    m_pVertAlignLB.disposeAndClear();
+    pPropertiesFrame.disposeAndClear();
+    pEditInReadonlyCB.disposeAndClear();
+    pPrintFrameCB.disposeAndClear();
+    pTextFlowFT.disposeAndClear();
+    pTextFlowLB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 SfxTabPage* SwFrmAddPage::Create(vcl::Window *pParent, const SfxItemSet *rSet)
 {

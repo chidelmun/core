@@ -319,12 +319,12 @@ class SVT_DLLPUBLIC TabBar : public vcl::Window
 
 private:
     ImplTabBarList* mpItemList;
-    ImplTabButton*  mpFirstBtn;
-    ImplTabButton*  mpPrevBtn;
-    ImplTabButton*  mpNextBtn;
-    ImplTabButton*  mpLastBtn;
+    VclPtr<ImplTabButton>  mpFirstBtn;
+    VclPtr<ImplTabButton>  mpPrevBtn;
+    VclPtr<ImplTabButton>  mpNextBtn;
+    VclPtr<ImplTabButton>  mpLastBtn;
     TabBar_Impl*    mpImpl;
-    TabBarEdit*     mpEdit;
+    VclPtr<TabBarEdit>     mpEdit;
     OUString        maEditText;
     Color           maSelColor;
     Color           maSelTextColor;
@@ -461,7 +461,7 @@ public:
     void            EndEditMode( bool bCancel = false );
     void            SetEditText( const OUString& rText ) { maEditText = rText; }
     const OUString& GetEditText() const { return maEditText; }
-    bool            IsInEditMode() const { return (mpEdit != NULL); }
+    bool            IsInEditMode() const { return (mpEdit != nullptr); }
     bool            IsEditModeCanceled() const { return mbEditCanceled; }
     sal_uInt16      GetEditPageId() const { return mnEditId; }
 

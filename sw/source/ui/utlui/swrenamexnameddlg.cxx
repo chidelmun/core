@@ -74,6 +74,18 @@ SwRenameXNamedDlg::SwRenameXNamedDlg( vcl::Window* pWin,
     m_pOk->Enable(false);
 }
 
+SwRenameXNamedDlg::~SwRenameXNamedDlg()
+{
+    dispose();
+}
+
+void SwRenameXNamedDlg::dispose()
+{
+    m_pNewNameED.disposeAndClear();
+    m_pOk.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 IMPL_LINK_NOARG(SwRenameXNamedDlg, OkHdl)
 {
     try

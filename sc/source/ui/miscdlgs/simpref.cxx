@@ -59,7 +59,18 @@ ScSimpleRefDlg::ScSimpleRefDlg(SfxBindings* pB, SfxChildWindow* pCW, vcl::Window
 
 ScSimpleRefDlg::~ScSimpleRefDlg()
 {
+    dispose();
+}
+
+void ScSimpleRefDlg::dispose()
+{
     SetDispatcherLock( false ); // deactivate modal mode
+    m_pFtAssign.disposeAndClear();
+    m_pEdAssign.disposeAndClear();
+    m_pRbAssign.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    ScAnyRefDlg::dispose();
 }
 
 void ScSimpleRefDlg::FillInfo(SfxChildWinInfo& rWinInfo) const

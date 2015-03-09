@@ -150,6 +150,39 @@ SdStartPresentationDlg::SdStartPresentationDlg( vcl::Window* pWindow,
     ChangePauseHdl( NULL );
 }
 
+SdStartPresentationDlg::~SdStartPresentationDlg()
+{
+    dispose();
+}
+
+void SdStartPresentationDlg::dispose()
+{
+    aRbtAll.disposeAndClear();
+    aRbtAtDia.disposeAndClear();
+    aRbtCustomshow.disposeAndClear();
+    aLbDias.disposeAndClear();
+    aLbCustomshow.disposeAndClear();
+    aRbtStandard.disposeAndClear();
+    aRbtWindow.disposeAndClear();
+    aRbtAuto.disposeAndClear();
+    aTmfPause.disposeAndClear();
+    aCbxAutoLogo.disposeAndClear();
+    aCbxManuel.disposeAndClear();
+    aCbxMousepointer.disposeAndClear();
+    aCbxPen.disposeAndClear();
+    aCbxNavigator.disposeAndClear();
+    aCbxAnimationAllowed.disposeAndClear();
+    aCbxChangePage.disposeAndClear();
+    aCbxAlwaysOnTop.disposeAndClear();
+    maFtMonitor.disposeAndClear();
+    maLBMonitor.disposeAndClear();
+    msMonitor.disposeAndClear();
+    msAllMonitors.disposeAndClear();
+    msMonitorExternal.disposeAndClear();
+    msExternal.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 OUString SdStartPresentationDlg::GetDisplayName( sal_Int32   nDisplay,
                                                  DisplayType eType )
 {

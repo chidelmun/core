@@ -29,7 +29,7 @@ class EditBox : public Control
 {
 private:
 
-    MultiLineEdit*  pMEdit;
+    VclPtr<MultiLineEdit>  pMEdit;
     Link            aSelChangedLink;
     Selection       aOldSel;
     bool            bMouseFlag;
@@ -64,6 +64,8 @@ class ArgEdit : public RefEdit
 {
 public:
             ArgEdit( vcl::Window* pParent, WinBits nBits );
+    virtual ~ArgEdit();
+    virtual void dispose() SAL_OVERRIDE;
 
     void    Init( ArgEdit* pPrevEdit, ArgEdit* pNextEdit,
                   ScrollBar& rArgSlider, sal_uInt16 nArgCount );
@@ -72,9 +74,9 @@ protected:
     virtual void    KeyInput( const KeyEvent& rKEvt ) SAL_OVERRIDE;
 
 private:
-    ArgEdit*    pEdPrev;
-    ArgEdit*    pEdNext;
-    ScrollBar*  pSlider;
+    VclPtr<ArgEdit>    pEdPrev;
+    VclPtr<ArgEdit>    pEdNext;
+    VclPtr<ScrollBar>  pSlider;
     sal_uInt16      nArgs;
 };
 
@@ -93,10 +95,10 @@ private:
     Link            aEdFocusLink;
     Link            aEdModifyLink;
 
-    FixedText*      pFtArg;
-    PushButton*    pBtnFx;
-    ArgEdit*        pEdArg;
-    RefButton*  pRefBtn;
+    VclPtr<FixedText>      pFtArg;
+    VclPtr<PushButton>     pBtnFx;
+    VclPtr<ArgEdit>        pEdArg;
+    VclPtr<RefButton>      pRefBtn;
 
     DECL_LINK(  FxBtnClickHdl, ImageButton* );
     DECL_LINK(  RefBtnClickHdl,RefButton* );

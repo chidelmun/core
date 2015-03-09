@@ -78,7 +78,7 @@ struct LightSource
 
 struct LightSourceInfo
 {
-    LightButton* pButton;
+    VclPtr<LightButton> pButton;
     LightSource  aLightSource;
 
     LightSourceInfo();
@@ -301,6 +301,19 @@ void ThreeD_SceneIllumination_TabPage::dispose()
 {
     delete[] m_pLightSourceInfoList;
     m_pLightSourceInfoList = NULL;
+    m_pBtn_Light1.disposeAndClear();
+    m_pBtn_Light2.disposeAndClear();
+    m_pBtn_Light3.disposeAndClear();
+    m_pBtn_Light4.disposeAndClear();
+    m_pBtn_Light5.disposeAndClear();
+    m_pBtn_Light6.disposeAndClear();
+    m_pBtn_Light7.disposeAndClear();
+    m_pBtn_Light8.disposeAndClear();
+    m_pLB_LightSource.disposeAndClear();
+    m_pBtn_LightSource_Color.disposeAndClear();
+    m_pLB_AmbientLight.disposeAndClear();
+    m_pBtn_AmbientLight_Color.disposeAndClear();
+    m_pCtl_Preview.disposeAndClear();
     TabPage::dispose();
 }
 

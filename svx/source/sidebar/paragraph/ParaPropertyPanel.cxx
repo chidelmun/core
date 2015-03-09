@@ -746,6 +746,26 @@ ParaPropertyPanel::ParaPropertyPanel(vcl::Window* pParent,
     m_aMetricCtl.RequestUpdate();
 }
 
+ParaPropertyPanel::~ParaPropertyPanel()
+{
+    dispose();
+}
+
+void ParaPropertyPanel::dispose()
+{
+    mpTBxVertAlign.disposeAndClear();
+    mpTBxNumBullet.disposeAndClear();
+    mpTBxBackColor.disposeAndClear();
+    mpTopDist.disposeAndClear();
+    mpBottomDist.disposeAndClear();
+    mpTbxIndent_IncDec.disposeAndClear();
+    mpTbxProDemote.disposeAndClear();
+    mpLeftIndent.disposeAndClear();
+    mpRightIndent.disposeAndClear();
+    mpFLineIndent.disposeAndClear();
+    PanelLayout::dispose();
+}
+
 } } // end of namespace svx::sidebar
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

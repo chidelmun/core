@@ -173,7 +173,7 @@ namespace avmedia
             MediaEventListenersImpl*                                                mpEvents;
             bool                                                                    mbEventTransparent;
             boost::scoped_ptr<MediaChildWindow>                                     mpChildWindow;
-            MediaWindowControl*                                                     mpMediaWindowControl;
+            VclPtr<MediaWindowControl>                                              mpMediaWindowControl;
             BitmapEx*                                                               mpEmptyBmpEx;
             BitmapEx*                                                               mpAudioBmpEx;
         };

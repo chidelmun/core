@@ -207,11 +207,24 @@ namespace dbp
         implCheckMoveButtons();
         m_pExistingRadios->EnableMultiSelection(true);
 
-        getDialog()->defaultButton(m_pMoveRight);
+        getDialog()->defaultButton(m_pMoveRight.get());
 
         m_pExistingRadios->SetAccessibleRelationMemberOf(m_pExistingRadios);
     }
 
+    ORadioSelectionPage::~ORadioSelectionPage()
+    {
+        dispose();
+    }
+
+    void ORadioSelectionPage::dispose()
+    {
+        m_pRadioName.disposeAndClear();
+        m_pMoveRight.disposeAndClear();
+        m_pMoveLeft.disposeAndClear();
+        m_pExistingRadios.disposeAndClear();
+        OGBWPage::dispose();
+    }
 
     void ORadioSelectionPage::ActivatePage()
     {
@@ -315,7 +328,7 @@ namespace dbp
         if (bUnfinishedInput)
         {
             if (0 == (m_pMoveRight->GetStyle() & WB_DEFBUTTON))
-                getDialog()->defaultButton(m_pMoveRight);
+                getDialog()->defaultButton(m_pMoveRight.get());
         }
         else
         {
@@ -341,6 +354,18 @@ namespace dbp
         m_pDefSelection->SetStyle(WB_DROPDOWN);
     }
 
+    ODefaultFieldSelectionPage::~ODefaultFieldSelectionPage()
+    {
+        dispose();
+    }
+
+    void ODefaultFieldSelectionPage::dispose()
+    {
+        m_pDefSelYes.disposeAndClear();
+        m_pDefSelNo.disposeAndClear();
+        m_pDefSelection.disposeAndClear();
+        OMaybeListSelectionPage::dispose();
+    }
 
     void ODefaultFieldSelectionPage::initializePage()
     {
@@ -388,6 +413,17 @@ namespace dbp
         m_pOptions->SetAccessibleRelationMemberOf(m_pOptions);
     }
 
+    OOptionValuesPage::~OOptionValuesPage()
+    {
+        dispose();
+    }
+
+    void OOptionValuesPage::dispose()
+    {
+        m_pValue.disposeAndClear();
+        m_pOptions.disposeAndClear();
+        OGBWPage::dispose();
+    }
 
     IMPL_LINK( OOptionValuesPage, OnOptionSelected, ListBox*, /*NOTINTERESTEDIN*/ )
     {
@@ -486,6 +522,16 @@ namespace dbp
         get(m_pName, "nameit");
     }
 
+    OFinalizeGBWPage::~OFinalizeGBWPage()
+    {
+        dispose();
+    }
+
+    void OFinalizeGBWPage::dispose()
+    {
+        m_pName.disposeAndClear();
+        OGBWPage::dispose();
+    }
 
     void OFinalizeGBWPage::ActivatePage()
     {

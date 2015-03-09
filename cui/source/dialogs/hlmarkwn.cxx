@@ -72,6 +72,17 @@ SvxHlmarkTreeLBox::SvxHlmarkTreeLBox(vcl::Window* pParent, WinBits nStyle)
     SetNodeDefaultImages();
 }
 
+SvxHlmarkTreeLBox::~SvxHlmarkTreeLBox()
+{
+    dispose();
+}
+
+void SvxHlmarkTreeLBox::dispose()
+{
+    mpParentWnd.disposeAndClear();
+    SvTreeListBox::dispose();
+}
+
 extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSvxHlmarkTreeLBox(vcl::Window *pParent, VclBuilder::stringmap &rMap)
 {
     WinBits nWinStyle = WB_TABSTOP;
@@ -156,6 +167,10 @@ SvxHlinkDlgMarkWnd::~SvxHlinkDlgMarkWnd()
 void SvxHlinkDlgMarkWnd::dispose()
 {
     ClearTree();
+    mpBtApply.disposeAndClear();
+    mpBtClose.disposeAndClear();
+    mpLbTree.disposeAndClear();
+    mpParent.disposeAndClear();
     ModalDialog::dispose();
 }
 

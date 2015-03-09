@@ -50,17 +50,17 @@ class   SvxJavaListBox;
 class SvxJavaOptionsPage : public SfxTabPage
 {
 private:
-    CheckBox*                   m_pJavaEnableCB;
-    VclContainer*               m_pJavaBox;
-    SvxJavaListBox*             m_pJavaList;
-    FixedText*                  m_pJavaPathText;
-    PushButton*                 m_pAddBtn;
-    PushButton*                 m_pParameterBtn;
-    PushButton*                 m_pClassPathBtn;
-    PushButton*                 m_pExpertConfigBtn;
+    VclPtr<CheckBox>                   m_pJavaEnableCB;
+    VclPtr<VclContainer>               m_pJavaBox;
+    VclPtr<SvxJavaListBox>             m_pJavaList;
+    VclPtr<FixedText>                  m_pJavaPathText;
+    VclPtr<PushButton>                 m_pAddBtn;
+    VclPtr<PushButton>                 m_pParameterBtn;
+    VclPtr<PushButton>                 m_pClassPathBtn;
+    VclPtr<PushButton>                 m_pExpertConfigBtn;
 
-    SvxJavaParameterDlg*    m_pParamDlg;
-    SvxJavaClassPathDlg*    m_pPathDlg;
+    VclPtr<SvxJavaParameterDlg>        m_pParamDlg;
+    VclPtr<SvxJavaClassPathDlg>        m_pPathDlg;
 
 #if HAVE_FEATURE_JAVA
     JavaInfo**              m_parJavaInfo;
@@ -74,8 +74,8 @@ private:
     OUString                m_sAddDialogText;
     Idle                    m_aResetIdle;
 
-    CheckBox*               m_pExperimentalCB;
-    CheckBox*               m_pMacroCB;
+    VclPtr<CheckBox>               m_pExperimentalCB;
+    VclPtr<CheckBox>               m_pMacroCB;
 
     ::std::vector< JavaInfo* >
                             m_aAddedInfos;
@@ -120,11 +120,11 @@ public:
 class SvxJavaParameterDlg : public ModalDialog
 {
 private:
-    Edit*                   m_pParameterEdit;
-    PushButton*             m_pAssignBtn;
+    VclPtr<Edit>                   m_pParameterEdit;
+    VclPtr<PushButton>             m_pAssignBtn;
 
-    ListBox*                m_pAssignedList;
-    PushButton*             m_pRemoveBtn;
+    VclPtr<ListBox>                m_pAssignedList;
+    VclPtr<PushButton>             m_pRemoveBtn;
 
     DECL_LINK(ModifyHdl_Impl, void *);
     DECL_LINK(AssignHdl_Impl, void *);
@@ -140,6 +140,8 @@ private:
 
 public:
     SvxJavaParameterDlg( vcl::Window* pParent );
+    virtual ~SvxJavaParameterDlg();
+    virtual void dispose() SAL_OVERRIDE;
 
     virtual short           Execute() SAL_OVERRIDE;
 
@@ -152,10 +154,10 @@ public:
 class SvxJavaClassPathDlg : public ModalDialog
 {
 private:
-    ListBox*                 m_pPathList;
-    PushButton*              m_pAddArchiveBtn;
-    PushButton*              m_pAddPathBtn;
-    PushButton*              m_pRemoveBtn;
+    VclPtr<ListBox>                 m_pPathList;
+    VclPtr<PushButton>              m_pAddArchiveBtn;
+    VclPtr<PushButton>              m_pAddPathBtn;
+    VclPtr<PushButton>              m_pRemoveBtn;
 
     OUString                m_sOldPath;
 

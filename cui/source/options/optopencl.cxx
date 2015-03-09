@@ -67,6 +67,28 @@ SvxOpenCLTabPage::SvxOpenCLTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 }
 
+SvxOpenCLTabPage::~SvxOpenCLTabPage()
+{
+    dispose();
+}
+
+void SvxOpenCLTabPage::dispose()
+{
+    mpUseOpenCL.disposeAndClear();
+    mpBlackListFrame.disposeAndClear();
+    mpBlackList.disposeAndClear();
+    mpBlackListEdit.disposeAndClear();
+    mpBlackListAdd.disposeAndClear();
+    mpBlackListDelete.disposeAndClear();
+    mpWhiteListFrame.disposeAndClear();
+    mpWhiteList.disposeAndClear();
+    mpWhiteListEdit.disposeAndClear();
+    mpWhiteListAdd.disposeAndClear();
+    mpWhiteListDelete.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
+
 SfxTabPage*
 SvxOpenCLTabPage::Create( vcl::Window* pParent, const SfxItemSet* rAttrSet )
 {
@@ -141,16 +163,27 @@ class ListEntryDialog : public ModalDialog
 public:
     OpenCLConfig::ImplMatcher maEntry;
 
-    ListBox* mpOS;
-    Edit* mpOSVersion;
-    Edit* mpPlatformVendor;
-    Edit* mpDevice;
-    Edit* mpDriverVersion;
+    VclPtr<ListBox> mpOS;
+    VclPtr<Edit> mpOSVersion;
+    VclPtr<Edit> mpPlatformVendor;
+    VclPtr<Edit> mpDevice;
+    VclPtr<Edit> mpDriverVersion;
 
     DECL_LINK(OSSelectHdl, ListBox*);
     DECL_LINK(EditModifiedHdl, Edit*);
 
     ListEntryDialog(vcl::Window* pParent, const OpenCLConfig::ImplMatcher& rEntry, const OString& rTag);
+    virtual ~ListEntryDialog() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        mpOS.disposeAndClear();
+        mpOSVersion.disposeAndClear();
+        mpPlatformVendor.disposeAndClear();
+        mpDevice.disposeAndClear();
+        mpDriverVersion.disposeAndClear();
+        ModalDialog::dispose();
+    }
+
 };
 
 ListEntryDialog::ListEntryDialog(vcl::Window* pParent, const OpenCLConfig::ImplMatcher& rEntry, const OString& rTag)

@@ -194,6 +194,28 @@ LinePropertyPanel::LinePropertyPanel(
     Initialize();
 }
 
+LinePropertyPanel::~LinePropertyPanel()
+{
+    dispose();
+}
+
+void LinePropertyPanel::dispose()
+{
+    mpFTWidth.disposeAndClear();
+    mpTBWidth.disposeAndClear();
+    mpFTStyle.disposeAndClear();
+    mpLBStyle.disposeAndClear();
+    mpFTTrancparency.disposeAndClear();
+    mpMFTransparent.disposeAndClear();
+    mpFTArrow.disposeAndClear();
+    mpLBStart.disposeAndClear();
+    mpLBEnd.disposeAndClear();
+    mpFTEdgeStyle.disposeAndClear();
+    mpLBEdgeStyle.disposeAndClear();
+    mpFTCapStyle.disposeAndClear();
+    mpLBCapStyle.disposeAndClear();
+    PanelLayout::dispose();
+}
 
 
 void LinePropertyPanel::Initialize()

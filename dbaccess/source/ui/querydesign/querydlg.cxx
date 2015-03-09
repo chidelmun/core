@@ -145,6 +145,11 @@ DlgQryJoin::~DlgQryJoin()
 void DlgQryJoin::dispose()
 {
     delete m_pTableControl;
+    m_pML_HelpText.disposeAndClear();
+    m_pPB_OK.disposeAndClear();
+    m_pLB_JoinType.disposeAndClear();
+    m_pCBNatural.disposeAndClear();
+    m_pTableView.disposeAndClear();
     ModalDialog::dispose();
 }
 

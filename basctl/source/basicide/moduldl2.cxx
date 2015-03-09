@@ -391,6 +391,18 @@ NewObjectDialog::NewObjectDialog(vcl::Window * pParent, ObjectMode::Mode eMode,
         m_pOKButton->SetClickHdl(LINK(this, NewObjectDialog, OkButtonHandler));
 }
 
+NewObjectDialog::~NewObjectDialog()
+{
+    dispose();
+}
+
+void NewObjectDialog::dispose()
+{
+    m_pEdit.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 // GotoLineDialog
 GotoLineDialog::GotoLineDialog(vcl::Window * pParent )
     : ModalDialog(pParent, "GotoLineDialog",
@@ -400,6 +412,18 @@ GotoLineDialog::GotoLineDialog(vcl::Window * pParent )
     get(m_pOKButton, "ok");
     m_pEdit->GrabFocus();
     m_pOKButton->SetClickHdl(LINK(this, GotoLineDialog, OkButtonHandler));
+}
+
+GotoLineDialog::~GotoLineDialog()
+{
+    dispose();
+}
+
+void GotoLineDialog::dispose()
+{
+    m_pEdit.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 sal_Int32 GotoLineDialog::GetLineNumber() const
@@ -434,6 +458,18 @@ ExportDialog::ExportDialog(vcl::Window * pParent)
 
     m_pExportAsPackageButton->Check();
     m_pOKButton->SetClickHdl(LINK(this, ExportDialog, OkButtonHandler));
+}
+
+ExportDialog::~ExportDialog()
+{
+    dispose();
+}
+
+void ExportDialog::dispose()
+{
+    m_pExportAsPackageButton.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 // LibPage
@@ -496,8 +532,16 @@ void LibPage::dispose()
             DocumentEntry* pEntry = (DocumentEntry*)m_pBasicsBox->GetEntryData( i );
             delete pEntry;
         }
-        m_pBasicsBox = NULL;
     }
+    m_pBasicsBox.disposeAndClear();
+    m_pLibBox.disposeAndClear();
+    m_pEditButton.disposeAndClear();
+    m_pPasswordButton.disposeAndClear();
+    m_pNewLibButton.disposeAndClear();
+    m_pInsertLibButton.disposeAndClear();
+    m_pExportButton.disposeAndClear();
+    m_pDelButton.disposeAndClear();
+    pTabDlg.disposeAndClear();
     TabPage::dispose();
 }
 

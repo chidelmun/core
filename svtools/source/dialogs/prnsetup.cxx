@@ -252,6 +252,14 @@ void PrinterSetupDialog::dispose()
 {
     ImplFreePrnDlgListBox(m_pLbName, false);
     delete mpTempPrinter;
+    mpTempPrinter = NULL;
+    m_pLbName.disposeAndClear();
+    m_pBtnProperties.disposeAndClear();
+    m_pBtnOptions.disposeAndClear();
+    m_pFiStatus.disposeAndClear();
+    m_pFiType.disposeAndClear();
+    m_pFiLocation.disposeAndClear();
+    m_pFiComment.disposeAndClear();
     ModalDialog::dispose();
 }
 

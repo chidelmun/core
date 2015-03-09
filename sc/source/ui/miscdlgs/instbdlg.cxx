@@ -72,6 +72,19 @@ void ScInsertTableDlg::dispose()
     if (pDocShTables)
         pDocShTables->DoClose();
     delete pDocInserter;
+    m_pBtnBefore.disposeAndClear();
+    m_pBtnBehind.disposeAndClear();
+    m_pBtnNew.disposeAndClear();
+    m_pBtnFromFile.disposeAndClear();
+    m_pFtCount.disposeAndClear();
+    m_pNfCount.disposeAndClear();
+    m_pFtName.disposeAndClear();
+    m_pEdName.disposeAndClear();
+    m_pLbTables.disposeAndClear();
+    m_pFtPath.disposeAndClear();
+    m_pBtnBrowse.disposeAndClear();
+    m_pBtnLink.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
     ModalDialog::dispose();
 }
 

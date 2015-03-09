@@ -60,6 +60,19 @@ DictionaryList::DictionaryList(SvSimpleTableContainer& rParent, WinBits nBits)
 {
 }
 
+DictionaryList::~DictionaryList()
+{
+    dispose();
+}
+
+void DictionaryList::dispose()
+{
+    m_pED_Term.disposeAndClear();
+    m_pED_Mapping.disposeAndClear();
+    m_pLB_Property.disposeAndClear();
+    SvSimpleTable::dispose();
+}
+
 OUString DictionaryList::getPropertyTypeName( sal_Int16 nConversionPropertyType ) const
 {
     if(!m_pLB_Property || !m_pLB_Property->GetEntryCount())
@@ -549,8 +562,22 @@ ChineseDictionaryDialog::~ChineseDictionaryDialog()
 void ChineseDictionaryDialog::dispose()
 {
     m_xContext=0;
-    delete m_pCT_DictionaryToSimplified;
-    delete m_pCT_DictionaryToTraditional;
+    m_pCT_DictionaryToSimplified.disposeAndClear();
+    m_pCT_DictionaryToTraditional.disposeAndClear();
+    m_pRB_To_Simplified.disposeAndClear();
+    m_pRB_To_Traditional.disposeAndClear();
+    m_pCB_Reverse.disposeAndClear();
+    m_pFT_Term.disposeAndClear();
+    m_pED_Term.disposeAndClear();
+    m_pFT_Mapping.disposeAndClear();
+    m_pED_Mapping.disposeAndClear();
+    m_pFT_Property.disposeAndClear();
+    m_pLB_Property.disposeAndClear();
+    mpToSimplifiedContainer.disposeAndClear();
+    mpToTraditionalContainer.disposeAndClear();
+    m_pPB_Add.disposeAndClear();
+    m_pPB_Modify.disposeAndClear();
+    m_pPB_Delete.disposeAndClear();
     ModalDialog::dispose();
 }
 

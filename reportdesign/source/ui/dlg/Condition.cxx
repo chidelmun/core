@@ -97,7 +97,7 @@ IMPL_LINK( ConditionField, OnFormula, Button*, _pClickedButton )
 class OColorPopup : public FloatingWindow
 {
     DECL_LINK( SelectHdl, void * );
-    Condition*      m_pCondition;
+    VclPtr<Condition>      m_pCondition;
     sal_uInt16      m_nSlotId;
 public:
     OColorPopup(vcl::Window* _pParent,Condition* _pCondition);
@@ -161,8 +161,9 @@ OColorPopup::~OColorPopup()
 
 void OColorPopup::dispose()
 {
-    m_aColorSet.disposeAndClear();
     disposeBuilder();
+    m_aColorSet.disposeAndClear();
+    m_pCondition.disposeAndClear();
     FloatingWindow::dispose();
 }
 
@@ -315,11 +316,21 @@ void Condition::dispose()
 {
     m_bInDestruction = true;
 
-    delete m_pColorFloat;
     delete m_pBtnUpdaterFontColor;
     delete m_pCondLHS;
     delete m_pCondRHS;
     delete m_pBtnUpdaterBackgroundColor;
+    m_pHeader.disposeAndClear();
+    m_pConditionType.disposeAndClear();
+    m_pOperationList.disposeAndClear();
+    m_pOperandGlue.disposeAndClear();
+    m_pActions.disposeAndClear();
+    m_pPreview.disposeAndClear();
+    m_pMoveUp.disposeAndClear();
+    m_pMoveDown.disposeAndClear();
+    m_pAddCondition.disposeAndClear();
+    m_pRemoveCondition.disposeAndClear();
+    m_pColorFloat.disposeAndClear();
     VclHBox::dispose();
 }
 

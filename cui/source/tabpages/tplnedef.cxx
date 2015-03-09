@@ -154,6 +154,31 @@ SvxLineDefTabPage::SvxLineDefTabPage
     pDashList = NULL;
 }
 
+SvxLineDefTabPage::~SvxLineDefTabPage()
+{
+    dispose();
+}
+
+void SvxLineDefTabPage::dispose()
+{
+    m_pLbLineStyles.disposeAndClear();
+    m_pLbType1.disposeAndClear();
+    m_pLbType2.disposeAndClear();
+    m_pNumFldNumber1.disposeAndClear();
+    m_pNumFldNumber2.disposeAndClear();
+    m_pMtrLength1.disposeAndClear();
+    m_pMtrLength2.disposeAndClear();
+    m_pMtrDistance.disposeAndClear();
+    m_pCbxSynchronize.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnModify.disposeAndClear();
+    m_pBtnDelete.disposeAndClear();
+    m_pBtnLoad.disposeAndClear();
+    m_pBtnSave.disposeAndClear();
+    m_pCtlPreview.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SvxLineDefTabPage::Construct()
 {
     // Line style fill; do *not* add default fields here

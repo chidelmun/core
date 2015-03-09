@@ -204,7 +204,21 @@ ScDataFormDlg::ScDataFormDlg(vcl::Window* pParent, ScTabViewShell* pTabViewShell
 
 ScDataFormDlg::~ScDataFormDlg()
 {
+    dispose();
+}
 
+void ScDataFormDlg::dispose()
+{
+    m_pBtnNew.disposeAndClear();
+    m_pBtnDelete.disposeAndClear();
+    m_pBtnRestore.disposeAndClear();
+    m_pBtnPrev.disposeAndClear();
+    m_pBtnNext.disposeAndClear();
+    m_pBtnClose.disposeAndClear();
+    m_pSlider.disposeAndClear();
+    m_pGrid.disposeAndClear();
+    m_pFixedText.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 void ScDataFormDlg::FillCtrls(SCROW /*nCurrentRow*/)

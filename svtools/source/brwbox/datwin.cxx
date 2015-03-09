@@ -228,6 +228,9 @@ void BrowserDataWin::dispose()
     for ( size_t i = 0, n = aInvalidRegion.size(); i < n; ++i )
         delete aInvalidRegion[ i ];
     aInvalidRegion.clear();
+    pHeaderBar.disposeAndClear();
+    pEventWin.disposeAndClear();
+    pCornerWin.disposeAndClear();
     Control::dispose();
 }
 
@@ -718,7 +721,16 @@ void BrowserDataWin::Invalidate( const Rectangle& rRect, sal_uInt16 nFlags )
         Window::Invalidate( rRect, nFlags );
 }
 
+BrowserScrollBar::~BrowserScrollBar()
+{
+    dispose();
+}
 
+void BrowserScrollBar::dispose()
+{
+    _pDataWin.disposeAndClear();
+    ScrollBar::dispose();
+}
 
 void BrowserScrollBar::Tracking( const TrackingEvent& rTEvt )
 {

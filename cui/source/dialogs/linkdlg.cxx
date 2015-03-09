@@ -142,6 +142,26 @@ SvBaseLinksDlg::SvBaseLinksDlg( vcl::Window * pParent, LinkManager* pMgr, bool b
     SetManager( pMgr );
 }
 
+SvBaseLinksDlg::~SvBaseLinksDlg()
+{
+    dispose();
+}
+
+void SvBaseLinksDlg::dispose()
+{
+    m_pTbLinks.disposeAndClear();
+    m_pFtFullFileName.disposeAndClear();
+    m_pFtFullSourceName.disposeAndClear();
+    m_pFtFullTypeName.disposeAndClear();
+    m_pRbAutomatic.disposeAndClear();
+    m_pRbManual.disposeAndClear();
+    m_pPbUpdateNow.disposeAndClear();
+    m_pPbOpenSource.disposeAndClear();
+    m_pPbChangeSource.disposeAndClear();
+    m_pPbBreakLink.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 /*************************************************************************
 |*    SvBaseLinksDlg::Handler()
 *************************************************************************/

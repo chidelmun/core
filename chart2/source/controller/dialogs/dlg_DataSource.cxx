@@ -164,16 +164,14 @@ DataSourceDialog::~DataSourceDialog()
 
 void DataSourceDialog::dispose()
 {
-    delete m_pRangeChooserTabePage;
-    m_pRangeChooserTabePage = NULL;
-    delete m_pDataSourceTabPage;
-    m_pDataSourceTabPage = NULL;
     if (m_pTabControl)
     {
         m_nLastPageId = m_pTabControl->GetCurPageId();
-        delete m_pTabControl;
-        m_pTabControl = NULL;
     }
+    m_pRangeChooserTabePage.disposeAndClear();
+    m_pDataSourceTabPage.disposeAndClear();
+    m_pTabControl.disposeAndClear();
+    m_pBtnOK.disposeAndClear();
     TabDialog::dispose();
 }
 

@@ -360,16 +360,12 @@ IMPL_LINK_NOARG(TabBarEdit, ImplEndTimerHdl)
 
 struct TabBar_Impl
 {
-    ImplTabSizer*                   mpSizer;
+    VclPtr<ImplTabSizer>            mpSizer;
     ::svt::AccessibleFactoryAccess  maAccessibleFactory;
 
     TabBar_Impl()
         :mpSizer( NULL )
     {
-    }
-    ~TabBar_Impl()
-    {
-        delete mpSizer;
     }
 };
 
@@ -455,20 +451,17 @@ void TabBar::dispose()
     EndEditMode( true );
 
     // Controls loeschen
-    if ( mpPrevBtn )
-        delete mpPrevBtn;
-    if ( mpNextBtn )
-        delete mpNextBtn;
-    if ( mpFirstBtn )
-        delete mpFirstBtn;
-    if ( mpLastBtn )
-        delete mpLastBtn;
+    mpPrevBtn.disposeAndClear();
+    mpNextBtn.disposeAndClear();
+    mpFirstBtn.disposeAndClear();
+    mpLastBtn.disposeAndClear();
     delete mpImpl;
 
     for ( size_t i = 0, n = mpItemList->size(); i < n; ++i ) {
         delete (*mpItemList)[ i ];
     }
     delete mpItemList;
+    mpEdit.disposeAndClear();
     Window::dispose();
 }
 
@@ -713,7 +706,7 @@ void TabBar::ImplInitControls()
     }
     else
     {
-        DELETEZ( mpImpl->mpSizer );
+        mpImpl->mpSizer.disposeAndClear();
     }
 
     Link aLink = LINK( this, TabBar, ImplClickHdl );
@@ -738,8 +731,8 @@ void TabBar::ImplInitControls()
     }
     else
     {
-        DELETEZ( mpPrevBtn );
-        DELETEZ( mpNextBtn );
+        mpPrevBtn.disposeAndClear();
+        mpNextBtn.disposeAndClear();
     }
 
     if ( mnWinStyle & WB_SCROLL )
@@ -762,8 +755,8 @@ void TabBar::ImplInitControls()
     }
     else
     {
-        DELETEZ( mpFirstBtn );
-        DELETEZ( mpLastBtn );
+        mpFirstBtn.disposeAndClear();
+        mpLastBtn.disposeAndClear();
     }
 
     mbHasInsertTab  = (mnWinStyle & WB_INSERTTAB);
@@ -2354,8 +2347,7 @@ void TabBar::EndEditMode( bool bCancel )
         else
         {
             // close edit and call end hdl
-            delete mpEdit;
-            mpEdit = NULL;
+            mpEdit.disposeAndClear();
             EndRenaming();
             mnEditId = 0;
         }

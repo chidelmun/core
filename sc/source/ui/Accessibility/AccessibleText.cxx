@@ -142,9 +142,9 @@ void ScViewForwarder::SetInvalid()
 
 class ScEditObjectViewForwarder : public SvxViewForwarder
 {
-    vcl::Window*             mpWindow;
+    VclPtr<vcl::Window> mpWindow;
     // #i49561# EditView needed for access to its visible area.
-    const EditView* mpEditView;
+    const EditView*     mpEditView;
 public:
                         ScEditObjectViewForwarder( vcl::Window* pWindow,
                                                    const EditView* _pEditView);
@@ -172,7 +172,7 @@ ScEditObjectViewForwarder::~ScEditObjectViewForwarder()
 
 bool ScEditObjectViewForwarder::IsValid() const
 {
-    return (mpWindow != NULL);
+    return (mpWindow != nullptr);
 }
 
 Rectangle ScEditObjectViewForwarder::GetVisArea() const
@@ -545,7 +545,7 @@ Rectangle ScPreviewNoteViewForwarder::GetVisArea() const
 class ScEditViewForwarder : public SvxEditViewForwarder
 {
     EditView*           mpEditView;
-    vcl::Window*             mpWindow;
+    VclPtr<vcl::Window> mpWindow;
 public:
                         ScEditViewForwarder(EditView* pEditView, vcl::Window* pWin);
     virtual             ~ScEditViewForwarder();
@@ -1082,7 +1082,7 @@ ScAccessibleEditLineTextData::ScAccessibleEditLineTextData(EditView* pEditView, 
 
 ScAccessibleEditLineTextData::~ScAccessibleEditLineTextData()
 {
-    ScTextWnd* pTxtWnd = dynamic_cast< ScTextWnd* >(mpWindow);
+    ScTextWnd* pTxtWnd = dynamic_cast< ScTextWnd* >(mpWindow.get());
 
     if (pTxtWnd)
         pTxtWnd->RemoveAccessibleTextData( *this );
@@ -1103,7 +1103,7 @@ ScAccessibleEditLineTextData::~ScAccessibleEditLineTextData()
 
 void ScAccessibleEditLineTextData::Dispose()
 {
-    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow);
+    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow.get());
 
     if (pTxtWnd)
         pTxtWnd->RemoveAccessibleTextData( *this );
@@ -1119,7 +1119,7 @@ ScAccessibleTextData* ScAccessibleEditLineTextData::Clone() const
 
 SvxTextForwarder* ScAccessibleEditLineTextData::GetTextForwarder()
 {
-    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow);
+    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow.get());
 
     if (pTxtWnd)
     {
@@ -1165,7 +1165,7 @@ SvxTextForwarder* ScAccessibleEditLineTextData::GetTextForwarder()
 
 SvxEditViewForwarder* ScAccessibleEditLineTextData::GetEditViewForwarder( bool bCreate )
 {
-    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow);
+    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow.get());
 
     if (pTxtWnd)
     {
@@ -1187,7 +1187,7 @@ SvxEditViewForwarder* ScAccessibleEditLineTextData::GetEditViewForwarder( bool b
 
 void ScAccessibleEditLineTextData::ResetEditMode()
 {
-    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow);
+    ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow.get());
 
     if (mbEditEngineCreated && mpEditEngine)
         delete mpEditEngine;
@@ -1205,7 +1205,7 @@ void ScAccessibleEditLineTextData::TextChanged()
 {
     if (mbEditEngineCreated && mpEditEngine)
     {
-        ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow);
+        ScTextWnd* pTxtWnd = dynamic_cast<ScTextWnd*>(mpWindow.get());
 
         if (pTxtWnd)
             mpEditEngine->SetText(pTxtWnd->GetTextString());
@@ -1646,7 +1646,7 @@ SvxViewForwarder* ScAccessibleNoteTextData::GetViewForwarder()
 class ScCsvViewForwarder : public SvxViewForwarder
 {
     Rectangle                   maBoundBox;
-    vcl::Window*                     mpWindow;
+    VclPtr<vcl::Window>         mpWindow;
 
 public:
     explicit                    ScCsvViewForwarder( vcl::Window* pWindow, const Rectangle& rBoundBox );
@@ -1667,7 +1667,7 @@ ScCsvViewForwarder::ScCsvViewForwarder( vcl::Window* pWindow, const Rectangle& r
 
 bool ScCsvViewForwarder::IsValid() const
 {
-    return mpWindow != NULL;
+    return mpWindow != nullptr;
 }
 
 Rectangle ScCsvViewForwarder::GetVisArea() const

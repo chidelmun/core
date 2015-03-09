@@ -88,6 +88,25 @@ SwParagraphNumTabPage::SwParagraphNumTabPage(vcl::Window* pParent, const SfxItem
 
 SwParagraphNumTabPage::~SwParagraphNumTabPage()
 {
+    dispose();
+}
+
+void SwParagraphNumTabPage::dispose()
+{
+    m_pOutlineStartBX.disposeAndClear();
+    m_pOutlineLvLB.disposeAndClear();
+    m_pNumberStyleBX.disposeAndClear();
+    m_pNumberStyleLB.disposeAndClear();
+    m_pNewStartCB.disposeAndClear();
+    m_pNewStartBX.disposeAndClear();
+    m_pNewStartNumberCB.disposeAndClear();
+    m_pNewStartNF.disposeAndClear();
+    m_pCountParaFram.disposeAndClear();
+    m_pCountParaCB.disposeAndClear();
+    m_pRestartParaCountCB.disposeAndClear();
+    m_pRestartBX.disposeAndClear();
+    m_pRestartNF.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwParagraphNumTabPage::Create(  vcl::Window* pParent,

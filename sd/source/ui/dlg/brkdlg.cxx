@@ -72,8 +72,10 @@ BreakDlg::~BreakDlg()
 
 void BreakDlg::dispose()
 {
-    delete mpProgress;
-    delete pProgrInfo;
+    m_pFiObjInfo.disposeAndClear();
+    m_pFiActInfo.disposeAndClear();
+    m_pFiInsInfo.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

@@ -45,16 +45,16 @@ using namespace ::com::sun::star::beans;
 
 class SwTestAccountSettingsDialog : public SfxModalDialog
 {
-    VclMultiLineEdit*   m_pErrorsED;
+    VclPtr<VclMultiLineEdit>   m_pErrorsED;
 
-    PushButton*         m_pStopPB;
+    VclPtr<PushButton>         m_pStopPB;
 
-    FixedText*          m_pEstablish;
-    FixedText*          m_pFind;
-    FixedText*          m_pResult1;
-    FixedText*          m_pResult2;
-    FixedImage*         m_pImage1;
-    FixedImage*         m_pImage2;
+    VclPtr<FixedText>          m_pEstablish;
+    VclPtr<FixedText>          m_pFind;
+    VclPtr<FixedText>          m_pResult1;
+    VclPtr<FixedText>          m_pResult2;
+    VclPtr<FixedImage>         m_pImage1;
+    VclPtr<FixedImage>         m_pImage2;
 
     Image               m_aCompletedImg;
     Image               m_aFailedImg;
@@ -62,7 +62,7 @@ class SwTestAccountSettingsDialog : public SfxModalDialog
     OUString            m_sFailed;
     OUString            m_sErrorServer;
 
-    SwMailConfigPage*   m_pParent;
+    VclPtr<SwMailConfigPage>   m_pParent;
 
     bool                m_bStop;
 
@@ -71,35 +71,37 @@ class SwTestAccountSettingsDialog : public SfxModalDialog
     DECL_STATIC_LINK(SwTestAccountSettingsDialog, TestHdl, void*);
 public:
     SwTestAccountSettingsDialog(SwMailConfigPage* pParent);
+    virtual ~SwTestAccountSettingsDialog();
+    virtual void dispose() SAL_OVERRIDE;
 };
 
 class SwAuthenticationSettingsDialog : public SfxModalDialog
 {
-    CheckBox*        m_pAuthenticationCB;
+    VclPtr<CheckBox>        m_pAuthenticationCB;
 
-    RadioButton*     m_pSeparateAuthenticationRB;
-    RadioButton*     m_pSMTPAfterPOPRB;
+    VclPtr<RadioButton>     m_pSeparateAuthenticationRB;
+    VclPtr<RadioButton>     m_pSMTPAfterPOPRB;
 
-    FixedText*       m_pOutgoingServerFT;
-    FixedText*       m_pUserNameFT;
-    Edit*            m_pUserNameED;
-    FixedText*       m_pOutPasswordFT;
-    Edit*            m_pOutPasswordED;
+    VclPtr<FixedText>       m_pOutgoingServerFT;
+    VclPtr<FixedText>       m_pUserNameFT;
+    VclPtr<Edit>            m_pUserNameED;
+    VclPtr<FixedText>       m_pOutPasswordFT;
+    VclPtr<Edit>            m_pOutPasswordED;
 
-    FixedText*       m_pIncomingServerFT;
-    FixedText*       m_pServerFT;
-    Edit*            m_pServerED;
-    FixedText*       m_pPortFT;
-    NumericField*    m_pPortNF;
-    FixedText*       m_pProtocolFT;
-    RadioButton*     m_pPOP3RB;
-    RadioButton*     m_pIMAPRB;
-    FixedText*       m_pInUsernameFT;
-    Edit*            m_pInUsernameED;
-    FixedText*       m_pInPasswordFT;
-    Edit*            m_pInPasswordED;
+    VclPtr<FixedText>       m_pIncomingServerFT;
+    VclPtr<FixedText>       m_pServerFT;
+    VclPtr<Edit>            m_pServerED;
+    VclPtr<FixedText>       m_pPortFT;
+    VclPtr<NumericField>    m_pPortNF;
+    VclPtr<FixedText>       m_pProtocolFT;
+    VclPtr<RadioButton>     m_pPOP3RB;
+    VclPtr<RadioButton>     m_pIMAPRB;
+    VclPtr<FixedText>       m_pInUsernameFT;
+    VclPtr<Edit>            m_pInUsernameED;
+    VclPtr<FixedText>       m_pInPasswordFT;
+    VclPtr<Edit>            m_pInPasswordED;
 
-    OKButton*        m_pOKPB;
+    VclPtr<OKButton>        m_pOKPB;
 
     SwMailMergeConfigItem& rConfigItem;
 
@@ -110,6 +112,7 @@ class SwAuthenticationSettingsDialog : public SfxModalDialog
 public:
     SwAuthenticationSettingsDialog(SwMailConfigPage* pParent, SwMailMergeConfigItem& rItem);
     virtual ~SwAuthenticationSettingsDialog();
+    virtual void dispose() SAL_OVERRIDE;
 };
 
 SwMailConfigPage::SwMailConfigPage( vcl::Window* pParent, const SfxItemSet& rSet ) :
@@ -141,6 +144,16 @@ SwMailConfigPage::~SwMailConfigPage()
 void SwMailConfigPage::dispose()
 {
     delete m_pConfigItem;
+    m_pDisplayNameED.disposeAndClear();
+    m_pAddressED.disposeAndClear();
+    m_pReplyToCB.disposeAndClear();
+    m_pReplyToFT.disposeAndClear();
+    m_pReplyToED.disposeAndClear();
+    m_pServerED.disposeAndClear();
+    m_pPortNF.disposeAndClear();
+    m_pSecureCB.disposeAndClear();
+    m_pServerAuthenticationPB.disposeAndClear();
+    m_pTestPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -242,6 +255,25 @@ SwTestAccountSettingsDialog::SwTestAccountSettingsDialog(SwMailConfigPage* pPare
     m_pStopPB->SetClickHdl(LINK(this, SwTestAccountSettingsDialog, StopHdl));
 
     Application::PostUserEvent( STATIC_LINK( this, SwTestAccountSettingsDialog, TestHdl ), this );
+}
+
+SwTestAccountSettingsDialog::~SwTestAccountSettingsDialog()
+{
+    dispose();
+}
+
+void SwTestAccountSettingsDialog::dispose()
+{
+    m_pErrorsED.disposeAndClear();
+    m_pStopPB.disposeAndClear();
+    m_pEstablish.disposeAndClear();
+    m_pFind.disposeAndClear();
+    m_pResult1.disposeAndClear();
+    m_pResult2.disposeAndClear();
+    m_pImage1.disposeAndClear();
+    m_pImage2.disposeAndClear();
+    m_pParent.disposeAndClear();
+    SfxModalDialog::dispose();
 }
 
 IMPL_LINK_NOARG(SwTestAccountSettingsDialog, StopHdl)
@@ -420,6 +452,33 @@ SwAuthenticationSettingsDialog::SwAuthenticationSettingsDialog(
 
 SwAuthenticationSettingsDialog::~SwAuthenticationSettingsDialog()
 {
+    dispose();
+}
+
+void SwAuthenticationSettingsDialog::dispose()
+{
+    m_pAuthenticationCB.disposeAndClear();
+    m_pSeparateAuthenticationRB.disposeAndClear();
+    m_pSMTPAfterPOPRB.disposeAndClear();
+    m_pOutgoingServerFT.disposeAndClear();
+    m_pUserNameFT.disposeAndClear();
+    m_pUserNameED.disposeAndClear();
+    m_pOutPasswordFT.disposeAndClear();
+    m_pOutPasswordED.disposeAndClear();
+    m_pIncomingServerFT.disposeAndClear();
+    m_pServerFT.disposeAndClear();
+    m_pServerED.disposeAndClear();
+    m_pPortFT.disposeAndClear();
+    m_pPortNF.disposeAndClear();
+    m_pProtocolFT.disposeAndClear();
+    m_pPOP3RB.disposeAndClear();
+    m_pIMAPRB.disposeAndClear();
+    m_pInUsernameFT.disposeAndClear();
+    m_pInUsernameED.disposeAndClear();
+    m_pInPasswordFT.disposeAndClear();
+    m_pInPasswordED.disposeAndClear();
+    m_pOKPB.disposeAndClear();
+    SfxModalDialog::dispose();
 }
 
 IMPL_LINK_NOARG(SwAuthenticationSettingsDialog, OKHdl_Impl)

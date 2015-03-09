@@ -33,6 +33,20 @@ SwSplitTblDlg::SwSplitTblDlg( vcl::Window *pParent, SwWrtShell &rSh )
     get(mpBorderCopyRB, "noheading");
 }
 
+SwSplitTblDlg::~SwSplitTblDlg()
+{
+    dispose();
+}
+
+void SwSplitTblDlg::dispose()
+{
+    mpCntntCopyRB.disposeAndClear();
+    mpBoxAttrCopyWithParaRB.disposeAndClear();
+    mpBoxAttrCopyNoParaRB.disposeAndClear();
+    mpBorderCopyRB.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 void SwSplitTblDlg::Apply()
 {
     m_nSplit = HEADLINE_CNTNTCOPY;

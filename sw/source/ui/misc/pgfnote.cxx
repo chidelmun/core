@@ -135,7 +135,24 @@ SwFootNotePage::SwFootNotePage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwFootNotePage::~SwFootNotePage()
 {
+    dispose();
 }
+
+void SwFootNotePage::dispose()
+{
+    m_pMaxHeightPageBtn.disposeAndClear();
+    m_pMaxHeightBtn.disposeAndClear();
+    m_pMaxHeightEdit.disposeAndClear();
+    m_pDistEdit.disposeAndClear();
+    m_pLinePosBox.disposeAndClear();
+    m_pLineTypeBox.disposeAndClear();
+    m_pLineWidthEdit.disposeAndClear();
+    m_pLineColorBox.disposeAndClear();
+    m_pLineLengthEdit.disposeAndClear();
+    m_pLineDistEdit.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 SfxTabPage* SwFootNotePage::Create(vcl::Window *pParent, const SfxItemSet *rSet)
 {

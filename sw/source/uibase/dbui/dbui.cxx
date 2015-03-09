@@ -42,6 +42,20 @@ PrintMonitor::PrintMonitor(vcl::Window *pParent, PrintMonitorType eType )
     m_pPrinting->Show();
 }
 
+PrintMonitor::~PrintMonitor()
+{
+    dispose();
+}
+
+void PrintMonitor::dispose()
+{
+    m_pDocName.disposeAndClear();
+    m_pPrinting.disposeAndClear();
+    m_pPrinter.disposeAndClear();
+    m_pPrintInfo.disposeAndClear();
+    CancelableModelessDialog::dispose();
+}
+
 // Progress Indicator for Creation of personalized Mail Merge documents:
 CreateMonitor::CreateMonitor( vcl::Window *pParent )
     : CancelableModelessDialog(pParent, "MMCreatingDialog",
@@ -55,6 +69,18 @@ CreateMonitor::CreateMonitor( vcl::Window *pParent )
     get(m_pCounting, "progress");
     m_sCountingPattern = m_pCounting->GetText();
     m_pCounting->SetText("...");
+}
+
+CreateMonitor::~CreateMonitor()
+{
+    dispose();
+}
+
+void CreateMonitor::dispose()
+{
+    m_pCancelButton.disposeAndClear();
+    m_pCounting.disposeAndClear();
+    CancelableModelessDialog::dispose();
 }
 
 void CreateMonitor::UpdateCountingText()
@@ -82,6 +108,17 @@ CancelableModelessDialog::CancelableModelessDialog( vcl::Window *pParent,
     : ModelessDialog( pParent , rID, rUIXMLDescription )
 {
     get(m_pCancelButton, "cancel");
+}
+
+CancelableModelessDialog::~CancelableModelessDialog()
+{
+    dispose();
+}
+
+void CancelableModelessDialog::dispose()
+{
+    m_pCancelButton.disposeAndClear();
+    ModelessDialog::dispose();
 }
 
 void CancelableModelessDialog::SetCancelHdl( const Link& rLink )

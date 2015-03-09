@@ -82,8 +82,8 @@ void OTableGrantControl::dispose()
         m_nDeactivateEvent = 0;
     }
 
-    delete m_pCheckCell;
-    delete m_pEdit;
+    m_pCheckCell.disposeAndClear();
+    m_pEdit.disposeAndClear();
 
     m_xTables       = NULL;
     ::svt::EditBrowseBox::dispose();

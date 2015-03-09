@@ -306,6 +306,27 @@ OfaMiscTabPage::OfaMiscTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
     m_pToolTipsCB->SetClickHdl( aLink );
 }
 
+OfaMiscTabPage::~OfaMiscTabPage()
+{
+    dispose();
+}
+
+void OfaMiscTabPage::dispose()
+{
+    m_pToolTipsCB.disposeAndClear();
+    m_pExtHelpCB.disposeAndClear();
+    m_pFileDlgROImage.disposeAndClear();
+    m_pFileDlgCB.disposeAndClear();
+    m_pPrintDlgCB.disposeAndClear();
+    m_pDocStatusCB.disposeAndClear();
+    m_pSaveAlwaysCB.disposeAndClear();
+    m_pYearFrame.disposeAndClear();
+    m_pYearValueField.disposeAndClear();
+    m_pToYearFT.disposeAndClear();
+    m_pCollectUsageInfo.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 SfxTabPage* OfaMiscTabPage::Create( vcl::Window* pParent, const SfxItemSet* rAttrSet )
 {
     return new OfaMiscTabPage( pParent, *rAttrSet );
@@ -680,6 +701,23 @@ void OfaViewTabPage::dispose()
     pCanvasSettings = NULL;
     delete pAppearanceCfg;
     pAppearanceCfg = NULL;
+    m_pWindowSizeMF.disposeAndClear();
+    m_pIconSizeLB.disposeAndClear();
+    m_pIconStyleLB.disposeAndClear();
+    m_pFontAntiAliasing.disposeAndClear();
+    m_pAAPointLimitLabel.disposeAndClear();
+    m_pAAPointLimit.disposeAndClear();
+    m_pMenuIconsLB.disposeAndClear();
+    m_pFontShowCB.disposeAndClear();
+    m_pFontHistoryCB.disposeAndClear();
+    m_pUseHardwareAccell.disposeAndClear();
+    m_pUseAntiAliase.disposeAndClear();
+    m_pUseOpenGL.disposeAndClear();
+    m_pForceOpenGL.disposeAndClear();
+    m_pMousePosLB.disposeAndClear();
+    m_pMouseMiddleLB.disposeAndClear();
+    m_pSelectionCB.disposeAndClear();
+    m_pSelectionMF.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1203,6 +1241,22 @@ void OfaLanguagesTabPage::dispose()
 {
     delete pLangConfig;
     pLangConfig = NULL;
+    m_pUserInterfaceLB.disposeAndClear();
+    m_pLocaleSettingFT.disposeAndClear();
+    m_pLocaleSettingLB.disposeAndClear();
+    m_pDecimalSeparatorCB.disposeAndClear();
+    m_pCurrencyFT.disposeAndClear();
+    m_pCurrencyLB.disposeAndClear();
+    m_pDatePatternsFT.disposeAndClear();
+    m_pDatePatternsED.disposeAndClear();
+    m_pWesternLanguageLB.disposeAndClear();
+    m_pWesternLanguageFT.disposeAndClear();
+    m_pAsianLanguageLB.disposeAndClear();
+    m_pComplexLanguageLB.disposeAndClear();
+    m_pCurrentDocCB.disposeAndClear();
+    m_pAsianSupportCB.disposeAndClear();
+    m_pCTLSupportCB.disposeAndClear();
+    m_pIgnoreLanguageChangeCB.disposeAndClear();
     SfxTabPage::dispose();
 }
 

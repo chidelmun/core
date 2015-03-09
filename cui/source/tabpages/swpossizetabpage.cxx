@@ -588,6 +588,43 @@ SvxSwPosSizeTabPage::SvxSwPosSizeTabPage(vcl::Window* pParent, const SfxItemSet&
     m_pPositionCB->SetClickHdl(LINK(this, SvxSwPosSizeTabPage, ProtectHdl));
 }
 
+SvxSwPosSizeTabPage::~SvxSwPosSizeTabPage()
+{
+    dispose();
+}
+
+void SvxSwPosSizeTabPage::dispose()
+{
+    m_pWidthMF.disposeAndClear();
+    m_pHeightMF.disposeAndClear();
+    m_pKeepRatioCB.disposeAndClear();
+    m_pToPageRB.disposeAndClear();
+    m_pToParaRB.disposeAndClear();
+    m_pToCharRB.disposeAndClear();
+    m_pAsCharRB.disposeAndClear();
+    m_pToFrameRB.disposeAndClear();
+    m_pPositionCB.disposeAndClear();
+    m_pSizeCB.disposeAndClear();
+    m_pPosFrame.disposeAndClear();
+    m_pHoriFT.disposeAndClear();
+    m_pHoriLB.disposeAndClear();
+    m_pHoriByFT.disposeAndClear();
+    m_pHoriByMF.disposeAndClear();
+    m_pHoriToFT.disposeAndClear();
+    m_pHoriToLB.disposeAndClear();
+    m_pHoriMirrorCB.disposeAndClear();
+    m_pVertFT.disposeAndClear();
+    m_pVertLB.disposeAndClear();
+    m_pVertByFT.disposeAndClear();
+    m_pVertByMF.disposeAndClear();
+    m_pVertToFT.disposeAndClear();
+    m_pVertToLB.disposeAndClear();
+    m_pFollowCB.disposeAndClear();
+    m_pExampleWN.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
+
 namespace
 {
     struct FrmMaps

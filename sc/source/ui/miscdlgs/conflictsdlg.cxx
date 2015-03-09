@@ -442,6 +442,17 @@ ScConflictsDlg::ScConflictsDlg( vcl::Window* pParent, ScViewData* pViewData, ScD
 
 ScConflictsDlg::~ScConflictsDlg()
 {
+    dispose();
+}
+
+void ScConflictsDlg::dispose()
+{
+    m_pLbConflictsContainer.disposeAndClear();
+    m_pBtnKeepMine.disposeAndClear();
+    m_pBtnKeepOther.disposeAndClear();
+    m_pBtnKeepAllMine.disposeAndClear();
+    m_pBtnKeepAllOthers.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 OUString ScConflictsDlg::GetConflictString( const ScConflictsListEntry& rConflictEntry )

@@ -115,6 +115,29 @@ PosSizePropertyPanel::PosSizePropertyPanel(
     mpBindings->Update( SID_ATTR_METRIC );
 }
 
+PosSizePropertyPanel::~PosSizePropertyPanel()
+{
+    dispose();
+}
+
+void PosSizePropertyPanel::dispose()
+{
+    mpFtPosX.disposeAndClear();
+    mpMtrPosX.disposeAndClear();
+    mpFtPosY.disposeAndClear();
+    mpMtrPosY.disposeAndClear();
+    mpFtWidth.disposeAndClear();
+    mpMtrWidth.disposeAndClear();
+    mpFtHeight.disposeAndClear();
+    mpMtrHeight.disposeAndClear();
+    mpCbxScale.disposeAndClear();
+    mpFtAngle.disposeAndClear();
+    mpMtrAngle.disposeAndClear();
+    mpDial.disposeAndClear();
+    mpFtFlip.disposeAndClear();
+    mpFlipTbx.disposeAndClear();
+    PanelLayout::dispose();
+}
 
 
 namespace

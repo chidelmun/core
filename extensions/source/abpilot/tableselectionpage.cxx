@@ -41,6 +41,16 @@ namespace abp
         m_pTableList->SetDoubleClickHdl( LINK( this, TableSelectionPage, OnTableDoubleClicked ) );
     }
 
+    TableSelectionPage::~TableSelectionPage()
+    {
+        dispose();
+    }
+
+    void TableSelectionPage::dispose()
+    {
+        m_pTableList.disposeAndClear();
+        AddressBookSourcePage::dispose();
+    }
 
     void TableSelectionPage::ActivatePage()
     {

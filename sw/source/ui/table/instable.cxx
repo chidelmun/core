@@ -143,6 +143,17 @@ SwInsTableDlg::~SwInsTableDlg()
 void SwInsTableDlg::dispose()
 {
     delete pTAutoFmt;
+    m_pNameEdit.disposeAndClear();
+    m_pColNF.disposeAndClear();
+    m_pRowNF.disposeAndClear();
+    m_pHeaderCB.disposeAndClear();
+    m_pRepeatHeaderCB.disposeAndClear();
+    m_pRepeatHeaderNF.disposeAndClear();
+    m_pRepeatGroup.disposeAndClear();
+    m_pDontSplitCB.disposeAndClear();
+    m_pBorderCB.disposeAndClear();
+    m_pInsertBtn.disposeAndClear();
+    m_pAutoFmtBtn.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

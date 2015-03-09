@@ -34,6 +34,7 @@ class ScCalcOptionsDialog : public ModalDialog
 public:
     ScCalcOptionsDialog(vcl::Window* pParent, const ScCalcConfig& rConfig);
     virtual ~ScCalcOptionsDialog();
+    virtual void dispose() SAL_OVERRIDE;
 
     DECL_LINK( SettingsSelHdl, Control* );
     DECL_LINK( BtnToggleHdl, void* );
@@ -68,23 +69,23 @@ private:
     const OpenCLConfig::ImplMatcher& CurrentWhiteOrBlackListEntry();
 
 private:
-    SvxCheckListBox* mpLbSettings;
+    VclPtr<SvxCheckListBox> mpLbSettings;
 
-    ListBox* mpLbOptionEdit;
-    RadioButton* mpBtnTrue;
-    RadioButton* mpBtnFalse;
-    NumericField* mpSpinButton;
-    Edit* mpEditField;
-    PushButton* mpTestButton;
+    VclPtr<ListBox> mpLbOptionEdit;
+    VclPtr<RadioButton> mpBtnTrue;
+    VclPtr<RadioButton> mpBtnFalse;
+    VclPtr<NumericField> mpSpinButton;
+    VclPtr<Edit> mpEditField;
+    VclPtr<PushButton> mpTestButton;
 
-    FixedText* mpFtAnnotation;
-    FixedText* mpFtFrequency;
-    FixedText* mpFtComputeUnits;
-    FixedText* mpFtMemory;
+    VclPtr<FixedText> mpFtAnnotation;
+    VclPtr<FixedText> mpFtFrequency;
+    VclPtr<FixedText> mpFtComputeUnits;
+    VclPtr<FixedText> mpFtMemory;
 
-    SvTreeListBox* mpOpenclInfoList;
-    RadioButton* mpBtnAutomaticSelectionTrue;
-    RadioButton* mpBtnAutomaticSelectionFalse;
+    VclPtr<SvTreeListBox> mpOpenclInfoList;
+    VclPtr<RadioButton> mpBtnAutomaticSelectionTrue;
+    VclPtr<RadioButton> mpBtnAutomaticSelectionFalse;
 
     OUString maTrue;
     OUString maFalse;

@@ -257,6 +257,30 @@ void AlignmentTabPage::dispose()
 {
     delete m_pOrientHlp;
     m_pOrientHlp = NULL;
+    m_pLbHorAlign.disposeAndClear();
+    m_pFtIndent.disposeAndClear();
+    m_pEdIndent.disposeAndClear();
+    m_pFtVerAlign.disposeAndClear();
+    m_pLbVerAlign.disposeAndClear();
+    m_pCtrlDial.disposeAndClear();
+    m_pFtRotate.disposeAndClear();
+    m_pNfRotate.disposeAndClear();
+    m_pFtRefEdge.disposeAndClear();
+    m_pVsRefEdge.disposeAndClear();
+    m_pCbStacked.disposeAndClear();
+    m_pCbAsianMode.disposeAndClear();
+    m_pBoxDirection.disposeAndClear();
+    m_pBtnWrap.disposeAndClear();
+    m_pBtnHyphen.disposeAndClear();
+    m_pBtnShrink.disposeAndClear();
+    m_pLbFrameDir.disposeAndClear();
+    m_pFtBotLock.disposeAndClear();
+    m_pFtTopLock.disposeAndClear();
+    m_pFtCelLock.disposeAndClear();
+    m_pFtABCD.disposeAndClear();
+    m_pAlignmentFrame.disposeAndClear();
+    m_pOrientFrame.disposeAndClear();
+    m_pPropertiesFrame.disposeAndClear();
     SfxTabPage::dispose();
 }
 

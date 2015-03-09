@@ -157,7 +157,7 @@ protected:
     SfxBindings*                pBindings;
     SfxTemplateControllerItem*  pBoundItems[COUNT_BOUND_FUNC];
 
-    vcl::Window*                     pWindow;
+    VclPtr<vcl::Window>         pWindow;
     SfxModule*                  pModule;
     Idle*                       pIdle;
 
@@ -165,7 +165,7 @@ protected:
     SfxStyleFamilies*           pStyleFamilies;
     SfxTemplateItem*            pFamilyState[MAX_FAMILIES];
     SfxStyleSheetBasePool*      pStyleSheetPool;
-    StyleTreeListBox_Impl*      pTreeBox;
+    VclPtr<StyleTreeListBox_Impl>      pTreeBox;
     SfxObjectShell*             pCurObjShell;
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModuleManager2 >
                                 xModuleManager;
@@ -311,10 +311,10 @@ private:
     friend class DropToolBox_Impl;
     friend class SfxTemplatePanelControl;
 
-    vcl::Window*        m_pFloat;
-    bool                m_bZoomIn;
+    VclPtr<vcl::Window>         m_pFloat;
+    bool                        m_bZoomIn;
     VclPtr<DropToolBox_Impl>    m_aActionTbL;
-    VclPtr<ToolBox>     m_aActionTbR;
+    VclPtr<ToolBox>             m_aActionTbR;
 
     DECL_LINK( ToolBoxLSelect, ToolBox * );
     DECL_LINK( ToolBoxRSelect, ToolBox * );

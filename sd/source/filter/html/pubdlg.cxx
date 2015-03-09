@@ -347,12 +347,13 @@ SvStream& WriteSdPublishingDesign(SvStream& rOut, const SdPublishingDesign& rDes
 class SdDesignNameDlg : public ModalDialog
 {
 private:
-    Edit*           m_pEdit;
-    OKButton*       m_pBtnOK;
+    VclPtr<Edit>           m_pEdit;
+    VclPtr<OKButton>       m_pBtnOK;
 
 public:
     SdDesignNameDlg(vcl::Window* pWindow, const OUString& aName );
-
+    virtual ~SdDesignNameDlg();
+    virtual void dispose() SAL_OVERRIDE;
     OUString GetDesignName();
     DECL_LINK(ModifyHdl, void *);
 };
@@ -483,7 +484,96 @@ SdPublishingDlg::SdPublishingDlg(vcl::Window* pWindow, DocumentType eDocType)
 
 SdPublishingDlg::~SdPublishingDlg()
 {
+    dispose();
 }
+
+void SdPublishingDlg::dispose()
+{
+    pPage1.disposeAndClear();
+    pPage1_Titel.disposeAndClear();
+    pPage1_NewDesign.disposeAndClear();
+    pPage1_OldDesign.disposeAndClear();
+    pPage1_Designs.disposeAndClear();
+    pPage1_DelDesign.disposeAndClear();
+    pPage1_Desc.disposeAndClear();
+    pPage2.disposeAndClear();
+    pPage2Frame2.disposeAndClear();
+    pPage2Frame3.disposeAndClear();
+    pPage2Frame4.disposeAndClear();
+    pPage2_Titel.disposeAndClear();
+    pPage2_Standard.disposeAndClear();
+    pPage2_Frames.disposeAndClear();
+    pPage2_SingleDocument.disposeAndClear();
+    pPage2_Kiosk.disposeAndClear();
+    pPage2_WebCast.disposeAndClear();
+    pPage2_Standard_FB.disposeAndClear();
+    pPage2_Frames_FB.disposeAndClear();
+    pPage2_Kiosk_FB.disposeAndClear();
+    pPage2_WebCast_FB.disposeAndClear();
+    pPage2_Titel_Html.disposeAndClear();
+    pPage2_Content.disposeAndClear();
+    pPage2_Notes.disposeAndClear();
+    pPage2_Titel_WebCast.disposeAndClear();
+    pPage2_ASP.disposeAndClear();
+    pPage2_PERL.disposeAndClear();
+    pPage2_URL_txt.disposeAndClear();
+    pPage2_URL.disposeAndClear();
+    pPage2_CGI_txt.disposeAndClear();
+    pPage2_CGI.disposeAndClear();
+    pPage2_Index_txt.disposeAndClear();
+    pPage2_Index.disposeAndClear();
+    pPage2_Titel_Kiosk.disposeAndClear();
+    pPage2_ChgDefault.disposeAndClear();
+    pPage2_ChgAuto.disposeAndClear();
+    pPage2_Duration_txt.disposeAndClear();
+    pPage2_Duration.disposeAndClear();
+    pPage2_Endless.disposeAndClear();
+    pPage3.disposeAndClear();
+    pPage3_Titel1.disposeAndClear();
+    pPage3_Png.disposeAndClear();
+    pPage3_Gif.disposeAndClear();
+    pPage3_Jpg.disposeAndClear();
+    pPage3_Quality_txt.disposeAndClear();
+    pPage3_Quality.disposeAndClear();
+    pPage3_Titel2.disposeAndClear();
+    pPage3_Resolution_1.disposeAndClear();
+    pPage3_Resolution_2.disposeAndClear();
+    pPage3_Resolution_3.disposeAndClear();
+    pPage3_Titel3.disposeAndClear();
+    pPage3_SldSound.disposeAndClear();
+    pPage3_HiddenSlides.disposeAndClear();
+    pPage4.disposeAndClear();
+    pPage4_Titel1.disposeAndClear();
+    pPage4_Author_txt.disposeAndClear();
+    pPage4_Author.disposeAndClear();
+    pPage4_Email_txt.disposeAndClear();
+    pPage4_Email.disposeAndClear();
+    pPage4_WWW_txt.disposeAndClear();
+    pPage4_WWW.disposeAndClear();
+    pPage4_Titel2.disposeAndClear();
+    pPage4_Misc.disposeAndClear();
+    pPage4_Download.disposeAndClear();
+    pPage5.disposeAndClear();
+    pPage5_Titel.disposeAndClear();
+    pPage5_TextOnly.disposeAndClear();
+    pPage5_Buttons.disposeAndClear();
+    pPage6.disposeAndClear();
+    pPage6_Titel.disposeAndClear();
+    pPage6_Default.disposeAndClear();
+    pPage6_User.disposeAndClear();
+    pPage6_Back.disposeAndClear();
+    pPage6_Text.disposeAndClear();
+    pPage6_Link.disposeAndClear();
+    pPage6_VLink.disposeAndClear();
+    pPage6_ALink.disposeAndClear();
+    pPage6_DocColors.disposeAndClear();
+    pPage6_Preview.disposeAndClear();
+    pLastPageButton.disposeAndClear();
+    pNextPageButton.disposeAndClear();
+    pFinishButton.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 
 // Generate dialog controls and embed them in the pages
 void SdPublishingDlg::CreatePages()
@@ -1540,6 +1630,18 @@ SdDesignNameDlg::SdDesignNameDlg(vcl::Window* pWindow, const OUString& aName)
     m_pEdit->SetModifyHdl(LINK(this, SdDesignNameDlg, ModifyHdl ));
     m_pEdit->SetText(aName);
     m_pBtnOK->Enable(!aName.isEmpty());
+}
+
+SdDesignNameDlg::~SdDesignNameDlg()
+{
+    dispose();
+}
+
+void SdDesignNameDlg::dispose()
+{
+    m_pEdit.disposeAndClear();
+    m_pBtnOK.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 OUString SdDesignNameDlg::GetDesignName()

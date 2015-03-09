@@ -48,6 +48,22 @@ SwMailMergeOutputTypePage::SwMailMergeOutputTypePage(SwMailMergeWizard* pParent)
 
 }
 
+SwMailMergeOutputTypePage::~SwMailMergeOutputTypePage()
+{
+    dispose();
+}
+
+void SwMailMergeOutputTypePage::dispose()
+{
+    m_pLetterRB.disposeAndClear();
+    m_pMailRB.disposeAndClear();
+    m_pLetterHint.disposeAndClear();
+    m_pMailHint.disposeAndClear();
+    m_pWizard.disposeAndClear();
+    svt::OWizardPage::dispose();
+}
+
+
 IMPL_LINK_NOARG(SwMailMergeOutputTypePage, TypeHdl_Impl)
 {
     bool bLetter = m_pLetterRB->IsChecked();
@@ -122,7 +138,7 @@ const SwMailDescriptor* SwSendMailDialog_Impl::GetNextDescriptor()
 using namespace ::com::sun::star;
 class SwMailDispatcherListener_Impl : public IMailDispatcherListener
 {
-    SwSendMailDialog* m_pSendMailDialog;
+    VclPtr<SwSendMailDialog> m_pSendMailDialog;
 
 public:
     SwMailDispatcherListener_Impl(SwSendMailDialog& rParentDlg);
@@ -207,9 +223,15 @@ void SwMailDispatcherListener_Impl::DeleteAttachments( uno::Reference< mail::XMa
 
 class SwSendWarningBox_Impl : public MessageDialog
 {
-    VclMultiLineEdit  *m_pDetailED;
+    VclPtr<VclMultiLineEdit> m_pDetailED;
 public:
     SwSendWarningBox_Impl(vcl::Window* pParent, const OUString& rDetails);
+    virtual ~SwSendWarningBox_Impl() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        m_pDetailED.disposeAndClear();
+        MessageDialog::dispose();
+    }
 };
 
 SwSendWarningBox_Impl::SwSendWarningBox_Impl(vcl::Window* pParent, const OUString& rDetails)
@@ -310,8 +332,16 @@ void SwSendMailDialog::dispose()
         {
         }
     }
-    delete m_pStatus;
     delete m_pImpl;
+    m_pStatus.disposeAndClear();
+    m_pTransferStatus.disposeAndClear();
+    m_pPaused.disposeAndClear();
+    m_pProgressBar.disposeAndClear();
+    m_pErrorStatus.disposeAndClear();
+    m_pContainer.disposeAndClear();
+    m_pStatusHB.disposeAndClear();
+    m_pStop.disposeAndClear();
+    m_pClose.disposeAndClear();
     ModelessDialog::dispose();
 }
 

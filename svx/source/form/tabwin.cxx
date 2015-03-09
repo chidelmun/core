@@ -113,6 +113,17 @@ FmFieldWinListBox::FmFieldWinListBox( FmFieldWin* pParent )
     SetHighlightRange( );
 }
 
+FmFieldWinListBox::~FmFieldWinListBox()
+{
+    dispose();
+}
+
+void FmFieldWinListBox::dispose()
+{
+    pTabWin.disposeAndClear();
+    SvTreeListBox::dispose();
+}
+
 
 sal_Int8 FmFieldWinListBox::AcceptDrop( const AcceptDropEvent& /*rEvt*/ )
 {
@@ -201,7 +212,7 @@ void FmFieldWin::dispose()
         m_pChangeListener->release();
         //  delete m_pChangeListener;
     }
-    delete pListBox;
+    pListBox.disposeAndClear();
     delete pData;
     SfxFloatingWindow::dispose();
 }
@@ -419,7 +430,7 @@ FmFieldWinMgr::FmFieldWinMgr(vcl::Window* _pParent, sal_uInt16 _nId,
     pWindow = new FmFieldWin(_pBindings, this, _pParent);
     SetHideNotDelete(true);
     eChildAlignment = SFX_ALIGN_NOALIGNMENT;
-    static_cast<SfxFloatingWindow*>(pWindow)->Initialize( _pInfo );
+    static_cast<SfxFloatingWindow*>(pWindow.get())->Initialize( _pInfo );
 }
 
 

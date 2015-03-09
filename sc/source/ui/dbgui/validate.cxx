@@ -168,6 +168,17 @@ void ScTPValidationValue::RefInputDonePostHdl()
         m_pRefEdit->GrabFocus();
 }
 
+ScTPValidationValue::ScRefButtonEx::~ScRefButtonEx()
+{
+    dispose();
+}
+
+void ScTPValidationValue::ScRefButtonEx::dispose()
+{
+    m_pPage.disposeAndClear();
+    ::formula::RefButton::dispose();
+}
+
 namespace {
 
 /** Converts the passed ScValidationMode to the position in the list box. */
@@ -345,6 +356,33 @@ ScTPValidationValue::ScTPValidationValue( vcl::Window* pParent, const SfxItemSet
     mcFmlaSep = aListSep.getLength() ? aListSep[0] : ';';
     m_pBtnRef->Hide(); // cell range picker
 }
+
+ScTPValidationValue::~ScTPValidationValue()
+{
+    dispose();
+}
+
+void ScTPValidationValue::dispose()
+{
+    m_pLbAllow.disposeAndClear();
+    m_pCbAllow.disposeAndClear();
+    m_pCbShow.disposeAndClear();
+    m_pCbSort.disposeAndClear();
+    m_pFtValue.disposeAndClear();
+    m_pLbValue.disposeAndClear();
+    m_pFtMin.disposeAndClear();
+    m_pMinGrid.disposeAndClear();
+    m_pEdMin.disposeAndClear();
+    m_pEdList.disposeAndClear();
+    m_pFtMax.disposeAndClear();
+    m_pEdMax.disposeAndClear();
+    m_pFtHint.disposeAndClear();
+    m_pRefEdit.disposeAndClear();
+    m_pBtnRef.disposeAndClear();
+    m_pRefGrid.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 void ScTPValidationValue::Init()
 {
@@ -654,6 +692,15 @@ ScTPValidationHelp::ScTPValidationHelp( vcl::Window*         pParent,
 
 ScTPValidationHelp::~ScTPValidationHelp()
 {
+    dispose();
+}
+
+void ScTPValidationHelp::dispose()
+{
+    pTsbHelp.disposeAndClear();
+    pEdtTitle.disposeAndClear();
+    pEdInputHelp.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void ScTPValidationHelp::Init()
@@ -718,6 +765,18 @@ ScTPValidationError::ScTPValidationError( vcl::Window*           pParent,
 
 ScTPValidationError::~ScTPValidationError()
 {
+    dispose();
+}
+
+void ScTPValidationError::dispose()
+{
+    m_pTsbShow.disposeAndClear();
+    m_pLbAction.disposeAndClear();
+    m_pBtnSearch.disposeAndClear();
+    m_pEdtTitle.disposeAndClear();
+    m_pFtError.disposeAndClear();
+    m_pEdError.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void ScTPValidationError::Init()

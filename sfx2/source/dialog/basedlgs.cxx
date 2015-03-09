@@ -44,6 +44,12 @@ using namespace ::com::sun::star::uno;
 
 #define USERITEM_NAME OUString("UserItem")
 
+SingleTabDlgImpl::SingleTabDlgImpl()
+        : m_pSfxPage(NULL)
+        , m_pLine(NULL)
+    {
+    }
+
 class SfxModelessDialog_Impl : public SfxListener
 {
 public:
@@ -705,9 +711,10 @@ SfxSingleTabDialog::~SfxSingleTabDialog()
 
 void SfxSingleTabDialog::dispose()
 {
-    delete pImpl->m_pSfxPage;
-    delete pImpl->m_pLine;
     delete pImpl;
+    pOKBtn.disposeAndClear();
+    pCancelBtn.disposeAndClear();
+    pHelpBtn.disposeAndClear();
     SfxModalDialog::dispose();
 }
 
@@ -722,7 +729,7 @@ void SfxSingleTabDialog::SetTabPage(SfxTabPage* pTabPage,
 
 {
     SetUniqId(nSettingsId);
-    delete pImpl->m_pSfxPage;
+    pImpl->m_pSfxPage.disposeAndClear();
     pImpl->m_pSfxPage = pTabPage;
     fnGetRanges = pRangesFunc;
 

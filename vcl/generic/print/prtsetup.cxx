@@ -98,8 +98,11 @@ RTSDialog::~RTSDialog()
 
 void RTSDialog::dispose()
 {
-    delete m_pPaperPage;
-    delete m_pDevicePage;
+    m_pTabControl.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    m_pCancelButton.disposeAndClear();
+    m_pPaperPage.disposeAndClear();
+    m_pDevicePage.disposeAndClear();
     TabDialog::dispose();
 }
 
@@ -191,6 +194,24 @@ RTSPaperPage::RTSPaperPage(RTSDialog* pParent)
     m_pSlotBox->SetEntryData( nPos, NULL );
 
     update();
+}
+
+RTSPaperPage::~RTSPaperPage()
+{
+    dispose();
+}
+
+void RTSPaperPage::dispose()
+{
+    m_pParent.disposeAndClear();
+    m_pPaperText.disposeAndClear();
+    m_pPaperBox.disposeAndClear();
+    m_pOrientBox.disposeAndClear();
+    m_pDuplexText.disposeAndClear();
+    m_pDuplexBox.disposeAndClear();
+    m_pSlotText.disposeAndClear();
+    m_pSlotBox.disposeAndClear();
+    TabPage::dispose();
 }
 
 void RTSPaperPage::update()
@@ -356,6 +377,23 @@ RTSDevicePage::RTSDevicePage( RTSDialog* pParent )
             }
         }
     }
+}
+
+RTSDevicePage::~RTSDevicePage()
+{
+    dispose();
+}
+
+void RTSDevicePage::dispose()
+{
+    m_pParent.disposeAndClear();
+    m_pPPDKeyBox.disposeAndClear();
+    m_pPPDValueBox.disposeAndClear();
+    m_pCustomEdit.disposeAndClear();
+    m_pLevelBox.disposeAndClear();
+    m_pSpaceBox.disposeAndClear();
+    m_pDepthBox.disposeAndClear();
+    TabPage::dispose();
 }
 
 void RTSDevicePage::update()

@@ -88,6 +88,26 @@ ORelationDialog::ORelationDialog( OJoinTableView* pParent,
     m_xTableControl->NotifyCellChange();
 }
 
+ORelationDialog::~ORelationDialog()
+{
+    dispose();
+}
+
+void ORelationDialog::dispose()
+{
+    m_pRB_NoCascUpd.disposeAndClear();
+    m_pRB_CascUpd.disposeAndClear();
+    m_pRB_CascUpdNull.disposeAndClear();
+    m_pRB_CascUpdDefault.disposeAndClear();
+    m_pRB_NoCascDel.disposeAndClear();
+    m_pRB_CascDel.disposeAndClear();
+    m_pRB_CascDelNull.disposeAndClear();
+    m_pRB_CascDelDefault.disposeAndClear();
+    m_pPB_OK.disposeAndClear();
+    ModalDialog::dispose();
+}
+
+
 void ORelationDialog::Init(const TTableConnectionData::value_type& _pConnectionData)
 {
     ORelationTableConnectionData* pConnData = static_cast<ORelationTableConnectionData*>(_pConnectionData.get());

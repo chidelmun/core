@@ -38,6 +38,7 @@
 #include <comphelper/broadcasthelper.hxx>
 #include <cppuhelper/implbase5.hxx>
 #include <comphelper/servicehelper.hxx>
+#include <vcl/vclptr.hxx>
 
 namespace com { namespace sun { namespace star { namespace awt {
     struct Point;
@@ -215,7 +216,7 @@ private:
                                         mxParent;
 
     /// pointer to internal representation
-    Ruler*                          mpRepr;
+    VclPtr<Ruler>                       mpRepr;
 
         /// client id in the AccessibleEventNotifier queue
     sal_uInt32 mnClientId;

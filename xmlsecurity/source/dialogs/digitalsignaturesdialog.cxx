@@ -237,7 +237,22 @@ DigitalSignaturesDialog::~DigitalSignaturesDialog()
 
 void DigitalSignaturesDialog::dispose()
 {
-    delete m_pSignaturesLB;
+    m_pHintDocFT.disposeAndClear();
+    m_pHintBasicFT.disposeAndClear();
+    m_pHintPackageFT.disposeAndClear();
+    m_pSignaturesLB.disposeAndClear();
+    m_pSigsValidImg.disposeAndClear();
+    m_pSigsValidFI.disposeAndClear();
+    m_pSigsInvalidImg.disposeAndClear();
+    m_pSigsInvalidFI.disposeAndClear();
+    m_pSigsNotvalidatedImg.disposeAndClear();
+    m_pSigsNotvalidatedFI.disposeAndClear();
+    m_pSigsOldSignatureImg.disposeAndClear();
+    m_pSigsOldSignatureFI.disposeAndClear();
+    m_pViewBtn.disposeAndClear();
+    m_pAddBtn.disposeAndClear();
+    m_pRemoveBtn.disposeAndClear();
+    m_pCloseBtn.disposeAndClear();
     ModalDialog::dispose();
 }
 

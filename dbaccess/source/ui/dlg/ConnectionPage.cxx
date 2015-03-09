@@ -109,6 +109,25 @@ namespace dbaui
         m_pTestJavaDriver->SetClickHdl(LINK(this,OConnectionTabPage,OnTestJavaClickHdl));
     }
 
+    OConnectionTabPage::~OConnectionTabPage()
+    {
+        dispose();
+    }
+
+    void OConnectionTabPage::dispose()
+    {
+        m_pFL2.disposeAndClear();
+        m_pUserNameLabel.disposeAndClear();
+        m_pUserName.disposeAndClear();
+        m_pPasswordRequired.disposeAndClear();
+        m_pFL3.disposeAndClear();
+        m_pJavaDriverLabel.disposeAndClear();
+        m_pJavaDriver.disposeAndClear();
+        m_pTestJavaDriver.disposeAndClear();
+        m_pTestConnection.disposeAndClear();
+        OConnectionHelper::dispose();
+    }
+
     void OConnectionTabPage::implInitControls(const SfxItemSet& _rSet, bool _bSaveValue)
     {
         // check whether or not the selection is invalid or readonly (invalid implies readonly, but not vice versa)

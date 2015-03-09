@@ -37,7 +37,7 @@ class SvxJSearchOptionsPage;
 class SvxJSearchOptionsDialog : public SfxSingleTabDialog
 {
     sal_Int32                   nInitialTlFlags;
-    SvxJSearchOptionsPage  *pPage;
+    VclPtr<SvxJSearchOptionsPage>  pPage;
 
     // disallow copy-constructor and assignment-operator for now
     SvxJSearchOptionsDialog( const SvxJSearchOptionsDialog & );
@@ -46,6 +46,8 @@ class SvxJSearchOptionsDialog : public SfxSingleTabDialog
 public:
     SvxJSearchOptionsDialog(vcl::Window *pParent,
         const SfxItemSet& rOptionsSet, sal_Int32 nInitialFlags);
+    virtual ~SvxJSearchOptionsDialog();
+    virtual void dispose() SAL_OVERRIDE;
 
     // Window
     virtual void    Activate() SAL_OVERRIDE;

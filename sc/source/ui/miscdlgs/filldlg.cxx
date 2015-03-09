@@ -76,6 +76,32 @@ ScFillSeriesDlg::ScFillSeriesDlg( vcl::Window*       pParent,
 
 ScFillSeriesDlg::~ScFillSeriesDlg()
 {
+    dispose();
+}
+
+void ScFillSeriesDlg::dispose()
+{
+    m_pFtStartVal.disposeAndClear();
+    m_pEdStartVal.disposeAndClear();
+    m_pFtEndVal.disposeAndClear();
+    m_pEdEndVal.disposeAndClear();
+    m_pFtIncrement.disposeAndClear();
+    m_pEdIncrement.disposeAndClear();
+    m_pBtnDown.disposeAndClear();
+    m_pBtnRight.disposeAndClear();
+    m_pBtnUp.disposeAndClear();
+    m_pBtnLeft.disposeAndClear();
+    m_pBtnArithmetic.disposeAndClear();
+    m_pBtnGeometric.disposeAndClear();
+    m_pBtnDate.disposeAndClear();
+    m_pBtnAutoFill.disposeAndClear();
+    m_pFtTimeUnit.disposeAndClear();
+    m_pBtnDay.disposeAndClear();
+    m_pBtnDayOfWeek.disposeAndClear();
+    m_pBtnMonth.disposeAndClear();
+    m_pBtnYear.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 void ScFillSeriesDlg::SetEdStartValEnabled(bool bFlag)

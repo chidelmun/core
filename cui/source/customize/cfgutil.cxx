@@ -443,6 +443,7 @@ SfxConfigGroupListBox::~SfxConfigGroupListBox()
 void SfxConfigGroupListBox::dispose()
 {
     ClearAll();
+    pFunctionListBox.disposeAndClear();
     SvTreeListBox::dispose();
 }
 

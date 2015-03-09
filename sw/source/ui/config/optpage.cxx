@@ -156,7 +156,33 @@ SwContentOptPage::SwContentOptPage( vcl::Window* pParent,
 
 SwContentOptPage::~SwContentOptPage()
 {
+    dispose();
 }
+
+void SwContentOptPage::dispose()
+{
+    m_pCrossCB.disposeAndClear();
+    m_pHScrollBox.disposeAndClear();
+    m_pVScrollBox.disposeAndClear();
+    m_pAnyRulerCB.disposeAndClear();
+    m_pHRulerCBox.disposeAndClear();
+    m_pHMetric.disposeAndClear();
+    m_pVRulerCBox.disposeAndClear();
+    m_pVRulerRightCBox.disposeAndClear();
+    m_pVMetric.disposeAndClear();
+    m_pSmoothCBox.disposeAndClear();
+    m_pGrfCB.disposeAndClear();
+    m_pTblCB.disposeAndClear();
+    m_pDrwCB.disposeAndClear();
+    m_pFldNameCB.disposeAndClear();
+    m_pPostItCB.disposeAndClear();
+    m_pSettingsFrame.disposeAndClear();
+    m_pSettingsLabel.disposeAndClear();
+    m_pMetricLabel.disposeAndClear();
+    m_pMetricLB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 SfxTabPage* SwContentOptPage::Create( vcl::Window* pParent,
                                 const SfxItemSet* rAttrSet)
@@ -352,6 +378,36 @@ SwAddPrinterTabPage::SwAddPrinterTabPage(vcl::Window* pParent,
     m_pProspectCB_RTL->Disable();
     SvtCTLOptions aCTLOptions;
     m_pProspectCB_RTL->Show(aCTLOptions.IsCTLFontEnabled());
+}
+
+SwAddPrinterTabPage::~SwAddPrinterTabPage()
+{
+    dispose();
+}
+
+void SwAddPrinterTabPage::dispose()
+{
+    m_pGrfCB.disposeAndClear();
+    m_pCtrlFldCB.disposeAndClear();
+    m_pBackgroundCB.disposeAndClear();
+    m_pBlackFontCB.disposeAndClear();
+    m_pPrintHiddenTextCB.disposeAndClear();
+    m_pPrintTextPlaceholderCB.disposeAndClear();
+    m_pPagesFrame.disposeAndClear();
+    m_pLeftPageCB.disposeAndClear();
+    m_pRightPageCB.disposeAndClear();
+    m_pProspectCB.disposeAndClear();
+    m_pProspectCB_RTL.disposeAndClear();
+    m_pCommentsFrame.disposeAndClear();
+    m_pNoRB.disposeAndClear();
+    m_pOnlyRB.disposeAndClear();
+    m_pEndRB.disposeAndClear();
+    m_pEndPageRB.disposeAndClear();
+    m_pInMarginsRB.disposeAndClear();
+    m_pPrintEmptyPagesCB.disposeAndClear();
+    m_pPaperFromSetupCB.disposeAndClear();
+    m_pFaxLB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void SwAddPrinterTabPage::SetPreview(bool bPrev)
@@ -590,6 +646,19 @@ void SwStdFontTabPage::dispose()
     {
         delete pPrt;
     }
+    pLabelFT.disposeAndClear();
+    pStandardBox.disposeAndClear();
+    pStandardHeightLB.disposeAndClear();
+    pTitleBox.disposeAndClear();
+    pTitleHeightLB.disposeAndClear();
+    pListBox.disposeAndClear();
+    pListHeightLB.disposeAndClear();
+    pLabelBox.disposeAndClear();
+    pLabelHeightLB.disposeAndClear();
+    pIdxBox.disposeAndClear();
+    pIndexHeightLB.disposeAndClear();
+    pDocOnlyCB.disposeAndClear();
+    pStandardPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1095,6 +1164,26 @@ SwTableOptionsTabPage::SwTableOptionsTabPage( vcl::Window* pParent, const SfxIte
 
 SwTableOptionsTabPage::~SwTableOptionsTabPage()
 {
+    dispose();
+}
+
+void SwTableOptionsTabPage::dispose()
+{
+    pHeaderCB.disposeAndClear();
+    pRepeatHeaderCB.disposeAndClear();
+    pDontSplitCB.disposeAndClear();
+    pBorderCB.disposeAndClear();
+    pNumFormattingCB.disposeAndClear();
+    pNumFmtFormattingCB.disposeAndClear();
+    pNumAlignmentCB.disposeAndClear();
+    pRowMoveMF.disposeAndClear();
+    pColMoveMF.disposeAndClear();
+    pRowInsertMF.disposeAndClear();
+    pColInsertMF.disposeAndClear();
+    pFixRB.disposeAndClear();
+    pFixPropRB.disposeAndClear();
+    pVarRB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwTableOptionsTabPage::Create( vcl::Window* pParent,
@@ -1329,6 +1418,30 @@ SwShdwCrsrOptionsTabPage::SwShdwCrsrOptionsTabPage( vcl::Window* pParent,
 
 SwShdwCrsrOptionsTabPage::~SwShdwCrsrOptionsTabPage()
 {
+    dispose();
+}
+
+void SwShdwCrsrOptionsTabPage::dispose()
+{
+    m_pParaCB.disposeAndClear();
+    m_pSHyphCB.disposeAndClear();
+    m_pSpacesCB.disposeAndClear();
+    m_pHSpacesCB.disposeAndClear();
+    m_pTabCB.disposeAndClear();
+    m_pBreakCB.disposeAndClear();
+    m_pCharHiddenCB.disposeAndClear();
+    m_pFldHiddenCB.disposeAndClear();
+    m_pFldHiddenParaCB.disposeAndClear();
+    m_pDirectCursorFrame.disposeAndClear();
+    m_pOnOffCB.disposeAndClear();
+    m_pFillMarginRB.disposeAndClear();
+    m_pFillIndentRB.disposeAndClear();
+    m_pFillTabRB.disposeAndClear();
+    m_pFillSpaceRB.disposeAndClear();
+    m_pCursorProtFrame.disposeAndClear();
+    m_pCrsrInProtCB.disposeAndClear();
+    m_pMathBaselineAlignmentCB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwShdwCrsrOptionsTabPage::Create( vcl::Window* pParent, const SfxItemSet* rSet )
@@ -1732,6 +1845,24 @@ SwRedlineOptionsTabPage::SwRedlineOptionsTabPage( vcl::Window* pParent,
 
 SwRedlineOptionsTabPage::~SwRedlineOptionsTabPage()
 {
+    dispose();
+}
+
+void SwRedlineOptionsTabPage::dispose()
+{
+    pInsertLB.disposeAndClear();
+    pInsertColorLB.disposeAndClear();
+    pInsertedPreviewWN.disposeAndClear();
+    pDeletedLB.disposeAndClear();
+    pDeletedColorLB.disposeAndClear();
+    pDeletedPreviewWN.disposeAndClear();
+    pChangedLB.disposeAndClear();
+    pChangedColorLB.disposeAndClear();
+    pChangedPreviewWN.disposeAndClear();
+    pMarkPosLB.disposeAndClear();
+    pMarkColorLB.disposeAndClear();
+    pMarkPreviewWN.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwRedlineOptionsTabPage::Create( vcl::Window* pParent, const SfxItemSet* rSet)
@@ -2232,6 +2363,18 @@ SwCompareOptionsTabPage::SwCompareOptionsTabPage(  vcl::Window* pParent, const S
 
 SwCompareOptionsTabPage::~SwCompareOptionsTabPage()
 {
+    dispose();
+}
+
+void SwCompareOptionsTabPage::dispose()
+{
+    m_pAutoRB.disposeAndClear();
+    m_pWordRB.disposeAndClear();
+    m_pCharRB.disposeAndClear();
+    m_pRsidCB.disposeAndClear();
+    m_pIgnoreCB.disposeAndClear();
+    m_pLenNF.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwCompareOptionsTabPage::Create( vcl::Window* pParent, const SfxItemSet* rAttrSet )
@@ -2356,6 +2499,26 @@ SwTestTabPage::SwTestTabPage(vcl::Window* pParent, const SfxItemSet& rCoreSet)
 
     Init();
 
+}
+
+SwTestTabPage::~SwTestTabPage()
+{
+    dispose();
+}
+
+void SwTestTabPage::dispose()
+{
+    m_pTest1CBox.disposeAndClear();
+    m_pTest2CBox.disposeAndClear();
+    m_pTest3CBox.disposeAndClear();
+    m_pTest4CBox.disposeAndClear();
+    m_pTest5CBox.disposeAndClear();
+    m_pTest6CBox.disposeAndClear();
+    m_pTest7CBox.disposeAndClear();
+    m_pTest8CBox.disposeAndClear();
+    m_pTest9CBox.disposeAndClear();
+    m_pTest10CBox.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SwTestTabPage::Create( vcl::Window* pParent,

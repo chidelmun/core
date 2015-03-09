@@ -341,7 +341,14 @@ SfxVersionDialog::~SfxVersionDialog()
 void SfxVersionDialog::dispose()
 {
     delete m_pTable;
-    delete m_pVersionBox;
+    m_pVersionBox.disposeAndClear();
+    m_pSaveButton.disposeAndClear();
+    m_pSaveCheckBox.disposeAndClear();
+    m_pOpenButton.disposeAndClear();
+    m_pViewButton.disposeAndClear();
+    m_pDeleteButton.disposeAndClear();
+    m_pCompareButton.disposeAndClear();
+    m_pCmisButton.disposeAndClear();
     SfxModalDialog::dispose();
 }
 
@@ -505,6 +512,22 @@ SfxViewVersionDialog_Impl::SfxViewVersionDialog_Impl(vcl::Window *pParent, SfxVe
     }
 }
 
+SfxViewVersionDialog_Impl::~SfxViewVersionDialog_Impl()
+{
+    dispose();
+}
+
+void SfxViewVersionDialog_Impl::dispose()
+{
+    m_pDateTimeText.disposeAndClear();
+    m_pSavedByText.disposeAndClear();
+    m_pEdit.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    m_pCancelButton.disposeAndClear();
+    m_pCloseButton.disposeAndClear();
+    SfxModalDialog::dispose();
+}
+
 IMPL_LINK(SfxViewVersionDialog_Impl, ButtonHdl, Button*, pButton)
 {
     assert(pButton == m_pOKButton);
@@ -575,7 +598,11 @@ SfxCmisVersionsDialog::~SfxCmisVersionsDialog()
 void SfxCmisVersionsDialog::dispose()
 {
     delete m_pTable;
-    delete m_pVersionBox;
+    m_pVersionBox.disposeAndClear();
+    m_pOpenButton.disposeAndClear();
+    m_pViewButton.disposeAndClear();
+    m_pDeleteButton.disposeAndClear();
+    m_pCompareButton.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

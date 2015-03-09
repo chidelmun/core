@@ -50,6 +50,19 @@ ScTableProtectionDlg::ScTableProtectionDlg(vcl::Window* pParent)
 
 ScTableProtectionDlg::~ScTableProtectionDlg()
 {
+    dispose();
+}
+
+void ScTableProtectionDlg::dispose()
+{
+    m_pBtnProtect.disposeAndClear();
+    m_pPasswords.disposeAndClear();
+    m_pOptions.disposeAndClear();
+    m_pPassword1Edit.disposeAndClear();
+    m_pPassword2Edit.disposeAndClear();
+    m_pOptionsListBox.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 short ScTableProtectionDlg::Execute()

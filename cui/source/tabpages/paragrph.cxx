@@ -654,6 +654,33 @@ SvxStdParagraphTabPage::SvxStdParagraphTabPage( vcl::Window* pParent,  const Sfx
     setPreviewsToSamePlace(pParent, this);
 }
 
+SvxStdParagraphTabPage::~SvxStdParagraphTabPage()
+{
+    dispose();
+}
+
+void SvxStdParagraphTabPage::dispose()
+{
+    m_pLeftIndent.disposeAndClear();
+    m_pRightLabel.disposeAndClear();
+    m_pRightIndent.disposeAndClear();
+    m_pFLineLabel.disposeAndClear();
+    m_pFLineIndent.disposeAndClear();
+    m_pAutoCB.disposeAndClear();
+    m_pTopDist.disposeAndClear();
+    m_pBottomDist.disposeAndClear();
+    m_pContextualCB.disposeAndClear();
+    m_pLineDist.disposeAndClear();
+    m_pLineDistAtLabel.disposeAndClear();
+    m_pLineDistAtPercentBox.disposeAndClear();
+    m_pLineDistAtMetricBox.disposeAndClear();
+    m_pAbsDist.disposeAndClear();
+    m_pExampleWin.disposeAndClear();
+    m_pRegisterFL.disposeAndClear();
+    m_pRegisterCB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SvxStdParagraphTabPage::EnableNegativeMode()
 {
     m_pLeftIndent->SetMin(-9999);
@@ -1015,6 +1042,31 @@ SvxParaAlignTabPage::SvxParaAlignTabPage( vcl::Window* pParent, const SfxItemSet
     }
 
     setPreviewsToSamePlace(pParent, this);
+}
+
+SvxParaAlignTabPage::~SvxParaAlignTabPage()
+{
+    dispose();
+}
+
+void SvxParaAlignTabPage::dispose()
+{
+    m_pLeft.disposeAndClear();
+    m_pRight.disposeAndClear();
+    m_pCenter.disposeAndClear();
+    m_pJustify.disposeAndClear();
+    m_pLeftBottom.disposeAndClear();
+    m_pRightTop.disposeAndClear();
+    m_pLastLineFT.disposeAndClear();
+    m_pLastLineLB.disposeAndClear();
+    m_pExpandCB.disposeAndClear();
+    m_pSnapToGridCB.disposeAndClear();
+    m_pExampleWin.disposeAndClear();
+    m_pVertAlignFL.disposeAndClear();
+    m_pVertAlignLB.disposeAndClear();
+    m_pPropertiesFL.disposeAndClear();
+    m_pTextDirectionLB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 int SvxParaAlignTabPage::DeactivatePage( SfxItemSet* _pSet )
@@ -1901,6 +1953,41 @@ SvxExtParagraphTabPage::SvxExtParagraphTabPage( vcl::Window* pParent, const SfxI
     }
 }
 
+SvxExtParagraphTabPage::~SvxExtParagraphTabPage()
+{
+    dispose();
+}
+
+void SvxExtParagraphTabPage::dispose()
+{
+    m_pHyphenBox.disposeAndClear();
+    m_pBeforeText.disposeAndClear();
+    m_pExtHyphenBeforeBox.disposeAndClear();
+    m_pAfterText.disposeAndClear();
+    m_pExtHyphenAfterBox.disposeAndClear();
+    m_pMaxHyphenLabel.disposeAndClear();
+    m_pMaxHyphenEdit.disposeAndClear();
+    m_pPageBreakBox.disposeAndClear();
+    m_pBreakTypeFT.disposeAndClear();
+    m_pBreakTypeLB.disposeAndClear();
+    m_pBreakPositionFT.disposeAndClear();
+    m_pBreakPositionLB.disposeAndClear();
+    m_pApplyCollBtn.disposeAndClear();
+    m_pApplyCollBox.disposeAndClear();
+    m_pPagenumText.disposeAndClear();
+    m_pPagenumEdit.disposeAndClear();
+    m_pKeepTogetherBox.disposeAndClear();
+    m_pKeepParaBox.disposeAndClear();
+    m_pOrphanBox.disposeAndClear();
+    m_pOrphanRowNo.disposeAndClear();
+    m_pOrphanRowLabel.disposeAndClear();
+    m_pWidowBox.disposeAndClear();
+    m_pWidowRowNo.disposeAndClear();
+    m_pWidowRowLabel.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
+
 const sal_uInt16* SvxExtParagraphTabPage::GetRanges()
 {
     return pExtRanges;
@@ -2106,6 +2193,19 @@ SvxAsianTabPage::SvxAsianTabPage( vcl::Window* pParent, const SfxItemSet& rSet )
     m_pScriptSpaceCB->SetClickHdl( aLink );
     m_pForbiddenRulesCB->SetClickHdl( aLink );
 
+}
+
+SvxAsianTabPage::~SvxAsianTabPage()
+{
+    dispose();
+}
+
+void SvxAsianTabPage::dispose()
+{
+    m_pForbiddenRulesCB.disposeAndClear();
+    m_pHangingPunctCB.disposeAndClear();
+    m_pScriptSpaceCB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* SvxAsianTabPage::Create(    vcl::Window* pParent, const SfxItemSet* rSet )

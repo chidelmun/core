@@ -41,7 +41,7 @@ class SvxGeneralTabPage : public SfxTabPage
     using TabPage::DeactivatePage;
 private:
     // the "Use data for document properties" checkbox
-    CheckBox* m_pUseDataCB;
+    VclPtr<CheckBox> m_pUseDataCB;
     // rows
     struct Row;
     std::vector<boost::shared_ptr<Row> > vRows;
@@ -65,6 +65,8 @@ protected:
 
 public:
     SvxGeneralTabPage( vcl::Window* pParent, const SfxItemSet& rSet );
+    virtual ~SvxGeneralTabPage();
+    virtual void dispose() SAL_OVERRIDE;
 
     static SfxTabPage*  Create( vcl::Window* pParent, const SfxItemSet* rAttrSet );
 

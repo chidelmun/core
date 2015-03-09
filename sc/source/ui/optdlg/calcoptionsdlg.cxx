@@ -217,7 +217,29 @@ ScCalcOptionsDialog::ScCalcOptionsDialog(vcl::Window* pParent, const ScCalcConfi
     SelectionChanged();
 }
 
-ScCalcOptionsDialog::~ScCalcOptionsDialog() {}
+ScCalcOptionsDialog::~ScCalcOptionsDialog()
+{
+    dispose();
+}
+
+void ScCalcOptionsDialog::dispose()
+{
+    mpLbSettings.disposeAndClear();
+    mpLbOptionEdit.disposeAndClear();
+    mpBtnTrue.disposeAndClear();
+    mpBtnFalse.disposeAndClear();
+    mpSpinButton.disposeAndClear();
+    mpEditField.disposeAndClear();
+    mpTestButton.disposeAndClear();
+    mpFtAnnotation.disposeAndClear();
+    mpFtFrequency.disposeAndClear();
+    mpFtComputeUnits.disposeAndClear();
+    mpFtMemory.disposeAndClear();
+    mpOpenclInfoList.disposeAndClear();
+    mpBtnAutomaticSelectionTrue.disposeAndClear();
+    mpBtnAutomaticSelectionFalse.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 SvTreeListEntry *ScCalcOptionsDialog::createItem(const OUString &rCaption, const OUString& sValue) const
 {

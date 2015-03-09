@@ -105,6 +105,32 @@ SwFormatTablePage::SwFormatTablePage(vcl::Window* pParent, const SfxItemSet& rSe
     Init();
 }
 
+SwFormatTablePage::~SwFormatTablePage()
+{
+    dispose();
+}
+
+void SwFormatTablePage::dispose()
+{
+    m_pNameED.disposeAndClear();
+    m_pWidthFT.disposeAndClear();
+    m_pRelWidthCB.disposeAndClear();
+    m_pFullBtn.disposeAndClear();
+    m_pLeftBtn.disposeAndClear();
+    m_pFromLeftBtn.disposeAndClear();
+    m_pRightBtn.disposeAndClear();
+    m_pCenterBtn.disposeAndClear();
+    m_pFreeBtn.disposeAndClear();
+    m_pLeftFT.disposeAndClear();
+    m_pRightFT.disposeAndClear();
+    m_pTopFT.disposeAndClear();
+    m_pTopMF.disposeAndClear();
+    m_pBottomFT.disposeAndClear();
+    m_pBottomMF.disposeAndClear();
+    m_pTextDirectionLB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void  SwFormatTablePage::Init()
 {
     m_aLeftMF.SetMetricFieldMin(-999999);
@@ -749,9 +775,22 @@ SwTableColumnPage::SwTableColumnPage(vcl::Window* pParent, const SfxItemSet& rSe
         && static_cast<const SfxUInt16Item*>(pItem)->GetValue() & HTMLMODE_ON));
 }
 
-//Description: Page column configuration
- SwTableColumnPage::~SwTableColumnPage()
+SwTableColumnPage::~SwTableColumnPage()
 {
+    dispose();
+}
+
+void SwTableColumnPage::dispose()
+{
+    m_pModifyTableCB.disposeAndClear();
+    m_pProportionalCB.disposeAndClear();
+    m_pSpaceFT.disposeAndClear();
+    m_pSpaceED.disposeAndClear();
+    m_pUpBtn.disposeAndClear();
+    m_pDownBtn.disposeAndClear();
+    for (auto p : m_pTextArr)
+        p.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage*   SwTableColumnPage::Create( vcl::Window* pParent,
@@ -832,7 +871,7 @@ void  SwTableColumnPage::Init(bool bWeb)
 IMPL_LINK( SwTableColumnPage, AutoClickHdl, CheckBox *, pBox )
 {
     //move display window
-    if(pBox == (CheckBox *)m_pDownBtn)
+    if(pBox == (CheckBox *)m_pDownBtn.get())
     {
         if(aValueTbl[0] > 0)
         {
@@ -840,7 +879,7 @@ IMPL_LINK( SwTableColumnPage, AutoClickHdl, CheckBox *, pBox )
                 aValueTbl[i] -= 1;
         }
     }
-    if (pBox == (CheckBox *)m_pUpBtn)
+    if (pBox == (CheckBox *)m_pUpBtn.get())
     {
         if( aValueTbl[ MET_FIELDS -1 ] < nNoOfVisibleCols -1  )
         {
@@ -1311,8 +1350,31 @@ SwTextFlowPage::SwTextFlowPage(vcl::Window* pParent, const SfxItemSet& rSet)
     HeadLineCBClickHdl();
 }
 
- SwTextFlowPage::~SwTextFlowPage()
+SwTextFlowPage::~SwTextFlowPage()
 {
+    dispose();
+}
+
+void SwTextFlowPage::dispose()
+{
+    m_pPgBrkCB.disposeAndClear();
+    m_pPgBrkRB.disposeAndClear();
+    m_pColBrkRB.disposeAndClear();
+    m_pPgBrkBeforeRB.disposeAndClear();
+    m_pPgBrkAfterRB.disposeAndClear();
+    m_pPageCollCB.disposeAndClear();
+    m_pPageCollLB.disposeAndClear();
+    m_pPageNoFT.disposeAndClear();
+    m_pPageNoNF.disposeAndClear();
+    m_pSplitCB.disposeAndClear();
+    m_pSplitRowCB.disposeAndClear();
+    m_pKeepCB.disposeAndClear();
+    m_pHeadLineCB.disposeAndClear();
+    m_pRepeatHeaderNF.disposeAndClear();
+    m_pRepeatHeaderCombo.disposeAndClear();
+    m_pTextDirectionLB.disposeAndClear();
+    m_pVertOrientLB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage*   SwTextFlowPage::Create( vcl::Window* pParent,

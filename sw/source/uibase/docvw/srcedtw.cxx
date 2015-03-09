@@ -289,13 +289,12 @@ void SwSrcEditWindow::dispose()
         EndListening( *pTextEngine );
         pTextEngine->RemoveView( pTextView );
 
-        delete pHScrollbar;
-        delete pVScrollbar;
-
         delete pTextView;
         delete pTextEngine;
     }
-    delete pOutWin;
+    pOutWin.disposeAndClear();
+    pHScrollbar.disposeAndClear();
+    pVScrollbar.disposeAndClear();
     vcl::Window::dispose();
 }
 

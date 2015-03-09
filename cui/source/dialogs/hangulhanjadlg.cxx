@@ -605,6 +605,35 @@ namespace svx
         m_pSuggestions->SetHelpIds();
     }
 
+    HangulHanjaConversionDialog::~HangulHanjaConversionDialog()
+    {
+        dispose();
+    }
+
+    void HangulHanjaConversionDialog::dispose()
+    {
+        m_pFind.disposeAndClear();
+        m_pIgnore.disposeAndClear();
+        m_pIgnoreAll.disposeAndClear();
+        m_pReplace.disposeAndClear();
+        m_pReplaceAll.disposeAndClear();
+        m_pOptions.disposeAndClear();
+        m_pSuggestions.disposeAndClear();
+        m_pSimpleConversion.disposeAndClear();
+        m_pHangulBracketed.disposeAndClear();
+        m_pHanjaBracketed.disposeAndClear();
+        m_pWordInput.disposeAndClear();
+        m_pOriginalWord.disposeAndClear();
+        m_pHanjaAbove.disposeAndClear();
+        m_pHanjaBelow.disposeAndClear();
+        m_pHangulAbove.disposeAndClear();
+        m_pHangulBelow.disposeAndClear();
+        m_pHangulOnly.disposeAndClear();
+        m_pHanjaOnly.disposeAndClear();
+        m_pReplaceByChar.disposeAndClear();
+        m_pIgnoreNonPrimary.disposeAndClear();
+        ModalDialog::dispose();
+    }
 
     void HangulHanjaConversionDialog::FillSuggestions( const ::com::sun::star::uno::Sequence< OUString >& _rSuggestions )
     {
@@ -1139,18 +1168,29 @@ namespace svx
 
     void HangulHanjaOptionsDialog::dispose()
     {
-        SvTreeListEntry* pEntry = m_pDictsLB->First();
-        while( pEntry )
+        if (m_pDictsLB)
         {
-            OUString* pDel = ( OUString* ) pEntry->GetUserData();
-            delete pDel;
-            pEntry->SetUserData( NULL );
-            pEntry = m_pDictsLB->Next( pEntry );
+            SvTreeListEntry* pEntry = m_pDictsLB->First();
+            while( pEntry )
+            {
+                OUString* pDel = ( OUString* ) pEntry->GetUserData();
+                delete pDel;
+                pEntry->SetUserData( NULL );
+                pEntry = m_pDictsLB->Next( pEntry );
+            }
         }
 
         delete m_pCheckButtonData;
         m_pCheckButtonData = NULL;
 
+        m_pDictsLB.disposeAndClear();
+        m_pIgnorepostCB.disposeAndClear();
+        m_pShowrecentlyfirstCB.disposeAndClear();
+        m_pAutoreplaceuniqueCB.disposeAndClear();
+        m_pNewPB.disposeAndClear();
+        m_pEditPB.disposeAndClear();
+        m_pDeletePB.disposeAndClear();
+        m_pOkPB.disposeAndClear();
         ModalDialog::dispose();
     }
 
@@ -1196,6 +1236,18 @@ namespace svx
 
         m_pOkBtn->SetClickHdl( LINK( this, HangulHanjaNewDictDialog, OKHdl ) );
         m_pDictNameED->SetModifyHdl( LINK( this, HangulHanjaNewDictDialog, ModifyHdl ) );
+    }
+
+    HangulHanjaNewDictDialog::~HangulHanjaNewDictDialog()
+    {
+        dispose();
+    }
+
+    void HangulHanjaNewDictDialog::dispose()
+    {
+        m_pDictNameED.disposeAndClear();
+        m_pOkBtn.disposeAndClear();
+        ModalDialog::dispose();
     }
 
     bool HangulHanjaNewDictDialog::GetName( OUString& _rRetName ) const
@@ -1371,6 +1423,19 @@ namespace svx
         , m_pNext(NULL)
         , m_pScrollBar(NULL)
     {
+    }
+
+    SuggestionEdit::~SuggestionEdit()
+    {
+        dispose();
+    }
+
+    void SuggestionEdit::dispose()
+    {
+        m_pPrev.disposeAndClear();
+        m_pNext.disposeAndClear();
+        m_pScrollBar.disposeAndClear();
+        Edit::dispose();
     }
 
     bool SuggestionEdit::PreNotify( NotifyEvent& rNEvt )
@@ -1788,6 +1853,15 @@ namespace svx
     {
         delete m_pSuggestions;
         m_pSuggestions = NULL;
+        m_aBookLB.disposeAndClear();
+        m_aOriginalLB.disposeAndClear();
+        m_aEdit1.disposeAndClear();
+        m_aEdit2.disposeAndClear();
+        m_aEdit3.disposeAndClear();
+        m_aEdit4.disposeAndClear();
+        m_aScrollSB.disposeAndClear();
+        m_aNewPB.disposeAndClear();
+        m_aDeletePB.disposeAndClear();
         ModalDialog::dispose();
     }
 

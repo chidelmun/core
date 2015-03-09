@@ -463,11 +463,11 @@ static bool lcl_isOptionHidden( sal_uInt16 _nPageId, const SvtOptionsDialogOptio
 
 struct OptionsPageInfo
 {
-    SfxTabPage*         m_pPage;
+    VclPtr<SfxTabPage>  m_pPage;
     sal_uInt16          m_nPageId;
     OUString       m_sPageURL;
     OUString       m_sEventHdl;
-    ExtensionsTabPage*  m_pExtPage;
+    VclPtr<ExtensionsTabPage>  m_pExtPage;
 
     OptionsPageInfo( sal_uInt16 nId ) : m_pPage( NULL ), m_nPageId( nId ), m_pExtPage( NULL ) {}
 };
@@ -481,7 +481,7 @@ struct OptionsGroupInfo
     sal_uInt16          m_nDialogId;    // Id of the former dialog
     bool            m_bLoadError;   // load fails?
     OUString       m_sPageURL;
-    ExtensionsTabPage*  m_pExtPage;
+    VclPtr<ExtensionsTabPage>  m_pExtPage;
 
     OptionsGroupInfo( SfxShell* pSh, SfxModule* pMod, sal_uInt16 nId ) :
         m_pInItemSet( NULL ), m_pOutItemSet( NULL ), m_pShell( pSh ),
@@ -572,7 +572,6 @@ void OfaTreeOptionsDialog::dispose()
                     SvtViewOptions aTabPageOpt( E_TABPAGE, OUString::number( pPageInfo->m_nPageId) );
                     SetViewOptUserItem( aTabPageOpt, aPageData );
                 }
-                delete pPageInfo->m_pPage;
             }
 
             if (pPageInfo->m_nPageId == RID_SFXPAGE_LINGU)
@@ -584,8 +583,6 @@ void OfaTreeOptionsDialog::dispose()
                     linguistic::SaveDictionaries( xDicList );
                 }
             }
-
-            delete pPageInfo->m_pExtPage;
 
             delete pPageInfo;
         }
@@ -599,8 +596,6 @@ void OfaTreeOptionsDialog::dispose()
         if(!pTreeLB->GetParent(pEntry))
         {
             OptionsGroupInfo* pGroupInfo = (OptionsGroupInfo*)pEntry->GetUserData();
-            if ( pGroupInfo && pGroupInfo->m_pExtPage )
-                delete pGroupInfo->m_pExtPage;
             delete pGroupInfo;
         }
         pEntry = pTreeLB->Next(pEntry);
@@ -608,7 +603,11 @@ void OfaTreeOptionsDialog::dispose()
     delete pColorPageItemSet;
     pColorPageItemSet = NULL;
     deleteGroupNames();
-    pTreeLB = NULL;
+    pOkPB.disposeAndClear();
+    pBackPB.disposeAndClear();
+    pTreeLB.disposeAndClear();
+    pTabBox.disposeAndClear();
+    mpColorPage.disposeAndClear();
     SfxModalDialog::dispose();
 }
 
@@ -1045,7 +1044,7 @@ void OfaTreeOptionsDialog::SelectHdl_Impl()
         {
             pPageInfo->m_pPage = ::CreateGeneralTabPage(
                 pPageInfo->m_nPageId, pTabBox, *pColorPageItemSet );
-            mpColorPage = static_cast<SvxColorTabPage*>(pPageInfo->m_pPage);
+            mpColorPage = static_cast<SvxColorTabPage*>(pPageInfo->m_pPage.get());
             mpColorPage->SetupForViewFrame( SfxViewFrame::Current() );
         }
         else

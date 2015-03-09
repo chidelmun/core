@@ -83,7 +83,7 @@ class ImplBorderWindow : public vcl::Window
 
 private:
     ImplBorderWindowView*   mpBorderView;
-    vcl::Window*            mpMenuBarWindow;
+    VclPtr<vcl::Window>     mpMenuBarWindow;
     long                    mnMinWidth;
     long                    mnMinHeight;
     long                    mnMaxWidth;
@@ -175,7 +175,7 @@ public:
 
 struct ImplBorderFrameData
 {
-    ImplBorderWindow*       mpBorderWindow;
+    VclPtr<ImplBorderWindow> mpBorderWindow;
     OutputDevice*           mpOutDev;
     Rectangle               maTitleRect;
     Rectangle               maPinRect;
@@ -254,7 +254,7 @@ public:
 
 class ImplSmallBorderWindowView : public ImplBorderWindowView
 {
-    ImplBorderWindow*       mpBorderWindow;
+    VclPtr<ImplBorderWindow> mpBorderWindow;
     OutputDevice*           mpOutDev;
     long                    mnWidth;
     long                    mnHeight;

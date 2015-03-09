@@ -209,6 +209,7 @@ void PropBrw::dispose()
     {}
 
     ::rptui::notifySystemWindow(this,this,::comphelper::mem_fun(&TaskPaneList::RemoveWindow));
+    m_pDesignView.disposeAndClear();
     DockingWindow::dispose();
 }
 

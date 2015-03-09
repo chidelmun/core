@@ -122,6 +122,41 @@ ScaleTabPage::ScaleTabPage(vcl::Window* pWindow,const SfxItemSet& rInAttrs) :
     HideAllControls();
 }
 
+ScaleTabPage::~ScaleTabPage()
+{
+    dispose();
+}
+
+void ScaleTabPage::dispose()
+{
+    m_pCbxReverse.disposeAndClear();
+    m_pCbxLogarithm.disposeAndClear();
+    m_pBxType.disposeAndClear();
+    m_pLB_AxisType.disposeAndClear();
+    m_pBxMinMax.disposeAndClear();
+    m_pFmtFldMin.disposeAndClear();
+    m_pCbxAutoMin.disposeAndClear();
+    m_pFmtFldMax.disposeAndClear();
+    m_pCbxAutoMax.disposeAndClear();
+    m_pBxResolution.disposeAndClear();
+    m_pLB_TimeResolution.disposeAndClear();
+    m_pCbx_AutoTimeResolution.disposeAndClear();
+    m_pTxtMain.disposeAndClear();
+    m_pFmtFldStepMain.disposeAndClear();
+    m_pMt_MainDateStep.disposeAndClear();
+    m_pLB_MainTimeUnit.disposeAndClear();
+    m_pCbxAutoStepMain.disposeAndClear();
+    m_pTxtHelpCount.disposeAndClear();
+    m_pTxtHelp.disposeAndClear();
+    m_pMtStepHelp.disposeAndClear();
+    m_pLB_HelpTimeUnit.disposeAndClear();
+    m_pCbxAutoStepHelp.disposeAndClear();
+    m_pFmtFldOrigin.disposeAndClear();
+    m_pCbxAutoOrigin.disposeAndClear();
+    m_pBxOrigin.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 IMPL_LINK( ScaleTabPage, FmtFieldModifiedHdl, FormattedField*, pFmtFied )
 {
     if( pFmtFied )

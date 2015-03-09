@@ -142,6 +142,25 @@ SdTPAction::SdTPAction(vcl::Window* pWindow, const SfxItemSet& rInAttrs)
 
 SdTPAction::~SdTPAction()
 {
+    dispose();
+}
+
+void SdTPAction::dispose()
+{
+    m_pLbAction.disposeAndClear();
+    m_pFtTree.disposeAndClear();
+    m_pLbTree.disposeAndClear();
+    m_pLbTreeDocument.disposeAndClear();
+    m_pLbOLEAction.disposeAndClear();
+    m_pFrame.disposeAndClear();
+    m_pEdtSound.disposeAndClear();
+    m_pEdtBookmark.disposeAndClear();
+    m_pEdtDocument.disposeAndClear();
+    m_pEdtProgram.disposeAndClear();
+    m_pEdtMacro.disposeAndClear();
+    m_pBtnSearch.disposeAndClear();
+    m_pBtnSeek.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void SdTPAction::SetView( const ::sd::View* pSdView )

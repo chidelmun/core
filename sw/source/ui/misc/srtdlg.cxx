@@ -259,6 +259,31 @@ void SwSortDlg::dispose()
     ::lcl_ClearLstBoxAndDelUserData(*m_pTypDLB2);
     ::lcl_ClearLstBoxAndDelUserData(*m_pTypDLB3);
     delete pColRes;
+    m_pColLbl.disposeAndClear();
+    m_pTypLbl.disposeAndClear();
+    m_pKeyCB1.disposeAndClear();
+    m_pColEdt1.disposeAndClear();
+    m_pTypDLB1.disposeAndClear();
+    m_pSortUp1RB.disposeAndClear();
+    m_pSortDn1RB.disposeAndClear();
+    m_pKeyCB2.disposeAndClear();
+    m_pColEdt2.disposeAndClear();
+    m_pTypDLB2.disposeAndClear();
+    m_pSortUp2RB.disposeAndClear();
+    m_pSortDn2RB.disposeAndClear();
+    m_pKeyCB3.disposeAndClear();
+    m_pColEdt3.disposeAndClear();
+    m_pTypDLB3.disposeAndClear();
+    m_pSortUp3RB.disposeAndClear();
+    m_pSortDn3RB.disposeAndClear();
+    m_pColumnRB.disposeAndClear();
+    m_pRowRB.disposeAndClear();
+    m_pDelimTabRB.disposeAndClear();
+    m_pDelimFreeRB.disposeAndClear();
+    m_pDelimEdt.disposeAndClear();
+    m_pDelimPB.disposeAndClear();
+    m_pLangLB.disposeAndClear();
+    m_pCaseCB.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 
@@ -390,7 +415,7 @@ IMPL_LINK_NOARG(SwSortDlg, DelimCharHdl)
 
 IMPL_LINK( SwSortDlg, CheckHdl, CheckBox *, pCheck )
 {
-    if( pCheck == ( CheckBox* ) m_pRowRB)
+    if( pCheck == ( CheckBox* ) m_pRowRB.get())
     {
         m_pColLbl->SetText(aColTxt);
         m_pColEdt1->SetMax(nY);
@@ -401,7 +426,7 @@ IMPL_LINK( SwSortDlg, CheckHdl, CheckBox *, pCheck )
         m_pColEdt2->SetAccessibleName(aColTxt);
         m_pColEdt3->SetAccessibleName(aColTxt);
     }
-    else if( pCheck == ( CheckBox* ) m_pColumnRB)
+    else if( pCheck == ( CheckBox* ) m_pColumnRB.get())
     {
         m_pColLbl->SetText(aRowTxt);
         m_pColEdt1->SetMax(nX);

@@ -199,6 +199,9 @@ void SwFldEditDlg::dispose()
 {
     SwViewShell::SetCareWin(NULL);
     pSh->EnterStdMode();
+    m_pPrevBT.disposeAndClear();
+    m_pNextBT.disposeAndClear();
+    m_pAddressBT.disposeAndClear();
     SfxSingleTabDialog::dispose();
 }
 

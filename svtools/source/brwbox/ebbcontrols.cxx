@@ -254,7 +254,7 @@ namespace svt
 
     void CheckBoxControl::dispose()
     {
-        delete pBox;
+        pBox.disposeAndClear();
         Control::dispose();
     }
 

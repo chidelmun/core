@@ -168,7 +168,29 @@ SwLineNumberingDlg::SwLineNumberingDlg(SwView *pVw)
 
 SwLineNumberingDlg::~SwLineNumberingDlg()
 {
+    dispose();
 }
+
+void SwLineNumberingDlg::dispose()
+{
+    m_pBodyContent.disposeAndClear();
+    m_pDivIntervalFT.disposeAndClear();
+    m_pDivIntervalNF.disposeAndClear();
+    m_pDivRowsFT.disposeAndClear();
+    m_pNumIntervalNF.disposeAndClear();
+    m_pCharStyleLB.disposeAndClear();
+    m_pFormatLB.disposeAndClear();
+    m_pPosLB.disposeAndClear();
+    m_pOffsetMF.disposeAndClear();
+    m_pDivisorED.disposeAndClear();
+    m_pCountEmptyLinesCB.disposeAndClear();
+    m_pCountFrameLinesCB.disposeAndClear();
+    m_pRestartEachPageCB.disposeAndClear();
+    m_pNumberingOnCB.disposeAndClear();
+    m_pNumberingOnFooterHeader.disposeAndClear();
+    SfxModalDialog::dispose();
+}
+
 
 IMPL_LINK_NOARG(SwLineNumberingDlg, OKHdl)
 {

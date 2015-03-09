@@ -120,6 +120,11 @@ namespace dbaui
     {
         if (m_aResetVisitFlag.IsActive())
             m_aResetVisitFlag.Stop();
+        m_pAllParams.disposeAndClear();
+        m_pParam.disposeAndClear();
+        m_pTravelNext.disposeAndClear();
+        m_pOKBtn.disposeAndClear();
+        m_pCancelBtn.disposeAndClear();
         ModalDialog::dispose();
     }
 

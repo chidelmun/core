@@ -710,11 +710,11 @@ void OCopyTableWizard::dispose()
     m_aTypeInfo.clear();
     m_aDestTypeInfoIndex.clear();
 
-    delete m_pbHelp;
-    delete m_pbCancel;
-    delete m_pbPrev;
-    delete m_pbNext;
-    delete m_pbFinish;
+    m_pbHelp.disposeAndClear();
+    m_pbCancel.disposeAndClear();
+    m_pbPrev.disposeAndClear();
+    m_pbNext.disposeAndClear();
+    m_pbFinish.disposeAndClear();
     WizardDialog::dispose();
 }
 

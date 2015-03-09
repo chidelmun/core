@@ -69,6 +69,7 @@ void CertificateViewer::dispose()
     delete mpTabCtrl->GetTabPage(mnGeneralId);
     delete mpTabCtrl->GetTabPage(mnDetailsId);
     delete mpTabCtrl->GetTabPage(mnPathId);
+    mpTabCtrl.disposeAndClear();
     TabDialog::dispose();
 }
 
@@ -78,6 +79,18 @@ CertificateViewerTP::CertificateViewerTP( vcl::Window* _pParent, const OString& 
     , mpDlg(_pDlg)
 {
 }
+
+CertificateViewerTP::~CertificateViewerTP()
+{
+    dispose();
+}
+
+void CertificateViewerTP::dispose()
+{
+    mpDlg.disposeAndClear();
+    TabPage::dispose();
+}
+
 
 CertificateViewerGeneralTP::CertificateViewerGeneralTP( vcl::Window* _pParent, CertificateViewer* _pDlg )
     :CertificateViewerTP    ( _pParent, "CertGeneral", "xmlsec/ui/certgeneral.ui", _pDlg )
@@ -134,6 +147,24 @@ CertificateViewerGeneralTP::CertificateViewerGeneralTP( vcl::Window* _pParent, C
         m_pKeyImg->Hide();
         m_pHintCorrespPrivKeyFI->Hide();
     }
+}
+
+CertificateViewerGeneralTP::~CertificateViewerGeneralTP()
+{
+    dispose();
+}
+
+void CertificateViewerGeneralTP::dispose()
+{
+    m_pCertImg.disposeAndClear();
+    m_pHintNotTrustedFI.disposeAndClear();
+    m_pIssuedToFI.disposeAndClear();
+    m_pIssuedByFI.disposeAndClear();
+    m_pValidFromDateFI.disposeAndClear();
+    m_pValidToDateFI.disposeAndClear();
+    m_pKeyImg.disposeAndClear();
+    m_pHintCorrespPrivKeyFI.disposeAndClear();
+    CertificateViewerTP::dispose();
 }
 
 void CertificateViewerGeneralTP::ActivatePage()
@@ -268,7 +299,9 @@ CertificateViewerDetailsTP::~CertificateViewerDetailsTP()
 void CertificateViewerDetailsTP::dispose()
 {
     Clear();
-    delete m_pElementsLB;
+    m_pElementsLBContainer.disposeAndClear();
+    m_pElementsLB.disposeAndClear();
+    m_pValueDetails.disposeAndClear();
     CertificateViewerTP::dispose();
 }
 
@@ -339,7 +372,17 @@ CertificateViewerCertPathTP::CertificateViewerCertPathTP( vcl::Window* _pParent,
 
 CertificateViewerCertPathTP::~CertificateViewerCertPathTP()
 {
+    dispose();
+}
+
+void CertificateViewerCertPathTP::dispose()
+{
     Clear();
+    mpCertPathLB.disposeAndClear();
+    mpViewCertPB.disposeAndClear();
+    mpCertStatusML.disposeAndClear();
+    mpParent.disposeAndClear();
+    CertificateViewerTP::dispose();
 }
 
 void CertificateViewerCertPathTP::ActivatePage()

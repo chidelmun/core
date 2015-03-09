@@ -292,6 +292,30 @@ void SvxNumberFormatTabPage::dispose()
     pNumFmtShell = NULL;
     delete pNumItem;
     pNumItem = NULL;
+    m_pFtCategory.disposeAndClear();
+    m_pLbCategory.disposeAndClear();
+    m_pFtFormat.disposeAndClear();
+    m_pLbCurrency.disposeAndClear();
+    m_pLbFormat.disposeAndClear();
+    m_pFtLanguage.disposeAndClear();
+    m_pLbLanguage.disposeAndClear();
+    m_pCbSourceFormat.disposeAndClear();
+    m_pWndPreview.disposeAndClear();
+    m_pFtOptions.disposeAndClear();
+    m_pFtDecimals.disposeAndClear();
+    m_pEdDecimals.disposeAndClear();
+    m_pBtnNegRed.disposeAndClear();
+    m_pFtLeadZeroes.disposeAndClear();
+    m_pEdLeadZeroes.disposeAndClear();
+    m_pBtnThousand.disposeAndClear();
+    m_pFormatCodeFrame.disposeAndClear();
+    m_pEdFormat.disposeAndClear();
+    m_pIbAdd.disposeAndClear();
+    m_pIbInfo.disposeAndClear();
+    m_pIbRemove.disposeAndClear();
+    m_pFtComment.disposeAndClear();
+    m_pEdComment.disposeAndClear();
+    pLastActivWindow.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1671,7 +1695,7 @@ bool SvxNumberFormatTabPage::PreNotify( NotifyEvent& rNEvt )
 {
     if(rNEvt.GetType()==MouseNotifyEvent::LOSEFOCUS)
     {
-        if ( rNEvt.GetWindow() == dynamic_cast< vcl::Window* >( m_pEdComment ) && !m_pEdComment->IsVisible() )
+        if ( rNEvt.GetWindow() == dynamic_cast< vcl::Window* >( m_pEdComment.get() ) && !m_pEdComment->IsVisible() )
         {
             pLastActivWindow = NULL;
         }

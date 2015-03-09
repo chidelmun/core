@@ -36,7 +36,7 @@ Popup::Popup (
       msAccessibleName(rsAccessibleName),
       mpContainer()
 {
-    OSL_ASSERT(mpParent!=NULL);
+    OSL_ASSERT(mpParent!=nullptr);
     OSL_ASSERT(maControlCreator);
 }
 
@@ -109,7 +109,7 @@ void Popup::SetPopupModeEndHandler (const ::boost::function<void(void)>& rCallba
 void Popup::ProvideContainerAndControl (void)
 {
     if ( ! (mpContainer && mpControl)
-        && mpParent!=NULL
+        && mpParent!=nullptr
         && maControlCreator)
     {
         CreateContainerAndControl();

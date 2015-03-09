@@ -130,7 +130,16 @@ namespace rptui
 
     ConditionalFormattingDialog::~ConditionalFormattingDialog()
     {
+        dispose();
+    }
+
+    void ConditionalFormattingDialog::dispose()
+    {
         m_aConditions.clear();
+        m_pConditionPlayground.disposeAndClear();
+        m_pScrollWindow.disposeAndClear();
+        m_pCondScroll.disposeAndClear();
+        ModalDialog::dispose();
     }
 
     void ConditionalFormattingDialog::impl_updateConditionIndicies()

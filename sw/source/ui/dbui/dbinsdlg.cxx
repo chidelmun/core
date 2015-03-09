@@ -421,6 +421,31 @@ void SwInsertDBColAutoPilot::dispose()
     delete pRep;
 
     delete pTAutoFmt;
+    m_pRbAsTable.disposeAndClear();
+    m_pRbAsField.disposeAndClear();
+    m_pRbAsText.disposeAndClear();
+    m_pHeadFrame.disposeAndClear();
+    m_pLbTblDbColumn.disposeAndClear();
+    m_pLbTxtDbColumn.disposeAndClear();
+    m_pFormatFrame.disposeAndClear();
+    m_pRbDbFmtFromDb.disposeAndClear();
+    m_pRbDbFmtFromUsr.disposeAndClear();
+    m_pLbDbFmtFromUsr.disposeAndClear();
+    m_pIbDbcolToEdit.disposeAndClear();
+    m_pEdDbText.disposeAndClear();
+    m_pFtDbParaColl.disposeAndClear();
+    m_pLbDbParaColl.disposeAndClear();
+    m_pIbDbcolAllTo.disposeAndClear();
+    m_pIbDbcolOneTo.disposeAndClear();
+    m_pIbDbcolOneFrom.disposeAndClear();
+    m_pIbDbcolAllFrom.disposeAndClear();
+    m_pFtTableCol.disposeAndClear();
+    m_pLbTableCol.disposeAndClear();
+    m_pCbTableHeadon.disposeAndClear();
+    m_pRbHeadlColnms.disposeAndClear();
+    m_pRbHeadlEmpty.disposeAndClear();
+    m_pPbTblFormat.disposeAndClear();
+    m_pPbTblAutofmt.disposeAndClear();
     SfxModalDialog::dispose();
 }
 
@@ -773,9 +798,9 @@ IMPL_LINK( SwInsertDBColAutoPilot, SelectHdl, ListBox*, pBox )
     ListBox* pGetBox = pBox == m_pLbDbFmtFromUsr
                             ? ( m_pRbAsTable->IsChecked()
                                     ? ( 0 == m_pLbTableCol->GetEntryData( 0 )
-                                        ? m_pLbTblDbColumn
-                                        : m_pLbTableCol )
-                                    : m_pLbTxtDbColumn )
+                                        ? m_pLbTblDbColumn.get()
+                                        : m_pLbTableCol.get() )
+                                    : m_pLbTxtDbColumn.get() )
                             : pBox;
 
     SwInsDBColumn aSrch( pGetBox->GetSelectEntry(), 0 );
@@ -823,7 +848,7 @@ IMPL_LINK( SwInsertDBColAutoPilot, SelectHdl, ListBox*, pBox )
 
         // to know later on, what ListBox was the "active", a Flag
         // is remembered in the 1st entry
-        void* pPtr = pBox == m_pLbTableCol ? m_pLbTableCol : 0;
+        void* pPtr = pBox == m_pLbTableCol ? m_pLbTableCol.get() : 0;
         m_pLbTableCol->SetEntryData( 0, pPtr );
     }
     return 0;

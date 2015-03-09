@@ -176,6 +176,7 @@ SwLabDlg::~SwLabDlg()
 void SwLabDlg::dispose()
 {
     delete pRecs;
+    pPrtPage.disposeAndClear();
     SfxTabDialog::dispose();
 }
 
@@ -290,6 +291,29 @@ SwLabPage::SwLabPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
     m_pMakeBox->SelectEntryPos( nLstGroup );
     m_pMakeBox->GetSelectHdl().Call(m_pMakeBox);
+}
+
+SwLabPage::~SwLabPage()
+{
+    dispose();
+}
+
+void SwLabPage::dispose()
+{
+    m_pAddressFrame.disposeAndClear();
+    m_pAddrBox.disposeAndClear();
+    m_pWritingEdit.disposeAndClear();
+    m_pDatabaseLB.disposeAndClear();
+    m_pTableLB.disposeAndClear();
+    m_pInsertBT.disposeAndClear();
+    m_pDBFieldLB.disposeAndClear();
+    m_pContButton.disposeAndClear();
+    m_pSheetButton.disposeAndClear();
+    m_pMakeBox.disposeAndClear();
+    m_pTypeBox.disposeAndClear();
+    m_pHiddenSortTypeBox.disposeAndClear();
+    m_pFormatInfo.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void SwLabPage::SetToBusinessCard()
@@ -603,6 +627,9 @@ void SwVisitingCardPage::dispose()
 
     ClearUserData();
     delete pExampleFrame;
+    m_pAutoTextLB.disposeAndClear();
+    m_pAutoTextGroupLB.disposeAndClear();
+    m_pExampleWIN.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -740,6 +767,34 @@ SwPrivateDataPage::SwPrivateDataPage(vcl::Window* pParent, const SfxItemSet& rSe
     SetExchangeSupport();
 }
 
+SwPrivateDataPage::~SwPrivateDataPage()
+{
+    dispose();
+}
+
+void SwPrivateDataPage::dispose()
+{
+    m_pFirstNameED.disposeAndClear();
+    m_pNameED.disposeAndClear();
+    m_pShortCutED.disposeAndClear();
+    m_pFirstName2ED.disposeAndClear();
+    m_pName2ED.disposeAndClear();
+    m_pShortCut2ED.disposeAndClear();
+    m_pStreetED.disposeAndClear();
+    m_pZipED.disposeAndClear();
+    m_pCityED.disposeAndClear();
+    m_pCountryED.disposeAndClear();
+    m_pStateED.disposeAndClear();
+    m_pTitleED.disposeAndClear();
+    m_pProfessionED.disposeAndClear();
+    m_pPhoneED.disposeAndClear();
+    m_pMobilePhoneED.disposeAndClear();
+    m_pFaxED.disposeAndClear();
+    m_pHomePageED.disposeAndClear();
+    m_pMailED.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 SfxTabPage* SwPrivateDataPage::Create(vcl::Window* pParent, const SfxItemSet* rSet)
 {
     return new SwPrivateDataPage(pParent, *rSet);
@@ -827,6 +882,31 @@ SwBusinessDataPage::SwBusinessDataPage(vcl::Window* pParent, const SfxItemSet& r
     get(m_pMailED, "email");
     SetExchangeSupport();
 }
+
+SwBusinessDataPage::~SwBusinessDataPage()
+{
+    dispose();
+}
+
+void SwBusinessDataPage::dispose()
+{
+    m_pCompanyED.disposeAndClear();
+    m_pCompanyExtED.disposeAndClear();
+    m_pSloganED.disposeAndClear();
+    m_pStreetED.disposeAndClear();
+    m_pZipED.disposeAndClear();
+    m_pCityED.disposeAndClear();
+    m_pCountryED.disposeAndClear();
+    m_pStateED.disposeAndClear();
+    m_pPositionED.disposeAndClear();
+    m_pPhoneED.disposeAndClear();
+    m_pMobilePhoneED.disposeAndClear();
+    m_pFaxED.disposeAndClear();
+    m_pHomePageED.disposeAndClear();
+    m_pMailED.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 SfxTabPage* SwBusinessDataPage::Create(vcl::Window* pParent, const SfxItemSet* rSet)
 {

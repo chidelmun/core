@@ -52,6 +52,33 @@ DataStreamDlg::DataStreamDlg(ScDocShell *pDocShell, vcl::Window* pParent)
     UpdateEnable();
 }
 
+DataStreamDlg::~DataStreamDlg()
+{
+    dispose();
+}
+
+void DataStreamDlg::dispose()
+{
+    m_pCbUrl.disposeAndClear();
+    m_pBtnBrowse.disposeAndClear();
+    m_pRBDirectData.disposeAndClear();
+    m_pRBScriptData.disposeAndClear();
+    m_pRBValuesInLine.disposeAndClear();
+    m_pRBAddressValue.disposeAndClear();
+    m_pCBRefreshOnEmpty.disposeAndClear();
+    m_pRBDataDown.disposeAndClear();
+    m_pRBRangeDown.disposeAndClear();
+    m_pRBNoMove.disposeAndClear();
+    m_pRBMaxLimit.disposeAndClear();
+    m_pRBUnlimited.disposeAndClear();
+    m_pEdRange.disposeAndClear();
+    m_pEdLimit.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pVclFrameLimit.disposeAndClear();
+    m_pVclFrameMove.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 IMPL_LINK_NOARG(DataStreamDlg, BrowseHdl)
 {
     sfx2::FileDialogHelper aFileDialog(0, 0);

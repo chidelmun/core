@@ -51,8 +51,8 @@ using namespace com::sun::star;
 
 XPropertyListRef SvxColorTabPage::GetList()
 {
-    SvxAreaTabDialog* pArea = dynamic_cast< SvxAreaTabDialog* >( mpTopDlg );
-    SvxLineTabDialog* pLine = dynamic_cast< SvxLineTabDialog* >( mpTopDlg );
+    SvxAreaTabDialog* pArea = dynamic_cast< SvxAreaTabDialog* >( mpTopDlg.get() );
+    SvxLineTabDialog* pLine = dynamic_cast< SvxLineTabDialog* >( mpTopDlg.get() );
 
     XColorListRef pList;
     if( pArea )
@@ -162,8 +162,8 @@ IMPL_LINK_NOARG(SvxColorTabPage, ClickLoadHdl_Impl)
             if( pList->Load() )
             {
                 // check whether the table may be deleted:
-                SvxAreaTabDialog* pArea = dynamic_cast< SvxAreaTabDialog* >( mpTopDlg );
-                SvxLineTabDialog* pLine = dynamic_cast< SvxLineTabDialog* >( mpTopDlg );
+                SvxAreaTabDialog* pArea = dynamic_cast< SvxAreaTabDialog* >( mpTopDlg.get() );
+                SvxLineTabDialog* pLine = dynamic_cast< SvxLineTabDialog* >( mpTopDlg.get() );
 
                 // FIXME: want to have a generic set and get method by type ...
                 if( pArea )
@@ -404,6 +404,30 @@ void SvxColorTabPage::dispose()
 {
     delete pShadow;
     pShadow = NULL;
+    mpTopDlg.disposeAndClear();
+    m_pBoxEmbed.disposeAndClear();
+    m_pBtnLoad.disposeAndClear();
+    m_pBtnSave.disposeAndClear();
+    m_pTableName.disposeAndClear();
+    m_pEdtName.disposeAndClear();
+    m_pLbColor.disposeAndClear();
+    m_pValSetColorList.disposeAndClear();
+    m_pCtlPreviewOld.disposeAndClear();
+    m_pCtlPreviewNew.disposeAndClear();
+    m_pLbColorModel.disposeAndClear();
+    m_pRGB.disposeAndClear();
+    m_pR.disposeAndClear();
+    m_pG.disposeAndClear();
+    m_pB.disposeAndClear();
+    m_pCMYK.disposeAndClear();
+    m_pC.disposeAndClear();
+    m_pY.disposeAndClear();
+    m_pM.disposeAndClear();
+    m_pK.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnModify.disposeAndClear();
+    m_pBtnWorkOn.disposeAndClear();
+    m_pBtnDelete.disposeAndClear();
     SfxTabPage::dispose();
 }
 

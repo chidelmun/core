@@ -84,6 +84,32 @@ SfxTabPage( pParent, "OptHtmlPage" , "cui/ui/opthtmlpage.ui", &rSet )
     aCharSetLB->FillWithMimeAndSelectBest();
 }
 
+OfaHtmlTabPage::~OfaHtmlTabPage()
+{
+    dispose();
+}
+
+void OfaHtmlTabPage::dispose()
+{
+    aSize1NF.disposeAndClear();
+    aSize2NF.disposeAndClear();
+    aSize3NF.disposeAndClear();
+    aSize4NF.disposeAndClear();
+    aSize5NF.disposeAndClear();
+    aSize6NF.disposeAndClear();
+    aSize7NF.disposeAndClear();
+    aNumbersEnglishUSCB.disposeAndClear();
+    aUnknownTagCB.disposeAndClear();
+    aIgnoreFontNamesCB.disposeAndClear();
+    aExportLB.disposeAndClear();
+    aStarBasicCB.disposeAndClear();
+    aStarBasicWarningCB.disposeAndClear();
+    aPrintExtensionCB.disposeAndClear();
+    aSaveGrfLocalCB.disposeAndClear();
+    aCharSetLB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 SfxTabPage* OfaHtmlTabPage::Create( vcl::Window* pParent,
                                 const SfxItemSet* rAttrSet )
 {

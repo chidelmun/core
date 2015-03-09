@@ -265,6 +265,8 @@ void SdPageObjsTLB::dispose()
     else
         // no document was created from mpMedium, so this object is still the owner of it
         delete mpMedium;
+    mpParent.disposeAndClear();
+    mpDropNavWin.disposeAndClear();
     SvTreeListBox::dispose();
 }
 
@@ -1344,7 +1346,7 @@ sal_Int8 SdPageObjsTLB::ExecuteDrop( const ExecuteDropEvent& rEvt )
                 OUString                aFile;
 
                 if( aDataHelper.GetString( FORMAT_FILE, aFile ) &&
-                    static_cast<SdNavigatorWin*>(mpParent)->InsertFile( aFile ) )
+                    static_cast<SdNavigatorWin*>(mpParent.get())->InsertFile( aFile ) )
                 {
                     nRet = rEvt.mnAction;
                 }

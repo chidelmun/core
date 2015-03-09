@@ -197,6 +197,23 @@ SvxAngleTabPage::SvxAngleTabPage(vcl::Window* pParent, const SfxItemSet& rInAttr
     m_pCtlAngle->SetLinkedField( m_pNfAngle, 2 );
 }
 
+SvxAngleTabPage::~SvxAngleTabPage()
+{
+    dispose();
+}
+
+void SvxAngleTabPage::dispose()
+{
+    m_pFlPosition.disposeAndClear();
+    m_pMtrPosX.disposeAndClear();
+    m_pMtrPosY.disposeAndClear();
+    m_pCtlRect.disposeAndClear();
+    m_pFlAngle.disposeAndClear();
+    m_pNfAngle.disposeAndClear();
+    m_pCtlAngle.disposeAndClear();
+    SvxTabPage::dispose();
+}
+
 void SvxAngleTabPage::Construct()
 {
     DBG_ASSERT(pView, "No valid view (!)");
@@ -429,6 +446,20 @@ SvxSlantTabPage::SvxSlantTabPage(vcl::Window* pParent, const SfxItemSet& rInAttr
     ePoolUnit = pPool->GetMetric( SID_ATTR_TRANSFORM_POS_X );
 }
 
+SvxSlantTabPage::~SvxSlantTabPage()
+{
+    dispose();
+}
+
+void SvxSlantTabPage::dispose()
+{
+    m_pFlRadius.disposeAndClear();
+    m_pMtrRadius.disposeAndClear();
+    m_pFlAngle.disposeAndClear();
+    m_pMtrAngle.disposeAndClear();
+    SvxTabPage::dispose();
+}
+
 void SvxSlantTabPage::Construct()
 {
     // get the range
@@ -649,6 +680,33 @@ SvxPositionSizeTabPage::SvxPositionSizeTabPage(vcl::Window* pParent, const SfxIt
     m_pTsbPosProtect->SetClickHdl( LINK( this, SvxPositionSizeTabPage, ChangePosProtectHdl ) );
     m_pTsbSizeProtect->SetClickHdl( LINK( this, SvxPositionSizeTabPage, ChangeSizeProtectHdl ) );
 
+}
+
+SvxPositionSizeTabPage::~SvxPositionSizeTabPage()
+{
+    dispose();
+}
+
+void SvxPositionSizeTabPage::dispose()
+{
+    m_pFlPosition.disposeAndClear();
+    m_pMtrPosX.disposeAndClear();
+    m_pMtrPosY.disposeAndClear();
+    m_pCtlPos.disposeAndClear();
+    m_pFlSize.disposeAndClear();
+    m_pFtWidth.disposeAndClear();
+    m_pMtrWidth.disposeAndClear();
+    m_pFtHeight.disposeAndClear();
+    m_pMtrHeight.disposeAndClear();
+    m_pCbxScale.disposeAndClear();
+    m_pCtlSize.disposeAndClear();
+    m_pFlProtect.disposeAndClear();
+    m_pTsbPosProtect.disposeAndClear();
+    m_pTsbSizeProtect.disposeAndClear();
+    m_pFlAdjust.disposeAndClear();
+    m_pTsbAutoGrowWidth.disposeAndClear();
+    m_pTsbAutoGrowHeight.disposeAndClear();
+    SvxTabPage::dispose();
 }
 
 void SvxPositionSizeTabPage::Construct()

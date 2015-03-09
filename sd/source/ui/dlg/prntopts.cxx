@@ -30,7 +30,7 @@
  */
 SdPrintOptions::SdPrintOptions( vcl::Window* pParent, const SfxItemSet& rInAttrs ) :
     SfxTabPage          ( pParent, "prntopts" , "modules/simpress/ui/prntopts.ui" , &rInAttrs ),
-        rOutAttrs               ( rInAttrs )
+    rOutAttrs           ( rInAttrs )
 {
     get( m_pFrmContent , "contentframe" );
     get( m_pCbxDraw , "drawingcb" );
@@ -74,6 +74,31 @@ SdPrintOptions::SdPrintOptions( vcl::Window* pParent, const SfxItemSet& rInAttrs
 
 SdPrintOptions::~SdPrintOptions()
 {
+    dispose();
+}
+
+void SdPrintOptions::dispose()
+{
+    m_pFrmContent.disposeAndClear();
+    m_pCbxDraw.disposeAndClear();
+    m_pCbxNotes.disposeAndClear();
+    m_pCbxHandout.disposeAndClear();
+    m_pCbxOutline.disposeAndClear();
+    m_pRbtColor.disposeAndClear();
+    m_pRbtGrayscale.disposeAndClear();
+    m_pRbtBlackWhite.disposeAndClear();
+    m_pCbxPagename.disposeAndClear();
+    m_pCbxDate.disposeAndClear();
+    m_pCbxTime.disposeAndClear();
+    m_pCbxHiddenPages.disposeAndClear();
+    m_pRbtDefault.disposeAndClear();
+    m_pRbtPagesize.disposeAndClear();
+    m_pRbtPagetile.disposeAndClear();
+    m_pRbtBooklet.disposeAndClear();
+    m_pCbxFront.disposeAndClear();
+    m_pCbxBack.disposeAndClear();
+    m_pCbxPaperbin.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 bool SdPrintOptions::FillItemSet( SfxItemSet* rAttrs )

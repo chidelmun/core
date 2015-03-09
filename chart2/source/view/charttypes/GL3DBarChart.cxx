@@ -1480,7 +1480,7 @@ IMPL_LINK_NOARG(GL3DBarChart, UpdateTimerHdl)
 
 void GL3DBarChart::setOpenGLWindow(OpenGLWindow* pWindow)
 {
-    if (mpWindow != pWindow)
+    if (mpWindow.get() != pWindow)
     {
         mpWindow = pWindow;
         Size aSize = mpWindow->GetSizePixel();

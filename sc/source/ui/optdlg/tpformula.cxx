@@ -81,6 +81,23 @@ ScTpFormulaOptions::ScTpFormulaOptions(vcl::Window* pParent, const SfxItemSet& r
 
 ScTpFormulaOptions::~ScTpFormulaOptions()
 {
+    dispose();
+}
+
+void ScTpFormulaOptions::dispose()
+{
+    mpLbFormulaSyntax.disposeAndClear();
+    mpCbEnglishFuncName.disposeAndClear();
+    mpBtnCustomCalcDefault.disposeAndClear();
+    mpBtnCustomCalcCustom.disposeAndClear();
+    mpBtnCustomCalcDetails.disposeAndClear();
+    mpEdSepFuncArg.disposeAndClear();
+    mpEdSepArrayCol.disposeAndClear();
+    mpEdSepArrayRow.disposeAndClear();
+    mpBtnSepReset.disposeAndClear();
+    mpLbOOXMLRecalcOptions.disposeAndClear();
+    mpLbODFRecalcOptions.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 void ScTpFormulaOptions::ResetSeparators()

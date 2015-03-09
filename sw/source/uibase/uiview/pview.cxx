@@ -145,13 +145,15 @@ static void lcl_InvalidateZoomSlots(SfxBindings& rBindings)
 // At first the zoom dialog
 class SwPreviewZoomDlg : public SvxStandardDialog
 {
-    NumericField* m_pRowEdit;
-    NumericField* m_pColEdit;
+    VclPtr<NumericField> m_pRowEdit;
+    VclPtr<NumericField> m_pColEdit;
 
     virtual void  Apply() SAL_OVERRIDE;
 
 public:
     SwPreviewZoomDlg( SwPagePreviewWin& rParent );
+    virtual ~SwPreviewZoomDlg();
+    virtual void dispose() SAL_OVERRIDE;
 };
 
 SwPreviewZoomDlg::SwPreviewZoomDlg( SwPagePreviewWin& rParent )
@@ -162,6 +164,18 @@ SwPreviewZoomDlg::SwPreviewZoomDlg( SwPagePreviewWin& rParent )
 
     m_pRowEdit->SetValue( rParent.GetRow() );
     m_pColEdit->SetValue( rParent.GetCol() );
+}
+
+SwPreviewZoomDlg::~SwPreviewZoomDlg()
+{
+    dispose();
+}
+
+void SwPreviewZoomDlg::dispose()
+{
+    m_pRowEdit.disposeAndClear();
+    m_pColEdit.disposeAndClear();
+    SvxStandardDialog::dispose();
 }
 
 void  SwPreviewZoomDlg::Apply()
@@ -1223,11 +1237,6 @@ SwPagePreview::~SwPagePreview()
     SwViewShell* pVShell =  pViewWin->GetViewShell();
     pVShell->SetWin(0);
     delete pVShell;
-    delete pViewWin;
-
-    delete pScrollFill;
-    delete pHScrollbar;
-    delete pVScrollbar;
 }
 
 SwDocShell* SwPagePreview::GetDocShell()
@@ -1238,20 +1247,20 @@ SwDocShell* SwPagePreview::GetDocShell()
 int SwPagePreview::_CreateScrollbar( bool bHori )
 {
     vcl::Window *pMDI = &GetViewFrame()->GetWindow();
-    SwScrollbar** ppScrollbar = bHori ? &pHScrollbar : &pVScrollbar;
+    VclPtr<SwScrollbar>& ppScrollbar = bHori ? pHScrollbar : pVScrollbar;
 
-    assert(!*ppScrollbar); //check beforehand!
+    assert(!ppScrollbar.get()); //check beforehand!
 
-    *ppScrollbar = new SwScrollbar( pMDI, bHori );
+    ppScrollbar = new SwScrollbar( pMDI, bHori );
 
     ScrollDocSzChg();
-    (*ppScrollbar)->EnableDrag( true );
-    (*ppScrollbar)->SetEndScrollHdl( LINK( this, SwPagePreview, EndScrollHdl ));
+    ppScrollbar->EnableDrag( true );
+    ppScrollbar->SetEndScrollHdl( LINK( this, SwPagePreview, EndScrollHdl ));
 
-    (*ppScrollbar)->SetScrollHdl( LINK( this, SwPagePreview, ScrollHdl ));
+    ppScrollbar->SetScrollHdl( LINK( this, SwPagePreview, ScrollHdl ));
 
     InvalidateBorder();
-    (*ppScrollbar)->ExtendedShow();
+    ppScrollbar->ExtendedShow();
     return 1;
 }
 

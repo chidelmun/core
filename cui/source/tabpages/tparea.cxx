@@ -118,6 +118,33 @@ IMPL_LINK_NOARG(SvxTransparenceTabPage, ClickTransGradientHdl_Impl)
     return( 0L );
 }
 
+SvxTransparenceTabPage::~SvxTransparenceTabPage()
+{
+    dispose();
+}
+
+void SvxTransparenceTabPage::dispose()
+{
+    m_pRbtTransOff.disposeAndClear();
+    m_pRbtTransLinear.disposeAndClear();
+    m_pRbtTransGradient.disposeAndClear();
+    m_pMtrTransparent.disposeAndClear();
+    m_pGridGradient.disposeAndClear();
+    m_pLbTrgrGradientType.disposeAndClear();
+    m_pFtTrgrCenterX.disposeAndClear();
+    m_pMtrTrgrCenterX.disposeAndClear();
+    m_pFtTrgrCenterY.disposeAndClear();
+    m_pMtrTrgrCenterY.disposeAndClear();
+    m_pFtTrgrAngle.disposeAndClear();
+    m_pMtrTrgrAngle.disposeAndClear();
+    m_pMtrTrgrBorder.disposeAndClear();
+    m_pMtrTrgrStartValue.disposeAndClear();
+    m_pMtrTrgrEndValue.disposeAndClear();
+    m_pCtlBitmapPreview.disposeAndClear();
+    m_pCtlXRectPreview.disposeAndClear();
+    SvxTabPage::dispose();
+}
+
 void SvxTransparenceTabPage::ActivateLinear(bool bActivate)
 {
     m_pMtrTransparent->Enable(bActivate);
@@ -777,6 +804,51 @@ SvxAreaTabPage::SvxAreaTabPage( vcl::Window* pParent, const SfxItemSet& rInAttrs
     m_pCtlXRectPreview->set_height_request(aSize2.Height());
 }
 
+SvxAreaTabPage::~SvxAreaTabPage()
+{
+    dispose();
+}
+
+void SvxAreaTabPage::dispose()
+{
+    m_pTypeLB.disposeAndClear();
+    m_pFillLB.disposeAndClear();
+    m_pLbColor.disposeAndClear();
+    m_pLbGradient.disposeAndClear();
+    m_pLbHatching.disposeAndClear();
+    m_pLbBitmap.disposeAndClear();
+    m_pCtlBitmapPreview.disposeAndClear();
+    m_pTsbStepCount.disposeAndClear();
+    m_pFlStepCount.disposeAndClear();
+    m_pNumFldStepCount.disposeAndClear();
+    m_pFlHatchBckgrd.disposeAndClear();
+    m_pCbxHatchBckgrd.disposeAndClear();
+    m_pLbHatchBckgrdColor.disposeAndClear();
+    m_pBxBitmap.disposeAndClear();
+    m_pFlSize.disposeAndClear();
+    m_pTsbOriginal.disposeAndClear();
+    m_pTsbScale.disposeAndClear();
+    m_pGridX_Y.disposeAndClear();
+    m_pFtXSize.disposeAndClear();
+    m_pMtrFldXSize.disposeAndClear();
+    m_pFtYSize.disposeAndClear();
+    m_pMtrFldYSize.disposeAndClear();
+    m_pFlPosition.disposeAndClear();
+    m_pCtlPosition.disposeAndClear();
+    m_pGridOffset.disposeAndClear();
+    m_pMtrFldXOffset.disposeAndClear();
+    m_pMtrFldYOffset.disposeAndClear();
+    m_pBxTile.disposeAndClear();
+    m_pTsbTile.disposeAndClear();
+    m_pTsbStretch.disposeAndClear();
+    m_pFlOffset.disposeAndClear();
+    m_pRbtRow.disposeAndClear();
+    m_pRbtColumn.disposeAndClear();
+    m_pMtrFldOffset.disposeAndClear();
+    m_pCtlXRectPreview.disposeAndClear();
+    m_pBtnImport.disposeAndClear();
+    SvxTabPage::dispose();
+}
 
 
 void SvxAreaTabPage::Construct()

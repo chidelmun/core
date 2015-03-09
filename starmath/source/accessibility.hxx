@@ -72,7 +72,7 @@ class SmGraphicAccessible :
     /// client id in the AccessibleEventNotifier queue
     sal_uInt32                          nClientId;
 
-    SmGraphicWindow     *pWin;
+    VclPtr<SmGraphicWindow>             pWin;
 
     // disallow copy-ctor and assignment-operator for now
     SmGraphicAccessible( const SmGraphicAccessible & );
@@ -324,7 +324,7 @@ class SmEditAccessible :
     osl::Mutex                              aListenerMutex;
     OUString                                aAccName;
     ::accessibility::AccessibleTextHelper    *pTextHelper;
-    SmEditWindow                           *pWin;
+    VclPtr<SmEditWindow>                    pWin;
 
     // disallow copy-ctor and assignment-operator for now
     SmEditAccessible( const SmEditAccessible & );

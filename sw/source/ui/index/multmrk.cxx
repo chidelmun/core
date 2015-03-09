@@ -61,6 +61,17 @@ void SwMultiTOXMarkDlg::Apply()
     rMgr.SetCurTOXMark(nPos);
 }
 
-SwMultiTOXMarkDlg::~SwMultiTOXMarkDlg() {}
+SwMultiTOXMarkDlg::~SwMultiTOXMarkDlg()
+{
+    dispose();
+}
+
+void SwMultiTOXMarkDlg::dispose()
+{
+    m_pTextFT.disposeAndClear();
+    m_pTOXLB.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

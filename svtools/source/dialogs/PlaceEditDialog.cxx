@@ -81,6 +81,22 @@ PlaceEditDialog::PlaceEditDialog( vcl::Window* pParent, const boost::shared_ptr<
     }
 }
 
+PlaceEditDialog::~PlaceEditDialog()
+{
+    dispose();
+}
+
+void PlaceEditDialog::dispose()
+{
+    m_pEDServerName.disposeAndClear();
+    m_pLBServerType.disposeAndClear();
+    m_pEDUsername.disposeAndClear();
+    m_pBTOk.disposeAndClear();
+    m_pBTCancel.disposeAndClear();
+    m_pBTDelete.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 OUString PlaceEditDialog::GetServerUrl()
 {
     OUString sUrl;

@@ -86,12 +86,13 @@ public:
 
 class MaskSet : public ValueSet
 {
-    SvxBmpMask*     pSvxBmpMask;
+    VclPtr<SvxBmpMask>     pSvxBmpMask;
 
 
 public:
     MaskSet(SvxBmpMask* pMask, vcl::Window* pParent);
-
+    virtual ~MaskSet() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE { pSvxBmpMask.disposeAndClear(); ValueSet::dispose(); }
     virtual void    Select() SAL_OVERRIDE;
     virtual void KeyInput( const KeyEvent& rKEvt ) SAL_OVERRIDE;
     virtual void GetFocus() SAL_OVERRIDE;
@@ -162,7 +163,7 @@ void MaskSet::onEditColor()
 
 class MaskData
 {
-    SvxBmpMask*     pMask;
+    VclPtr<SvxBmpMask>     pMask;
     bool            bIsReady;
     bool            bExecState;
     SfxBindings&    rBindings;
@@ -490,12 +491,28 @@ SvxBmpMask::~SvxBmpMask()
 
 void SvxBmpMask::dispose()
 {
-    delete m_pQSet1;
-    delete m_pQSet2;
-    delete m_pQSet3;
-    delete m_pQSet4;
-    delete m_pCtlPipette;
+    m_pQSet1.disposeAndClear();
+    m_pQSet2.disposeAndClear();
+    m_pQSet3.disposeAndClear();
+    m_pQSet4.disposeAndClear();
+    m_pCtlPipette.disposeAndClear();
     delete pData;
+    m_pTbxPipette.disposeAndClear();
+    m_pBtnExec.disposeAndClear();
+    m_pCbx1.disposeAndClear();
+    m_pSp1.disposeAndClear();
+    m_pLbColor1.disposeAndClear();
+    m_pCbx2.disposeAndClear();
+    m_pSp2.disposeAndClear();
+    m_pLbColor2.disposeAndClear();
+    m_pCbx3.disposeAndClear();
+    m_pSp3.disposeAndClear();
+    m_pLbColor3.disposeAndClear();
+    m_pCbx4.disposeAndClear();
+    m_pSp4.disposeAndClear();
+    m_pLbColor4.disposeAndClear();
+    m_pCbxTrans.disposeAndClear();
+    m_pLbColorTrans.disposeAndClear();
     SfxDockingWindow::dispose();
 }
 

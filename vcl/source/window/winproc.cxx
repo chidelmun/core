@@ -248,7 +248,7 @@ static bool ImplCallCommand( vcl::Window* pChild, sal_uInt16 nEvt, void* pData =
 
 struct ContextMenuEvent
 {
-    vcl::Window*         pWindow;
+    VclPtr<vcl::Window>  pWindow;
     ImplDelData     aDelData;
     Point           aChildPos;
 };
@@ -382,13 +382,13 @@ bool ImplHandleMouseEvent( vcl::Window* pWindow, MouseNotifyEvent nSVEvent, bool
 
         // no mouse messages to disabled windows
         // #106845# if the window was disabed during capturing we have to pass the mouse events to release capturing
-        if ( pSVData->maWinData.mpCaptureWin != pChild && (!pChild->IsEnabled() || !pChild->IsInputEnabled() || pChild->IsInModalNonRefMode() ) )
+        if ( pSVData->maWinData.mpCaptureWin.get() != pChild && (!pChild->IsEnabled() || !pChild->IsInputEnabled() || pChild->IsInModalNonRefMode() ) )
         {
             sal_uInt16 FloatHdl = (ImplHandleMouseFloatMode( pChild, aMousePos, nCode, nSVEvent, bMouseLeave ) & IHMFM_FLOAT);
             if ( nSVEvent == MouseNotifyEvent::MOUSEMOVE )
             {
                 ImplHandleMouseHelpRequest( pChild, aMousePos );
-                if( pWinFrameData->mpMouseMoveWin != pChild )
+                if( pWinFrameData->mpMouseMoveWin.get() != pChild )
                     nMode |= MouseEventModifiers::ENTERWINDOW;
             }
 
@@ -1582,7 +1582,7 @@ void ImplHandleResize( vcl::Window* pWindow, long nNewWidth, long nNewHeight )
                     {
                         // #i42750# presentation wants to be informed about resize
                         // as early as possible
-                        WorkWindow* pWorkWindow = dynamic_cast<WorkWindow*>(pWindow->ImplGetWindowImpl()->mpClientWindow);
+                        WorkWindow* pWorkWindow = dynamic_cast<WorkWindow*>(pWindow->ImplGetWindowImpl()->mpClientWindow.get());
                         if( ! pWorkWindow || pWorkWindow->IsPresentationMode() )
                             bStartTimer = false;
                     }
@@ -1829,7 +1829,7 @@ static void ImplHandleLoseFocus( vcl::Window* pWindow )
 
 struct DelayedCloseEvent
 {
-    vcl::Window*         pWindow;
+    VclPtr<vcl::Window> pWindow;
     ImplDelData     aDelData;
 };
 
@@ -1842,9 +1842,9 @@ static long DelayedCloseEventLink( void* pCEvent, void* )
         pEv->pWindow->ImplRemoveDel( &pEv->aDelData );
         // dispatch to correct window type
         if( pEv->pWindow->IsSystemWindow() )
-            static_cast<SystemWindow*>(pEv->pWindow)->Close();
+            static_cast<SystemWindow*>(pEv->pWindow.get())->Close();
         else if( pEv->pWindow->IsDockingWindow() )
-            static_cast<DockingWindow*>(pEv->pWindow)->Close();
+            static_cast<DockingWindow*>(pEv->pWindow.get())->Close();
     }
     delete pEv;
 

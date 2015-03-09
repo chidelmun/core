@@ -240,6 +240,23 @@ void CustomAnimationPane::dispose()
     for( aIter = aTags.begin(); aIter != aTags.end(); ++aIter )
         (*aIter)->Dispose();
 
+    mpPBAddEffect.disposeAndClear();
+    mpPBChangeEffect.disposeAndClear();
+    mpPBRemoveEffect.disposeAndClear();
+    mpFTEffect.disposeAndClear();
+    mpFTStart.disposeAndClear();
+    mpLBStart.disposeAndClear();
+    mpFTProperty.disposeAndClear();
+    mpPlaceholderBox.disposeAndClear();
+    mpLBProperty.disposeAndClear();
+    mpPBPropertyMore.disposeAndClear();
+    mpFTSpeed.disposeAndClear();
+    mpCBSpeed.disposeAndClear();
+    mpCustomAnimationList.disposeAndClear();
+    mpPBMoveUp.disposeAndClear();
+    mpPBMoveDown.disposeAndClear();
+    mpPBPlay.disposeAndClear();
+    mpCBAutoPreview.disposeAndClear();
     PanelLayout::dispose();
 }
 
@@ -815,11 +832,11 @@ void CustomAnimationPane::UpdateLook (void)
         ::sfx2::sidebar::Theme::GetWallpaper(
             ::sfx2::sidebar::Theme::Paint_PanelBackground));
     SetBackground(aBackground);
-    if (mpFTStart != NULL)
+    if (mpFTStart != nullptr)
         mpFTStart->SetBackground(aBackground);
-    if (mpFTProperty != NULL)
+    if (mpFTProperty != nullptr)
         mpFTProperty->SetBackground(aBackground);
-    if (mpFTSpeed != NULL)
+    if (mpFTSpeed != nullptr)
         mpFTSpeed->SetBackground(aBackground);
 }
 

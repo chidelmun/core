@@ -142,6 +142,16 @@ CellAppearancePropertyPanel::CellAppearancePropertyPanel(
 
 CellAppearancePropertyPanel::~CellAppearancePropertyPanel()
 {
+    dispose();
+}
+
+void CellAppearancePropertyPanel::dispose()
+{
+    mpTBCellBorder.disposeAndClear();
+    mpTBLineStyle.disposeAndClear();
+    mpTBLineColor.disposeAndClear();
+    mpCBXShowGrid.disposeAndClear();
+    PanelLayout::dispose();
 }
 
 void CellAppearancePropertyPanel::Initialize()

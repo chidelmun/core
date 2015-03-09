@@ -81,6 +81,23 @@ void SchAxisLabelTabPage::dispose()
 {
     delete m_pOrientHlp;
     m_pOrientHlp = NULL;
+    m_pCbShowDescription.disposeAndClear();
+    m_pFlOrder.disposeAndClear();
+    m_pRbSideBySide.disposeAndClear();
+    m_pRbUpDown.disposeAndClear();
+    m_pRbDownUp.disposeAndClear();
+    m_pRbAuto.disposeAndClear();
+    m_pFlTextFlow.disposeAndClear();
+    m_pCbTextOverlap.disposeAndClear();
+    m_pCbTextBreak.disposeAndClear();
+    m_pFtABCD.disposeAndClear();
+    m_pFlOrient.disposeAndClear();
+    m_pCtrlDial.disposeAndClear();
+    m_pFtRotate.disposeAndClear();
+    m_pNfRotate.disposeAndClear();
+    m_pCbStacked.disposeAndClear();
+    m_pFtTextDirection.disposeAndClear();
+    m_pLbTextDirection.disposeAndClear();
     SfxTabPage::dispose();
 }
 

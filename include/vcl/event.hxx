@@ -25,6 +25,7 @@
 #include <tools/gen.hxx>
 #include <vcl/keycod.hxx>
 #include <vcl/cmdevt.hxx>
+#include <vcl/vclptr.hxx>
 
 class AllSettings;
 class OutputDevice;
@@ -410,7 +411,7 @@ enum class MouseNotifyEvent
 class VCL_DLLPUBLIC NotifyEvent
 {
 private:
-    vcl::Window*                 mpWindow;
+    VclPtr<vcl::Window>     mpWindow;
     void*                   mpData;
     MouseNotifyEvent        mnEventType;
     long                    mnRetValue;
@@ -433,23 +434,6 @@ public:
     const MouseEvent*       GetMouseEvent() const;
     const CommandEvent*     GetCommandEvent() const;
 };
-
-inline NotifyEvent::NotifyEvent()
-{
-    mpWindow    = NULL;
-    mpData      = NULL;
-    mnEventType = MouseNotifyEvent::NONE;
-    mnRetValue  = 0;
-}
-
-inline NotifyEvent::NotifyEvent( MouseNotifyEvent nEventType, vcl::Window* pWindow,
-                                 const void* pEvent, long nRet )
-{
-    mpWindow    = pWindow;
-    mpData      = (void*)pEvent;
-    mnEventType  = nEventType;
-    mnRetValue  = nRet;
-}
 
 inline const KeyEvent* NotifyEvent::GetKeyEvent() const
 {

@@ -56,7 +56,17 @@ ScDocStatPage::ScDocStatPage( vcl::Window *pParent, const SfxItemSet& rSet )
 
 ScDocStatPage::~ScDocStatPage()
 {
+    dispose();
 }
+
+void ScDocStatPage::dispose()
+{
+    m_pFtTables.disposeAndClear();
+    m_pFtCells.disposeAndClear();
+    m_pFtPages.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 bool ScDocStatPage::FillItemSet( SfxItemSet* /* rSet */ )
 {

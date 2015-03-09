@@ -772,7 +772,7 @@ void ValueSetAcc::ThrowIfDisposed (void)
     }
     else
     {
-        DBG_ASSERT (mpParent!=NULL, "ValueSetAcc not disposed but mpParent == NULL");
+        DBG_ASSERT (mpParent!=nullptr, "ValueSetAcc not disposed but mpParent == NULL");
     }
 }
 

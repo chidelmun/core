@@ -131,6 +131,15 @@ void SwCondCollPage::dispose()
 {
     for(sal_Int32 i = 0; i < m_pFilterLB->GetEntryCount(); ++i)
         delete (sal_uInt16*)m_pFilterLB->GetEntryData(i);
+    m_pConditionCB.disposeAndClear();
+    m_pContextFT.disposeAndClear();
+    m_pUsedFT.disposeAndClear();
+    m_pTbLinks.disposeAndClear();
+    m_pStyleFT.disposeAndClear();
+    m_pStyleLB.disposeAndClear();
+    m_pFilterLB.disposeAndClear();
+    m_pRemovePB.disposeAndClear();
+    m_pAssignPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 

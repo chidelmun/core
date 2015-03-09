@@ -546,8 +546,8 @@ void SwIndexMarkPane::UpdateKeyBoxes()
 
 class SwNewUserIdxDlg : public ModalDialog
 {
-    OKButton*        m_pOKPB;
-    Edit*            m_pNameED;
+    VclPtr<OKButton>        m_pOKPB;
+    VclPtr<Edit>            m_pNameED;
 
     SwIndexMarkPane* m_pDlg;
 
@@ -565,6 +565,13 @@ class SwNewUserIdxDlg : public ModalDialog
                 m_pOKPB->Enable(false);
                 m_pNameED->GrabFocus();
             }
+    virtual ~SwNewUserIdxDlg() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        m_pOKPB.disposeAndClear();
+        m_pNameED.disposeAndClear();
+        ModalDialog::dispose();
+    }
 
     virtual void    Apply();
     OUString  GetName(){return m_pNameED->GetText();}
@@ -986,12 +993,12 @@ void SwIndexMarkModalDlg::Apply()
 
 class SwCreateAuthEntryDlg_Impl : public ModalDialog
 {
-    FixedText*      pFixedTexts[AUTH_FIELD_END];
-    ListBox*        pTypeListBox;
-    ComboBox*       pIdentifierBox;
-    Edit*           pEdits[AUTH_FIELD_END];
+    VclPtr<FixedText>      pFixedTexts[AUTH_FIELD_END];
+    VclPtr<ListBox>        pTypeListBox;
+    VclPtr<ComboBox>       pIdentifierBox;
+    VclPtr<Edit>           pEdits[AUTH_FIELD_END];
 
-    OKButton*       m_pOKBT;
+    VclPtr<OKButton>       m_pOKBT;
 
     Link            aShortNameCheckLink;
 
@@ -1531,11 +1538,12 @@ void SwCreateAuthEntryDlg_Impl::dispose()
 {
     for(int i = 0; i < AUTH_FIELD_END; i++)
     {
-        delete pFixedTexts[i];
-        delete pEdits[i];
+        pFixedTexts[i].disposeAndClear();
+        pEdits[i].disposeAndClear();
     }
-    delete pTypeListBox;
-    delete pIdentifierBox;
+    pTypeListBox.disposeAndClear();
+    pIdentifierBox.disposeAndClear();
+    m_pOKBT.disposeAndClear();
     ModalDialog::dispose();
 }
 

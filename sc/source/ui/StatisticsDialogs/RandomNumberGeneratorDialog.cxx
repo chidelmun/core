@@ -90,6 +90,31 @@ ScRandomNumberGeneratorDialog::ScRandomNumberGeneratorDialog(
     GetRangeFromSelection();
 }
 
+ScRandomNumberGeneratorDialog::~ScRandomNumberGeneratorDialog()
+{
+    dispose();
+}
+
+void ScRandomNumberGeneratorDialog::dispose()
+{
+    mpInputRangeText.disposeAndClear();
+    mpInputRangeEdit.disposeAndClear();
+    mpInputRangeButton.disposeAndClear();
+    mpDistributionCombo.disposeAndClear();
+    mpParameter1Text.disposeAndClear();
+    mpParameter1Value.disposeAndClear();
+    mpParameter2Text.disposeAndClear();
+    mpParameter2Value.disposeAndClear();
+    mpSeed.disposeAndClear();
+    mpEnableSeed.disposeAndClear();
+    mpDecimalPlaces.disposeAndClear();
+    mpEnableRounding.disposeAndClear();
+    mpButtonApply.disposeAndClear();
+    mpButtonOk.disposeAndClear();
+    mpButtonClose.disposeAndClear();
+    ScAnyRefDlg::dispose();
+}
+
 void ScRandomNumberGeneratorDialog::Init()
 {
     mpButtonOk->SetClickHdl( LINK( this, ScRandomNumberGeneratorDialog, OkClicked ) );
@@ -122,9 +147,6 @@ void ScRandomNumberGeneratorDialog::GetRangeFromSelection()
     OUString aCurrentString(maInputRange.Format(SCR_ABS_3D, mpDoc, mpDoc->GetAddressConvention()));
     mpInputRangeEdit->SetText( aCurrentString );
 }
-
-ScRandomNumberGeneratorDialog::~ScRandomNumberGeneratorDialog()
-{}
 
 void ScRandomNumberGeneratorDialog::SetActive()
 {

@@ -61,7 +61,7 @@ static const int NUM_OF_DOCKINGWINDOWS = 10;
 
 class SfxTitleDockingWindow : public SfxDockingWindow
 {
-    vcl::Window*             m_pWrappedWindow;
+    VclPtr<vcl::Window>   m_pWrappedWindow;
 
 public:
                         SfxTitleDockingWindow(
@@ -207,7 +207,7 @@ SfxDockingWrapper::SfxDockingWrapper( vcl::Window* pParentWnd ,
 
     pWindow->SetOutputSizePixel( Size( 270, 240 ) );
 
-    static_cast<SfxDockingWindow*>( pWindow )->Initialize( pInfo );
+    static_cast<SfxDockingWindow*>( pWindow.get() )->Initialize( pInfo );
     SetHideNotDelete( true );
 }
 
@@ -257,9 +257,7 @@ SfxTitleDockingWindow::~SfxTitleDockingWindow()
 
 void SfxTitleDockingWindow::dispose()
 {
-    delete m_pWrappedWindow;
-    m_pWrappedWindow = NULL;
-
+    m_pWrappedWindow.disposeAndClear();
     SfxDockingWindow::dispose();
 }
 
@@ -410,7 +408,7 @@ friend class SfxDockingWindow;
     SfxChildAlignment   eDockAlignment;
     bool                bConstructed;
     Size                aMinSize;
-    SfxSplitWindow*     pSplitWin;
+    VclPtr<SfxSplitWindow>  pSplitWin;
     bool                bSplitable;
     Idle                aMoveIdle;
 

@@ -75,11 +75,13 @@ class SfxHelpIndexWindow_Impl;
 class HelpTabPage_Impl : public TabPage
 {
 protected:
-    SfxHelpIndexWindow_Impl*    m_pIdxWin;
+    VclPtr<SfxHelpIndexWindow_Impl>    m_pIdxWin;
 
 public:
     HelpTabPage_Impl(vcl::Window* pParent, SfxHelpIndexWindow_Impl* _pIdxWin,
         const OString& rID, const OUString& rUIXMLDescription);
+    virtual ~HelpTabPage_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     virtual Control*    GetLastFocusControl() = 0;
 };
@@ -89,10 +91,12 @@ public:
 class ContentTabPage_Impl : public HelpTabPage_Impl
 {
 private:
-    ContentListBox_Impl* m_pContentBox;
+    VclPtr<ContentListBox_Impl> m_pContentBox;
 
 public:
     ContentTabPage_Impl(vcl::Window* pParent, SfxHelpIndexWindow_Impl* _pIdxWin);
+    virtual ~ContentTabPage_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     virtual void        ActivatePage() SAL_OVERRIDE;
     virtual Control*    GetLastFocusControl() SAL_OVERRIDE;
@@ -118,8 +122,8 @@ public:
 class IndexTabPage_Impl : public HelpTabPage_Impl
 {
 private:
-    IndexBox_Impl*      m_pIndexCB;
-    PushButton*         m_pOpenBtn;
+    VclPtr<IndexBox_Impl>      m_pIndexCB;
+    VclPtr<PushButton>         m_pOpenBtn;
 
     Idle                aFactoryIdle;
     Timer               aKeywordTimer;
@@ -195,12 +199,12 @@ public:
 class SearchTabPage_Impl : public HelpTabPage_Impl
 {
 private:
-    SearchBox_Impl*         m_pSearchED;
-    PushButton*             m_pSearchBtn;
-    CheckBox*               m_pFullWordsCB;
-    CheckBox*               m_pScopeCB;
-    SearchResultsBox_Impl*  m_pResultsLB;
-    PushButton*             m_pOpenBtn;
+    VclPtr<SearchBox_Impl>         m_pSearchED;
+    VclPtr<PushButton>             m_pSearchBtn;
+    VclPtr<CheckBox>               m_pFullWordsCB;
+    VclPtr<CheckBox>               m_pScopeCB;
+    VclPtr<SearchResultsBox_Impl>  m_pResultsLB;
+    VclPtr<PushButton>             m_pOpenBtn;
 
     OUString                aFactory;
 
@@ -251,13 +255,15 @@ public:
 class BookmarksTabPage_Impl : public HelpTabPage_Impl
 {
 private:
-    BookmarksBox_Impl*  m_pBookmarksBox;
-    PushButton*         m_pBookmarksPB;
+    VclPtr<BookmarksBox_Impl>  m_pBookmarksBox;
+    VclPtr<PushButton>         m_pBookmarksPB;
 
     DECL_LINK(OpenHdl, void *);
 
 public:
     BookmarksTabPage_Impl( vcl::Window* pParent, SfxHelpIndexWindow_Impl* _pIdxWin );
+    virtual ~BookmarksTabPage_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     virtual void        ActivatePage() SAL_OVERRIDE;
     virtual Control*    GetLastFocusControl() SAL_OVERRIDE;
@@ -275,8 +281,8 @@ class SfxHelpWindow_Impl;
 class SfxHelpIndexWindow_Impl : public vcl::Window, public VclBuilderContainer
 {
 private:
-    ListBox*            m_pActiveLB;
-    TabControl*         m_pTabCtrl;
+    VclPtr<ListBox>            m_pActiveLB;
+    VclPtr<TabControl>         m_pTabCtrl;
 
     Idle                aIdle;
 
@@ -285,12 +291,12 @@ private:
     Link                aIndexKeywordLink;
     OUString            sKeyword;
 
-    SfxHelpWindow_Impl*     pParentWin;
+    VclPtr<SfxHelpWindow_Impl>     pParentWin;
 
-    ContentTabPage_Impl*    pCPage;
-    IndexTabPage_Impl*      pIPage;
-    SearchTabPage_Impl*     pSPage;
-    BookmarksTabPage_Impl*  pBPage;
+    VclPtr<ContentTabPage_Impl>    pCPage;
+    VclPtr<IndexTabPage_Impl>      pIPage;
+    VclPtr<SearchTabPage_Impl>     pSPage;
+    VclPtr<BookmarksTabPage_Impl>  pBPage;
 
     long                nMinWidth;
     bool                bWasCursorLeftOrRight;
@@ -418,9 +424,9 @@ private:
     OUString                aOnStartupText;
     OUString                sCurrentFactory;
 
-    SfxHelpWindow_Impl*     pHelpWin;
-    vcl::Window*                 pTextWin;
-    sfx2::SearchDialog*     pSrchDlg;
+    VclPtr<SfxHelpWindow_Impl>     pHelpWin;
+    VclPtr<vcl::Window>            pTextWin;
+    VclPtr<sfx2::SearchDialog>     pSrchDlg;
     ::com::sun::star::uno::Reference < ::com::sun::star::frame::XFrame2 >
                             xFrame;
     ::com::sun::star::uno::Reference< ::com::sun::star::i18n::XBreakIterator >
@@ -488,8 +494,8 @@ friend class SfxHelpIndexWindow_Impl;
     ::com::sun::star::uno::Reference < ::com::sun::star::frame::XFrame2 >
                                 xFrame;
 
-    SfxHelpIndexWindow_Impl*    pIndexWin;
-    SfxHelpTextWindow_Impl*     pTextWin;
+    VclPtr<SfxHelpIndexWindow_Impl>    pIndexWin;
+    VclPtr<SfxHelpTextWindow_Impl>     pTextWin;
     HelpInterceptor_Impl*       pHelpInterceptor;
     HelpListener_Impl*          pHelpListener;
 
@@ -560,9 +566,11 @@ public:
 class SfxAddHelpBookmarkDialog_Impl : public ModalDialog
 {
 private:
-    Edit* m_pTitleED;
+    VclPtr<Edit> m_pTitleED;
 public:
     SfxAddHelpBookmarkDialog_Impl( vcl::Window* pParent, bool bRename = true );
+    virtual ~SfxAddHelpBookmarkDialog_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     void SetTitle( const OUString& rTitle );
     OUString GetTitle() const { return m_pTitleED->GetText(); }

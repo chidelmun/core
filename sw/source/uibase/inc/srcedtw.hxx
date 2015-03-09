@@ -68,9 +68,9 @@ private:
     ExtTextView*    pTextView;
     ExtTextEngine*  pTextEngine;
 
-    TextViewOutWin* pOutWin;
-    ScrollBar       *pHScrollbar,
-                    *pVScrollbar;
+    VclPtr<TextViewOutWin> pOutWin;
+    VclPtr<ScrollBar>      pHScrollbar,
+                           pVScrollbar;
 
     SwSrcView*      pSrcView;
 

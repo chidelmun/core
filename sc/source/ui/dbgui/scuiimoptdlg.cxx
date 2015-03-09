@@ -247,6 +247,18 @@ void ScImportOptionsDlg::dispose()
 {
     delete pFieldSepTab;
     delete pTextSepTab;
+    m_pFieldFrame.disposeAndClear();
+    m_pFtCharset.disposeAndClear();
+    m_pLbCharset.disposeAndClear();
+    m_pFtFieldSep.disposeAndClear();
+    m_pEdFieldSep.disposeAndClear();
+    m_pFtTextSep.disposeAndClear();
+    m_pEdTextSep.disposeAndClear();
+    m_pCbShown.disposeAndClear();
+    m_pCbFormulas.disposeAndClear();
+    m_pCbQuoteAll.disposeAndClear();
+    m_pCbFixed.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
     ModalDialog::dispose();
 }
 

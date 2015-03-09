@@ -239,6 +239,7 @@ SvxConfigGroupListBox::~SvxConfigGroupListBox()
 void SvxConfigGroupListBox::dispose()
 {
     ClearAll();
+    pFunctionListBox.disposeAndClear();
     SvTreeListBox::dispose();
 }
 
@@ -916,6 +917,22 @@ SvxScriptSelectorDialog::SvxScriptSelectorDialog(
     m_sDefaultDesc = m_pDescriptionText->GetText();
 
     UpdateUI();
+}
+
+SvxScriptSelectorDialog::~SvxScriptSelectorDialog()
+{
+    dispose();
+}
+
+void SvxScriptSelectorDialog::dispose()
+{
+    m_pDialogDescription.disposeAndClear();
+    m_pCategories.disposeAndClear();
+    m_pCommands.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    m_pCancelButton.disposeAndClear();
+    m_pDescriptionText.disposeAndClear();
+    ModelessDialog::dispose();
 }
 
 IMPL_LINK( SvxScriptSelectorDialog, SelectHdl, Control*, pCtrl )

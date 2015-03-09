@@ -50,6 +50,25 @@ SwMailMergeMergePage::SwMailMergeMergePage(SwMailMergeWizard* _pParent)
 
 }
 
+SwMailMergeMergePage::~SwMailMergeMergePage()
+{
+    dispose();
+}
+
+void SwMailMergeMergePage::dispose()
+{
+    m_pEditFI.disposeAndClear();
+    m_pEditPB.disposeAndClear();
+    m_pFindED.disposeAndClear();
+    m_pFindPB.disposeAndClear();
+    m_pWholeWordsCB.disposeAndClear();
+    m_pBackwardsCB.disposeAndClear();
+    m_pMatchCaseCB.disposeAndClear();
+    m_pWizard.disposeAndClear();
+    svt::OWizardPage::dispose();
+}
+
+
 IMPL_LINK_NOARG(SwMailMergeMergePage, EditDocumentHdl_Impl)
 {
     m_pWizard->SetRestartPage(MM_MERGEPAGE);

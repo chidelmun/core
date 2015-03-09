@@ -35,7 +35,7 @@ class LookUpComboBox : public ComboBox
 {
     Idle                        m_aModifyIdle;
     Selection                   m_aSelection;
-    SvxThesaurusDialog*         m_pDialog;
+    VclPtr<SvxThesaurusDialog>         m_pDialog;
 
     /// disable copy ctor and assignment operator
     LookUpComboBox( const LookUpComboBox & );
@@ -43,6 +43,8 @@ class LookUpComboBox : public ComboBox
 
 public:
     LookUpComboBox(vcl::Window *pParent);
+    virtual ~LookUpComboBox();
+    virtual void dispose() SAL_OVERRIDE;
 
     DECL_LINK( ModifyTimer_Hdl, Timer * );
 
@@ -72,7 +74,7 @@ public:
 class ThesaurusAlternativesCtrl
     : public SvxCheckListBox
 {
-    SvxThesaurusDialog*     m_pDialog;
+    VclPtr<SvxThesaurusDialog>     m_pDialog;
 
     typedef std::map< const SvTreeListEntry *, AlternativesExtraData >  UserDataMap_t;
     UserDataMap_t           m_aUserData;
@@ -100,7 +102,7 @@ public:
 
 class ReplaceEdit : public Edit
 {
-    Button *                    m_pBtn;
+    VclPtr<Button>       m_pBtn;
 
     /// disable copy ctor and assignment operator
     ReplaceEdit( const ReplaceEdit & );
@@ -108,6 +110,8 @@ class ReplaceEdit : public Edit
 
 public:
     ReplaceEdit(vcl::Window *pParent);
+    virtual ~ReplaceEdit();
+    virtual void dispose() SAL_OVERRIDE;
 
     void init(Button *pBtn)  { m_pBtn = pBtn; }
 
@@ -119,11 +123,11 @@ public:
 
 class SvxThesaurusDialog : public SvxStandardDialog
 {
-    PushButton*             m_pLeftBtn;
-    LookUpComboBox*         m_pWordCB;
-    ThesaurusAlternativesCtrl* m_pAlternativesCT;
-    ReplaceEdit*            m_pReplaceEdit;
-    ListBox*                m_pLangLB;
+    VclPtr<PushButton>             m_pLeftBtn;
+    VclPtr<LookUpComboBox>         m_pWordCB;
+    VclPtr<ThesaurusAlternativesCtrl> m_pAlternativesCT;
+    VclPtr<ReplaceEdit>            m_pReplaceEdit;
+    VclPtr<ListBox>                m_pLangLB;
 
     OUString                m_aErrStr;
 
@@ -134,6 +138,9 @@ class SvxThesaurusDialog : public SvxStandardDialog
     bool                    m_bWordFound;
 
 public:
+    virtual ~SvxThesaurusDialog();
+    virtual void dispose() SAL_OVERRIDE;
+
     bool                    WordFound() const { return m_bWordFound; }
     OUString                getErrStr() const { return m_aErrStr; }
 

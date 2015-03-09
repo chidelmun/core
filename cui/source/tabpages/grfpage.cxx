@@ -133,6 +133,24 @@ SvxGrfCropPage::~SvxGrfCropPage()
 void SvxGrfCropPage::dispose()
 {
     aTimer.Stop();
+    m_pCropFrame.disposeAndClear();
+    m_pZoomConstRB.disposeAndClear();
+    m_pSizeConstRB.disposeAndClear();
+    m_pLeftMF.disposeAndClear();
+    m_pRightMF.disposeAndClear();
+    m_pTopMF.disposeAndClear();
+    m_pBottomMF.disposeAndClear();
+    m_pScaleFrame.disposeAndClear();
+    m_pWidthZoomMF.disposeAndClear();
+    m_pHeightZoomMF.disposeAndClear();
+    m_pSizeFrame.disposeAndClear();
+    m_pWidthMF.disposeAndClear();
+    m_pHeightMF.disposeAndClear();
+    m_pOrigSizeGrid.disposeAndClear();
+    m_pOrigSizeFT.disposeAndClear();
+    m_pOrigSizePB.disposeAndClear();
+    m_pExampleWN.disposeAndClear();
+    pLastCropField.disposeAndClear();
     SfxTabPage::dispose();
 }
 

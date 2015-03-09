@@ -189,13 +189,13 @@ void SAL_CALL SidebarController::disposing (void)
 
     if (mxReadOnlyModeDispatch.is())
         mxReadOnlyModeDispatch->removeStatusListener(this, Tools::GetURL(gsReadOnlyCommandName));
-    if (mpSplitWindow != NULL)
+    if (mpSplitWindow != nullptr)
     {
         mpSplitWindow->RemoveEventListener(LINK(this, SidebarController, WindowEventHandler));
         mpSplitWindow = NULL;
     }
 
-    if (mpParentWindow != NULL)
+    if (mpParentWindow != nullptr)
     {
         mpParentWindow->RemoveEventListener(LINK(this, SidebarController, WindowEventHandler));
         mpParentWindow = NULL;
@@ -729,7 +729,7 @@ Reference<ui::XUIElement> SidebarController::CreateUIElement (
         ::comphelper::NamedValueCollection aCreationArguments;
         aCreationArguments.put("Frame", makeAny(mxFrame));
         aCreationArguments.put("ParentWindow", makeAny(rxWindow));
-        SfxDockingWindow* pSfxDockingWindow = dynamic_cast<SfxDockingWindow*>(mpParentWindow);
+        SfxDockingWindow* pSfxDockingWindow = dynamic_cast<SfxDockingWindow*>(mpParentWindow.get());
         if (pSfxDockingWindow != NULL)
             aCreationArguments.put("SfxBindings", makeAny(sal_uInt64(&pSfxDockingWindow->GetBindings())));
         aCreationArguments.put("Theme", Theme::GetPropertySet());
@@ -794,7 +794,7 @@ IMPL_LINK(SidebarController, WindowEventHandler, VclWindowEvent*, pEvent)
                 break;
         }
     }
-    else if (pEvent->GetWindow()==mpSplitWindow && mpSplitWindow!=NULL)
+    else if (pEvent->GetWindow()==mpSplitWindow && mpSplitWindow!=nullptr)
     {
         switch (pEvent->GetId())
         {
@@ -1052,7 +1052,7 @@ void SidebarController::RestrictWidth (sal_Int32 nWidth)
     SfxSplitWindow* pSplitWindow = GetSplitWindow();
     if (pSplitWindow != NULL)
     {
-        const sal_uInt16 nId (pSplitWindow->GetItemId(mpParentWindow));
+        const sal_uInt16 nId (pSplitWindow->GetItemId(mpParentWindow.get()));
         const sal_uInt16 nSetId (pSplitWindow->GetSet(nId));
         pSplitWindow->SetItemSizeRange(
             nSetId,
@@ -1063,17 +1063,17 @@ void SidebarController::RestrictWidth (sal_Int32 nWidth)
 
 SfxSplitWindow* SidebarController::GetSplitWindow (void)
 {
-    if (mpParentWindow != NULL)
+    if (mpParentWindow != nullptr)
     {
         SfxSplitWindow* pSplitWindow = dynamic_cast<SfxSplitWindow*>(mpParentWindow->GetParent());
         if (pSplitWindow != mpSplitWindow)
         {
-            if (mpSplitWindow != NULL)
+            if (mpSplitWindow != nullptr)
                 mpSplitWindow->RemoveEventListener(LINK(this, SidebarController, WindowEventHandler));
 
             mpSplitWindow = pSplitWindow;
 
-            if (mpSplitWindow != NULL)
+            if (mpSplitWindow != nullptr)
                 mpSplitWindow->AddEventListener(LINK(this, SidebarController, WindowEventHandler));
         }
         return mpSplitWindow;
@@ -1084,7 +1084,7 @@ SfxSplitWindow* SidebarController::GetSplitWindow (void)
 
 void SidebarController::UpdateCloseIndicator (const bool bCloseAfterDrag)
 {
-    if (mpParentWindow == NULL)
+    if (mpParentWindow == nullptr)
         return;
 
     if (bCloseAfterDrag)

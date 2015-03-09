@@ -122,6 +122,30 @@ RangeChooserTabPage::RangeChooserTabPage( vcl::Window* pParent
     m_pEd_TimeEnd->SetModifyHdl( LINK( this, RangeChooserTabPage, ControlChangedHdl ) );
 }
 
+RangeChooserTabPage::~RangeChooserTabPage()
+{
+    dispose();
+}
+
+void RangeChooserTabPage::dispose()
+{
+    m_pFT_Caption.disposeAndClear();
+    m_pFT_Range.disposeAndClear();
+    m_pED_Range.disposeAndClear();
+    m_pIB_Range.disposeAndClear();
+    m_pRB_Rows.disposeAndClear();
+    m_pRB_Columns.disposeAndClear();
+    m_pCB_FirstRowAsLabel.disposeAndClear();
+    m_pCB_FirstColumnAsLabel.disposeAndClear();
+    m_pFTTitle.disposeAndClear();
+    m_pCB_TimeBased.disposeAndClear();
+    m_pEd_TimeStart.disposeAndClear();
+    m_pEd_TimeEnd.disposeAndClear();
+    m_pParentDialog.disposeAndClear();
+    OWizardPage::dispose();
+}
+
+
 void RangeChooserTabPage::ActivatePage()
 {
     OWizardPage::ActivatePage();

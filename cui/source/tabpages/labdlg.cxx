@@ -138,6 +138,26 @@ SvxCaptionTabPage::SvxCaptionTabPage(vcl::Window* pParent, const SfxItemSet& rIn
     m_pCB_LAENGE->SetClickHdl(LINK(this,SvxCaptionTabPage,LineOptHdl_Impl));
 }
 
+SvxCaptionTabPage::~SvxCaptionTabPage()
+{
+    dispose();
+}
+
+void SvxCaptionTabPage::dispose()
+{
+    m_pCT_CAPTTYPE.disposeAndClear();
+    m_pMF_ABSTAND.disposeAndClear();
+    m_pLB_ANSATZ.disposeAndClear();
+    m_pFT_UM.disposeAndClear();
+    m_pMF_ANSATZ.disposeAndClear();
+    m_pFT_ANSATZ_REL.disposeAndClear();
+    m_pLB_ANSATZ_REL.disposeAndClear();
+    m_pFT_LAENGE.disposeAndClear();
+    m_pMF_LAENGE.disposeAndClear();
+    m_pCB_LAENGE.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SvxCaptionTabPage::Construct()
 {
     // set rectangle and working area

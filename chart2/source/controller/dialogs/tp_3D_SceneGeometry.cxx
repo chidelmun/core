@@ -147,6 +147,24 @@ ThreeD_SceneGeometry_TabPage::ThreeD_SceneGeometry_TabPage( vcl::Window* pWindow
     m_pMFPerspective->SetAccessibleRelationLabeledBy(m_pCbxPerspective);
 }
 
+ThreeD_SceneGeometry_TabPage::~ThreeD_SceneGeometry_TabPage()
+{
+    dispose();
+}
+
+void ThreeD_SceneGeometry_TabPage::dispose()
+{
+    m_pCbxRightAngledAxes.disposeAndClear();
+    m_pMFXRotation.disposeAndClear();
+    m_pMFYRotation.disposeAndClear();
+    m_pFtZRotation.disposeAndClear();
+    m_pMFZRotation.disposeAndClear();
+    m_pCbxPerspective.disposeAndClear();
+    m_pMFPerspective.disposeAndClear();
+    TabPage::dispose();
+}
+
+
 void ThreeD_SceneGeometry_TabPage::commitPendingChanges()
 {
     ControllerLockHelperGuard aGuard( m_rControllerLockHelper );

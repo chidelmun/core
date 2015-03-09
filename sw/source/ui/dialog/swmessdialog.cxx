@@ -30,4 +30,19 @@ SwMessageAndEditDialog::SwMessageAndEditDialog(vcl::Window* pParent, const OUStr
     get(m_pEdit, "edit");
 }
 
+SwMessageAndEditDialog::~SwMessageAndEditDialog()
+{
+    dispose();
+}
+
+void SwMessageAndEditDialog::dispose()
+{
+    m_pOKPB.disposeAndClear();
+    m_pImageIM.disposeAndClear();
+    m_pPrimaryMessage.disposeAndClear();
+    m_pSecondaryMessage.disposeAndClear();
+    m_pEdit.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

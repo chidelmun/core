@@ -318,6 +318,15 @@ namespace dbaui
     {
         setToolBox(NULL);
         delete m_pIndexes;
+        m_pActions.disposeAndClear();
+        m_pIndexList.disposeAndClear();
+        m_pIndexDetails.disposeAndClear();
+        m_pDescriptionLabel.disposeAndClear();
+        m_pDescription.disposeAndClear();
+        m_pUnique.disposeAndClear();
+        m_pFieldsLabel.disposeAndClear();
+        m_pFields.disposeAndClear();
+        m_pClose.disposeAndClear();
         ModalDialog::dispose();
     }
 

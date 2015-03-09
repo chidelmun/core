@@ -72,8 +72,13 @@ void ChineseTranslationDialog::dispose()
     {
         if(m_pDictionaryDialog->IsInExecute())
             m_pDictionaryDialog->EndDialog();
-        delete m_pDictionaryDialog;
     }
+    m_pDictionaryDialog.disposeAndClear();
+    m_pRB_To_Simplified.disposeAndClear();
+    m_pRB_To_Traditional.disposeAndClear();
+    m_pCB_Translate_Commonterms.disposeAndClear();
+    m_pPB_Editterms.disposeAndClear();
+    m_pBP_OK.disposeAndClear();
     ModalDialog::dispose();
 }
 

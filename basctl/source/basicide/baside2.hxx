@@ -443,7 +443,7 @@ protected:
 
 private:
     // main child window
-    ModulWindow* pChild;
+    VclPtr<ModulWindow> pChild;
     // dockable windows
     VclPtr<WatchWindow> aWatchWindow;
     VclPtr<StackWindow> aStackWindow;
@@ -473,7 +473,7 @@ private:
         // the configuration
         svtools::ColorConfig aConfig;
         // the active editor
-        EditorWindow* pEditor;
+        VclPtr<EditorWindow> pEditor;
 
     } aSyntaxColors;
 };
@@ -487,7 +487,7 @@ private:
     /* a buffer to build up function name when typing
      * a function name, used for showing/hiding listbox values
      * */
-    CodeCompleteWindow* pCodeCompleteWindow; // parent window
+    VclPtr<CodeCompleteWindow> pCodeCompleteWindow; // parent window
 
     void SetMatchingEntries(); // sets the visible entries based on aFuncBuffer variable
     void HideAndRestoreFocus();
@@ -495,6 +495,8 @@ private:
 
 public:
     CodeCompleteListBox( CodeCompleteWindow* pPar );
+    virtual ~CodeCompleteListBox();
+    virtual void dispose() SAL_OVERRIDE;
     void InsertSelectedEntry(); //insert the selected entry
 
     DECL_LINK(ImplDoubleClickHdl, void*);
@@ -508,9 +510,9 @@ class CodeCompleteWindow: public vcl::Window
 {
 friend class CodeCompleteListBox;
 private:
-    EditorWindow* pParent; // parent window
+    VclPtr<EditorWindow> pParent; // parent window
     TextSelection aTextSelection;
-    CodeCompleteListBox* pListBox;
+    VclPtr<CodeCompleteListBox> pListBox;
 
     void InitListBox(); // initialize the ListBox
 

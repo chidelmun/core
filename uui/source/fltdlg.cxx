@@ -58,6 +58,18 @@ FilterDialog::FilterDialog( vcl::Window* pParentWindow )
     m_pFtURL->SetSizePixel(Size(aSize.Width(), m_pFtURL->GetOptimalSize().Height()));
 }
 
+FilterDialog::~FilterDialog()
+{
+    dispose();
+}
+
+void FilterDialog::dispose()
+{
+    m_pFtURL.disposeAndClear();
+    m_pLbFilters.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 /*-************************************************************************************************************
     @short      set file name on dialog control
     @descr      We convert given URL (it must be an URL!) into valid file name and show it on our dialog.

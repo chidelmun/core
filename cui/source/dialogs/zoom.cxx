@@ -295,6 +295,19 @@ void SvxZoomDialog::dispose()
 {
     delete pOutSet;
     pOutSet = 0;
+    m_pOptimalBtn.disposeAndClear();
+    m_pWholePageBtn.disposeAndClear();
+    m_pPageWidthBtn.disposeAndClear();
+    m_p100Btn.disposeAndClear();
+    m_pUserBtn.disposeAndClear();
+    m_pUserEdit.disposeAndClear();
+    m_pViewFrame.disposeAndClear();
+    m_pAutomaticBtn.disposeAndClear();
+    m_pSingleBtn.disposeAndClear();
+    m_pColumnsBtn.disposeAndClear();
+    m_pColumnsEdit.disposeAndClear();
+    m_pBookModeChk.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

@@ -67,6 +67,17 @@ namespace pcr
         OnNameModified( NULL );
     }
 
+    NewDataTypeDialog::~NewDataTypeDialog()
+    {
+        dispose();
+    }
+
+    void NewDataTypeDialog::dispose()
+    {
+        m_pName.disposeAndClear();
+        m_pOK.disposeAndClear();
+        ModalDialog::dispose();
+    }
 
     IMPL_LINK( NewDataTypeDialog, OnNameModified, void*, /*_pNotInterestedIn*/ )
     {

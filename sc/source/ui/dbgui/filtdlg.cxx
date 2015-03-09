@@ -171,6 +171,38 @@ void ScFilterDlg::dispose()
     // Hack: RefInput control
     pTimer->Stop();
     delete pTimer;
+
+    pLbConnect1.disposeAndClear();
+    pLbField1.disposeAndClear();
+    pLbCond1.disposeAndClear();
+    pEdVal1.disposeAndClear();
+    pLbConnect2.disposeAndClear();
+    pLbField2.disposeAndClear();
+    pLbCond2.disposeAndClear();
+    pEdVal2.disposeAndClear();
+    pLbConnect3.disposeAndClear();
+    pLbField3.disposeAndClear();
+    pLbCond3.disposeAndClear();
+    pEdVal3.disposeAndClear();
+    pLbConnect4.disposeAndClear();
+    pLbField4.disposeAndClear();
+    pLbCond4.disposeAndClear();
+    pEdVal4.disposeAndClear();
+    pScrollBar.disposeAndClear();
+    pExpander.disposeAndClear();
+    pBtnOk.disposeAndClear();
+    pBtnCancel.disposeAndClear();
+    pBtnCase.disposeAndClear();
+    pBtnRegExp.disposeAndClear();
+    pBtnHeader.disposeAndClear();
+    pBtnUnique.disposeAndClear();
+    pBtnCopyResult.disposeAndClear();
+    pLbCopyArea.disposeAndClear();
+    pEdCopyArea.disposeAndClear();
+    pRbCopyArea.disposeAndClear();
+    pBtnDestPers.disposeAndClear();
+    pFtDbAreaLabel.disposeAndClear();
+    pFtDbArea.disposeAndClear();
     ScAnyRefDlg::dispose();
 }
 

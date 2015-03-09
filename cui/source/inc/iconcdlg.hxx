@@ -50,7 +50,7 @@ struct IconChoicePageData
     sal_uInt16 nId;
     CreatePage fnCreatePage;    ///< pointer to the factory
     GetPageRanges fnGetRanges;  ///< pointer to the ranges-function
-    IconChoicePage* pPage;      ///< the TabPage itself
+    VclPtr<IconChoicePage> pPage;      ///< the TabPage itself
     bool bOnDemand;         ///< Flag: ItemSet onDemand
     bool bRefresh;          ///< Flag: page has to be newly initialized
 
@@ -74,7 +74,7 @@ private :
     const SfxItemSet*   pSet;
     OUString            aUserString;
     bool                bHasExchangeSupport;
-    IconChoiceDialog*   pDialog;
+    VclPtr<IconChoiceDialog>   pDialog;
 
     void                SetDialog( IconChoiceDialog* pNew ) { pDialog = pNew; }
     IconChoiceDialog*   GetDialog() const { return pDialog; }
@@ -86,10 +86,12 @@ private :
 protected :
     IconChoicePage( vcl::Window *pParent, const OString& rID, const OUString& rUIXMLDescription, const SfxItemSet &rAttrSet );
 
-    sal_uInt16              GetSlot( sal_uInt16 nWhich ) const  { return pSet->GetPool()->GetSlotId( nWhich ); }
-    sal_uInt16              GetWhich( sal_uInt16 nSlot ) const  { return pSet->GetPool()->GetWhich( nSlot ); }
+    sal_uInt16          GetSlot( sal_uInt16 nWhich ) const  { return pSet->GetPool()->GetSlotId( nWhich ); }
+    sal_uInt16          GetWhich( sal_uInt16 nSlot ) const  { return pSet->GetPool()->GetWhich( nSlot ); }
 
 public :
+    virtual ~IconChoicePage();
+    virtual void        dispose() SAL_OVERRIDE;
 
     const SfxItemSet&   GetItemSet() const { return *pSet; }
 
@@ -127,18 +129,18 @@ private :
 
     ::std::vector< IconChoicePageData* > maPageList;
 
-    SvtIconChoiceCtrl       *m_pIconCtrl;
+    VclPtr<SvtIconChoiceCtrl>       m_pIconCtrl;
 
     sal_uInt16                  mnCurrentPageId;
 
     // Buttons
-    OKButton                *m_pOKBtn;
-    PushButton              *m_pApplyBtn;
-    CancelButton            *m_pCancelBtn;
-    HelpButton              *m_pHelpBtn;
-    PushButton              *m_pResetBtn;
+    VclPtr<OKButton>                m_pOKBtn;
+    VclPtr<PushButton>              m_pApplyBtn;
+    VclPtr<CancelButton>            m_pCancelBtn;
+    VclPtr<HelpButton>              m_pHelpBtn;
+    VclPtr<PushButton>              m_pResetBtn;
 
-    VclVBox                 *m_pTabContainer;
+    VclPtr<VclVBox>                 m_pTabContainer;
     const SfxItemSet*       pSet;
     SfxItemSet*             pOutSet;
     SfxItemSet*             pExampleSet;
@@ -169,7 +171,7 @@ protected :
     virtual SfxItemSet*     CreateInputItemSet( sal_uInt16 nId );
     inline SfxItemSet*      GetInputSetImpl() { return (SfxItemSet*)pSet; }
     inline IconChoicePage*  GetTabPage( sal_uInt16 nPageId )
-                                { return ( GetPageData (nPageId)->pPage?GetPageData (nPageId)->pPage:NULL); }
+                                { return GetPageData(nPageId)->pPage.get() ? GetPageData(nPageId)->pPage.get() : NULL; }
     const SfxItemSet*       GetRefreshedSet();
 
     void                    ActivatePageImpl ();

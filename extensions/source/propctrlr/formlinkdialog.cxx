@@ -64,13 +64,15 @@ namespace pcr
     class FieldLinkRow : public TabPage
     {
     private:
-        ComboBox*   m_pDetailColumn;
-        ComboBox*   m_pMasterColumn;
+        VclPtr<ComboBox>   m_pDetailColumn;
+        VclPtr<ComboBox>   m_pMasterColumn;
 
         Link        m_aLinkChangeHandler;
 
     public:
         FieldLinkRow( vcl::Window* _pParent );
+        virtual ~FieldLinkRow();
+        virtual void dispose() SAL_OVERRIDE;
 
         inline void         SetLinkChangeHandler( const Link& _rHdl ) { m_aLinkChangeHandler = _rHdl; }
 
@@ -105,6 +107,17 @@ namespace pcr
         m_pMasterColumn->SetModifyHdl( LINK( this, FieldLinkRow, OnFieldNameChanged ) );
     }
 
+    FieldLinkRow::~FieldLinkRow()
+    {
+        dispose();
+    }
+
+    void FieldLinkRow::dispose()
+    {
+        m_pDetailColumn.disposeAndClear();
+        m_pMasterColumn.disposeAndClear();
+        TabPage::dispose();
+    }
 
     void FieldLinkRow::fillList( LinkParticipant _eWhich, const Sequence< OUString >& _rFieldNames )
     {
@@ -193,8 +206,18 @@ namespace pcr
 
     FormLinkDialog::~FormLinkDialog( )
     {
+        dispose();
     }
 
+    void FormLinkDialog::dispose( )
+    {
+        m_pExplanation.disposeAndClear();
+        m_pDetailLabel.disposeAndClear();
+        m_pMasterLabel.disposeAndClear();
+        m_pOK.disposeAndClear();
+        m_pSuggest.disposeAndClear();
+        ModalDialog::dispose();
+    }
 
     void FormLinkDialog::commitLinkPairs()
     {

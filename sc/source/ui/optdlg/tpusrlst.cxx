@@ -91,6 +91,18 @@ void ScTpUserLists::dispose()
 {
     delete pUserLists;
     delete pRangeUtil;
+    mpFtLists.disposeAndClear();
+    mpLbLists.disposeAndClear();
+    mpFtEntries.disposeAndClear();
+    mpEdEntries.disposeAndClear();
+    mpFtCopyFrom.disposeAndClear();
+    mpEdCopyFrom.disposeAndClear();
+    mpBtnNew.disposeAndClear();
+    mpBtnDiscard.disposeAndClear();
+    mpBtnAdd.disposeAndClear();
+    mpBtnModify.disposeAndClear();
+    mpBtnRemove.disposeAndClear();
+    mpBtnCopy.disposeAndClear();
     SfxTabPage::dispose();
 }
 

@@ -95,7 +95,14 @@ ScMenuFloatingWindow::ScMenuFloatingWindow(vcl::Window* pParent, ScDocument* pDo
 
 ScMenuFloatingWindow::~ScMenuFloatingWindow()
 {
+    dispose();
+}
+
+void ScMenuFloatingWindow::dispose()
+{
     EndPopupMode();
+    mpParentMenu.disposeAndClear();
+    PopupMenuFloatingWindow::dispose();
 }
 
 void ScMenuFloatingWindow::PopupModeEnd()
@@ -845,6 +852,17 @@ ScCheckListMenuWindow::Member::Member()
 
 ScCheckListMenuWindow::CancelButton::CancelButton(ScCheckListMenuWindow* pParent) :
     ::CancelButton(pParent), mpParent(pParent) {}
+
+ScCheckListMenuWindow::CancelButton::~CancelButton()
+{
+    dispose();
+}
+
+void ScCheckListMenuWindow::CancelButton::dispose()
+{
+    mpParent.disposeAndClear();
+    ::CancelButton::dispose();
+}
 
 void ScCheckListMenuWindow::CancelButton::Click()
 {

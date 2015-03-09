@@ -73,4 +73,19 @@ URLDlg::URLDlg( vcl::Window* pWindow, const OUString& rURL, const OUString& rAlt
         m_pCbbTargets->SetText( rTarget );
 }
 
+URLDlg::~URLDlg()
+{
+    dispose();
+}
+
+void URLDlg::dispose()
+{
+    m_pEdtURL.disposeAndClear();
+    m_pCbbTargets.disposeAndClear();
+    m_pEdtName.disposeAndClear();
+    m_pEdtAlternativeText.disposeAndClear();
+    m_pEdtDescription.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

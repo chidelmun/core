@@ -108,6 +108,24 @@ ScNewScenarioDlg::ScNewScenarioDlg( vcl::Window* pParent, const OUString& rName,
         m_pCbProtect->Enable(false);
 }
 
+ScNewScenarioDlg::~ScNewScenarioDlg()
+{
+    dispose();
+}
+
+void ScNewScenarioDlg::dispose()
+{
+    m_pEdName.disposeAndClear();
+    m_pEdComment.disposeAndClear();
+    m_pCbShowFrame.disposeAndClear();
+    m_pLbColor.disposeAndClear();
+    m_pCbTwoWay.disposeAndClear();
+    m_pCbCopyAll.disposeAndClear();
+    m_pCbProtect.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void ScNewScenarioDlg::GetScenarioData( OUString& rName, OUString& rComment,
                                         Color& rColor, sal_uInt16& rFlags ) const
 {

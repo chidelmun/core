@@ -55,6 +55,15 @@ SdInsertPagesObjsDlg::SdInsertPagesObjsDlg(
 
 SdInsertPagesObjsDlg::~SdInsertPagesObjsDlg()
 {
+    dispose();
+}
+
+void SdInsertPagesObjsDlg::dispose()
+{
+    m_pLbTree.disposeAndClear();
+    m_pCbxLink.disposeAndClear();
+    m_pCbxMasters.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 /**

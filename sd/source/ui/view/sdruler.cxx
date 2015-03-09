@@ -101,6 +101,7 @@ void Ruler::dispose()
     rBindings.EnterRegistrations();
     delete pCtrlItem;
     rBindings.LeaveRegistrations();
+    pSdWin.disposeAndClear();
     SvxRuler::dispose();
 }
 

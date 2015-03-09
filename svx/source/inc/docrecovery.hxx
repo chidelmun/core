@@ -320,7 +320,7 @@ class PluginProgress : public ::cppu::WeakImplHelper2< css::task::XStatusIndicat
 
         css::uno::Reference< css::task::XStatusIndicator > m_xProgress;
 
-        PluginProgressWindow* m_pPlugProgressWindow;
+        VclPtr<PluginProgressWindow> m_pPlugProgressWindow;
 
 
     // native interface
@@ -371,9 +371,9 @@ class SaveDialog : public Dialog
 {
     // member
     private:
-        FixedText*      m_pTitleFT;
-        ListBox*        m_pFileListLB;
-        OKButton*       m_pOkBtn;
+        VclPtr<FixedText>      m_pTitleFT;
+        VclPtr<ListBox>        m_pFileListLB;
+        VclPtr<OKButton>       m_pOkBtn;
         RecoveryCore*   m_pCore;
 
     // interface
@@ -394,6 +394,8 @@ class SaveDialog : public Dialog
                     which should be shown inside this dialog.
          */
         SaveDialog(vcl::Window* pParent, RecoveryCore* pCore);
+        virtual ~SaveDialog();
+        virtual void dispose() SAL_OVERRIDE;
 
         DECL_LINK(OKButtonHdl, void*);
 };
@@ -403,7 +405,7 @@ class SaveProgressDialog : public ModalDialog
 {
     // member
     private:
-        vcl::Window*       m_pProgrParent;
+        VclPtr<vcl::Window>       m_pProgrParent;
 
         // @short   TODO
         RecoveryCore* m_pCore;
@@ -427,6 +429,8 @@ class SaveProgressDialog : public ModalDialog
          */
         SaveProgressDialog(vcl::Window*       pParent,
                            RecoveryCore* pCore  );
+        virtual ~SaveProgressDialog();
+        virtual void dispose() SAL_OVERRIDE;
 
         /** @short  start the emergency save operation. */
         virtual short Execute() SAL_OVERRIDE;
@@ -494,12 +498,12 @@ class RecoveryDialog : public Dialog
 {
     // member
     private:
-        FixedText*      m_pTitleFT;
-        FixedText*      m_pDescrFT;
-        vcl::Window*         m_pProgrParent;
-        RecovDocList*   m_pFileListLB;
-        PushButton*     m_pNextBtn;
-        PushButton*     m_pCancelBtn;
+        VclPtr<FixedText>      m_pTitleFT;
+        VclPtr<FixedText>      m_pDescrFT;
+        VclPtr<vcl::Window>    m_pProgrParent;
+        VclPtr<RecovDocList>   m_pFileListLB;
+        VclPtr<PushButton>     m_pNextBtn;
+        VclPtr<PushButton>     m_pCancelBtn;
         OUString        m_aTitleRecoveryInProgress;
         OUString        m_aRecoveryOnlyFinish;
         OUString        m_aRecoveryOnlyFinishDescr;
@@ -555,11 +559,11 @@ class BrokenRecoveryDialog : public ModalDialog
 
     // member
     private:
-        ListBox         *m_pFileListLB;
-        Edit            *m_pSaveDirED;
-        PushButton      *m_pSaveDirBtn;
-        PushButton        *m_pOkBtn;
-        CancelButton    *m_pCancelBtn;
+        VclPtr<ListBox>         m_pFileListLB;
+        VclPtr<Edit>            m_pSaveDirED;
+        VclPtr<PushButton>      m_pSaveDirBtn;
+        VclPtr<PushButton>      m_pOkBtn;
+        VclPtr<CancelButton>    m_pCancelBtn;
 
         OUString m_sSavePath;
         RecoveryCore*   m_pCore;
@@ -575,6 +579,8 @@ class BrokenRecoveryDialog : public ModalDialog
         BrokenRecoveryDialog(vcl::Window*       pParent        ,
                              RecoveryCore* pCore          ,
                              bool      bBeforeRecovery);
+        virtual ~BrokenRecoveryDialog();
+        virtual void dispose() SAL_OVERRIDE;
 
 
         /** @short TODO */

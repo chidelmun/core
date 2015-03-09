@@ -89,6 +89,18 @@ SwFldDokInfPage::SwFldDokInfPage(vcl::Window* pParent, const SfxItemSet& rCoreSe
 
 SwFldDokInfPage::~SwFldDokInfPage()
 {
+    dispose();
+}
+
+void SwFldDokInfPage::dispose()
+{
+    m_pTypeTLB.disposeAndClear();
+    m_pSelection.disposeAndClear();
+    m_pSelectionLB.disposeAndClear();
+    m_pFormat.disposeAndClear();
+    m_pFormatLB.disposeAndClear();
+    m_pFixedCB.disposeAndClear();
+    SwFldPage::dispose();
 }
 
 void SwFldDokInfPage::Reset(const SfxItemSet* )

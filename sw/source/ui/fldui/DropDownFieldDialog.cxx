@@ -71,6 +71,20 @@ sw::DropDownFieldDialog::DropDownFieldDialog(vcl::Window *pParent, SwWrtShell &r
     m_pListItemsLB->GrabFocus();
 }
 
+sw::DropDownFieldDialog::~DropDownFieldDialog()
+{
+    dispose();
+}
+
+void sw::DropDownFieldDialog::dispose()
+{
+    m_pListItemsLB.disposeAndClear();
+    m_pOKPB.disposeAndClear();
+    m_pNextPB.disposeAndClear();
+    m_pEditPB.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 void sw::DropDownFieldDialog::Apply()
 {
     if(pDropField)

@@ -106,6 +106,20 @@ SwFldInputDlg::SwFldInputDlg( vcl::Window *pParent, SwWrtShell &rS,
         m_pEditED->SetText(convertLineEnd(aStr, GetSystemLineEnd()));
 }
 
+SwFldInputDlg::~SwFldInputDlg()
+{
+    dispose();
+}
+
+void SwFldInputDlg::dispose()
+{
+    m_pLabelED.disposeAndClear();
+    m_pEditED.disposeAndClear();
+    m_pOKBT.disposeAndClear();
+    m_pNextBT.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 void SwFldInputDlg::StateChanged( StateChangedType nType )
 {
     if ( nType == StateChangedType::INITSHOW )

@@ -134,6 +134,10 @@ SwCompatibilityOptPage::~SwCompatibilityOptPage()
 void SwCompatibilityOptPage::dispose()
 {
     delete m_pImpl;
+    m_pMain.disposeAndClear();
+    m_pFormattingLB.disposeAndClear();
+    m_pOptionsLB.disposeAndClear();
+    m_pDefaultPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 

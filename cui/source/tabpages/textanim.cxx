@@ -122,6 +122,32 @@ SvxTextAnimationPage::SvxTextAnimationPage( vcl::Window* pWindow, const SfxItemS
     m_pBtnDown->SetClickHdl( aLink );
 }
 
+SvxTextAnimationPage::~SvxTextAnimationPage()
+{
+    dispose();
+}
+
+void SvxTextAnimationPage::dispose()
+{
+    m_pLbEffect.disposeAndClear();
+    m_pBoxDirection.disposeAndClear();
+    m_pBtnUp.disposeAndClear();
+    m_pBtnLeft.disposeAndClear();
+    m_pBtnRight.disposeAndClear();
+    m_pBtnDown.disposeAndClear();
+    m_pFlProperties.disposeAndClear();
+    m_pTsbStartInside.disposeAndClear();
+    m_pTsbStopInside.disposeAndClear();
+    m_pBoxCount.disposeAndClear();
+    m_pTsbEndless.disposeAndClear();
+    m_pNumFldCount.disposeAndClear();
+    m_pTsbPixel.disposeAndClear();
+    m_pMtrFldAmount.disposeAndClear();
+    m_pTsbAuto.disposeAndClear();
+    m_pMtrFldDelay.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 /*************************************************************************
 |*
 |* reads the passed item set

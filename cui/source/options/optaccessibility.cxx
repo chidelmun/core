@@ -65,6 +65,15 @@ void SvxAccessibilityOptionsTabPage::dispose()
 {
     delete m_pImpl;
     m_pImpl = NULL;
+    m_pAccessibilityTool.disposeAndClear();
+    m_pTextSelectionInReadonly.disposeAndClear();
+    m_pAnimatedGraphics.disposeAndClear();
+    m_pAnimatedTexts.disposeAndClear();
+    m_pTipHelpCB.disposeAndClear();
+    m_pTipHelpNF.disposeAndClear();
+    m_pAutoDetectHC.disposeAndClear();
+    m_pAutomaticFontColor.disposeAndClear();
+    m_pPagePreviews.disposeAndClear();
     SfxTabPage::dispose();
 }
 

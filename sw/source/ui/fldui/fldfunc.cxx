@@ -91,6 +91,37 @@ SwFldFuncPage::SwFldFuncPage(vcl::Window* pParent, const SfxItemSet& rCoreSet)
 
 SwFldFuncPage::~SwFldFuncPage()
 {
+    dispose();
+}
+
+void SwFldFuncPage::dispose()
+{
+    m_pTypeLB.disposeAndClear();
+    m_pSelectionLB.disposeAndClear();
+    m_pFormat.disposeAndClear();
+    m_pFormatLB.disposeAndClear();
+    m_pNameFT.disposeAndClear();
+    m_pNameED.disposeAndClear();
+    m_pValueGroup.disposeAndClear();
+    m_pValueFT.disposeAndClear();
+    m_pValueED.disposeAndClear();
+    m_pCond1FT.disposeAndClear();
+    m_pCond1ED.disposeAndClear();
+    m_pCond2FT.disposeAndClear();
+    m_pCond2ED.disposeAndClear();
+    m_pMacroBT.disposeAndClear();
+    m_pListGroup.disposeAndClear();
+    m_pListItemFT.disposeAndClear();
+    m_pListItemED.disposeAndClear();
+    m_pListAddPB.disposeAndClear();
+    m_pListItemsFT.disposeAndClear();
+    m_pListItemsLB.disposeAndClear();
+    m_pListRemovePB.disposeAndClear();
+    m_pListUpPB.disposeAndClear();
+    m_pListDownPB.disposeAndClear();
+    m_pListNameFT.disposeAndClear();
+    m_pListNameED.disposeAndClear();
+    SwFldPage::dispose();
 }
 
 void SwFldFuncPage::Reset(const SfxItemSet* )

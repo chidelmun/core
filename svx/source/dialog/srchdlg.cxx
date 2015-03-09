@@ -363,6 +363,48 @@ void SvxSearchDialog::dispose()
     delete pImpl;
     delete pSearchList;
     delete pReplaceList;
+    mpDocWin.disposeAndClear();
+    m_pSearchFrame.disposeAndClear();
+    m_pSearchLB.disposeAndClear();
+    m_pSearchTmplLB.disposeAndClear();
+    m_pSearchAttrText.disposeAndClear();
+    m_pSearchLabel.disposeAndClear();
+    m_pReplaceFrame.disposeAndClear();
+    m_pReplaceLB.disposeAndClear();
+    m_pReplaceTmplLB.disposeAndClear();
+    m_pReplaceAttrText.disposeAndClear();
+    m_pSearchBtn.disposeAndClear();
+    m_pSearchAllBtn.disposeAndClear();
+    m_pReplaceBtn.disposeAndClear();
+    m_pReplaceAllBtn.disposeAndClear();
+    m_pComponentFrame.disposeAndClear();
+    m_pSearchComponent1PB.disposeAndClear();
+    m_pSearchComponent2PB.disposeAndClear();
+    m_pMatchCaseCB.disposeAndClear();
+    m_pWordBtn.disposeAndClear();
+    m_pCloseBtn.disposeAndClear();
+    m_pIgnoreDiacritics.disposeAndClear();
+    m_pIgnoreKashida.disposeAndClear();
+    m_pSelectionBtn.disposeAndClear();
+    m_pBackwardsBtn.disposeAndClear();
+    m_pRegExpBtn.disposeAndClear();
+    m_pSimilarityBox.disposeAndClear();
+    m_pSimilarityBtn.disposeAndClear();
+    m_pLayoutBtn.disposeAndClear();
+    m_pNotesBtn.disposeAndClear();
+    m_pJapMatchFullHalfWidthCB.disposeAndClear();
+    m_pJapOptionsCB.disposeAndClear();
+    m_pJapOptionsBtn.disposeAndClear();
+    m_pAttributeBtn.disposeAndClear();
+    m_pFormatBtn.disposeAndClear();
+    m_pNoFormatBtn.disposeAndClear();
+    m_pCalcGrid.disposeAndClear();
+    m_pCalcSearchInFT.disposeAndClear();
+    m_pCalcSearchInLB.disposeAndClear();
+    m_pCalcSearchDirFT.disposeAndClear();
+    m_pRowsBtn.disposeAndClear();
+    m_pColumnsBtn.disposeAndClear();
+    m_pAllSheetsCB.disposeAndClear();
     SfxModelessDialog::dispose();
 }
 
@@ -2224,7 +2266,7 @@ SvxSearchDialogWrapper::SvxSearchDialogWrapper( vcl::Window* _pParent, sal_uInt1
     : SfxChildWindow( _pParent, nId )
     , dialog (new SvxSearchDialog (_pParent, this, *pBindings))
 {
-    pWindow = dialog;
+    pWindow = dialog.get();
     dialog->Initialize( pInfo );
 
     pBindings->Update( SID_SEARCH_ITEM );

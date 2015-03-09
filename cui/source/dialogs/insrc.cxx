@@ -45,6 +45,19 @@ SvxInsRowColDlg::SvxInsRowColDlg(vcl::Window* pParent, bool bCol, const OString&
     SetHelpId( sHelpId );
 }
 
+SvxInsRowColDlg::~SvxInsRowColDlg()
+{
+    dispose();
+}
+
+void SvxInsRowColDlg::dispose()
+{
+    m_pCountEdit.disposeAndClear();
+    m_pBeforeBtn.disposeAndClear();
+    m_pAfterBtn.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 short SvxInsRowColDlg::Execute(void)
 {
     return ModalDialog::Execute();

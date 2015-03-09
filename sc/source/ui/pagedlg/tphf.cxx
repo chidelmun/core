@@ -78,6 +78,14 @@ ScHFPage::ScHFPage( vcl::Window* pParent, const SfxItemSet& rSet, sal_uInt16 nSe
 
 ScHFPage::~ScHFPage()
 {
+    dispose();
+}
+
+void ScHFPage::dispose()
+{
+    m_pBtnEdit.disposeAndClear();
+    pStyleDlg.disposeAndClear();
+    SvxHFPage::dispose();
 }
 
 void ScHFPage::Reset( const SfxItemSet* rSet )

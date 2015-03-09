@@ -31,6 +31,18 @@ SwInsertAbstractDlg::SwInsertAbstractDlg(vcl::Window* pParent)
     get(m_pParaNF, "paras");
 }
 
+SwInsertAbstractDlg::~SwInsertAbstractDlg()
+{
+    dispose();
+}
+
+void SwInsertAbstractDlg::dispose()
+{
+    m_pLevelNF.disposeAndClear();
+    m_pParaNF.disposeAndClear();
+    SfxModalDialog::dispose();
+}
+
 sal_uInt8 SwInsertAbstractDlg::GetLevel() const
 {
     return static_cast<sal_uInt8>(m_pLevelNF->GetValue() - 1);

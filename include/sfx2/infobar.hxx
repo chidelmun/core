@@ -41,15 +41,15 @@ class SFX2_DLLPUBLIC SfxInfoBarContainerChild : public SfxChildWindow
 class SfxInfoBarWindow : public vcl::Window
 {
     private:
-        OUString               m_sId;
-        FixedText*                  m_pMessage;
-        Button*                     m_pCloseBtn;
-        std::vector< PushButton* >  m_aActionBtns;
+        OUString                           m_sId;
+        VclPtr<FixedText>                  m_pMessage;
+        VclPtr<Button>                     m_pCloseBtn;
+        std::vector< VclPtr<PushButton> >  m_aActionBtns;
 
     public:
         SfxInfoBarWindow( vcl::Window* parent, const OUString& sId,
                           const OUString& sMessage,
-                          std::vector< PushButton* > aButtons );
+                          const std::vector< VclPtr<PushButton> >& aButtons );
         virtual ~SfxInfoBarWindow( );
         virtual void dispose() SAL_OVERRIDE;
 
@@ -64,15 +64,15 @@ class SfxInfoBarWindow : public vcl::Window
 class SfxInfoBarContainerWindow : public vcl::Window
 {
     private:
-        SfxInfoBarContainerChild*        m_pChildWin;
-        std::vector< SfxInfoBarWindow* > m_pInfoBars;
+        SfxInfoBarContainerChild*               m_pChildWin;
+        std::vector< VclPtr<SfxInfoBarWindow> > m_pInfoBars;
 
     public:
         SfxInfoBarContainerWindow( SfxInfoBarContainerChild* pChildWin );
         virtual ~SfxInfoBarContainerWindow( );
         virtual void dispose() SAL_OVERRIDE;
 
-        void appendInfoBar( const OUString& sId, const OUString& sMessage, std::vector< PushButton* > aButtons );
+        void appendInfoBar( const OUString& sId, const OUString& sMessage, const std::vector< VclPtr<PushButton> >& aButtons );
         SfxInfoBarWindow* getInfoBar( const OUString& sId );
         void removeInfoBar( SfxInfoBarWindow* pInfoBar );
 

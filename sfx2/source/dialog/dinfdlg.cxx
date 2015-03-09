@@ -628,6 +628,20 @@ SfxDocumentDescPage::SfxDocumentDescPage( vcl::Window * pParent, const SfxItemSe
     m_pCommentEd->set_height_request(m_pCommentEd->GetTextHeight() * 16);
 }
 
+SfxDocumentDescPage::~SfxDocumentDescPage()
+{
+    dispose();
+}
+
+void SfxDocumentDescPage::dispose()
+{
+    m_pTitleEd.disposeAndClear();
+    m_pThemaEd.disposeAndClear();
+    m_pKeywordsEd.disposeAndClear();
+    m_pCommentEd.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 SfxTabPage *SfxDocumentDescPage::Create(vcl::Window *pParent, const SfxItemSet *rItemSet)
 {
      return new SfxDocumentDescPage(pParent, *rItemSet);
@@ -793,6 +807,33 @@ SfxDocumentPage::SfxDocumentPage(vcl::Window* pParent, const SfxItemSet& rItemSe
         m_pSignatureBtn->Disable();
 }
 
+SfxDocumentPage::~SfxDocumentPage()
+{
+    dispose();
+}
+
+void SfxDocumentPage::dispose()
+{
+    m_pBmp.disposeAndClear();
+    m_pNameED.disposeAndClear();
+    m_pChangePassBtn.disposeAndClear();
+    m_pShowTypeFT.disposeAndClear();
+    m_pReadOnlyCB.disposeAndClear();
+    m_pFileValFt.disposeAndClear();
+    m_pShowSizeFT.disposeAndClear();
+    m_pCreateValFt.disposeAndClear();
+    m_pChangeValFt.disposeAndClear();
+    m_pSignedValFt.disposeAndClear();
+    m_pSignatureBtn.disposeAndClear();
+    m_pPrintValFt.disposeAndClear();
+    m_pTimeLogValFt.disposeAndClear();
+    m_pDocNoValFt.disposeAndClear();
+    m_pUseUserDataCB.disposeAndClear();
+    m_pDeleteBtn.disposeAndClear();
+    m_pTemplFt.disposeAndClear();
+    m_pTemplValFt.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 
 IMPL_LINK_NOARG(SfxDocumentPage, DeleteHdl)
@@ -1253,19 +1294,20 @@ void CustomPropertiesYesNoButton::dispose()
 
 class DurationDialog_Impl : public ModalDialog
 {
-    CheckBox*       m_pNegativeCB;
-    NumericField*   m_pYearNF;
-    NumericField*   m_pMonthNF;
-    NumericField*   m_pDayNF;
-    NumericField*   m_pHourNF;
-    NumericField*   m_pMinuteNF;
-    NumericField*   m_pSecondNF;
-    NumericField*   m_pMSecondNF;
+    VclPtr<CheckBox>       m_pNegativeCB;
+    VclPtr<NumericField>   m_pYearNF;
+    VclPtr<NumericField>   m_pMonthNF;
+    VclPtr<NumericField>   m_pDayNF;
+    VclPtr<NumericField>   m_pHourNF;
+    VclPtr<NumericField>   m_pMinuteNF;
+    VclPtr<NumericField>   m_pSecondNF;
+    VclPtr<NumericField>   m_pMSecondNF;
 
 public:
 
     DurationDialog_Impl( vcl::Window* pParent, const util::Duration& rDuration );
-
+    virtual ~DurationDialog_Impl();
+    virtual void dispose() SAL_OVERRIDE;
     util::Duration  GetDuration() const;
 };
 
@@ -1291,6 +1333,24 @@ DurationDialog_Impl::DurationDialog_Impl(vcl::Window* pParent,
     m_pMinuteNF->SetValue(rDuration.Minutes);
     m_pSecondNF->SetValue(rDuration.Seconds);
     m_pMSecondNF->SetValue(rDuration.NanoSeconds);
+}
+
+DurationDialog_Impl::~DurationDialog_Impl()
+{
+    dispose();
+}
+
+void DurationDialog_Impl::dispose()
+{
+    m_pNegativeCB.disposeAndClear();
+    m_pYearNF.disposeAndClear();
+    m_pMonthNF.disposeAndClear();
+    m_pDayNF.disposeAndClear();
+    m_pHourNF.disposeAndClear();
+    m_pMinuteNF.disposeAndClear();
+    m_pSecondNF.disposeAndClear();
+    m_pMSecondNF.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 util::Duration  DurationDialog_Impl::GetDuration() const
@@ -1476,6 +1536,9 @@ void CustomPropertiesWindow::dispose()
     m_aEditButton.disposeAndClear();
     m_aYesNoButton.disposeAndClear();
     m_aRemoveButton.disposeAndClear();
+    m_pHeaderAccName.disposeAndClear();
+    m_pHeaderAccType.disposeAndClear();
+    m_pHeaderAccValue.disposeAndClear();
     vcl::Window::dispose();
 }
 
@@ -2109,11 +2172,11 @@ CustomPropertiesControl::~CustomPropertiesControl()
 
 void CustomPropertiesControl::dispose()
 {
-    delete m_pVertScroll;
-    delete m_pPropertiesWin;
-    delete m_pBody;
-    delete m_pHeaderBar;
-    delete m_pVBox;
+    m_pVertScroll.disposeAndClear();
+    m_pPropertiesWin.disposeAndClear();
+    m_pBody.disposeAndClear();
+    m_pHeaderBar.disposeAndClear();
+    m_pVBox.disposeAndClear();
     vcl::Window::dispose();
 }
 
@@ -2151,6 +2214,17 @@ SfxCustomPropertiesPage::SfxCustomPropertiesPage( vcl::Window* pParent, const Sf
     get(m_pPropertiesCtrl, "properties");
     m_pPropertiesCtrl->Init(*this);
     get<PushButton>("add")->SetClickHdl(LINK(this, SfxCustomPropertiesPage, AddHdl));
+}
+
+SfxCustomPropertiesPage::~SfxCustomPropertiesPage()
+{
+    dispose();
+}
+
+void SfxCustomPropertiesPage::dispose()
+{
+    m_pPropertiesCtrl.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 IMPL_LINK_NOARG(SfxCustomPropertiesPage, AddHdl)

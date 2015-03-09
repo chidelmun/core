@@ -79,11 +79,9 @@ void ComboBox::dispose()
     mpImplLB = NULL;
     delete pImplLB;
 
-    delete mpFloatWin;
-    mpFloatWin = NULL;
-    delete mpBtn;
-    mpBtn = NULL;
-
+    mpFloatWin.disposeAndClear();
+    mpBtn.disposeAndClear();
+    mpImplLB.disposeAndClear();
     Edit::dispose();
 }
 

@@ -117,7 +117,18 @@ ScAnalysisOfVarianceDialog::ScAnalysisOfVarianceDialog(
 }
 
 ScAnalysisOfVarianceDialog::~ScAnalysisOfVarianceDialog()
-{}
+{
+    dispose();
+}
+
+void ScAnalysisOfVarianceDialog::dispose()
+{
+    mpAlphaField.disposeAndClear();
+    mpSingleFactorRadio.disposeAndClear();
+    mpTwoFactorRadio.disposeAndClear();
+    mpRowsPerSampleField.disposeAndClear();
+    ScStatisticsInputOutputDialog::dispose();
+}
 
 bool ScAnalysisOfVarianceDialog::Close()
 {

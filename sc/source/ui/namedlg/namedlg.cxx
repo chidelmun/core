@@ -107,7 +107,20 @@ ScNameDlg::~ScNameDlg()
 
 void ScNameDlg::dispose()
 {
-    delete m_pRangeManagerTable;
+    m_pRangeManagerTable.disposeAndClear();
+    m_pEdName.disposeAndClear();
+    m_pEdAssign.disposeAndClear();
+    m_pRbAssign.disposeAndClear();
+    m_pLbScope.disposeAndClear();
+    m_pBtnPrintArea.disposeAndClear();
+    m_pBtnColHeader.disposeAndClear();
+    m_pBtnCriteria.disposeAndClear();
+    m_pBtnRowHeader.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnDelete.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    m_pFtInfo.disposeAndClear();
     ScAnyRefDlg::dispose();
 }
 

@@ -215,6 +215,10 @@ void PagePropertyPanel::dispose()
     mpPageULMarginItem.reset();
     mpPageSizeItem.reset();
 
+    mpToolBoxOrientation.disposeAndClear();
+    mpToolBoxMargin.disposeAndClear();
+    mpToolBoxSize.disposeAndClear();
+    mpToolBoxColumn.disposeAndClear();
     PanelLayout::dispose();
 }
 

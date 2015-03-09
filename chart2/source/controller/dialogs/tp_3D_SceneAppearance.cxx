@@ -120,6 +120,20 @@ ThreeD_SceneAppearance_TabPage::ThreeD_SceneAppearance_TabPage(
     initControlsFromModel();
 }
 
+ThreeD_SceneAppearance_TabPage::~ThreeD_SceneAppearance_TabPage()
+{
+    dispose();
+}
+
+void ThreeD_SceneAppearance_TabPage::dispose()
+{
+    m_pLB_Scheme.disposeAndClear();
+    m_pCB_Shading.disposeAndClear();
+    m_pCB_ObjectLines.disposeAndClear();
+    m_pCB_RoundedEdge.disposeAndClear();
+    TabPage::dispose();
+}
+
 void ThreeD_SceneAppearance_TabPage::ActivatePage()
 {
     updateScheme();

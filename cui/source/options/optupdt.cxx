@@ -82,6 +82,25 @@ SvxOnlineUpdateTabPage::SvxOnlineUpdateTabPage(vcl::Window* pParent, const SfxIt
     UpdateLastCheckedText();
 }
 
+SvxOnlineUpdateTabPage::~SvxOnlineUpdateTabPage()
+{
+    dispose();
+}
+
+void SvxOnlineUpdateTabPage::dispose()
+{
+    m_pAutoCheckCheckBox.disposeAndClear();
+    m_pEveryDayButton.disposeAndClear();
+    m_pEveryWeekButton.disposeAndClear();
+    m_pEveryMonthButton.disposeAndClear();
+    m_pCheckNowButton.disposeAndClear();
+    m_pAutoDownloadCheckBox.disposeAndClear();
+    m_pDestPathLabel.disposeAndClear();
+    m_pDestPath.disposeAndClear();
+    m_pChangePathButton.disposeAndClear();
+    m_pLastChecked.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 
 void SvxOnlineUpdateTabPage::UpdateLastCheckedText()

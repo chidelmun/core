@@ -79,7 +79,7 @@ struct Entry_Impl
     OUString        m_sLicenseText;
     Image           m_aIcon;
     Image           m_aIconHC;
-    FixedHyperlink* m_pPublisher;
+    VclPtr<FixedHyperlink> m_pPublisher;
 
     ::com::sun::star::uno::Reference< ::com::sun::star::deployment::XPackage> m_xPackage;
 
@@ -100,7 +100,7 @@ class ExtensionBox_Impl;
 
 class ExtensionRemovedListener : public ::cppu::WeakImplHelper1< ::com::sun::star::lang::XEventListener >
 {
-    ExtensionBox_Impl   *m_pParent;
+    VclPtr<ExtensionBox_Impl>   m_pParent;
 
 public:
 
@@ -135,7 +135,7 @@ class ExtensionBox_Impl : public ::svt::IExtensionListBox
     Image           m_aDefaultImage;
     Link            m_aClickHdl;
 
-    ScrollBar      *m_pScrollBar;
+    VclPtr<ScrollBar>      m_pScrollBar;
 
     com::sun::star::uno::Reference< ExtensionRemovedListener > m_xRemoveListener;
 

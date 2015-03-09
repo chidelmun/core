@@ -106,6 +106,26 @@ ScDataBarSettingsDlg::ScDataBarSettingsDlg(vcl::Window* pWindow, const ScDataBar
     TypeSelectHdl(NULL);
 }
 
+ScDataBarSettingsDlg::~ScDataBarSettingsDlg()
+{
+    dispose();
+}
+
+void ScDataBarSettingsDlg::dispose()
+{
+    mpBtnOk.disposeAndClear();
+    mpBtnCancel.disposeAndClear();
+    mpLbPos.disposeAndClear();
+    mpLbNeg.disposeAndClear();
+    mpLbAxisCol.disposeAndClear();
+    mpLbTypeMin.disposeAndClear();
+    mpLbTypeMax.disposeAndClear();
+    mpLbAxisPos.disposeAndClear();
+    mpEdMin.disposeAndClear();
+    mpEdMax.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void ScDataBarSettingsDlg::Init()
 {
     SfxObjectShell*     pDocSh      = SfxObjectShell::Current();

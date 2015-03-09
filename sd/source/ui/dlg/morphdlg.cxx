@@ -66,6 +66,15 @@ MorphDlg::MorphDlg( vcl::Window* pParent, const SdrObject* pObj1, const SdrObjec
 
 MorphDlg::~MorphDlg()
 {
+    dispose();
+}
+
+void MorphDlg::dispose()
+{
+    m_pMtfSteps.disposeAndClear();
+    m_pCbxAttributes.disposeAndClear();
+    m_pCbxOrientation.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 void MorphDlg::LoadSettings()

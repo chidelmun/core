@@ -26,6 +26,20 @@ InputDialog::InputDialog(const OUString &rLabelText, vcl::Window *pParent)
     m_pCancel->SetClickHdl(LINK(this,InputDialog,ClickHdl));
 }
 
+InputDialog::~InputDialog()
+{
+    dispose();
+}
+
+void InputDialog::dispose()
+{
+    m_pEntry.disposeAndClear();
+    m_pLabel.disposeAndClear();
+    m_pOK.disposeAndClear();
+    m_pCancel.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 OUString InputDialog::getEntryText() const
 {
     return m_pEntry->GetText();

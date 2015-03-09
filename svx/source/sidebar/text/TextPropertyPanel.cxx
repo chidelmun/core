@@ -114,6 +114,21 @@ TextPropertyPanel::TextPropertyPanel ( vcl::Window* pParent, const css::uno::Ref
     mlKerning = 0;
 }
 
+TextPropertyPanel::~TextPropertyPanel()
+{
+    dispose();
+}
+
+void TextPropertyPanel::dispose()
+{
+    mpToolBoxFont.disposeAndClear();
+    mpToolBoxIncDec.disposeAndClear();
+    mpToolBoxSpacing.disposeAndClear();
+    mpToolBoxFontColorSw.disposeAndClear();
+    mpToolBoxFontColor.disposeAndClear();
+    PanelLayout::dispose();
+}
+
 void TextPropertyPanel::HandleContextChange (
     const ::sfx2::sidebar::EnumContext aContext)
 {

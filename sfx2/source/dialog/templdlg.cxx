@@ -874,7 +874,6 @@ SfxCommonTemplateDialog_Impl::~SfxCommonTemplateDialog_Impl()
     if ( pStyleSheetPool )
         EndListening(*pStyleSheetPool);
     pStyleSheetPool = NULL;
-    delete pTreeBox;
     delete pIdle;
     if ( m_pDeletionWatcher )
         m_pDeletionWatcher->signal();
@@ -1671,7 +1670,7 @@ void SfxCommonTemplateDialog_Impl::EnableHierarchical(bool const bEnable)
     }
     else
     {
-        DELETEZ(pTreeBox);
+        pTreeBox.disposeAndClear();
         aFmtLb->Show();
         // If bHierarchical, then the family can have changed
         // minus one since hierarchical is inserted at the start
@@ -2377,7 +2376,7 @@ void SfxTemplateDialog_Impl::LoadedFamilies()
 // The size of the Listboxen is adjusted
 void SfxTemplateDialog_Impl::Resize()
 {
-    SfxDockingWindow* pDockingWindow = dynamic_cast<SfxDockingWindow*>(m_pFloat);
+    SfxDockingWindow* pDockingWindow = dynamic_cast<SfxDockingWindow*>(m_pFloat.get());
     FloatingWindow *pF = pDockingWindow!=NULL ? pDockingWindow->GetFloatingWindow() : NULL;
     if ( pF )
     {
@@ -2386,7 +2385,7 @@ void SfxTemplateDialog_Impl::Resize()
             return;
     }
 
-    if (m_pFloat == NULL)
+    if (m_pFloat == nullptr)
         return;
     Size aDlgSize=m_pFloat->PixelToLogic(m_pFloat->GetOutputSizePixel());
     Size aSizeATL=m_pFloat->PixelToLogic(m_aActionTbL->CalcWindowSizePixel());
@@ -2449,7 +2448,7 @@ void SfxTemplateDialog_Impl::Resize()
 
 Size SfxTemplateDialog_Impl::GetMinOutputSizePixel()
 {
-    if (m_pFloat != NULL)
+    if (m_pFloat != nullptr)
     {
         Size aSizeATL=m_pFloat->PixelToLogic(m_aActionTbL->CalcWindowSizePixel());
         Size aSizeATR=m_pFloat->PixelToLogic(m_aActionTbR->CalcWindowSizePixel());
@@ -2467,7 +2466,7 @@ Size SfxTemplateDialog_Impl::GetMinOutputSizePixel()
 
 void SfxTemplateDialog_Impl::Command( const CommandEvent& rCEvt )
 {
-    if (m_pFloat != NULL)
+    if (m_pFloat != nullptr)
     {
         if(COMMAND_CONTEXTMENU  == rCEvt.GetCommand())
             ExecuteContextMenu_Impl( rCEvt.GetMousePosPixel(), m_pFloat );

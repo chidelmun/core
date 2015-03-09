@@ -44,7 +44,19 @@ XMLFilterTabPageBasic::XMLFilterTabPageBasic(vcl::Window* pParent)
 
 XMLFilterTabPageBasic::~XMLFilterTabPageBasic()
 {
+    dispose();
 }
+
+void XMLFilterTabPageBasic::dispose()
+{
+    m_pEDFilterName.disposeAndClear();
+    m_pCBApplication.disposeAndClear();
+    m_pEDInterfaceName.disposeAndClear();
+    m_pEDExtension.disposeAndClear();
+    m_pEDDescription.disposeAndClear();
+    TabPage::dispose();
+}
+
 static OUString checkExtensions( const OUString& rExtensions )
 {
     const sal_Unicode* pSource = rExtensions.getStr();

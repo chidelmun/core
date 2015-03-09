@@ -144,6 +144,11 @@ void SvxHyperlinkNewDocTp::dispose()
         }
         m_pLbDocTypes = NULL;
     }
+    m_pRbtEditNow.disposeAndClear();
+    m_pRbtEditLater.disposeAndClear();
+    m_pCbbPath.disposeAndClear();
+    m_pBtCreate.disposeAndClear();
+    m_pLbDocTypes.disposeAndClear();
     SvxHyperlinkTabPageBase::dispose();
 }
 

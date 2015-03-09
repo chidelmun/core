@@ -57,6 +57,21 @@ ScDeleteCellDlg::ScDeleteCellDlg(vcl::Window* pParent, bool bDisallowCellMove)
     }
 }
 
+ScDeleteCellDlg::~ScDeleteCellDlg()
+{
+    dispose();
+}
+
+void ScDeleteCellDlg::dispose()
+{
+    m_pBtnCellsUp.disposeAndClear();
+    m_pBtnCellsLeft.disposeAndClear();
+    m_pBtnDelRows.disposeAndClear();
+    m_pBtnDelCols.disposeAndClear();
+    ModalDialog::dispose();
+}
+
+
 DelCellCmd ScDeleteCellDlg::GetDelCellCmd() const
 {
     DelCellCmd nReturn = DEL_NONE;

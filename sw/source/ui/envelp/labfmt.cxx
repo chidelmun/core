@@ -353,7 +353,28 @@ SwLabFmtPage::SwLabFmtPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 SwLabFmtPage::~SwLabFmtPage()
 {
+    dispose();
 }
+
+void SwLabFmtPage::dispose()
+{
+    m_pMakeFI.disposeAndClear();
+    m_pTypeFI.disposeAndClear();
+    m_pPreview.disposeAndClear();
+    m_pHDistField.disposeAndClear();
+    m_pVDistField.disposeAndClear();
+    m_pWidthField.disposeAndClear();
+    m_pHeightField.disposeAndClear();
+    m_pLeftField.disposeAndClear();
+    m_pUpperField.disposeAndClear();
+    m_pColsField.disposeAndClear();
+    m_pRowsField.disposeAndClear();
+    m_pPWidthField.disposeAndClear();
+    m_pPHeightField.disposeAndClear();
+    m_pSavePB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 // Modify-handler of MetricFields. start preview timer
 IMPL_LINK_NOARG_INLINE_START(SwLabFmtPage, ModifyHdl)
@@ -598,6 +619,20 @@ SwSaveLabelDlg::SwSaveLabelDlg(SwLabFmtPage* pParent, SwLabRec& rRec)
     {
         m_pMakeCB->InsertEntry(rMan[i]);
     }
+}
+
+SwSaveLabelDlg::~SwSaveLabelDlg()
+{
+    dispose();
+}
+
+void SwSaveLabelDlg::dispose()
+{
+    m_pMakeCB.disposeAndClear();
+    m_pTypeED.disposeAndClear();
+    m_pOKPB.disposeAndClear();
+    pLabPage.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 IMPL_LINK_NOARG(SwSaveLabelDlg, OkHdl)

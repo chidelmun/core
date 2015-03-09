@@ -71,6 +71,21 @@ SvxHyperlinkDocTp::SvxHyperlinkDocTp ( vcl::Window *pParent, IconChoiceDialog* p
     maTimer.SetTimeoutHdl ( LINK ( this, SvxHyperlinkDocTp, TimeoutHdl_Impl ) );
 }
 
+SvxHyperlinkDocTp::~SvxHyperlinkDocTp()
+{
+    dispose();
+}
+
+void SvxHyperlinkDocTp::dispose()
+{
+    m_pCbbPath.disposeAndClear();
+    m_pBtFileopen.disposeAndClear();
+    m_pEdTarget.disposeAndClear();
+    m_pFtFullURL.disposeAndClear();
+    m_pBtBrowse.disposeAndClear();
+    SvxHyperlinkTabPageBase::dispose();
+}
+
 /*************************************************************************
 |*
 |* Fill all dialog-controls except controls in groupbox "more..."

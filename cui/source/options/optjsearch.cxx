@@ -55,6 +55,34 @@ SvxJSearchOptionsPage::SvxJSearchOptionsPage( vcl::Window* pParent, const SfxIte
     nTransliterationFlags = 0x00000000;
 }
 
+SvxJSearchOptionsPage::~SvxJSearchOptionsPage()
+{
+    dispose();
+}
+
+void SvxJSearchOptionsPage::dispose()
+{
+    m_pMatchCase.disposeAndClear();
+    m_pMatchFullHalfWidth.disposeAndClear();
+    m_pMatchHiraganaKatakana.disposeAndClear();
+    m_pMatchContractions.disposeAndClear();
+    m_pMatchMinusDashChoon.disposeAndClear();
+    m_pMatchRepeatCharMarks.disposeAndClear();
+    m_pMatchVariantFormKanji.disposeAndClear();
+    m_pMatchOldKanaForms.disposeAndClear();
+    m_pMatchDiziDuzu.disposeAndClear();
+    m_pMatchBavaHafa.disposeAndClear();
+    m_pMatchTsithichiDhizi.disposeAndClear();
+    m_pMatchHyuiyuByuvyu.disposeAndClear();
+    m_pMatchSesheZeje.disposeAndClear();
+    m_pMatchIaiya.disposeAndClear();
+    m_pMatchKiku.disposeAndClear();
+    m_pMatchProlongedSoundMark.disposeAndClear();
+    m_pIgnorePunctuation.disposeAndClear();
+    m_pIgnoreWhitespace.disposeAndClear();
+    m_pIgnoreMiddleDot.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 SfxTabPage*  SvxJSearchOptionsPage::Create( vcl::Window* pParent, const SfxItemSet* rSet )
 {

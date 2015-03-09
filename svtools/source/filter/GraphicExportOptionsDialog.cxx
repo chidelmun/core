@@ -43,6 +43,19 @@ GraphicExportOptionsDialog::GraphicExportOptionsDialog(vcl::Window* pWindow, con
     updateResolution();
 }
 
+GraphicExportOptionsDialog::~GraphicExportOptionsDialog()
+{
+    dispose();
+}
+
+void GraphicExportOptionsDialog::dispose()
+{
+    mpWidth.disposeAndClear();
+    mpHeight.disposeAndClear();
+    mpResolution.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void GraphicExportOptionsDialog::initialize()
 {
     mCurrentPage = mRenderer.getCurrentPageWriter();

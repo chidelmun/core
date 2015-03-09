@@ -60,8 +60,21 @@ ImpSWFDialog::ImpSWFDialog( vcl::Window* pParent, Sequence< PropertyValue >& rFi
 
 ImpSWFDialog::~ImpSWFDialog()
 {
+    dispose();
 }
 
+void ImpSWFDialog::dispose()
+{
+    mpNumFldQuality.disposeAndClear();
+    mpCheckExportAll.disposeAndClear();
+    mpCheckExportBackgrounds.disposeAndClear();
+    mpCheckExportBackgroundObjects.disposeAndClear();
+    mpCheckExportSlideContents.disposeAndClear();
+    mpCheckExportSound.disposeAndClear();
+    mpCheckExportOLEAsJPEG.disposeAndClear();
+    mpCheckExportMultipleFiles.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 
 Sequence< PropertyValue > ImpSWFDialog::GetFilterData()

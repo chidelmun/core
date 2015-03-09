@@ -116,11 +116,11 @@ class ExtBoxWithBtns_Impl : public ExtensionBox_Impl
 {
     bool            m_bInterfaceLocked;
 
-    PushButton     *m_pOptionsBtn;
-    PushButton     *m_pEnableBtn;
-    PushButton     *m_pRemoveBtn;
+    VclPtr<PushButton>     m_pOptionsBtn;
+    VclPtr<PushButton>     m_pEnableBtn;
+    VclPtr<PushButton>     m_pRemoveBtn;
 
-    ExtMgrDialog   *m_pParent;
+    VclPtr<ExtMgrDialog>   m_pParent;
 
     void            SetButtonPos( const Rectangle& rRect );
     void            SetButtonStatus( const TEntry_Impl pEntry );
@@ -208,9 +208,10 @@ ExtBoxWithBtns_Impl::~ExtBoxWithBtns_Impl()
 
 void ExtBoxWithBtns_Impl::dispose()
 {
-    delete m_pOptionsBtn;
-    delete m_pEnableBtn;
-    delete m_pRemoveBtn;
+    m_pOptionsBtn.disposeAndClear();
+    m_pEnableBtn.disposeAndClear();
+    m_pRemoveBtn.disposeAndClear();
+    m_pParent.disposeAndClear();
     ExtensionBox_Impl::dispose();
 }
 
@@ -729,6 +730,17 @@ ExtMgrDialog::~ExtMgrDialog()
 void ExtMgrDialog::dispose()
 {
     m_aIdle.Stop();
+    m_pExtensionBox.disposeAndClear();
+    m_pAddBtn.disposeAndClear();
+    m_pUpdateBtn.disposeAndClear();
+    m_pCloseBtn.disposeAndClear();
+    m_pBundledCbx.disposeAndClear();
+    m_pSharedCbx.disposeAndClear();
+    m_pUserCbx.disposeAndClear();
+    m_pGetExtensions.disposeAndClear();
+    m_pProgressText.disposeAndClear();
+    m_pProgressBar.disposeAndClear();
+    m_pCancelBtn.disposeAndClear();
     ModelessDialog::dispose();
 }
 
@@ -1216,6 +1228,13 @@ UpdateRequiredDialog::~UpdateRequiredDialog()
 void UpdateRequiredDialog::dispose()
 {
     m_aIdle.Stop();
+    m_pExtensionBox.disposeAndClear();
+    m_pUpdateNeeded.disposeAndClear();
+    m_pUpdateBtn.disposeAndClear();
+    m_pCloseBtn.disposeAndClear();
+    m_pCancelBtn.disposeAndClear();
+    m_pProgressText.disposeAndClear();
+    m_pProgressBar.disposeAndClear();
     ModalDialog::dispose();
 }
 
@@ -1589,6 +1608,16 @@ ShowLicenseDialog::ShowLicenseDialog( vcl::Window * pParent,
     m_pLicenseText->SetText(xPackage->getLicenseText());
 }
 
+ShowLicenseDialog::~ShowLicenseDialog()
+{
+    dispose();
+}
+
+void ShowLicenseDialog::dispose()
+{
+    m_pLicenseText.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 // UpdateRequiredDialogService
 

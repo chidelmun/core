@@ -151,6 +151,33 @@ SwTextGridPage::SwTextGridPage(vcl::Window *pParent, const SfxItemSet &rSet) :
 
 SwTextGridPage::~SwTextGridPage()
 {
+    dispose();
+}
+
+void SwTextGridPage::dispose()
+{
+    m_pNoGridRB.disposeAndClear();
+    m_pLinesGridRB.disposeAndClear();
+    m_pCharsGridRB.disposeAndClear();
+    m_pSnapToCharsCB.disposeAndClear();
+    m_pExampleWN.disposeAndClear();
+    m_pLayoutFL.disposeAndClear();
+    m_pLinesPerPageNF.disposeAndClear();
+    m_pLinesRangeFT.disposeAndClear();
+    m_pTextSizeMF.disposeAndClear();
+    m_pCharsPerLineFT.disposeAndClear();
+    m_pCharsPerLineNF.disposeAndClear();
+    m_pCharsRangeFT.disposeAndClear();
+    m_pCharWidthFT.disposeAndClear();
+    m_pCharWidthMF.disposeAndClear();
+    m_pRubySizeFT.disposeAndClear();
+    m_pRubySizeMF.disposeAndClear();
+    m_pRubyBelowCB.disposeAndClear();
+    m_pDisplayFL.disposeAndClear();
+    m_pDisplayCB.disposeAndClear();
+    m_pPrintCB.disposeAndClear();
+    m_pColorLB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage *SwTextGridPage::Create(vcl::Window *pParent, const SfxItemSet *rSet)
@@ -460,7 +487,7 @@ IMPL_LINK(SwTextGridPage, TextSizeChangedHdl, SpinField*, pField)
 
 IMPL_LINK(SwTextGridPage, GridTypeHdl, RadioButton*, pButton)
 {
-    bool bEnable = m_pNoGridRB != pButton;
+    bool bEnable = m_pNoGridRB.get() != pButton;
     m_pLayoutFL->Enable(bEnable);
     m_pDisplayFL->Enable(bEnable);
 

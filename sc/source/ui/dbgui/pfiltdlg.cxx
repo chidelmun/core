@@ -92,6 +92,24 @@ void ScPivotFilterDlg::dispose()
         delete pEntryLists[i];
 
     delete pOutItem;
+    m_pLbField1.disposeAndClear();
+    m_pLbCond1.disposeAndClear();
+    m_pEdVal1.disposeAndClear();
+    m_pLbConnect1.disposeAndClear();
+    m_pLbField2.disposeAndClear();
+    m_pLbCond2.disposeAndClear();
+    m_pEdVal2.disposeAndClear();
+    m_pLbConnect2.disposeAndClear();
+    m_pLbField3.disposeAndClear();
+    m_pLbCond3.disposeAndClear();
+    m_pEdVal3.disposeAndClear();
+    m_pBtnCase.disposeAndClear();
+    m_pBtnRegExp.disposeAndClear();
+    m_pBtnUnique.disposeAndClear();
+    m_pFtDbArea.disposeAndClear();
+    for (auto a : aValueEdArr) a.disposeAndClear();
+    for (auto a : aFieldLbArr) a.disposeAndClear();
+    for (auto a : aCondLbArr) a.disposeAndClear();
     ModalDialog::dispose();
 }
 

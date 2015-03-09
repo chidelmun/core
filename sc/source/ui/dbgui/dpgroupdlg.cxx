@@ -173,6 +173,24 @@ ScDPNumGroupDlg::ScDPNumGroupDlg( vcl::Window* pParent, const ScDPNumGroupInfo& 
         mpEdBy->GrabFocus();
 }
 
+ScDPNumGroupDlg::~ScDPNumGroupDlg()
+{
+    dispose();
+}
+
+void ScDPNumGroupDlg::dispose()
+{
+    mpRbAutoStart.disposeAndClear();
+    mpRbManStart.disposeAndClear();
+    mpEdStart.disposeAndClear();
+    mpRbAutoEnd.disposeAndClear();
+    mpRbManEnd.disposeAndClear();
+    mpEdEnd.disposeAndClear();
+    mpEdBy.disposeAndClear();
+    ModalDialog::dispose();
+}
+
+
 ScDPNumGroupInfo ScDPNumGroupDlg::GetGroupInfo() const
 {
     ScDPNumGroupInfo aInfo;
@@ -257,6 +275,27 @@ ScDPDateGroupDlg::ScDPDateGroupDlg( vcl::Window* pParent,
     mpRbNumDays->SetClickHdl( LINK( this, ScDPDateGroupDlg, ClickHdl ) );
     mpRbUnits->SetClickHdl( LINK( this, ScDPDateGroupDlg, ClickHdl ) );
     mpLbUnits->SetCheckButtonHdl( LINK( this, ScDPDateGroupDlg, CheckHdl ) );
+}
+
+ScDPDateGroupDlg::~ScDPDateGroupDlg()
+{
+    dispose();
+}
+
+void ScDPDateGroupDlg::dispose()
+{
+    mpRbAutoStart.disposeAndClear();
+    mpRbManStart.disposeAndClear();
+    mpEdStart.disposeAndClear();
+    mpRbAutoEnd.disposeAndClear();
+    mpRbManEnd.disposeAndClear();
+    mpEdEnd.disposeAndClear();
+    mpRbNumDays.disposeAndClear();
+    mpRbUnits.disposeAndClear();
+    mpEdNumDays.disposeAndClear();
+    mpLbUnits.disposeAndClear();
+    mpBtnOk.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 ScDPNumGroupInfo ScDPDateGroupDlg::GetGroupInfo() const

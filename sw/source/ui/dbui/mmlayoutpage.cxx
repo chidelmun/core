@@ -162,6 +162,17 @@ void SwMailMergeLayoutPage::dispose()
 {
     delete m_pExampleFrame;
     File::remove( m_sExampleURL );
+    m_pPosition.disposeAndClear();
+    m_pAlignToBodyCB.disposeAndClear();
+    m_pLeftFT.disposeAndClear();
+    m_pLeftMF.disposeAndClear();
+    m_pTopMF.disposeAndClear();
+    m_pGreetingLine.disposeAndClear();
+    m_pUpPB.disposeAndClear();
+    m_pDownPB.disposeAndClear();
+    m_pExampleContainerWIN.disposeAndClear();
+    m_pZoomLB.disposeAndClear();
+    m_pWizard.disposeAndClear();
     svt::OWizardPage::dispose();
 }
 

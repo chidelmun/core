@@ -75,7 +75,13 @@ ScHighlightChgDlg::~ScHighlightChgDlg()
 void ScHighlightChgDlg::dispose()
 {
     SetDispatcherLock( false );
-    delete m_pFilterCtr;
+    m_pFilterCtr.disposeAndClear();
+    m_pHighlightBox.disposeAndClear();
+    m_pCbAccept.disposeAndClear();
+    m_pCbReject.disposeAndClear();
+    m_pOkButton.disposeAndClear();
+    m_pEdAssign.disposeAndClear();
+    m_pRbAssign.disposeAndClear();
     ScAnyRefDlg::dispose();
 }
 

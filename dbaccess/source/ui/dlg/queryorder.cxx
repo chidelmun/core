@@ -125,6 +125,24 @@ DlgOrderCrit::DlgOrderCrit(vcl::Window * pParent,
     m_pLB_ORDERFIELD2->SetSelectHdl(LINK(this,DlgOrderCrit,FieldListSelectHdl));
 }
 
+DlgOrderCrit::~DlgOrderCrit()
+{
+    dispose();
+}
+
+void DlgOrderCrit::dispose()
+{
+    m_pLB_ORDERFIELD1.disposeAndClear();
+    m_pLB_ORDERVALUE1.disposeAndClear();
+    m_pLB_ORDERFIELD2.disposeAndClear();
+    m_pLB_ORDERVALUE2.disposeAndClear();
+    m_pLB_ORDERFIELD3.disposeAndClear();
+    m_pLB_ORDERVALUE3.disposeAndClear();
+    for (auto a : m_aColumnList) a.disposeAndClear();
+    for (auto a : m_aValueList) a.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 IMPL_LINK_INLINE_START( DlgOrderCrit, FieldListSelectHdl, ListBox *, /*pListBox*/ )
 {
     EnableLines();

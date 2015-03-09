@@ -118,6 +118,7 @@ void SvxEventConfigPage::dispose()
         pE->SetUserData((void*)0);
         pE = rListBox.NextSibling( pE );
     }
+    m_pSaveInListBox.disposeAndClear();
     _SvxMacroTabPage::dispose();
 }
 

@@ -112,6 +112,7 @@ SvtFileDialogURLSelector::~SvtFileDialogURLSelector()
 void SvtFileDialogURLSelector::dispose()
 {
     delete m_pMenu;
+    m_pDlg.disposeAndClear();
     MenuButton::dispose();
 }
 
@@ -250,10 +251,10 @@ SvtExpFileDlg_Impl::SvtExpFileDlg_Impl( WinBits )   :
 
 SvtExpFileDlg_Impl::~SvtExpFileDlg_Impl()
 {
-    delete _pBtnUp;
+    _pBtnUp.disposeAndClear();
     delete _pUserFilter;
     delete _pFilter;
-    delete _pPlaces;
+    _pPlaces.disposeAndClear();
 }
 
 

@@ -1379,7 +1379,7 @@ void SfxViewFrame::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
                 }
                 else
                 {
-                    std::vector< PushButton* > aButtons;
+                    std::vector< VclPtr<PushButton> > aButtons;
                     PushButton* pBtn = new PushButton( &GetWindow(), SfxResId(BT_READONLY_EDIT));
                     pBtn->SetClickHdl(LINK(this, SfxViewFrame, SwitchReadOnlyHandler));
                     aButtons.push_back( pBtn );
@@ -1501,7 +1501,7 @@ SfxViewFrame::~SfxViewFrame()
         // The Bindings delete the Frame!
         KillDispatcher_Impl();
 
-    delete pImp->pWindow;
+    pImp->pWindow.disposeAndClear();
 
     if ( GetFrame().GetCurrentViewFrame() == this )
         GetFrame().SetCurrentViewFrame_Impl( NULL );
@@ -3357,7 +3357,7 @@ void SfxViewFrame::ActivateToolPanel_Impl( const OUString& i_rPanelURL )
     pPanelAccess->ActivateToolPanel( i_rPanelURL );
 }
 
-void SfxViewFrame::AppendInfoBar( const OUString& sId, const OUString& sMessage, std::vector< PushButton* > aButtons )
+void SfxViewFrame::AppendInfoBar( const OUString& sId, const OUString& sMessage, std::vector< VclPtr<PushButton> >& aButtons )
 {
     const sal_uInt16 nId = SfxInfoBarContainerChild::GetChildWindowId();
 
@@ -3374,9 +3374,9 @@ void SfxViewFrame::AppendInfoBar( const OUString& sId, const OUString& sMessage,
     else
     {
         SAL_WARN( "sfx.view", "No consumer for InfoBar buttons, so deleting them instead" );
-        for (std::vector< PushButton* >::iterator it = aButtons.begin(); it != aButtons.end(); ++it)
+        for (auto it = aButtons.begin(); it != aButtons.end(); ++it)
         {
-            delete *it;
+            (*it).disposeAndClear();
         }
     }
 }

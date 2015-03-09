@@ -72,6 +72,24 @@ SecurityOptionsDialog::SecurityOptionsDialog(vcl::Window* pParent, SvtSecurityOp
         *get<FixedImage>("lockblockuntrusted"));
 }
 
+SecurityOptionsDialog::~SecurityOptionsDialog()
+{
+    dispose();
+}
+
+void SecurityOptionsDialog::dispose()
+{
+    m_pSaveOrSendDocsCB.disposeAndClear();
+    m_pSignDocsCB.disposeAndClear();
+    m_pPrintDocsCB.disposeAndClear();
+    m_pCreatePdfCB.disposeAndClear();
+    m_pRemovePersInfoCB.disposeAndClear();
+    m_pRecommPasswdCB.disposeAndClear();
+    m_pCtrlHyperlinkCB.disposeAndClear();
+    m_pBlockUntrustedRefererLinksCB.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 }   // namespace svx
 
 

@@ -184,10 +184,9 @@ ScTabView::~ScTabView()
         delete pRowOutline[i];
     }
 
-    delete pHSplitter;
-    delete pVSplitter;
-
-    delete pTabControl;
+    pHSplitter.disposeAndClear();
+    pVSplitter.disposeAndClear();
+    pTabControl.disposeAndClear();
 }
 
 void ScTabView::MakeDrawView( sal_uInt8 nForceDesignMode )

@@ -75,6 +75,21 @@ MasterLayoutDialog::MasterLayoutDialog( vcl::Window* pParent, SdDrawDocument* pD
     mpCBPageNumber->Check( mbOldPageNumber );
 }
 
+MasterLayoutDialog::~MasterLayoutDialog()
+{
+    dispose();
+}
+
+void MasterLayoutDialog::dispose()
+{
+    mpCBDate.disposeAndClear();
+    mpCBPageNumber.disposeAndClear();
+    mpCBSlideNumber.disposeAndClear();
+    mpCBHeader.disposeAndClear();
+    mpCBFooter.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 short MasterLayoutDialog::Execute()
 {
     if ( ModalDialog::Execute() )

@@ -29,6 +29,7 @@
 #include <svl/hint.hxx>
 #include <tools/gen.hxx>
 #include <vcl/timer.hxx>
+#include <vcl/vclptr.hxx>
 
 #include <boost/scoped_ptr.hpp>
 
@@ -105,8 +106,8 @@ private:
     void Print( Printer* pPrinter, const OUString& rTitle );
 
 private:
-    ScrollBar*          pHScroll;
-    ScrollBar*          pVScroll;
+    VclPtr<ScrollBar>          pHScroll;
+    VclPtr<ScrollBar>          pVScroll;
     boost::scoped_ptr<DlgEdModel> pDlgEdModel; // never nullptr
     DlgEdPage*          pDlgEdPage;  // never nullptr
     boost::scoped_ptr<DlgEdView> pDlgEdView; // never nullptr

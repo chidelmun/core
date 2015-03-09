@@ -173,6 +173,23 @@ SwBreakDlg::SwBreakDlg( vcl::Window *pParent, SwWrtShell &rS )
     m_pPageNumEdit->SetText(OUString());
 }
 
+SwBreakDlg::~SwBreakDlg()
+{
+    dispose();
+}
+
+void SwBreakDlg::dispose()
+{
+    m_pLineBtn.disposeAndClear();
+    m_pColumnBtn.disposeAndClear();
+    m_pPageBtn.disposeAndClear();
+    m_pPageCollText.disposeAndClear();
+    m_pPageCollBox.disposeAndClear();
+    m_pPageNumBox.disposeAndClear();
+    m_pPageNumEdit.disposeAndClear();
+    SvxStandardDialog::dispose();
+}
+
 void SwBreakDlg::CheckEnable()
 {
     bool bEnable = true;
@@ -204,10 +221,6 @@ void SwBreakDlg::CheckEnable()
     }
     m_pPageNumBox->Enable(bEnable);
     m_pPageNumEdit->Enable(bEnable);
-}
-
-SwBreakDlg::~SwBreakDlg()
-{
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

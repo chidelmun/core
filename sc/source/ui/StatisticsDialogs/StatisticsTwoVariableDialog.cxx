@@ -65,7 +65,27 @@ ScStatisticsTwoVariableDialog::ScStatisticsTwoVariableDialog(
 }
 
 ScStatisticsTwoVariableDialog::~ScStatisticsTwoVariableDialog()
-{}
+{
+    dispose();
+}
+
+void ScStatisticsTwoVariableDialog::dispose()
+{
+    mpVariable1RangeLabel.disposeAndClear();
+    mpVariable1RangeEdit.disposeAndClear();
+    mpVariable1RangeButton.disposeAndClear();
+    mpVariable2RangeLabel.disposeAndClear();
+    mpVariable2RangeEdit.disposeAndClear();
+    mpVariable2RangeButton.disposeAndClear();
+    mpOutputRangeLabel.disposeAndClear();
+    mpOutputRangeEdit.disposeAndClear();
+    mpOutputRangeButton.disposeAndClear();
+    mpButtonOk.disposeAndClear();
+    mpGroupByColumnsRadio.disposeAndClear();
+    mpGroupByRowsRadio.disposeAndClear();
+    mpActiveEdit.disposeAndClear();
+    ScAnyRefDlg::dispose();
+}
 
 void ScStatisticsTwoVariableDialog::Init()
 {
@@ -141,7 +161,7 @@ void ScStatisticsTwoVariableDialog::SetActive()
 
 void ScStatisticsTwoVariableDialog::SetReference( const ScRange& rReferenceRange, ScDocument* pDocument )
 {
-    if ( mpActiveEdit != NULL )
+    if ( mpActiveEdit != nullptr )
     {
         if ( rReferenceRange.aStart != rReferenceRange.aEnd )
             RefInputStart( mpActiveEdit );

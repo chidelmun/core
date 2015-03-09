@@ -117,6 +117,33 @@ SwEndNoteOptionPage::SwEndNoteOptionPage(vcl::Window *pParent, bool bEN,
     get(m_pFtnCharTextTemplBox, "charstylelb");
 }
 
+SwEndNoteOptionPage::~SwEndNoteOptionPage()
+{
+    dispose();
+}
+
+void SwEndNoteOptionPage::dispose()
+{
+    m_pNumViewBox.disposeAndClear();
+    m_pOffsetLbl.disposeAndClear();
+    m_pOffsetFld.disposeAndClear();
+    m_pNumCountBox.disposeAndClear();
+    m_pPrefixED.disposeAndClear();
+    m_pSuffixED.disposeAndClear();
+    m_pPosFT.disposeAndClear();
+    m_pPosPageBox.disposeAndClear();
+    m_pPosChapterBox.disposeAndClear();
+    m_pStylesContainer.disposeAndClear();
+    m_pParaTemplBox.disposeAndClear();
+    m_pPageTemplLbl.disposeAndClear();
+    m_pPageTemplBox.disposeAndClear();
+    m_pFtnCharAnchorTemplBox.disposeAndClear();
+    m_pFtnCharTextTemplBox.disposeAndClear();
+    m_pContEdit.disposeAndClear();
+    m_pContFromEdit.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SwEndNoteOptionPage::Reset( const SfxItemSet* )
 {
     boost::scoped_ptr<SwEndNoteInfo> pInf(bEndNote ? new SwEndNoteInfo( pSh->GetEndNoteInfo() )
@@ -217,10 +244,6 @@ void SwEndNoteOptionPage::Reset( const SfxItemSet* )
     }
 
     m_pPageTemplBox->SelectEntry( pInf->GetPageDesc( *pSh->GetDoc() )->GetName());
-}
-
-SwEndNoteOptionPage::~SwEndNoteOptionPage()
-{
 }
 
 SfxTabPage *SwEndNoteOptionPage::Create( vcl::Window *pParent, const SfxItemSet *rSet )

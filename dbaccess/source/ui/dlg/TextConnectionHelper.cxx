@@ -114,7 +114,7 @@ namespace dbaui
         struct SectionDescriptor
         {
             short   nFlag;
-            vcl::Window* pFirstControl;
+            VclPtr<vcl::Window> pFirstControl;
         } aSections[] = {
             { TC_EXTENSION,     m_pExtensionHeader },
             { TC_SEPARATORS,    m_pFormatHeader },
@@ -149,6 +149,35 @@ namespace dbaui
         }
 
         Show();
+    }
+
+    OTextConnectionHelper::~OTextConnectionHelper()
+    {
+        dispose();
+    }
+
+    void OTextConnectionHelper::dispose()
+    {
+        m_pExtensionHeader.disposeAndClear();
+        m_pAccessTextFiles.disposeAndClear();
+        m_pAccessCSVFiles.disposeAndClear();
+        m_pAccessOtherFiles.disposeAndClear();
+        m_pOwnExtension.disposeAndClear();
+        m_pExtensionExample.disposeAndClear();
+        m_pFormatHeader.disposeAndClear();
+        m_pFieldSeparatorLabel.disposeAndClear();
+        m_pFieldSeparator.disposeAndClear();
+        m_pTextSeparatorLabel.disposeAndClear();
+        m_pTextSeparator.disposeAndClear();
+        m_pDecimalSeparatorLabel.disposeAndClear();
+        m_pDecimalSeparator.disposeAndClear();
+        m_pThousandsSeparatorLabel.disposeAndClear();
+        m_pThousandsSeparator.disposeAndClear();
+        m_pRowHeader.disposeAndClear();
+        m_pCharSetHeader.disposeAndClear();
+        m_pCharSetLabel.disposeAndClear();
+        m_pCharSet.disposeAndClear();
+        TabPage::dispose();
     }
 
     IMPL_LINK(OTextConnectionHelper, OnControlModified, Control*, /*EMPTYARG*/)

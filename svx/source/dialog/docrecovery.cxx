@@ -666,6 +666,19 @@ SaveDialog::SaveDialog(vcl::Window* pParent, RecoveryCore* pCore)
     }
 }
 
+SaveDialog::~SaveDialog()
+{
+    dispose();
+}
+
+void SaveDialog::dispose()
+{
+    m_pTitleFT.disposeAndClear();
+    m_pFileListLB.disposeAndClear();
+    m_pOkBtn.disposeAndClear();
+    Dialog::dispose();
+}
+
 IMPL_LINK_NOARG(SaveDialog, OKButtonHdl)
 {
     // start crash-save with progress
@@ -694,6 +707,17 @@ SaveProgressDialog::SaveProgressDialog(vcl::Window* pParent, RecoveryCore* pCore
 
     PluginProgress* pProgress   = new PluginProgress(m_pProgrParent, pCore->getComponentContext());
     m_xProgress = css::uno::Reference< css::task::XStatusIndicator >(static_cast< css::task::XStatusIndicator* >(pProgress), css::uno::UNO_QUERY_THROW);
+}
+
+SaveProgressDialog::~SaveProgressDialog()
+{
+    dispose();
+}
+
+void SaveProgressDialog::dispose()
+{
+    m_pProgrParent.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 short SaveProgressDialog::Execute()
@@ -908,8 +932,12 @@ RecoveryDialog::~RecoveryDialog()
 
 void RecoveryDialog::dispose()
 {
-    delete m_pFileListLB;
-    m_pFileListLB = NULL;
+    m_pFileListLB.disposeAndClear();
+    m_pTitleFT.disposeAndClear();
+    m_pDescrFT.disposeAndClear();
+    m_pProgrParent.disposeAndClear();
+    m_pNextBtn.disposeAndClear();
+    m_pCancelBtn.disposeAndClear();
     Dialog::dispose();
 }
 
@@ -1238,6 +1266,21 @@ BrokenRecoveryDialog::BrokenRecoveryDialog(vcl::Window*       pParent        ,
     m_pSaveDirED->SetText( sPath );
 
     impl_refresh();
+}
+
+BrokenRecoveryDialog::~BrokenRecoveryDialog()
+{
+    dispose();
+}
+
+void BrokenRecoveryDialog::dispose()
+{
+    m_pFileListLB.disposeAndClear();
+    m_pSaveDirED.disposeAndClear();
+    m_pSaveDirBtn.disposeAndClear();
+    m_pOkBtn.disposeAndClear();
+    m_pCancelBtn.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 

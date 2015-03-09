@@ -156,8 +156,10 @@ void CertPathDialog::dispose()
         delete pCertPath;
         pEntry = m_pCertPathList->Next( pEntry );
     }
-    delete m_pCertPathList;
-    m_pCertPathList = NULL;
+    m_pCertPathListContainer.disposeAndClear();
+    m_pCertPathList.disposeAndClear();
+    m_pAddBtn.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
     ModalDialog::dispose();
 }
 

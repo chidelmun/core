@@ -37,7 +37,15 @@ ScExponentialSmoothingDialog::ScExponentialSmoothingDialog(
 }
 
 ScExponentialSmoothingDialog::~ScExponentialSmoothingDialog()
-{}
+{
+    dispose();
+}
+
+void ScExponentialSmoothingDialog::dispose()
+{
+    mpSmoothingFactor.disposeAndClear();
+    ScStatisticsInputOutputDialog::dispose();
+}
 
 bool ScExponentialSmoothingDialog::Close()
 {

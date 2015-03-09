@@ -43,7 +43,7 @@ private:
     Rectangle maPreviewRect;
     Point     maTopLeft, maBottomRight;
     Point     maMinTopLeft, maMaxBottomRight;
-    SaneDlg*  mpParentDialog;
+    VclPtr<SaneDlg>  mpParentDialog;
     DragDirection meDragDirection;
     bool      mbDragEnable;
     bool      mbDragDrawn;
@@ -60,6 +60,12 @@ public:
         , mbDragDrawn(false)
         , mbIsDragging(false)
     {
+    }
+    virtual ~ScanPreview() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        mpParentDialog.disposeAndClear();
+        vcl::Window::dispose();
     }
     void Init(SaneDlg *pParent)
     {
@@ -245,6 +251,30 @@ SaneDlg::~SaneDlg()
 void SaneDlg::dispose()
 {
     mrSane.SetReloadOptionsHdl( maOldLink );
+    mpOKButton.disposeAndClear();
+    mpCancelButton.disposeAndClear();
+    mpDeviceInfoButton.disposeAndClear();
+    mpPreviewButton.disposeAndClear();
+    mpScanButton.disposeAndClear();
+    mpButtonOption.disposeAndClear();
+    mpOptionTitle.disposeAndClear();
+    mpOptionDescTxt.disposeAndClear();
+    mpVectorTxt.disposeAndClear();
+    mpLeftField.disposeAndClear();
+    mpTopField.disposeAndClear();
+    mpRightField.disposeAndClear();
+    mpBottomField.disposeAndClear();
+    mpDeviceBox.disposeAndClear();
+    mpReslBox.disposeAndClear();
+    mpAdvancedBox.disposeAndClear();
+    mpVectorBox.disposeAndClear();
+    mpQuantumRangeBox.disposeAndClear();
+    mpStringRangeBox.disposeAndClear();
+    mpBoolCheckBox.disposeAndClear();
+    mpStringEdit.disposeAndClear();
+    mpNumericEdit.disposeAndClear();
+    mpOptionBox.disposeAndClear();
+    mpPreview.disposeAndClear();
     ModalDialog::dispose();
 }
 

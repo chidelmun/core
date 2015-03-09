@@ -171,6 +171,33 @@ SvxGridTabPage::SvxGridTabPage( vcl::Window* pParent, const SfxItemSet& rCoreSet
         LINK( this, SvxGridTabPage, ChangeDivisionHdl_Impl ) );
 }
 
+SvxGridTabPage::~SvxGridTabPage()
+{
+    dispose();
+}
+
+void SvxGridTabPage::dispose()
+{
+    pCbxUseGridsnap.disposeAndClear();
+    pCbxGridVisible.disposeAndClear();
+    pMtrFldDrawX.disposeAndClear();
+    pMtrFldDrawY.disposeAndClear();
+    pNumFldDivisionX.disposeAndClear();
+    pNumFldDivisionY.disposeAndClear();
+    pCbxSynchronize.disposeAndClear();
+    pSnapFrames.disposeAndClear();
+    pCbxSnapHelplines.disposeAndClear();
+    pCbxSnapBorder.disposeAndClear();
+    pCbxSnapFrame.disposeAndClear();
+    pCbxSnapPoints.disposeAndClear();
+    pMtrFldSnapArea.disposeAndClear();
+    pCbxOrtho.disposeAndClear();
+    pCbxBigOrtho.disposeAndClear();
+    pCbxRotate.disposeAndClear();
+    pMtrFldAngle.disposeAndClear();
+    pMtrFldBezAngle.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 
 SfxTabPage* SvxGridTabPage::Create( vcl::Window* pParent, const SfxItemSet& rAttrSet )

@@ -976,6 +976,8 @@ class ColorPickerDialog : public ModalDialog
 {
 public:
     ColorPickerDialog( vcl::Window* pParent, sal_Int32 nColor, sal_Int16 nMode );
+    virtual ~ColorPickerDialog() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE;
 
     void update_color( sal_uInt16 n = UPDATE_ALL );
 
@@ -995,35 +997,35 @@ private:
     double mdCyan, mdMagenta, mdYellow, mdKey;
 
 private:
-    ColorFieldControl*    mpColorField;
-    ColorSliderControl*   mpColorSlider;
-    ColorPreviewControl*  mpColorPreview;
-    ColorPreviewControl*  mpColorPrevious;
+    VclPtr<ColorFieldControl>    mpColorField;
+    VclPtr<ColorSliderControl>   mpColorSlider;
+    VclPtr<ColorPreviewControl>  mpColorPreview;
+    VclPtr<ColorPreviewControl>  mpColorPrevious;
 
-    FixedImage*   mpFISliderLeft;
-    FixedImage*   mpFISliderRight;
+    VclPtr<FixedImage>   mpFISliderLeft;
+    VclPtr<FixedImage>   mpFISliderRight;
     Image         maSliderImage;
 
-    RadioButton*    mpRBRed;
-    RadioButton*    mpRBGreen;
-    RadioButton*    mpRBBlue;
-    RadioButton*    mpRBHue;
-    RadioButton*    mpRBSaturation;
-    RadioButton*    mpRBBrightness;
+    VclPtr<RadioButton>    mpRBRed;
+    VclPtr<RadioButton>    mpRBGreen;
+    VclPtr<RadioButton>    mpRBBlue;
+    VclPtr<RadioButton>    mpRBHue;
+    VclPtr<RadioButton>    mpRBSaturation;
+    VclPtr<RadioButton>    mpRBBrightness;
 
-    MetricField*        mpMFRed;
-    MetricField*        mpMFGreen;
-    MetricField*        mpMFBlue;
-    HexColorControl*    mpEDHex;
+    VclPtr<MetricField>        mpMFRed;
+    VclPtr<MetricField>        mpMFGreen;
+    VclPtr<MetricField>        mpMFBlue;
+    VclPtr<HexColorControl>    mpEDHex;
 
-    MetricField*    mpMFHue;
-    MetricField*    mpMFSaturation;
-    MetricField*    mpMFBrightness;
+    VclPtr<MetricField>    mpMFHue;
+    VclPtr<MetricField>    mpMFSaturation;
+    VclPtr<MetricField>    mpMFBrightness;
 
-    MetricField*    mpMFCyan;
-    MetricField*    mpMFMagenta;
-    MetricField*    mpMFYellow;
-    MetricField*    mpMFKey;
+    VclPtr<MetricField>    mpMFCyan;
+    VclPtr<MetricField>    mpMFMagenta;
+    VclPtr<MetricField>    mpMFYellow;
+    VclPtr<MetricField>    mpMFKey;
 };
 
 ColorPickerDialog::ColorPickerDialog( vcl::Window* pParent, sal_Int32 nColor, sal_Int16 nMode )
@@ -1127,6 +1129,34 @@ ColorPickerDialog::ColorPickerDialog( vcl::Window* pParent, sal_Int32 nColor, sa
     RGBtoCMYK( mdRed, mdGreen, mdBlue, mdCyan, mdMagenta, mdYellow, mdKey );
 
     update_color();
+}
+
+void ColorPickerDialog::dispose()
+{
+    mpColorField.disposeAndClear();
+    mpColorSlider.disposeAndClear();
+    mpColorPreview.disposeAndClear();
+    mpColorPrevious.disposeAndClear();
+    mpFISliderLeft.disposeAndClear();
+    mpFISliderRight.disposeAndClear();
+    mpRBRed.disposeAndClear();
+    mpRBGreen.disposeAndClear();
+    mpRBBlue.disposeAndClear();
+    mpRBHue.disposeAndClear();
+    mpRBSaturation.disposeAndClear();
+    mpRBBrightness.disposeAndClear();
+    mpMFRed.disposeAndClear();
+    mpMFGreen.disposeAndClear();
+    mpMFBlue.disposeAndClear();
+    mpEDHex.disposeAndClear();
+    mpMFHue.disposeAndClear();
+    mpMFSaturation.disposeAndClear();
+    mpMFBrightness.disposeAndClear();
+    mpMFCyan.disposeAndClear();
+    mpMFMagenta.disposeAndClear();
+    mpMFYellow.disposeAndClear();
+    mpMFKey.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 static int toInt( double dValue, double dRange )

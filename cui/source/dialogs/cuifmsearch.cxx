@@ -176,6 +176,34 @@ void FmSearchDialog::dispose()
     delete m_pSearchEngine;
     m_pSearchEngine = NULL;
 
+    m_prbSearchForText.disposeAndClear();
+    m_prbSearchForNull.disposeAndClear();
+    m_prbSearchForNotNull.disposeAndClear();
+    m_pcmbSearchText.disposeAndClear();
+    m_pftForm.disposeAndClear();
+    m_plbForm.disposeAndClear();
+    m_prbAllFields.disposeAndClear();
+    m_prbSingleField.disposeAndClear();
+    m_plbField.disposeAndClear();
+    m_pftPosition.disposeAndClear();
+    m_plbPosition.disposeAndClear();
+    m_pcbUseFormat.disposeAndClear();
+    m_pcbCase.disposeAndClear();
+    m_pcbBackwards.disposeAndClear();
+    m_pcbStartOver.disposeAndClear();
+    m_pcbWildCard.disposeAndClear();
+    m_pcbRegular.disposeAndClear();
+    m_pcbApprox.disposeAndClear();
+    m_ppbApproxSettings.disposeAndClear();
+    m_pHalfFullFormsCJK.disposeAndClear();
+    m_pSoundsLikeCJK.disposeAndClear();
+    m_pSoundsLikeCJKSettings.disposeAndClear();
+    m_pftRecord.disposeAndClear();
+    m_pftHint.disposeAndClear();
+    m_pbSearchAgain.disposeAndClear();
+    m_pbClose.disposeAndClear();
+    m_pPreSearchFocus.disposeAndClear();
+
     ModalDialog::dispose();
 }
 
@@ -609,7 +637,7 @@ void FmSearchDialog::EnableSearchUI(bool bEnable)
             m_pPreSearchFocus->GrabFocus();
             if ( WINDOW_EDIT == m_pPreSearchFocus->GetType() )
             {
-                Edit* pEdit = static_cast< Edit* >( m_pPreSearchFocus );
+                Edit* pEdit = static_cast< Edit* >( m_pPreSearchFocus.get() );
                 pEdit->SetSelection( Selection( 0, pEdit->GetText().getLength() ) );
             }
         }

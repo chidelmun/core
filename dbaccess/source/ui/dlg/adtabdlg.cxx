@@ -369,6 +369,12 @@ OAddTableDlg::~OAddTableDlg()
 void OAddTableDlg::dispose()
 {
     m_rContext.onWindowClosing( this );
+    m_pCaseTables.disposeAndClear();
+    m_pCaseQueries.disposeAndClear();
+    m_pTableList.disposeAndClear();
+    m_pQueryList.disposeAndClear();
+    m_pAddButton.disposeAndClear();
+    m_pCloseButton.disposeAndClear();
     ModelessDialog::dispose();
 }
 

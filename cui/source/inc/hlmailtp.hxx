@@ -30,12 +30,12 @@
 class SvxHyperlinkMailTp : public SvxHyperlinkTabPageBase
 {
 private:
-    RadioButton         *m_pRbtMail;
-    RadioButton         *m_pRbtNews;
-    SvxHyperURLBox      *m_pCbbReceiver;
-    PushButton          *m_pBtAdrBook;
-    FixedText           *m_pFtSubject;
-    Edit                *m_pEdSubject;
+    VclPtr<RadioButton>         m_pRbtMail;
+    VclPtr<RadioButton>         m_pRbtNews;
+    VclPtr<SvxHyperURLBox>      m_pCbbReceiver;
+    VclPtr<PushButton>          m_pBtAdrBook;
+    VclPtr<FixedText>           m_pFtSubject;
+    VclPtr<Edit>                m_pEdSubject;
 
     DECL_LINK (Click_SmartProtocol_Impl, void * ); ///< Radiobutton clicked: Type EMAIl or News
     DECL_LINK (ClickAdrBookHdl_Impl  , void * ); ///< Button : Address book
@@ -56,6 +56,8 @@ protected:
 
 public:
     SvxHyperlinkMailTp ( vcl::Window *pParent, IconChoiceDialog* pDlg, const SfxItemSet& rItemSet);
+    virtual ~SvxHyperlinkMailTp();
+    virtual void dispose() SAL_OVERRIDE;
 
     static  IconChoicePage* Create( vcl::Window* pWindow, IconChoiceDialog* pDlg, const SfxItemSet& rItemSet );
 

@@ -60,7 +60,7 @@ public:
     void disposeBuilder();
 
     //sID must exist and be of type T
-    template <typename T> T* get(T*& ret, const OString& sID);
+    template <typename T> T* get(VclPtr<T>& ret, const OString& sID);
 
     //sID may not exist, but must be of type T if it does
     template <typename T /*= vcl::Window if we had c++11*/> T* get(const OString& sID);
@@ -262,7 +262,7 @@ private:
         }
     };
 
-    typedef std::map< vcl::Window*, stringmap> AtkMap;
+    typedef std::map< VclPtr<vcl::Window>, stringmap> AtkMap;
 
     struct ParserState
     {
@@ -287,7 +287,7 @@ private:
 
         Translations m_aTranslations;
 
-        std::map< vcl::Window*, vcl::Window*> m_aRedundantParentWidgets;
+        std::map< VclPtr<vcl::Window>, VclPtr<vcl::Window> > m_aRedundantParentWidgets;
 
         std::vector<SizeGroup> m_aSizeGroups;
 
@@ -295,13 +295,11 @@ private:
 
         std::vector<MnemonicWidgetMap> m_aMnemonicWidgetMaps;
 
-        std::vector<VclExpander*> m_aExpanderWidgets;
+        std::vector< VclPtr<VclExpander> > m_aExpanderWidgets;
 
         sal_uInt16 m_nLastToolbarId;
 
-        ParserState()
-            : m_nLastToolbarId(0)
-        {}
+        ParserState();
     };
 
     void        loadTranslations(const LanguageTag &rLanguageTag, const OUString &rUri);
@@ -310,7 +308,7 @@ private:
     OString     m_sID;
     OString     m_sHelpRoot;
     ResHookProc m_pStringReplace;
-    vcl::Window *m_pParent;
+    VclPtr<vcl::Window> m_pParent;
     bool        m_bToplevelHasDeferredInit;
     bool        m_bToplevelHasDeferredProperties;
     bool        m_bToplevelParentFound;
@@ -402,7 +400,7 @@ private:
 };
 
 template <typename T>
-inline T* VclBuilder::get(T*& ret, const OString& sID)
+inline T* VclBuilder::get(VclPtr<T>& ret, const OString& sID)
 {
     vcl::Window *w = get_by_name(sID);
     SAL_WARN_IF(!w, "vcl.layout", "widget \"" << sID.getStr() << "\" not found in .ui");
@@ -411,7 +409,7 @@ inline T* VclBuilder::get(T*& ret, const OString& sID)
     assert(w);
     assert(dynamic_cast<T*>(w));
     ret = static_cast<T*>(w);
-    return ret;
+    return ret.get();
 }
 
 //sID may not exist, but must be of type T if it does
@@ -460,7 +458,7 @@ public:
 
     css::uno::Reference<css::frame::XFrame> getFrame() { return m_pUIBuilder->getFrame(); }
 
-    template <typename T> T* get(T*& ret, const OString& sID)
+    template <typename T> T* get(VclPtr<T>& ret, const OString& sID)
     {
         return m_pUIBuilder->get<T>(ret, sID);
     }

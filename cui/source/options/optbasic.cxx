@@ -45,6 +45,22 @@ SvxBasicIDEOptionsPage::SvxBasicIDEOptionsPage( vcl::Window* pParent, const SfxI
 
 }
 
+SvxBasicIDEOptionsPage::~SvxBasicIDEOptionsPage()
+{
+    dispose();
+}
+
+void SvxBasicIDEOptionsPage::dispose()
+{
+    pCodeCompleteChk.disposeAndClear();
+    pAutocloseProcChk.disposeAndClear();
+    pAutocloseParenChk.disposeAndClear();
+    pAutocloseQuotesChk.disposeAndClear();
+    pAutoCorrectChk.disposeAndClear();
+    pUseExtendedTypesChk.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SvxBasicIDEOptionsPage::LoadConfig()
 {
     bool bProcClose = officecfg::Office::BasicIDE::Autocomplete::AutocloseProc::get();

@@ -66,6 +66,23 @@ GraphicPropertyPanel::GraphicPropertyPanel(
     Initialize();
 }
 
+GraphicPropertyPanel::~GraphicPropertyPanel()
+{
+    dispose();
+}
+
+void GraphicPropertyPanel::dispose()
+{
+    mpMtrBrightness.disposeAndClear();
+    mpMtrContrast.disposeAndClear();
+    mpLBColorMode.disposeAndClear();
+    mpMtrTrans.disposeAndClear();
+    mpMtrRed.disposeAndClear();
+    mpMtrGreen.disposeAndClear();
+    mpMtrBlue.disposeAndClear();
+    mpMtrGamma.disposeAndClear();
+    PanelLayout::dispose();
+}
 
 
 void GraphicPropertyPanel::Initialize()

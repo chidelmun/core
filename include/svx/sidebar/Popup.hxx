@@ -22,6 +22,7 @@
 #include <svx/svxdllapi.h>
 #include <rtl/ustring.hxx>
 #include <tools/link.hxx>
+#include <vcl/vclptr.hxx>
 
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
@@ -90,7 +91,7 @@ protected:
     virtual void CreateContainerAndControl (void);
 
 private:
-    vcl::Window* mpParent;
+    VclPtr<vcl::Window> mpParent;
     ::boost::function<PopupControl*(PopupContainer*)> maControlCreator;
     ::boost::function<void(void)> maPopupModeEndCallback;
     const ::rtl::OUString msAccessibleName;

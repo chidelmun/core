@@ -164,6 +164,21 @@ ScDbNameDlg::~ScDbNameDlg()
 void ScDbNameDlg::dispose()
 {
     DELETEZ( pSaveObj );
+    m_pEdName.disposeAndClear();
+    m_pAssignFrame.disposeAndClear();
+    m_pEdAssign.disposeAndClear();
+    m_pRbAssign.disposeAndClear();
+    m_pOptions.disposeAndClear();
+    m_pBtnHeader.disposeAndClear();
+    m_pBtnDoSize.disposeAndClear();
+    m_pBtnKeepFmt.disposeAndClear();
+    m_pBtnStripData.disposeAndClear();
+    m_pFTSource.disposeAndClear();
+    m_pFTOperations.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnRemove.disposeAndClear();
     ScAnyRefDlg::dispose();
 }
 

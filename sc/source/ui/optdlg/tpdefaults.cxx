@@ -30,6 +30,14 @@ ScTpDefaultsOptions::ScTpDefaultsOptions(vcl::Window *pParent, const SfxItemSet 
 
 ScTpDefaultsOptions::~ScTpDefaultsOptions()
 {
+    dispose();
+}
+
+void ScTpDefaultsOptions::dispose()
+{
+    m_pEdNSheets.disposeAndClear();
+    m_pEdSheetPrefix.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* ScTpDefaultsOptions::Create(vcl::Window *pParent, const SfxItemSet *rCoreAttrs)

@@ -233,6 +233,26 @@ void ParaWin::dispose()
     m_pBtnFx2->SetGetFocusHdl( aEmptyLink );
     m_pBtnFx3->SetGetFocusHdl( aEmptyLink );
     m_pBtnFx4->SetGetFocusHdl( aEmptyLink );
+    m_pFtEditDesc.disposeAndClear();
+    m_pFtArgName.disposeAndClear();
+    m_pFtArgDesc.disposeAndClear();
+    m_pBtnFx1.disposeAndClear();
+    m_pFtArg1.disposeAndClear();
+    m_pEdArg1.disposeAndClear();
+    m_pRefBtn1.disposeAndClear();
+    m_pBtnFx2.disposeAndClear();
+    m_pFtArg2.disposeAndClear();
+    m_pEdArg2.disposeAndClear();
+    m_pRefBtn2.disposeAndClear();
+    m_pBtnFx3.disposeAndClear();
+    m_pFtArg3.disposeAndClear();
+    m_pEdArg3.disposeAndClear();
+    m_pRefBtn3.disposeAndClear();
+    m_pBtnFx4.disposeAndClear();
+    m_pFtArg4.disposeAndClear();
+    m_pEdArg4.disposeAndClear();
+    m_pRefBtn4.disposeAndClear();
+    m_pSlider.disposeAndClear();
     TabPage::dispose();
 }
 

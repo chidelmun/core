@@ -91,6 +91,11 @@ void MacroSecurity::dispose()
 {
     delete m_pTabCtrl->GetTabPage(m_nSecTrustId);
     delete m_pTabCtrl->GetTabPage(m_nSecLevelId);
+    m_pTabCtrl.disposeAndClear();
+    m_pOkBtn.disposeAndClear();
+    m_pResetBtn.disposeAndClear();
+    mpLevelTP.disposeAndClear();
+    mpTrustSrcTP.disposeAndClear();
     TabDialog::dispose();
 }
 
@@ -99,6 +104,17 @@ MacroSecurityTP::MacroSecurityTP(vcl::Window* _pParent, const OString& rID,
     : TabPage(_pParent, rID, rUIXMLDescription)
     , mpDlg(_pDlg)
 {
+}
+
+MacroSecurityTP::~MacroSecurityTP()
+{
+    dispose();
+}
+
+void MacroSecurityTP::dispose()
+{
+    mpDlg.disposeAndClear();
+    TabPage::dispose();
 }
 
 MacroSecurityLevelTP::MacroSecurityLevelTP(vcl::Window* _pParent, MacroSecurity* _pDlg)
@@ -152,6 +168,20 @@ MacroSecurityLevelTP::MacroSecurityLevelTP(vcl::Window* _pParent, MacroSecurity*
         m_pMediumRB->Enable(false);
         m_pLowRB->Enable(false);
     }
+}
+
+MacroSecurityLevelTP::~MacroSecurityLevelTP()
+{
+    dispose();
+}
+
+void MacroSecurityLevelTP::dispose()
+{
+    m_pVeryHighRB.disposeAndClear();
+    m_pHighRB.disposeAndClear();
+    m_pMediumRB.disposeAndClear();
+    m_pLowRB.disposeAndClear();
+    MacroSecurityTP::dispose();
 }
 
 IMPL_LINK_NOARG(MacroSecurityLevelTP, RadioButtonHdl)
@@ -405,7 +435,14 @@ MacroSecurityTrustedSourcesTP::~MacroSecurityTrustedSourcesTP()
 
 void MacroSecurityTrustedSourcesTP::dispose()
 {
-    delete m_pTrustCertLB;
+    m_pTrustCertLB.disposeAndClear();
+    m_pTrustCertROFI.disposeAndClear();
+    m_pViewCertPB.disposeAndClear();
+    m_pRemoveCertPB.disposeAndClear();
+    m_pTrustFileROFI.disposeAndClear();
+    m_pTrustFileLocLB.disposeAndClear();
+    m_pAddLocPB.disposeAndClear();
+    m_pRemoveLocPB.disposeAndClear();
     MacroSecurityTP::dispose();
 }
 

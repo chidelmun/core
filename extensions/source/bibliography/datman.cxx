@@ -195,39 +195,39 @@ Reference< XNameAccess >  getColumns(const Reference< XForm > & _rxForm)
 class MappingDialog_Impl : public ModalDialog
 {
     BibDataManager* pDatMan;
-    OKButton*       pOKBT;
-    ListBox*        pIdentifierLB;
-    ListBox*        pAuthorityTypeLB;
-    ListBox*        pAuthorLB;
-    ListBox*        pTitleLB;
-    ListBox*        pMonthLB;
-    ListBox*        pYearLB;
-    ListBox*        pISBNLB;
-    ListBox*        pBooktitleLB;
-    ListBox*        pChapterLB;
-    ListBox*        pEditionLB;
-    ListBox*        pEditorLB;
-    ListBox*        pHowpublishedLB;
-    ListBox*        pInstitutionLB;
-    ListBox*        pJournalLB;
-    ListBox*        pNoteLB;
-    ListBox*        pAnnoteLB;
-    ListBox*        pNumberLB;
-    ListBox*        pOrganizationsLB;
-    ListBox*        pPagesLB;
-    ListBox*        pPublisherLB;
-    ListBox*        pAddressLB;
-    ListBox*        pSchoolLB;
-    ListBox*        pSeriesLB;
-    ListBox*        pReportTypeLB;
-    ListBox*        pVolumeLB;
-    ListBox*        pURLLB;
-    ListBox*        pCustom1LB;
-    ListBox*        pCustom2LB;
-    ListBox*        pCustom3LB;
-    ListBox*        pCustom4LB;
-    ListBox*        pCustom5LB;
-    ListBox*        aListBoxes[COLUMN_COUNT];
+    VclPtr<OKButton>       pOKBT;
+    VclPtr<ListBox>        pIdentifierLB;
+    VclPtr<ListBox>        pAuthorityTypeLB;
+    VclPtr<ListBox>        pAuthorLB;
+    VclPtr<ListBox>        pTitleLB;
+    VclPtr<ListBox>        pMonthLB;
+    VclPtr<ListBox>        pYearLB;
+    VclPtr<ListBox>        pISBNLB;
+    VclPtr<ListBox>        pBooktitleLB;
+    VclPtr<ListBox>        pChapterLB;
+    VclPtr<ListBox>        pEditionLB;
+    VclPtr<ListBox>        pEditorLB;
+    VclPtr<ListBox>        pHowpublishedLB;
+    VclPtr<ListBox>        pInstitutionLB;
+    VclPtr<ListBox>        pJournalLB;
+    VclPtr<ListBox>        pNoteLB;
+    VclPtr<ListBox>        pAnnoteLB;
+    VclPtr<ListBox>        pNumberLB;
+    VclPtr<ListBox>        pOrganizationsLB;
+    VclPtr<ListBox>        pPagesLB;
+    VclPtr<ListBox>        pPublisherLB;
+    VclPtr<ListBox>        pAddressLB;
+    VclPtr<ListBox>        pSchoolLB;
+    VclPtr<ListBox>        pSeriesLB;
+    VclPtr<ListBox>        pReportTypeLB;
+    VclPtr<ListBox>        pVolumeLB;
+    VclPtr<ListBox>        pURLLB;
+    VclPtr<ListBox>        pCustom1LB;
+    VclPtr<ListBox>        pCustom2LB;
+    VclPtr<ListBox>        pCustom3LB;
+    VclPtr<ListBox>        pCustom4LB;
+    VclPtr<ListBox>        pCustom5LB;
+    VclPtr<ListBox>        aListBoxes[COLUMN_COUNT];
     OUString        sNone;
 
     bool        bModified;
@@ -240,6 +240,7 @@ class MappingDialog_Impl : public ModalDialog
 public:
     MappingDialog_Impl(vcl::Window* pParent, BibDataManager* pDatMan);
     virtual ~MappingDialog_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     void    SetModified() {bModified = true;}
 
@@ -376,7 +377,48 @@ MappingDialog_Impl::MappingDialog_Impl(vcl::Window* pParent, BibDataManager* pMa
 }
 
 MappingDialog_Impl::~MappingDialog_Impl()
-{}
+{
+    dispose();
+}
+
+void MappingDialog_Impl::dispose()
+{
+    pOKBT.disposeAndClear();
+    pIdentifierLB.disposeAndClear();
+    pAuthorityTypeLB.disposeAndClear();
+    pAuthorLB.disposeAndClear();
+    pTitleLB.disposeAndClear();
+    pMonthLB.disposeAndClear();
+    pYearLB.disposeAndClear();
+    pISBNLB.disposeAndClear();
+    pBooktitleLB.disposeAndClear();
+    pChapterLB.disposeAndClear();
+    pEditionLB.disposeAndClear();
+    pEditorLB.disposeAndClear();
+    pHowpublishedLB.disposeAndClear();
+    pInstitutionLB.disposeAndClear();
+    pJournalLB.disposeAndClear();
+    pNoteLB.disposeAndClear();
+    pAnnoteLB.disposeAndClear();
+    pNumberLB.disposeAndClear();
+    pOrganizationsLB.disposeAndClear();
+    pPagesLB.disposeAndClear();
+    pPublisherLB.disposeAndClear();
+    pAddressLB.disposeAndClear();
+    pSchoolLB.disposeAndClear();
+    pSeriesLB.disposeAndClear();
+    pReportTypeLB.disposeAndClear();
+    pVolumeLB.disposeAndClear();
+    pURLLB.disposeAndClear();
+    pCustom1LB.disposeAndClear();
+    pCustom2LB.disposeAndClear();
+    pCustom3LB.disposeAndClear();
+    pCustom4LB.disposeAndClear();
+    pCustom5LB.disposeAndClear();
+    for(auto & a : aListBoxes)
+        a.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 IMPL_LINK(MappingDialog_Impl, ListBoxSelectHdl, ListBox*, pListBox)
 {
@@ -426,7 +468,7 @@ IMPL_LINK_NOARG(MappingDialog_Impl, OkHdl)
 
 class DBChangeDialog_Impl : public ModalDialog
 {
-    ListBox*    m_pSelectionLB;
+    VclPtr<ListBox>    m_pSelectionLB;
     DBChangeDialogConfig_Impl   aConfig;
 
     BibDataManager* pDatMan;
@@ -435,6 +477,7 @@ class DBChangeDialog_Impl : public ModalDialog
 public:
     DBChangeDialog_Impl(vcl::Window* pParent, BibDataManager* pMan );
     virtual ~DBChangeDialog_Impl();
+    virtual void dispose() SAL_OVERRIDE;
 
     OUString     GetCurrentURL()const;
 };
@@ -477,6 +520,13 @@ IMPL_LINK(DBChangeDialog_Impl, DoubleClickHdl, SvTabListBox*, /*pLB*/)
 
 DBChangeDialog_Impl::~DBChangeDialog_Impl()
 {
+    dispose();
+}
+
+void DBChangeDialog_Impl::dispose()
+{
+    m_pSelectionLB.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 OUString  DBChangeDialog_Impl::GetCurrentURL()const

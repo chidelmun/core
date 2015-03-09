@@ -156,15 +156,9 @@ MessBox::~MessBox()
 
 void MessBox::dispose()
 {
-    delete mpVCLMultiLineEdit;
-    mpVCLMultiLineEdit = NULL;
-
-    delete mpFixedImage;
-    mpFixedImage = NULL;
-
-    delete mpCheckBox;
-    mpCheckBox = NULL;
-
+    mpVCLMultiLineEdit.disposeAndClear();
+    mpFixedImage.disposeAndClear();
+    mpCheckBox.disposeAndClear();
     ButtonDialog::dispose();
 }
 
@@ -202,17 +196,12 @@ void MessBox::ImplPosControls()
     WinBits         nWinStyle = WB_LEFT | WB_NOLABEL;
     sal_uInt16          nTextStyle = TEXT_DRAW_MULTILINE | TEXT_DRAW_TOP | TEXT_DRAW_LEFT;
 
-    delete mpVCLMultiLineEdit;
-    if ( mpFixedImage )
-    {
-        delete mpFixedImage;
-        mpFixedImage = NULL;
-    }
+    mpVCLMultiLineEdit.disposeAndClear();
+    mpFixedImage.disposeAndClear();
     if ( mpCheckBox )
     {
         mbCheck = mpCheckBox->IsChecked();
-        delete mpCheckBox;
-        mpCheckBox = NULL;
+        mpCheckBox.disposeAndClear();
     }
 
     // Clean up message text with tabs

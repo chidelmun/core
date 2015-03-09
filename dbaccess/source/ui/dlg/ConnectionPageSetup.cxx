@@ -119,6 +119,18 @@ namespace dbaui
         SetRoadmapStateValue(false);
     }
 
+    OConnectionTabPageSetup::~OConnectionTabPageSetup()
+    {
+        dispose();
+    }
+
+    void OConnectionTabPageSetup::dispose()
+    {
+        m_pHelpText.disposeAndClear();
+        m_pHeaderText.disposeAndClear();
+        OConnectionHelper::dispose();
+    }
+
     void OConnectionTabPageSetup::implInitControls(const SfxItemSet& _rSet, bool _bSaveValue)
     {
         m_eType = m_pAdminDialog->getDatasourceType(_rSet);

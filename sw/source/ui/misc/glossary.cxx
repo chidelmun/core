@@ -115,12 +115,12 @@ struct GroupUserData
 // dialog for new block name
 class SwNewGlosNameDlg : public ModalDialog
 {
-    Edit*        m_pNewName;
-    TextFilter   m_aNoSpaceFilter;
-    Edit*        m_pNewShort;
-    OKButton*    m_pOk;
-    Edit*        m_pOldName;
-    Edit*        m_pOldShort;
+    VclPtr<Edit>        m_pNewName;
+    TextFilter          m_aNoSpaceFilter;
+    VclPtr<Edit>        m_pNewShort;
+    VclPtr<OKButton>    m_pOk;
+    VclPtr<Edit>        m_pOldName;
+    VclPtr<Edit>        m_pOldShort;
 
 protected:
     DECL_LINK( Modify, Edit * );
@@ -130,6 +130,8 @@ public:
     SwNewGlosNameDlg( vcl::Window* pParent,
                       const OUString& rOldName,
                       const OUString& rOldShort );
+    virtual ~SwNewGlosNameDlg();
+    virtual void dispose() SAL_OVERRIDE;
 
     OUString GetNewName()  const { return m_pNewName->GetText(); }
     OUString GetNewShort() const { return m_pNewShort->GetText(); }
@@ -154,6 +156,21 @@ SwNewGlosNameDlg::SwNewGlosNameDlg(vcl::Window* pParent,
     m_pNewShort->SetModifyHdl(LINK(this, SwNewGlosNameDlg, Modify ));
     m_pOk->SetClickHdl(LINK(this, SwNewGlosNameDlg, Rename ));
     m_pNewName->GrabFocus();
+}
+
+SwNewGlosNameDlg::~SwNewGlosNameDlg()
+{
+    dispose();
+}
+
+void SwNewGlosNameDlg::dispose()
+{
+    m_pNewName.disposeAndClear();
+    m_pNewShort.disposeAndClear();
+    m_pOk.disposeAndClear();
+    m_pOldName.disposeAndClear();
+    m_pOldShort.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 // query / set currently set group
@@ -239,6 +256,18 @@ void SwGlossaryDlg::dispose()
 {
     m_pCategoryBox->Clear();
     delete pExampleFrame;
+    m_pInsertTipCB.disposeAndClear();
+    m_pNameED.disposeAndClear();
+    m_pShortNameLbl.disposeAndClear();
+    m_pShortNameEdit.disposeAndClear();
+    m_pCategoryBox.disposeAndClear();
+    m_pFileRelCB.disposeAndClear();
+    m_pNetRelCB.disposeAndClear();
+    m_pExampleWIN.disposeAndClear();
+    m_pInsertBtn.disposeAndClear();
+    m_pEditBtn.disposeAndClear();
+    m_pBibBtn.disposeAndClear();
+    m_pPathBtn.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 

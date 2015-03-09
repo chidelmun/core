@@ -70,6 +70,20 @@ namespace svx
         m_pURL->SetDropDownLineCount( 5 );
     }
 
+    ODocumentLinkDialog::~ODocumentLinkDialog()
+    {
+        dispose();
+    }
+
+    void ODocumentLinkDialog::dispose()
+    {
+        m_pURL.disposeAndClear();
+        m_pBrowseFile.disposeAndClear();
+        m_pName.disposeAndClear();
+        m_pOK.disposeAndClear();
+        ModalDialog::dispose();
+    }
+
 
     void ODocumentLinkDialog::setLink( const OUString& _rName, const OUString& _rURL )
     {

@@ -158,6 +158,19 @@ void SvxAsianLayoutPage::dispose()
 {
     delete pImpl;
     pImpl = NULL;
+    m_pCharKerningRB.disposeAndClear();
+    m_pCharPunctKerningRB.disposeAndClear();
+    m_pNoCompressionRB.disposeAndClear();
+    m_pPunctCompressionRB.disposeAndClear();
+    m_pPunctKanaCompressionRB.disposeAndClear();
+    m_pLanguageFT.disposeAndClear();
+    m_pLanguageLB.disposeAndClear();
+    m_pStandardCB.disposeAndClear();
+    m_pStartFT.disposeAndClear();
+    m_pStartED.disposeAndClear();
+    m_pEndFT.disposeAndClear();
+    m_pEndED.disposeAndClear();
+    m_pHintFT.disposeAndClear();
     SfxTabPage::dispose();
 }
 

@@ -54,6 +54,25 @@ OfaMSFilterTabPage::OfaMSFilterTabPage(vcl::Window* pParent, const SfxItemSet& r
     aEBasicCodeCB->SetClickHdl( LINK( this, OfaMSFilterTabPage, LoadExcelBasicCheckHdl_Impl ) );
 }
 
+OfaMSFilterTabPage::~OfaMSFilterTabPage()
+{
+    dispose();
+}
+
+void OfaMSFilterTabPage::dispose()
+{
+    aWBasicCodeCB.disposeAndClear();
+    aWBasicWbctblCB.disposeAndClear();
+    aWBasicStgCB.disposeAndClear();
+    aEBasicCodeCB.disposeAndClear();
+    aEBasicExectblCB.disposeAndClear();
+    aEBasicStgCB.disposeAndClear();
+    aPBasicCodeCB.disposeAndClear();
+    aPBasicStgCB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
+
 IMPL_LINK_NOARG(OfaMSFilterTabPage, LoadWordBasicCheckHdl_Impl)
 {
     aWBasicWbctblCB->Enable( aWBasicCodeCB->IsChecked() );
@@ -162,8 +181,8 @@ void OfaMSFilterTabPage2::dispose()
 {
     delete pCheckButtonData;
     pCheckButtonData = NULL;
-    delete m_pCheckLB;
-    m_pCheckLB = NULL;
+    m_pCheckLB.disposeAndClear();
+    m_pCheckLBContainer.disposeAndClear();
     SfxTabPage::dispose();
 }
 

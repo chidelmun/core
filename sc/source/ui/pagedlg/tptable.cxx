@@ -125,6 +125,33 @@ void ScTablePage::ShowImage()
 
 ScTablePage::~ScTablePage()
 {
+    dispose();
+}
+
+void ScTablePage::dispose()
+{
+    m_pBtnTopDown.disposeAndClear();
+    m_pBtnLeftRight.disposeAndClear();
+    m_pBmpPageDir.disposeAndClear();
+    m_pBtnPageNo.disposeAndClear();
+    m_pEdPageNo.disposeAndClear();
+    m_pBtnHeaders.disposeAndClear();
+    m_pBtnGrid.disposeAndClear();
+    m_pBtnNotes.disposeAndClear();
+    m_pBtnObjects.disposeAndClear();
+    m_pBtnCharts.disposeAndClear();
+    m_pBtnDrawings.disposeAndClear();
+    m_pBtnFormulas.disposeAndClear();
+    m_pBtnNullVals.disposeAndClear();
+    m_pLbScaleMode.disposeAndClear();
+    m_pBxScaleAll.disposeAndClear();
+    m_pEdScaleAll.disposeAndClear();
+    m_pGrHeightWidth.disposeAndClear();
+    m_pEdScalePageWidth.disposeAndClear();
+    m_pEdScalePageHeight.disposeAndClear();
+    m_pBxScalePageNum.disposeAndClear();
+    m_pEdScalePageNum.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 const sal_uInt16* ScTablePage::GetRanges()

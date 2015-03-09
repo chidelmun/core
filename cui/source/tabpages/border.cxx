@@ -334,6 +334,40 @@ SvxBorderTabPage::SvxBorderTabPage(vcl::Window* pParent, const SfxItemSet& rCore
     m_pMergeAdjacentBordersCB->Hide();
 }
 
+SvxBorderTabPage::~SvxBorderTabPage()
+{
+    dispose();
+}
+
+void SvxBorderTabPage::dispose()
+{
+    m_pWndPresets.disposeAndClear();
+    m_pUserDefFT.disposeAndClear();
+    m_pFrameSel.disposeAndClear();
+    m_pLbLineStyle.disposeAndClear();
+    m_pLbLineColor.disposeAndClear();
+    m_pLineWidthMF.disposeAndClear();
+    m_pSpacingFrame.disposeAndClear();
+    m_pLeftFT.disposeAndClear();
+    m_pLeftMF.disposeAndClear();
+    m_pRightFT.disposeAndClear();
+    m_pRightMF.disposeAndClear();
+    m_pTopFT.disposeAndClear();
+    m_pTopMF.disposeAndClear();
+    m_pBottomFT.disposeAndClear();
+    m_pBottomMF.disposeAndClear();
+    m_pSynchronizeCB.disposeAndClear();
+    m_pShadowFrame.disposeAndClear();
+    m_pWndShadows.disposeAndClear();
+    m_pFtShadowSize.disposeAndClear();
+    m_pEdShadowSize.disposeAndClear();
+    m_pFtShadowColor.disposeAndClear();
+    m_pLbShadowColor.disposeAndClear();
+    m_pPropertiesFrame.disposeAndClear();
+    m_pMergeWithNextCB.disposeAndClear();
+    m_pMergeAdjacentBordersCB.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 
 const sal_uInt16* SvxBorderTabPage::GetRanges()

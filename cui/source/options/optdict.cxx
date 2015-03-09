@@ -116,6 +116,19 @@ SvxNewDictionaryDialog::SvxNewDictionaryDialog( vcl::Window* pParent,
     pLanguageLB->SelectEntryPos(0);
 }
 
+SvxNewDictionaryDialog::~SvxNewDictionaryDialog()
+{
+    dispose();
+}
+
+void SvxNewDictionaryDialog::dispose()
+{
+    pNameEdit.disposeAndClear();
+    pLanguageLB.disposeAndClear();
+    pExceptBtn.disposeAndClear();
+    pOKBtn.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 
 IMPL_LINK_NOARG(SvxNewDictionaryDialog, OKHdl_Impl)
@@ -330,6 +343,24 @@ SvxEditDictionaryDialog::SvxEditDictionaryDialog(
     }
 }
 
+SvxEditDictionaryDialog::~SvxEditDictionaryDialog()
+{
+    dispose();
+}
+
+void SvxEditDictionaryDialog::dispose()
+{
+    pAllDictsLB.disposeAndClear();
+    pLangFT.disposeAndClear();
+    pLangLB.disposeAndClear();
+    pWordED.disposeAndClear();
+    pReplaceFT.disposeAndClear();
+    pReplaceED.disposeAndClear();
+    pWordsLB.disposeAndClear();
+    pNewReplacePB.disposeAndClear();
+    pDeletePB.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 
 /*

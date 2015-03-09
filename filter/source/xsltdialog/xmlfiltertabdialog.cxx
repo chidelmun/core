@@ -80,9 +80,11 @@ XMLFilterTabDialog::~XMLFilterTabDialog()
 
 void XMLFilterTabDialog::dispose()
 {
-    delete mpBasicPage;
-    delete mpXSLTPage;
+    mpBasicPage.disposeAndClear();
+    mpXSLTPage.disposeAndClear();
     delete mpNewInfo;
+    m_pTabCtrl.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
     TabDialog::dispose();
 }
 

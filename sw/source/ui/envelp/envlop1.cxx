@@ -235,6 +235,20 @@ SwEnvPage::SwEnvPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 SwEnvPage::~SwEnvPage()
 {
+    dispose();
+}
+
+void SwEnvPage::dispose()
+{
+    m_pAddrEdit.disposeAndClear();
+    m_pDatabaseLB.disposeAndClear();
+    m_pTableLB.disposeAndClear();
+    m_pDBFieldLB.disposeAndClear();
+    m_pInsertBT.disposeAndClear();
+    m_pSenderBox.disposeAndClear();
+    m_pSenderEdit.disposeAndClear();
+    m_pPreview.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 IMPL_LINK( SwEnvPage, DatabaseHdl, ListBox *, pListBox )

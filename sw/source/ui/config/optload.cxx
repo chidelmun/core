@@ -125,6 +125,30 @@ SwLoadOptPage::SwLoadOptPage(vcl::Window* pParent, const SfxItemSet& rSet)
     m_pShowStandardizedPageCount->SetClickHdl(aLink);
 }
 
+SwLoadOptPage::~SwLoadOptPage()
+{
+    dispose();
+}
+
+void SwLoadOptPage::dispose()
+{
+    m_pAlwaysRB.disposeAndClear();
+    m_pRequestRB.disposeAndClear();
+    m_pNeverRB.disposeAndClear();
+    m_pAutoUpdateFields.disposeAndClear();
+    m_pAutoUpdateCharts.disposeAndClear();
+    m_pMetricLB.disposeAndClear();
+    m_pTabFT.disposeAndClear();
+    m_pTabMF.disposeAndClear();
+    m_pUseSquaredPageMode.disposeAndClear();
+    m_pUseCharUnit.disposeAndClear();
+    m_pWordCountED.disposeAndClear();
+    m_pShowStandardizedPageCount.disposeAndClear();
+    m_pStandardizedPageSizeNF.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
+
 SfxTabPage* SwLoadOptPage::Create( vcl::Window* pParent,
                                 const SfxItemSet* rAttrSet )
 {
@@ -525,6 +549,24 @@ void SwCaptionOptPage::dispose()
 {
     DelUserData();
     delete pMgr;
+    m_pCheckLB.disposeAndClear();
+    m_pLbCaptionOrder.disposeAndClear();
+    m_pPreview.disposeAndClear();
+    m_pSettingsGroup.disposeAndClear();
+    m_pCategoryBox.disposeAndClear();
+    m_pFormatText.disposeAndClear();
+    m_pFormatBox.disposeAndClear();
+    m_pNumberingSeparatorFT.disposeAndClear();
+    m_pNumberingSeparatorED.disposeAndClear();
+    m_pTextText.disposeAndClear();
+    m_pTextEdit.disposeAndClear();
+    m_pPosBox.disposeAndClear();
+    m_pNumCapt.disposeAndClear();
+    m_pLbLevel.disposeAndClear();
+    m_pEdDelim.disposeAndClear();
+    m_pCategory.disposeAndClear();
+    m_pCharStyleLB.disposeAndClear();
+    m_pApplyBorderCB.disposeAndClear();
     SfxTabPage::dispose();
 }
 

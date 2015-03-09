@@ -101,6 +101,27 @@ ScTpContentOptions::~ScTpContentOptions()
 void ScTpContentOptions::dispose()
 {
     delete pLocalOptions;
+    pGridLB.disposeAndClear();
+    pColorFT.disposeAndClear();
+    pColorLB.disposeAndClear();
+    pBreakCB.disposeAndClear();
+    pGuideLineCB.disposeAndClear();
+    pFormulaCB.disposeAndClear();
+    pNilCB.disposeAndClear();
+    pAnnotCB.disposeAndClear();
+    pValueCB.disposeAndClear();
+    pAnchorCB.disposeAndClear();
+    pClipMarkCB.disposeAndClear();
+    pRangeFindCB.disposeAndClear();
+    pObjGrfLB.disposeAndClear();
+    pDiagramLB.disposeAndClear();
+    pDrawLB.disposeAndClear();
+    pSyncZoomCB.disposeAndClear();
+    pRowColHeaderCB.disposeAndClear();
+    pHScrollCB.disposeAndClear();
+    pVScrollCB.disposeAndClear();
+    pTblRegCB.disposeAndClear();
+    pOutlineCB.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -412,7 +433,29 @@ ScTpLayoutOptions::ScTpLayoutOptions(   vcl::Window* pParent,
 
 ScTpLayoutOptions::~ScTpLayoutOptions()
 {
+    dispose();
 }
+
+void ScTpLayoutOptions::dispose()
+{
+    m_pUnitLB.disposeAndClear();
+    m_pTabMF.disposeAndClear();
+    m_pAlwaysRB.disposeAndClear();
+    m_pRequestRB.disposeAndClear();
+    m_pNeverRB.disposeAndClear();
+    m_pAlignCB.disposeAndClear();
+    m_pAlignLB.disposeAndClear();
+    m_pEditModeCB.disposeAndClear();
+    m_pFormatCB.disposeAndClear();
+    m_pExpRefCB.disposeAndClear();
+    m_pSortRefUpdateCB.disposeAndClear();
+    m_pMarkHdrCB.disposeAndClear();
+    m_pTextFmtCB.disposeAndClear();
+    m_pReplWarnCB.disposeAndClear();
+    m_pLegacyCellSelectionCB.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 
 SfxTabPage* ScTpLayoutOptions::Create( vcl::Window*          pParent,
                                     const SfxItemSet*   rCoreSet )

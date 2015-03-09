@@ -65,6 +65,31 @@ CompressGraphicsDialog::CompressGraphicsDialog( vcl::Window* pParent, Graphic& r
     Initialize();
 }
 
+CompressGraphicsDialog::~CompressGraphicsDialog()
+{
+    dispose();
+}
+
+void CompressGraphicsDialog::dispose()
+{
+    m_pLabelGraphicType.disposeAndClear();
+    m_pFixedText2.disposeAndClear();
+    m_pFixedText3.disposeAndClear();
+    m_pFixedText5.disposeAndClear();
+    m_pFixedText6.disposeAndClear();
+    m_pReduceResolutionCB.disposeAndClear();
+    m_pMFNewWidth.disposeAndClear();
+    m_pMFNewHeight.disposeAndClear();
+    m_pResolutionLB.disposeAndClear();
+    m_pLosslessRB.disposeAndClear();
+    m_pJpegCompRB.disposeAndClear();
+    m_pCompressionMF.disposeAndClear();
+    m_pQualityMF.disposeAndClear();
+    m_pBtnCalculate.disposeAndClear();
+    m_pInterpolationCombo.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void CompressGraphicsDialog::Initialize()
 {
     get(m_pLabelGraphicType,    "label-graphic-type");

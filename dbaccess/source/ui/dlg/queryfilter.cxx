@@ -190,6 +190,27 @@ DlgFilterCrit::DlgFilterCrit(vcl::Window * pParent,
         m_pET_WHEREVALUE1->GrabFocus();
 }
 
+DlgFilterCrit::~DlgFilterCrit()
+{
+    dispose();
+}
+
+void DlgFilterCrit::dispose()
+{
+    m_pLB_WHEREFIELD1.disposeAndClear();
+    m_pLB_WHERECOMP1.disposeAndClear();
+    m_pET_WHEREVALUE1.disposeAndClear();
+    m_pLB_WHERECOND2.disposeAndClear();
+    m_pLB_WHEREFIELD2.disposeAndClear();
+    m_pLB_WHERECOMP2.disposeAndClear();
+    m_pET_WHEREVALUE2.disposeAndClear();
+    m_pLB_WHERECOND3.disposeAndClear();
+    m_pLB_WHEREFIELD3.disposeAndClear();
+    m_pLB_WHERECOMP3.disposeAndClear();
+    m_pET_WHEREVALUE3.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 #define LbText(x)       ((x).GetSelectEntry())
 #define LbPos(x)        ((x).GetSelectEntryPos())
 

@@ -89,6 +89,18 @@ WrapPropertyPanel::WrapPropertyPanel(
 
 WrapPropertyPanel::~WrapPropertyPanel()
 {
+    dispose();
+}
+
+void WrapPropertyPanel::dispose()
+{
+    mpRBNoWrap.disposeAndClear();
+    mpRBWrapLeft.disposeAndClear();
+    mpRBWrapRight.disposeAndClear();
+    mpRBWrapParallel.disposeAndClear();
+    mpRBWrapThrough.disposeAndClear();
+    mpRBIdealWrap.disposeAndClear();
+    PanelLayout::dispose();
 }
 
 void WrapPropertyPanel::Initialize()

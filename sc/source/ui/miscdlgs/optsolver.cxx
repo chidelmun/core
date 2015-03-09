@@ -53,6 +53,18 @@ ScSolverProgressDialog::ScSolverProgressDialog(vcl::Window* pParent)
     get(m_pFtTime, "progress");
 }
 
+ScSolverProgressDialog::~ScSolverProgressDialog()
+{
+    dispose();
+}
+
+void ScSolverProgressDialog::dispose()
+{
+    m_pFtTime.disposeAndClear();
+    ModelessDialog::dispose();
+}
+
+
 void ScSolverProgressDialog::HideTimeLimit()
 {
     m_pFtTime->Hide();
@@ -72,6 +84,17 @@ ScSolverNoSolutionDialog::ScSolverNoSolutionDialog( vcl::Window* pParent, const 
     m_pFtErrorText->SetText(rErrorText);
 }
 
+ScSolverNoSolutionDialog::~ScSolverNoSolutionDialog()
+{
+    dispose();
+}
+
+void ScSolverNoSolutionDialog::dispose()
+{
+    m_pFtErrorText.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 ScSolverSuccessDialog::ScSolverSuccessDialog( vcl::Window* pParent, const OUString& rSolution )
     : ModalDialog(pParent, "SolverSuccessDialog", "modules/scalc/ui/solversuccessdialog.ui")
 {
@@ -82,6 +105,19 @@ ScSolverSuccessDialog::ScSolverSuccessDialog( vcl::Window* pParent, const OUStri
     m_pBtnCancel->SetClickHdl(LINK(this, ScSolverSuccessDialog, ClickHdl));
     OUString aMessage = m_pFtResult->GetText() + " " + rSolution;
     m_pFtResult->SetText(aMessage);
+}
+
+ScSolverSuccessDialog::~ScSolverSuccessDialog()
+{
+    dispose();
+}
+
+void ScSolverSuccessDialog::dispose()
+{
+    m_pFtResult.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 IMPL_LINK( ScSolverSuccessDialog, ClickHdl, PushButton*, pBtn )
@@ -267,6 +303,63 @@ ScOptSolverDlg::ScOptSolverDlg( SfxBindings* pB, SfxChildWindow* pCW, vcl::Windo
 
 ScOptSolverDlg::~ScOptSolverDlg()
 {
+    dispose();
+}
+
+void ScOptSolverDlg::dispose()
+{
+    m_pFtObjectiveCell.disposeAndClear();
+    m_pEdObjectiveCell.disposeAndClear();
+    m_pRBObjectiveCell.disposeAndClear();
+    m_pRbMax.disposeAndClear();
+    m_pRbMin.disposeAndClear();
+    m_pRbValue.disposeAndClear();
+    m_pEdTargetValue.disposeAndClear();
+    m_pRBTargetValue.disposeAndClear();
+    m_pFtVariableCells.disposeAndClear();
+    m_pEdVariableCells.disposeAndClear();
+    m_pRBVariableCells.disposeAndClear();
+    m_pFtCellRef.disposeAndClear();
+    m_pEdLeft1.disposeAndClear();
+    m_pRBLeft1.disposeAndClear();
+    m_pFtOperator.disposeAndClear();
+    m_pLbOp1.disposeAndClear();
+    m_pFtConstraint.disposeAndClear();
+    m_pEdRight1.disposeAndClear();
+    m_pRBRight1.disposeAndClear();
+    m_pBtnDel1.disposeAndClear();
+    m_pEdLeft2.disposeAndClear();
+    m_pRBLeft2.disposeAndClear();
+    m_pLbOp2.disposeAndClear();
+    m_pEdRight2.disposeAndClear();
+    m_pRBRight2.disposeAndClear();
+    m_pBtnDel2.disposeAndClear();
+    m_pEdLeft3.disposeAndClear();
+    m_pRBLeft3.disposeAndClear();
+    m_pLbOp3.disposeAndClear();
+    m_pEdRight3.disposeAndClear();
+    m_pRBRight3.disposeAndClear();
+    m_pBtnDel3.disposeAndClear();
+    m_pEdLeft4.disposeAndClear();
+    m_pRBLeft4.disposeAndClear();
+    m_pLbOp4.disposeAndClear();
+    m_pEdRight4.disposeAndClear();
+    m_pRBRight4.disposeAndClear();
+    m_pBtnDel4.disposeAndClear();
+    m_pScrollBar.disposeAndClear();
+    m_pBtnOpt.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    m_pBtnSolve.disposeAndClear();
+    mpEdActive.disposeAndClear();
+    for (auto p : mpLeftButton)
+        p.disposeAndClear();
+    for (auto p : mpRightButton)
+        p.disposeAndClear();
+    for (auto p : mpOperator)
+        p.disposeAndClear();
+    for (auto p : mpDelButton)
+        p.disposeAndClear();
+    ScAnyRefDlg::dispose();
 }
 
 void ScOptSolverDlg::Init(const ScAddress& rCursorPos)
@@ -506,7 +599,7 @@ void ScOptSolverDlg::SetReference( const ScRange& rRef, ScDocument* pDocP )
 
 bool ScOptSolverDlg::IsRefInputMode() const
 {
-    return mpEdActive != NULL;
+    return mpEdActive != nullptr;
 }
 
 // Handler:

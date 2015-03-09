@@ -406,6 +406,38 @@ void SwMailMergeDlg::dispose()
         delete pData;
     }
     delete pImpl;
+    m_pBeamerWin.disposeAndClear();
+    m_pAllRB.disposeAndClear();
+    m_pMarkedRB.disposeAndClear();
+    m_pFromRB.disposeAndClear();
+    m_pFromNF.disposeAndClear();
+    m_pToNF.disposeAndClear();
+    m_pPrinterRB.disposeAndClear();
+    m_pMailingRB.disposeAndClear();
+    m_pFileRB.disposeAndClear();
+    m_pSingleJobsCB.disposeAndClear();
+    m_pSaveMergedDocumentFT.disposeAndClear();
+    m_pSaveSingleDocRB.disposeAndClear();
+    m_pSaveIndividualRB.disposeAndClear();
+    m_pGenerateFromDataBaseCB.disposeAndClear();
+    m_pColumnFT.disposeAndClear();
+    m_pColumnLB.disposeAndClear();
+    m_pPathFT.disposeAndClear();
+    m_pPathED.disposeAndClear();
+    m_pPathPB.disposeAndClear();
+    m_pFilterFT.disposeAndClear();
+    m_pFilterLB.disposeAndClear();
+    m_pAddressFldLB.disposeAndClear();
+    m_pSubjectFT.disposeAndClear();
+    m_pSubjectED.disposeAndClear();
+    m_pFormatFT.disposeAndClear();
+    m_pAttachFT.disposeAndClear();
+    m_pAttachED.disposeAndClear();
+    m_pAttachPB.disposeAndClear();
+    m_pFormatHtmlCB.disposeAndClear();
+    m_pFormatRtfCB.disposeAndClear();
+    m_pFormatSwCB.disposeAndClear();
+    m_pOkBTN.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 
@@ -639,11 +671,33 @@ SwMailMergeCreateFromDlg::SwMailMergeCreateFromDlg(vcl::Window* pParent)
     get(m_pThisDocRB, "document");
 }
 
+SwMailMergeCreateFromDlg::~SwMailMergeCreateFromDlg()
+{
+    dispose();
+}
+
+void SwMailMergeCreateFromDlg::dispose()
+{
+    m_pThisDocRB.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 SwMailMergeFieldConnectionsDlg::SwMailMergeFieldConnectionsDlg(vcl::Window* pParent)
     : ModalDialog(pParent, "MergeConnectDialog",
         "modules/swriter/ui/mergeconnectdialog.ui")
 {
     get(m_pUseExistingRB, "existing");
+}
+
+SwMailMergeFieldConnectionsDlg::~SwMailMergeFieldConnectionsDlg()
+{
+    dispose();
+}
+
+void SwMailMergeFieldConnectionsDlg::dispose()
+{
+    m_pUseExistingRB.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

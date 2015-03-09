@@ -55,6 +55,16 @@ SdPresLayoutDlg::SdPresLayoutDlg(::sd::DrawDocShell* pDocShell,
 
 SdPresLayoutDlg::~SdPresLayoutDlg()
 {
+    dispose();
+}
+
+void SdPresLayoutDlg::dispose()
+{
+    m_pVS.disposeAndClear();
+    m_pCbxMasterPage.disposeAndClear();
+    m_pCbxCheckMasters.disposeAndClear();
+    m_pBtnLoad.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 /**

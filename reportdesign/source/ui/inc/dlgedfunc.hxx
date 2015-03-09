@@ -41,7 +41,7 @@ class DlgEdFunc /* : public LinkHdl */
     DlgEdFunc(const DlgEdFunc&);
     void operator =(const DlgEdFunc&);
 protected:
-    OReportSection* m_pParent;
+    VclPtr<OReportSection> m_pParent;
     OSectionView&   m_rView;
     Timer           aScrollTimer;
     Point           m_aMDPos;

@@ -590,7 +590,7 @@ bool OpenGLContext::init( vcl::Window* pParent )
     if(mbInitialized)
         return true;
 
-    m_pWindow.reset(pParent ? NULL : new vcl::Window(0, WB_NOBORDER|WB_NODIALOGCONTROL));
+    m_pWindow = pParent ? NULL : new vcl::Window(0, WB_NOBORDER|WB_NODIALOGCONTROL);
     mpWindow = pParent ? pParent : m_pWindow.get();
     if(m_pWindow)
         m_pWindow->setPosSizePixel(0,0,0,0);

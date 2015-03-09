@@ -1872,7 +1872,7 @@ FmFilterNavigatorWin::~FmFilterNavigatorWin()
 
 void FmFilterNavigatorWin::dispose()
 {
-    delete m_pNavigator;
+    m_pNavigator.disposeAndClear();
     SfxDockingWindow::dispose();
 }
 
@@ -1996,7 +1996,7 @@ FmFilterNavigatorWinMgr::FmFilterNavigatorWinMgr( vcl::Window *_pParent, sal_uIn
 {
     pWindow = new FmFilterNavigatorWin( _pBindings, this, _pParent );
     eChildAlignment = SFX_ALIGN_NOALIGNMENT;
-    static_cast<SfxDockingWindow*>(pWindow)->Initialize( _pInfo );
+    static_cast<SfxDockingWindow*>(pWindow.get())->Initialize( _pInfo );
 }
 
 

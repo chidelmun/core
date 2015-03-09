@@ -106,11 +106,12 @@ public:
                             const OUString& rEditTitle,
                             const OUString& rDefault );
             virtual ~SwStringInputDlg();
+    virtual void dispose() SAL_OVERRIDE;
 
     OUString GetInputString() const;
 
 private:
-    Edit*           m_pEdInput;   // Edit obtains the focus.
+    VclPtr<Edit>           m_pEdInput;   // Edit obtains the focus.
 };
 
 SwStringInputDlg::SwStringInputDlg(vcl::Window* pParent, const OUString& rTitle,
@@ -131,6 +132,13 @@ OUString SwStringInputDlg::GetInputString() const
 
 SwStringInputDlg::~SwStringInputDlg()
 {
+    dispose();
+}
+
+void SwStringInputDlg::dispose()
+{
+    m_pEdInput.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 // AutoFormat-Dialogue:
@@ -183,6 +191,19 @@ void SwAutoFormatDlg::dispose()
     if (bCoreDataChanged)
         pTableTbl->Save();
     delete pTableTbl;
+    m_pLbFormat.disposeAndClear();
+    m_pFormatting.disposeAndClear();
+    m_pBtnNumFormat.disposeAndClear();
+    m_pBtnBorder.disposeAndClear();
+    m_pBtnFont.disposeAndClear();
+    m_pBtnPattern.disposeAndClear();
+    m_pBtnAlignment.disposeAndClear();
+    m_pBtnOk.disposeAndClear();
+    m_pBtnCancel.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnRemove.disposeAndClear();
+    m_pBtnRename.disposeAndClear();
+    m_pWndPreview.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

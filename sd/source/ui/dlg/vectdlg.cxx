@@ -72,6 +72,22 @@ SdVectorizeDlg::SdVectorizeDlg(vcl::Window* pParent, const Bitmap& rBmp, ::sd::D
 
 SdVectorizeDlg::~SdVectorizeDlg()
 {
+    dispose();
+}
+
+void SdVectorizeDlg::dispose()
+{
+    m_pNmLayers.disposeAndClear();
+    m_pMtReduce.disposeAndClear();
+    m_pFtFillHoles.disposeAndClear();
+    m_pMtFillHoles.disposeAndClear();
+    m_pCbFillHoles.disposeAndClear();
+    m_pBmpWin.disposeAndClear();
+    m_pMtfWin.disposeAndClear();
+    m_pPrgs.disposeAndClear();
+    m_pBtnOK.disposeAndClear();
+    m_pBtnPreview.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 Rectangle SdVectorizeDlg::GetRect( const Size& rDispSize, const Size& rBmpSize ) const

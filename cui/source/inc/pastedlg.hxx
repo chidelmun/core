@@ -39,9 +39,9 @@ class TransferableDataHelper;
 
 class SvPasteObjectDialog : public ModalDialog
 {
-    FixedText* m_pFtObjectSource;
-    ListBox* m_pLbInsertList;
-    OKButton* m_pOKButton;
+    VclPtr<FixedText> m_pFtObjectSource;
+    VclPtr<ListBox> m_pLbInsertList;
+    VclPtr<OKButton> m_pOKButton;
     ::std::map< SotFormatStringId, OUString > aSupplementMap;
     SvGlobalName    aObjClassName;
     OUString        aObjName;
@@ -55,6 +55,8 @@ class SvPasteObjectDialog : public ModalDialog
 
 public:
                 SvPasteObjectDialog( vcl::Window* pParent );
+    virtual     ~SvPasteObjectDialog();
+    virtual void dispose() SAL_OVERRIDE;
 
     void        Insert( SotFormatStringId nFormat, const OUString & rFormatName );
     void        SetObjName( const SvGlobalName & rClass, const OUString & rObjName );

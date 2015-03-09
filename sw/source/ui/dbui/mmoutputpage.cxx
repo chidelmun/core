@@ -194,8 +194,8 @@ IMPL_LINK( SwSendQueryBox_Impl, ModifyHdl, Edit*, pEdit)
 
 class SwCopyToDialog : public SfxModalDialog
 {
-    Edit* m_pCCED;
-    Edit* m_pBCCED;
+    VclPtr<Edit> m_pCCED;
+    VclPtr<Edit> m_pBCCED;
 
 public:
     SwCopyToDialog(vcl::Window* pParent)
@@ -204,6 +204,13 @@ public:
     {
         get(m_pCCED, "cc");
         get(m_pBCCED, "bcc");
+    }
+    virtual ~SwCopyToDialog() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        m_pCCED.disposeAndClear();
+        m_pBCCED.disposeAndClear();
+        SfxModalDialog::dispose();
     }
 
     OUString GetCC() {return m_pCCED->GetText();}
@@ -306,6 +313,37 @@ SwMailMergeOutputPage::~SwMailMergeOutputPage()
 void SwMailMergeOutputPage::dispose()
 {
     delete m_pTempPrinter;
+    m_pSaveStartDocRB.disposeAndClear();
+    m_pSaveMergedDocRB.disposeAndClear();
+    m_pPrintRB.disposeAndClear();
+    m_pSendMailRB.disposeAndClear();
+    m_pSeparator.disposeAndClear();
+    m_pSaveStartDocPB.disposeAndClear();
+    m_pSaveAsOneRB.disposeAndClear();
+    m_pSaveIndividualRB.disposeAndClear();
+    m_pPrintAllRB.disposeAndClear();
+    m_pSendAllRB.disposeAndClear();
+    m_pFromRB.disposeAndClear();
+    m_pFromNF.disposeAndClear();
+    m_pToFT.disposeAndClear();
+    m_pToNF.disposeAndClear();
+    m_pSaveNowPB.disposeAndClear();
+    m_pPrinterFT.disposeAndClear();
+    m_pPrinterLB.disposeAndClear();
+    m_pPrinterSettingsPB.disposeAndClear();
+    m_pPrintNowPB.disposeAndClear();
+    m_pMailToFT.disposeAndClear();
+    m_pMailToLB.disposeAndClear();
+    m_pCopyToPB.disposeAndClear();
+    m_pSubjectFT.disposeAndClear();
+    m_pSubjectED.disposeAndClear();
+    m_pSendAsFT.disposeAndClear();
+    m_pSendAsLB.disposeAndClear();
+    m_pAttachmentGroup.disposeAndClear();
+    m_pAttachmentED.disposeAndClear();
+    m_pSendAsPB.disposeAndClear();
+    m_pSendDocumentsPB.disposeAndClear();
+    m_pWizard.disposeAndClear();
     svt::OWizardPage::dispose();
 }
 
@@ -485,7 +523,7 @@ IMPL_LINK(SwMailMergeOutputPage, OutputTypeHdl_Impl, RadioButton*, pButton)
             SendTypeHdl_Impl(m_pSendAsLB);
         }
     }
-    m_pFromRB->GetClickHdl().Call(m_pFromRB->IsChecked() ? m_pFromRB : 0);
+    m_pFromRB->GetClickHdl().Call(m_pFromRB->IsChecked() ? m_pFromRB.get() : 0);
 
     SetUpdateMode(false);
     return 0;

@@ -48,7 +48,7 @@ namespace dbaui
     // SpecialSettingsPage
     struct BooleanSettingDesc
     {
-        CheckBox**  ppControl;          // the dialog's control which displays this setting
+        VclPtr<CheckBox>& ppControl;          // the dialog's control which displays this setting
         OString     sControlId;         // the widget name of the control in the .ui
         sal_uInt16  nItemId;            // the ID of the item (in an SfxItemSet) which corresponds to this setting
         bool        bInvertedDisplay;   // true if and only if the checkbox is checked when the item is sal_False, and vice versa
@@ -95,13 +95,13 @@ namespace dbaui
             sal_uInt16 nItemId = setting->nItemId;
             if ( rFeatures.has( nItemId ) )
             {
-                get((*setting->ppControl), setting->sControlId);
-                (*setting->ppControl)->SetClickHdl( getControlModifiedLink() );
+                get(setting->ppControl, setting->sControlId);
+                setting->ppControl->SetClickHdl( getControlModifiedLink() );
 
                 // check whether this must be a tristate check box
                 const SfxPoolItem& rItem = _rCoreAttrs.Get( nItemId );
                 if ( rItem.ISA( OptionalBoolItem ) )
-                    (*setting->ppControl)->EnableTriState( true );
+                    setting->ppControl->EnableTriState( true );
             }
         }
 
@@ -139,6 +139,26 @@ namespace dbaui
     void SpecialSettingsPage::dispose()
     {
         m_aControlDependencies.clear();
+        m_pIsSQL92Check.disposeAndClear();
+        m_pAppendTableAlias.disposeAndClear();
+        m_pAsBeforeCorrelationName.disposeAndClear();
+        m_pEnableOuterJoin.disposeAndClear();
+        m_pIgnoreDriverPrivileges.disposeAndClear();
+        m_pParameterSubstitution.disposeAndClear();
+        m_pSuppressVersionColumn.disposeAndClear();
+        m_pCatalog.disposeAndClear();
+        m_pSchema.disposeAndClear();
+        m_pIndexAppendix.disposeAndClear();
+        m_pDosLineEnds.disposeAndClear();
+        m_pCheckRequiredFields.disposeAndClear();
+        m_pIgnoreCurrency.disposeAndClear();
+        m_pEscapeDateTime.disposeAndClear();
+        m_pPrimaryKeySupport.disposeAndClear();
+        m_pRespectDriverResultSetType.disposeAndClear();
+        m_pBooleanComparisonModeLabel.disposeAndClear();
+        m_pBooleanComparisonMode.disposeAndClear();
+        m_pMaxRowScanLabel.disposeAndClear();
+        m_pMaxRowScan.disposeAndClear();
         OGenericAdministrationPage::dispose();
     }
 
@@ -148,28 +168,27 @@ namespace dbaui
 
         // for easier maintenance, write the table in this form, then copy it to m_aBooleanSettings
         BooleanSettingDesc aSettings[] = {
-            { &m_pIsSQL92Check,                 "usesql92",        DSID_SQL92CHECK,            false },
-            { &m_pAppendTableAlias,             "append",          DSID_APPEND_TABLE_ALIAS,    false },
-            { &m_pAsBeforeCorrelationName,      "useas",           DSID_AS_BEFORE_CORRNAME,    false },
-            { &m_pEnableOuterJoin,              "useoj",           DSID_ENABLEOUTERJOIN,       false },
-            { &m_pIgnoreDriverPrivileges,       "ignoreprivs",     DSID_IGNOREDRIVER_PRIV,     false },
-            { &m_pParameterSubstitution,        "replaceparams",   DSID_PARAMETERNAMESUBST,    false },
-            { &m_pSuppressVersionColumn,        "displayver",      DSID_SUPPRESSVERSIONCL,     true },
-            { &m_pCatalog,                      "usecatalogname",  DSID_CATALOG,               false },
-            { &m_pSchema,                       "useschemaname",   DSID_SCHEMA,                false },
-            { &m_pIndexAppendix,                "createindex",     DSID_INDEXAPPENDIX,         false },
-            { &m_pDosLineEnds,                  "eol",             DSID_DOSLINEENDS,           false },
-            { &m_pIgnoreCurrency,               "inputchecks",     DSID_IGNORECURRENCY,        false },
-            { &m_pCheckRequiredFields,          "ignorecurrency",  DSID_CHECK_REQUIRED_FIELDS, false },
-            { &m_pEscapeDateTime,               "useodbcliterals", DSID_ESCAPE_DATETIME,       false },
-            { &m_pPrimaryKeySupport,            "primarykeys",     DSID_PRIMARY_KEY_SUPPORT,   false },
-            { &m_pRespectDriverResultSetType,   "resulttype",      DSID_RESPECTRESULTSETTYPE,  false },
-            { NULL,                             "",                0,                          false }
+            { m_pIsSQL92Check,                 "usesql92",        DSID_SQL92CHECK,            false },
+            { m_pAppendTableAlias,             "append",          DSID_APPEND_TABLE_ALIAS,    false },
+            { m_pAsBeforeCorrelationName,      "useas",           DSID_AS_BEFORE_CORRNAME,    false },
+            { m_pEnableOuterJoin,              "useoj",           DSID_ENABLEOUTERJOIN,       false },
+            { m_pIgnoreDriverPrivileges,       "ignoreprivs",     DSID_IGNOREDRIVER_PRIV,     false },
+            { m_pParameterSubstitution,        "replaceparams",   DSID_PARAMETERNAMESUBST,    false },
+            { m_pSuppressVersionColumn,        "displayver",      DSID_SUPPRESSVERSIONCL,     true },
+            { m_pCatalog,                      "usecatalogname",  DSID_CATALOG,               false },
+            { m_pSchema,                       "useschemaname",   DSID_SCHEMA,                false },
+            { m_pIndexAppendix,                "createindex",     DSID_INDEXAPPENDIX,         false },
+            { m_pDosLineEnds,                  "eol",             DSID_DOSLINEENDS,           false },
+            { m_pIgnoreCurrency,               "inputchecks",     DSID_IGNORECURRENCY,        false },
+            { m_pCheckRequiredFields,          "ignorecurrency",  DSID_CHECK_REQUIRED_FIELDS, false },
+            { m_pEscapeDateTime,               "useodbcliterals", DSID_ESCAPE_DATETIME,       false },
+            { m_pPrimaryKeySupport,            "primarykeys",     DSID_PRIMARY_KEY_SUPPORT,   false },
+            { m_pRespectDriverResultSetType,   "resulttype",      DSID_RESPECTRESULTSETTYPE,  false },
         };
 
-        for ( const BooleanSettingDesc* pCopy = aSettings; pCopy->nItemId != 0; ++pCopy )
+        for ( const BooleanSettingDesc& pCopy : aSettings )
         {
-            m_aBooleanSettings.push_back( *pCopy );
+            m_aBooleanSettings.push_back( pCopy );
         }
     }
 
@@ -192,9 +211,9 @@ namespace dbaui
                 ++setting
              )
         {
-            if ( *setting->ppControl )
+            if ( setting->ppControl )
             {
-                _rControlList.push_back( new OSaveValueWrapper< CheckBox >( *setting->ppControl ) );
+                _rControlList.push_back( new OSaveValueWrapper< CheckBox >( setting->ppControl ) );
             }
         }
 
@@ -222,7 +241,7 @@ namespace dbaui
                 ++setting
              )
         {
-            if ( !*setting->ppControl )
+            if ( !setting->ppControl )
                 continue;
 
             ::boost::optional< bool > aValue(false);
@@ -242,14 +261,14 @@ namespace dbaui
 
             if ( !aValue )
             {
-                (*setting->ppControl)->SetState( TRISTATE_INDET );
+                setting->ppControl->SetState( TRISTATE_INDET );
             }
             else
             {
                 bool bValue = *aValue;
                 if ( setting->bInvertedDisplay )
                     bValue = !bValue;
-                (*setting->ppControl)->Check( bValue );
+                setting->ppControl->Check( bValue );
             }
         }
 
@@ -279,9 +298,9 @@ namespace dbaui
                 ++setting
              )
         {
-            if ( !*setting->ppControl )
+            if ( !setting->ppControl )
                 continue;
-            fillBool( *_rSet, *setting->ppControl, setting->nItemId, bChangedSomething, setting->bInvertedDisplay );
+            fillBool( *_rSet, setting->ppControl, setting->nItemId, bChangedSomething, setting->bInvertedDisplay );
         }
 
         // the non-boolean items
@@ -328,6 +347,12 @@ namespace dbaui
     void GeneratedValuesPage::dispose()
     {
         m_aControlDependencies.clear();
+        m_pAutoFrame.disposeAndClear();
+        m_pAutoRetrievingEnabled.disposeAndClear();
+        m_pAutoIncrementLabel.disposeAndClear();
+        m_pAutoIncrement.disposeAndClear();
+        m_pAutoRetrievingLabel.disposeAndClear();
+        m_pAutoRetrieving.disposeAndClear();
         OGenericAdministrationPage::dispose();
     }
 

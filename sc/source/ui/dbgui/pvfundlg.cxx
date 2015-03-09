@@ -214,6 +214,25 @@ ScDPFunctionDlg::ScDPFunctionDlg(
     Init( rLabelData, rFuncData );
 }
 
+ScDPFunctionDlg::~ScDPFunctionDlg()
+{
+    dispose();
+}
+
+void ScDPFunctionDlg::dispose()
+{
+    mpLbFunc.disposeAndClear();
+    mpFtName.disposeAndClear();
+    mpLbType.disposeAndClear();
+    mpFtBaseField.disposeAndClear();
+    mpLbBaseField.disposeAndClear();
+    mpFtBaseItem.disposeAndClear();
+    mpLbBaseItem.disposeAndClear();
+    mpBtnOk.disposeAndClear();
+    ModalDialog::dispose();
+}
+
+
 sal_uInt16 ScDPFunctionDlg::GetFuncMask() const
 {
     return mpLbFunc->GetSelection();
@@ -430,6 +449,24 @@ ScDPSubtotalDlg::ScDPSubtotalDlg( vcl::Window* pParent, ScDPObject& rDPObj,
     Init( rLabelData, rFuncData );
 }
 
+ScDPSubtotalDlg::~ScDPSubtotalDlg()
+{
+    dispose();
+}
+
+void ScDPSubtotalDlg::dispose()
+{
+    mpRbNone.disposeAndClear();
+    mpRbAuto.disposeAndClear();
+    mpRbUser.disposeAndClear();
+    mpLbFunc.disposeAndClear();
+    mpFtName.disposeAndClear();
+    mpCbShowAll.disposeAndClear();
+    mpBtnOk.disposeAndClear();
+    mpBtnOptions.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 sal_uInt16 ScDPSubtotalDlg::GetFuncMask() const
 {
     sal_uInt16 nFuncMask = PIVOT_FUNC_NONE;
@@ -540,6 +577,34 @@ ScDPSubtotalOptDlg::ScDPSubtotalOptDlg( vcl::Window* pParent, ScDPObject& rDPObj
     m_xLbShowFromWrp.reset(new ScDPListBoxWrapper(*m_pLbShowFrom, spShowFromMap));
 
     Init( rDataFields, bEnableLayout );
+}
+
+ScDPSubtotalOptDlg::~ScDPSubtotalOptDlg()
+{
+    dispose();
+}
+
+void ScDPSubtotalOptDlg::dispose()
+{
+    m_pLbSortBy.disposeAndClear();
+    m_pRbSortAsc.disposeAndClear();
+    m_pRbSortDesc.disposeAndClear();
+    m_pRbSortMan.disposeAndClear();
+    m_pLayoutFrame.disposeAndClear();
+    m_pLbLayout.disposeAndClear();
+    m_pCbLayoutEmpty.disposeAndClear();
+    m_pCbShow.disposeAndClear();
+    m_pNfShow.disposeAndClear();
+    m_pFtShow.disposeAndClear();
+    m_pFtShowFrom.disposeAndClear();
+    m_pLbShowFrom.disposeAndClear();
+    m_pFtShowUsing.disposeAndClear();
+    m_pLbShowUsing.disposeAndClear();
+    m_pHideFrame.disposeAndClear();
+    m_pLbHide.disposeAndClear();
+    m_pFtHierarchy.disposeAndClear();
+    m_pLbHierarchy.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 void ScDPSubtotalOptDlg::FillLabelData( ScDPLabelData& rLabelData ) const
@@ -791,6 +856,18 @@ ScDPShowDetailDlg::ScDPShowDetailDlg( vcl::Window* pParent, ScDPObject& rDPObj, 
         mpLbDims->SelectEntryPos( 0 );
 
     mpLbDims->SetDoubleClickHdl( LINK( this, ScDPShowDetailDlg, DblClickHdl ) );
+}
+
+ScDPShowDetailDlg::~ScDPShowDetailDlg()
+{
+    dispose();
+}
+
+void ScDPShowDetailDlg::dispose()
+{
+    mpLbDims.disposeAndClear();
+    mpBtnOk.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 short ScDPShowDetailDlg::Execute()

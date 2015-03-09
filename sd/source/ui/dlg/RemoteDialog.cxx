@@ -30,6 +30,19 @@ RemoteDialog::RemoteDialog( vcl::Window *pWindow )
     m_pButtonClose->SetClickHdl( LINK( this, RemoteDialog, CloseHdl ) );
 }
 
+RemoteDialog::~RemoteDialog()
+{
+    dispose();
+}
+
+void RemoteDialog::dispose()
+{
+    m_pButtonConnect.disposeAndClear();
+    m_pButtonClose.disposeAndClear();
+    m_pClientBox.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 IMPL_LINK_NOARG(RemoteDialog, HandleConnectButton)
 {
 //     setBusy( true );

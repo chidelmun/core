@@ -36,6 +36,31 @@
 
 using namespace com::sun::star;
 
+LoginDialog::~LoginDialog()
+{
+    dispose();
+}
+
+void LoginDialog::dispose()
+{
+    m_pErrorFT.disposeAndClear();
+    m_pErrorInfo.disposeAndClear();
+    m_pRequestInfo.disposeAndClear();
+    m_pPathFT.disposeAndClear();
+    m_pPathED.disposeAndClear();
+    m_pPathBtn.disposeAndClear();
+    m_pNameFT.disposeAndClear();
+    m_pNameED.disposeAndClear();
+    m_pPasswordFT.disposeAndClear();
+    m_pPasswordED.disposeAndClear();
+    m_pAccountFT.disposeAndClear();
+    m_pAccountED.disposeAndClear();
+    m_pSavePasswdBtn.disposeAndClear();
+    m_pUseSysCredsCB.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void LoginDialog::HideControls_Impl( sal_uInt16 nFlags )
 {
     if ( ( nFlags & LF_NO_PATH ) == LF_NO_PATH )

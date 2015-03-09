@@ -65,6 +65,19 @@ ScMoveTableDlg::ScMoveTableDlg(vcl::Window* pParent, const OUString& rDefault)
 
 ScMoveTableDlg::~ScMoveTableDlg()
 {
+    dispose();
+}
+
+void ScMoveTableDlg::dispose()
+{
+    pBtnMove.disposeAndClear();
+    pBtnCopy.disposeAndClear();
+    pLbDoc.disposeAndClear();
+    pLbTable.disposeAndClear();
+    pEdTabName.disposeAndClear();
+    pFtWarn.disposeAndClear();
+    pBtnOk.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 void ScMoveTableDlg::GetTabNameString( OUString& rString ) const

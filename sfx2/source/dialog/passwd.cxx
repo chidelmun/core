@@ -125,7 +125,29 @@ SfxPasswordDialog::SfxPasswordDialog(vcl::Window* pParent, const OUString* pGrou
     SetPasswdText();
 }
 
+SfxPasswordDialog::~SfxPasswordDialog()
+{
+    dispose();
+}
 
+void SfxPasswordDialog::dispose()
+{
+    mpPassword1Box.disposeAndClear();
+    mpUserFT.disposeAndClear();
+    mpUserED.disposeAndClear();
+    mpPassword1FT.disposeAndClear();
+    mpPassword1ED.disposeAndClear();
+    mpConfirm1FT.disposeAndClear();
+    mpConfirm1ED.disposeAndClear();
+    mpPassword2Box.disposeAndClear();
+    mpPassword2FT.disposeAndClear();
+    mpPassword2ED.disposeAndClear();
+    mpConfirm2FT.disposeAndClear();
+    mpConfirm2ED.disposeAndClear();
+    mpMinLengthFT.disposeAndClear();
+    mpOKBtn.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 void SfxPasswordDialog::SetPasswdText( )
 {

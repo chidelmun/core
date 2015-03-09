@@ -131,6 +131,13 @@ void SvxPostItDialog::dispose()
 {
     delete pOutSet;
     pOutSet = 0;
+    m_pLastEditFT.disposeAndClear();
+    m_pEditED.disposeAndClear();
+    m_pInsertAuthor.disposeAndClear();
+    m_pAuthorBtn.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
+    m_pPrevBtn.disposeAndClear();
+    m_pNextBtn.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

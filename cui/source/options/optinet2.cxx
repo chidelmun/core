@@ -210,6 +210,32 @@ SvxProxyTabPage::SvxProxyTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
         aArgumentList );
 }
 
+SvxProxyTabPage::~SvxProxyTabPage()
+{
+    dispose();
+}
+
+void SvxProxyTabPage::dispose()
+{
+    m_pProxyModeLB.disposeAndClear();
+    m_pHttpProxyFT.disposeAndClear();
+    m_pHttpProxyED.disposeAndClear();
+    m_pHttpPortFT.disposeAndClear();
+    m_pHttpPortED.disposeAndClear();
+    m_pHttpsProxyFT.disposeAndClear();
+    m_pHttpsProxyED.disposeAndClear();
+    m_pHttpsPortFT.disposeAndClear();
+    m_pHttpsPortED.disposeAndClear();
+    m_pFtpProxyFT.disposeAndClear();
+    m_pFtpProxyED.disposeAndClear();
+    m_pFtpPortFT.disposeAndClear();
+    m_pFtpPortED.disposeAndClear();
+    m_pNoProxyForFT.disposeAndClear();
+    m_pNoProxyForED.disposeAndClear();
+    m_pNoProxyDescFT.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 SfxTabPage* SvxProxyTabPage::Create(vcl::Window* pParent, const SfxItemSet* rAttrSet )
 {
     return new SvxProxyTabPage(pParent, *rAttrSet);
@@ -619,12 +645,20 @@ SvxSecurityTabPage::~SvxSecurityTabPage()
 
 void SvxSecurityTabPage::dispose()
 {
-    delete mpCertPathDlg;
-    mpCertPathDlg = NULL;
     delete mpSecOptions;
     mpSecOptions = NULL;
-    delete mpSecOptDlg;
-    mpSecOptDlg = NULL;
+    mpCertPathDlg.disposeAndClear();
+    mpSecOptDlg.disposeAndClear();
+    m_pSecurityOptionsPB.disposeAndClear();
+    m_pSavePasswordsCB.disposeAndClear();
+    m_pShowConnectionsPB.disposeAndClear();
+    m_pMasterPasswordCB.disposeAndClear();
+    m_pMasterPasswordFT.disposeAndClear();
+    m_pMasterPasswordPB.disposeAndClear();
+    m_pMacroSecFrame.disposeAndClear();
+    m_pMacroSecPB.disposeAndClear();
+    m_pCertFrame.disposeAndClear();
+    m_pCertPathPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1045,6 +1079,10 @@ void SvxEMailTabPage::dispose()
 {
     delete pImpl;
     pImpl = NULL;
+    m_pMailContainer.disposeAndClear();
+    m_pMailerURLFI.disposeAndClear();
+    m_pMailerURLED.disposeAndClear();
+    m_pMailerURLPB.disposeAndClear();
     SfxTabPage::dispose();
 }
 

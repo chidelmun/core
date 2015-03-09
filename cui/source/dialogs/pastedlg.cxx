@@ -52,6 +52,19 @@ SvPasteObjectDialog::SvPasteObjectDialog( vcl::Window* pParent )
     ObjectLB().SetDoubleClickHdl( LINK( this, SvPasteObjectDialog, DoubleClickHdl ) );
 }
 
+SvPasteObjectDialog::~SvPasteObjectDialog()
+{
+    dispose();
+}
+
+void SvPasteObjectDialog::dispose()
+{
+    m_pFtObjectSource.disposeAndClear();
+    m_pLbInsertList.disposeAndClear();
+    m_pOKButton.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 void SvPasteObjectDialog::SelectObject()
 {
     if (m_pLbInsertList->GetEntryCount())

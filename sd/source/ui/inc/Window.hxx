@@ -149,7 +149,7 @@ public:
     void SetUseDropScroll (bool bUseDropScroll);
     void DropScroll (const Point& rMousePos);
 protected:
-    ::sd::Window* mpShareWin;
+    VclPtr<::sd::Window> mpShareWin;
     Point maWinPos;
     Point maViewOrigin;
     Size maViewSize;

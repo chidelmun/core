@@ -50,6 +50,17 @@ OWizardPage::OWizardPage(vcl::Window* pParent, const OString& rID, const OUStrin
 {
 }
 
+OWizardPage::~OWizardPage()
+{
+    dispose();
+}
+
+void OWizardPage::dispose()
+{
+    m_pParent.disposeAndClear();
+    TabPage::dispose();
+}
+
 // OWizColumnSelect
 OWizColumnSelect::OWizColumnSelect( vcl::Window* pParent)
     :OWizardPage( pParent, "ApplyColPage", "dbaccess/ui/applycolpage.ui")
@@ -95,6 +106,12 @@ void OWizColumnSelect::dispose()
         m_pNewColumnNames->RemoveEntry(0);
     }
     m_pNewColumnNames->Clear();
+    m_pOrgColumnNames.disposeAndClear();
+    m_pColumn_RH.disposeAndClear();
+    m_pColumns_RH.disposeAndClear();
+    m_pColumn_LH.disposeAndClear();
+    m_pColumns_LH.disposeAndClear();
+    m_pNewColumnNames.disposeAndClear();
     OWizardPage::dispose();
 }
 

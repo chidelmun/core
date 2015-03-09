@@ -44,7 +44,7 @@ Reference< view::XRenderable > Shell::GetRenderable()
 
 bool Shell::HasSelection( bool /* bText */ ) const
 {
-    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin))
+    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin.get()))
     {
         TextView* pEditView = pMCurWin->GetEditView();
         if ( pEditView && pEditView->HasSelection() )
@@ -56,7 +56,7 @@ bool Shell::HasSelection( bool /* bText */ ) const
 OUString Shell::GetSelectionText( bool bWholeWord )
 {
     OUString aText;
-    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin))
+    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin.get()))
     {
         if (TextView* pEditView = pMCurWin->GetEditView())
         {
@@ -217,20 +217,20 @@ ModulWindow* Shell::FindBasWin (
 
 void Shell::Move()
 {
-    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin))
+    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin.get()))
         pMCurWin->FrameWindowMoved();
 }
 
 void Shell::ShowCursor( bool bOn )
 {
-    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin))
+    if (ModulWindow* pMCurWin = dynamic_cast<ModulWindow*>(pCurWin.get()))
         pMCurWin->ShowCursor(bOn);
 }
 
 // only if basic window above:
 void Shell::ExecuteBasic( SfxRequest& rReq )
 {
-    if (dynamic_cast<ModulWindow*>(pCurWin))
+    if (dynamic_cast<ModulWindow*>(pCurWin.get()))
     {
         pCurWin->ExecuteCommand( rReq );
         if (nShellCount)

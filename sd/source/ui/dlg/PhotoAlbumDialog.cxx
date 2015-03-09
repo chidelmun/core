@@ -75,6 +75,22 @@ SdPhotoAlbumDialog::SdPhotoAlbumDialog(vcl::Window* pWindow, SdDrawDocument* pAc
 
 SdPhotoAlbumDialog::~SdPhotoAlbumDialog()
 {
+    dispose();
+}
+
+void SdPhotoAlbumDialog::dispose()
+{
+    pCancelBtn.disposeAndClear();
+    pCreateBtn.disposeAndClear();
+    pAddBtn.disposeAndClear();
+    pUpBtn.disposeAndClear();
+    pDownBtn.disposeAndClear();
+    pRemoveBtn.disposeAndClear();
+    pImagesLst.disposeAndClear();
+    pImg.disposeAndClear();
+    pInsTypeCombo.disposeAndClear();
+    pASRCheck.disposeAndClear();
+    ModalDialog::dispose();
 }
 
 IMPL_LINK_NOARG(SdPhotoAlbumDialog, CancelHdl)

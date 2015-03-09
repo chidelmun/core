@@ -1025,7 +1025,7 @@ public:
 private:
     ChartView* mpView;
     bool mbContextDestroyed;
-    OpenGLWindow* mpWindow;
+    VclPtr<OpenGLWindow> mpWindow;
 };
 
 GL2DRenderer::GL2DRenderer(ChartView* pView):

@@ -41,6 +41,15 @@ ScTpPrintOptions::ScTpPrintOptions( vcl::Window*           pParent,
 
 ScTpPrintOptions::~ScTpPrintOptions()
 {
+    dispose();
+}
+
+void ScTpPrintOptions::dispose()
+{
+    m_pSkipEmptyPagesCB.disposeAndClear();
+    m_pSelectedSheetsCB.disposeAndClear();
+    m_pForceBreaksCB.disposeAndClear();
+    SfxTabPage::dispose();
 }
 
 SfxTabPage* ScTpPrintOptions::Create( vcl::Window* pParent, const SfxItemSet* rAttrSet )

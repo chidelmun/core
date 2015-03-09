@@ -130,7 +130,7 @@ protected:
         ::boost::scoped_ptr<DialControlBmp>      mpBmpDisabled;
         ::boost::scoped_ptr<DialControlBmp>      mpBmpBuffered;
         Link                maModifyHdl;
-        NumericField*       mpLinkField;
+        VclPtr<NumericField>       mpLinkField;
         sal_Int32           mnLinkedFieldValueMultiplyer;
         Size                maWinSize;
         vcl::Font           maWinFont;

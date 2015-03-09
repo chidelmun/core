@@ -336,10 +336,10 @@ static inline OUString lcl_GetPropertyName( EID_OPTIONS eEntryId )
 
 class OptionsBreakSet : public ModalDialog
 {
-    VclFrame*       m_pBeforeFrame;
-    VclFrame*       m_pAfterFrame;
-    VclFrame*       m_pMinimalFrame;
-    NumericField*   m_pBreakNF;
+    VclPtr<VclFrame>       m_pBeforeFrame;
+    VclPtr<VclFrame>       m_pAfterFrame;
+    VclPtr<VclFrame>       m_pMinimalFrame;
+    VclPtr<NumericField>   m_pBreakNF;
 
 public:
     OptionsBreakSet(vcl::Window* pParent, sal_uInt16 nRID)
@@ -370,6 +370,15 @@ public:
             m_pMinimalFrame->Show();
             get(m_pBreakNF, "wordlength");
         }
+    }
+    virtual ~OptionsBreakSet() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        m_pBeforeFrame.disposeAndClear();
+        m_pAfterFrame.disposeAndClear();
+        m_pMinimalFrame.disposeAndClear();
+        m_pBreakNF.disposeAndClear();
+        ModalDialog::dispose();
     }
 
     NumericField&   GetNumericFld()
@@ -1136,6 +1145,17 @@ void SvxLinguTabPage::dispose()
 {
     delete pLinguData;
     pLinguData = NULL;
+    m_pLinguModulesFT.disposeAndClear();
+    m_pLinguModulesCLB.disposeAndClear();
+    m_pLinguModulesEditPB.disposeAndClear();
+    m_pLinguDicsFT.disposeAndClear();
+    m_pLinguDicsCLB.disposeAndClear();
+    m_pLinguDicsNewPB.disposeAndClear();
+    m_pLinguDicsEditPB.disposeAndClear();
+    m_pLinguDicsDelPB.disposeAndClear();
+    m_pLinguOptionsCLB.disposeAndClear();
+    m_pLinguOptionsEditPB.disposeAndClear();
+    m_pMoreDictsLink.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1919,6 +1939,13 @@ void SvxEditModulesDlg::dispose()
 {
     delete pDefaultLinguData;
     pDefaultLinguData = NULL;
+    m_pLanguageLB.disposeAndClear();
+    m_pModulesCLB.disposeAndClear();
+    m_pPrioUpPB.disposeAndClear();
+    m_pPrioDownPB.disposeAndClear();
+    m_pBackPB.disposeAndClear();
+    m_pMoreDictsLink.disposeAndClear();
+    m_pClosePB.disposeAndClear();
     ModalDialog::dispose();
 }
 

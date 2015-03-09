@@ -38,7 +38,7 @@
 
 class TabWin_Impl : public vcl::Window
 {
-    SvxTabulatorTabPage* mpPage;
+    VclPtr<SvxTabulatorTabPage> mpPage;
 private:
     sal_uInt16  nTabStyle;
 
@@ -50,6 +50,8 @@ public:
         , nTabStyle(0)
     {
     }
+    virtual ~TabWin_Impl() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE { mpPage.disposeAndClear(); vcl::Window::dispose(); }
 
     virtual void    Paint( const Rectangle& rRect ) SAL_OVERRIDE;
 
@@ -185,6 +187,37 @@ SvxTabulatorTabPage::SvxTabulatorTabPage( vcl::Window* pParent, const SfxItemSet
     aAktTab.GetDecimal() = rLocaleWrapper.getNumDecimalSep()[0];
 }
 
+SvxTabulatorTabPage::~SvxTabulatorTabPage()
+{
+    dispose();
+}
+
+void SvxTabulatorTabPage::dispose()
+{
+    m_pTabBox.disposeAndClear();
+    m_pLeftTab.disposeAndClear();
+    m_pRightTab.disposeAndClear();
+    m_pCenterTab.disposeAndClear();
+    m_pDezTab.disposeAndClear();
+    m_pLeftWin.disposeAndClear();
+    m_pRightWin.disposeAndClear();
+    m_pCenterWin.disposeAndClear();
+    m_pDezWin.disposeAndClear();
+    m_pDezCharLabel.disposeAndClear();
+    m_pDezChar.disposeAndClear();
+    m_pNoFillChar.disposeAndClear();
+    m_pFillPoints.disposeAndClear();
+    m_pFillDashLine.disposeAndClear();
+    m_pFillSolidLine.disposeAndClear();
+    m_pFillSpecial.disposeAndClear();
+    m_pFillChar.disposeAndClear();
+    m_pNewBtn.disposeAndClear();
+    m_pDelAllBtn.disposeAndClear();
+    m_pDelBtn.disposeAndClear();
+    m_pTypeFrame.disposeAndClear();
+    m_pFillFrame.disposeAndClear();
+    SfxTabPage::dispose();
+}
 
 
 const sal_uInt16* SvxTabulatorTabPage::GetRanges()

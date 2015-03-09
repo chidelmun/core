@@ -169,6 +169,30 @@ SwNumPositionTabPage::~SwNumPositionTabPage()
 void SwNumPositionTabPage::dispose()
 {
     delete pActNum;
+    m_pLevelLB.disposeAndClear();
+    m_pPositionFrame.disposeAndClear();
+    m_pDistBorderFT.disposeAndClear();
+    m_pDistBorderMF.disposeAndClear();
+    m_pRelativeCB.disposeAndClear();
+    m_pIndentFT.disposeAndClear();
+    m_pIndentMF.disposeAndClear();
+    m_pDistNumFT.disposeAndClear();
+    m_pDistNumMF.disposeAndClear();
+    m_pAlignFT.disposeAndClear();
+    m_pAlignLB.disposeAndClear();
+    m_pLabelFollowedByFT.disposeAndClear();
+    m_pLabelFollowedByLB.disposeAndClear();
+    m_pListtabFT.disposeAndClear();
+    m_pListtabMF.disposeAndClear();
+    m_pAlign2FT.disposeAndClear();
+    m_pAlign2LB.disposeAndClear();
+    m_pAlignedAtFT.disposeAndClear();
+    m_pAlignedAtMF.disposeAndClear();
+    m_pIndentAtFT.disposeAndClear();
+    m_pIndentAtMF.disposeAndClear();
+    m_pStandardPB.disposeAndClear();
+    m_pPreviewWIN.disposeAndClear();
+    pOutlineDlg.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -181,9 +205,9 @@ void SwNumPositionTabPage::InitControls()
                                   USHRT_MAX != nActNumLvl;
 
     m_pDistBorderMF->Enable( !bLabelAlignmentPosAndSpaceModeActive &&
-                          ( bSingleSelection || bRelative || pOutlineDlg != 0 ) );
+                          ( bSingleSelection || bRelative || pOutlineDlg.get() != 0 ) );
     m_pDistBorderFT->Enable( !bLabelAlignmentPosAndSpaceModeActive &&
-                          ( bSingleSelection || bRelative || pOutlineDlg != 0 ) );
+                          ( bSingleSelection || bRelative || pOutlineDlg.get() != 0 ) );
 
     bool bSetDistEmpty = false;
     bool bSameDistBorderNum = !bLabelAlignmentPosAndSpaceModeActive;

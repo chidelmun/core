@@ -46,6 +46,7 @@
 #include <cppuhelper/implbase7.hxx>
 #include <comphelper/servicehelper.hxx>
 #include <svx/rectenum.hxx>
+#include <vcl/vclptr.hxx>
 
 namespace com { namespace sun { namespace star { namespace awt {
     struct Point;
@@ -284,7 +285,7 @@ private:
                                         mxParent;
 
     /// pointer to internal representation
-    SvxRectCtl*                         mpRepr;
+    VclPtr<SvxRectCtl>                  mpRepr;
 
     /// array for all possible children
     SvxRectCtlChildAccessibleContext**  mpChildren;

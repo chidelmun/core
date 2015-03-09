@@ -105,6 +105,24 @@ SvxLineEndDefTabPage::SvxLineEndDefTabPage
 
 }
 
+SvxLineEndDefTabPage::~SvxLineEndDefTabPage()
+{
+    dispose();
+}
+
+void SvxLineEndDefTabPage::dispose()
+{
+    m_pEdtName.disposeAndClear();
+    m_pLbLineEnds.disposeAndClear();
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnModify.disposeAndClear();
+    m_pBtnDelete.disposeAndClear();
+    m_pBtnLoad.disposeAndClear();
+    m_pBtnSave.disposeAndClear();
+    m_pCtlPreview.disposeAndClear();
+    SfxTabPage::dispose();
+}
+
 void SvxLineEndDefTabPage::Resize()
 {
     rXLSet.Put(XLineStartWidthItem(m_pCtlPreview->GetOutputSize().Height()  / 2 ));

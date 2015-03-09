@@ -1354,7 +1354,7 @@ void SdrView::MarkAll()
     if (IsTextEdit()) {
         GetTextEditOutlinerView()->SetSelection(ESelection(0,0,EE_PARA_ALL,EE_TEXTPOS_ALL));
 #ifdef DBG_UTIL
-        if (pItemBrowser!=NULL) pItemBrowser->SetDirty();
+        if (pItemBrowser!=nullptr) pItemBrowser->SetDirty();
 #endif
     } else if (IsGluePointEditMode()) MarkAllGluePoints();
     else if (HasMarkablePoints()) MarkAllPoints();
@@ -1369,7 +1369,7 @@ void SdrView::UnmarkAll()
         eSel.nStartPos=eSel.nEndPos;
         GetTextEditOutlinerView()->SetSelection(eSel);
 #ifdef DBG_UTIL
-        if (pItemBrowser!=NULL) pItemBrowser->SetDirty();
+        if (pItemBrowser!=nullptr) pItemBrowser->SetDirty();
 #endif
     } else if (HasMarkedGluePoints()) UnmarkAllGluePoints();
     else if (HasMarkedPoints()) UnmarkAllPoints(); // Marked, not Markable!

@@ -169,6 +169,11 @@ SwChangeDBDlg::~SwChangeDBDlg()
 void SwChangeDBDlg::dispose()
 {
     delete pMgr;
+    m_pUsedDBTLB.disposeAndClear();
+    m_pAvailDBTLB.disposeAndClear();
+    m_pAddDBPB.disposeAndClear();
+    m_pDocDBNameFT.disposeAndClear();
+    m_pDefineBT.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 

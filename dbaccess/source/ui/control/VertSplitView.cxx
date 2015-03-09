@@ -44,7 +44,9 @@ OSplitterView::~OSplitterView()
 
 void OSplitterView::dispose()
 {
-    m_pRight = m_pLeft = NULL;
+    m_pSplitter.disposeAndClear();
+    m_pLeft.disposeAndClear();
+    m_pRight.disposeAndClear();
     vcl::Window::dispose();
 }
 

@@ -96,6 +96,30 @@ SvxTextAttrPage::SvxTextAttrPage(vcl::Window* pWindow, const SfxItemSet& rInAttr
     m_pTsbFullWidth->SetClickHdl(LINK( this, SvxTextAttrPage, ClickFullWidthHdl_Impl ) );
 }
 
+SvxTextAttrPage::~SvxTextAttrPage()
+{
+    dispose();
+}
+
+void SvxTextAttrPage::dispose()
+{
+    m_pTsbAutoGrowWidth.disposeAndClear();
+    m_pTsbAutoGrowHeight.disposeAndClear();
+    m_pTsbFitToSize.disposeAndClear();
+    m_pTsbContour.disposeAndClear();
+    m_pTsbWordWrapText.disposeAndClear();
+    m_pTsbAutoGrowSize.disposeAndClear();
+    m_pFlDistance.disposeAndClear();
+    m_pMtrFldLeft.disposeAndClear();
+    m_pMtrFldRight.disposeAndClear();
+    m_pMtrFldTop.disposeAndClear();
+    m_pMtrFldBottom.disposeAndClear();
+    m_pFlPosition.disposeAndClear();
+    m_pCtlPosition.disposeAndClear();
+    m_pTsbFullWidth.disposeAndClear();
+    SvxTabPage::dispose();
+}
+
 /*************************************************************************
 |*
 |* reads the passed item set

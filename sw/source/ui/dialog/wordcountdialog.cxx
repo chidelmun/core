@@ -52,6 +52,19 @@ SwWordCountFloatDlg::~SwWordCountFloatDlg()
 void SwWordCountFloatDlg::dispose()
 {
     SwViewShell::SetCareWin( 0 );
+    m_pCurrentWordFT.disposeAndClear();
+    m_pCurrentCharacterFT.disposeAndClear();
+    m_pCurrentCharacterExcludingSpacesFT.disposeAndClear();
+    m_pCurrentCjkcharsFT.disposeAndClear();
+    m_pCurrentStandardizedPagesFT.disposeAndClear();
+    m_pDocWordFT.disposeAndClear();
+    m_pDocCharacterFT.disposeAndClear();
+    m_pDocCharacterExcludingSpacesFT.disposeAndClear();
+    m_pDocCjkcharsFT.disposeAndClear();
+    m_pDocStandardizedPagesFT.disposeAndClear();
+    m_pCjkcharsLabelFT.disposeAndClear();
+    m_pStandardizedPagesLabelFT.disposeAndClear();
+    m_pClosePB.disposeAndClear();
     SfxModelessDialog::dispose();
 }
 

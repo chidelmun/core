@@ -228,6 +228,7 @@ void SvxSingleNumPickTabPage::dispose()
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pExamplesVS.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -397,6 +398,7 @@ void SvxBulletPickTabPage::dispose()
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pExamplesVS.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -602,6 +604,7 @@ void SvxNumPickTabPage::dispose()
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pExamplesVS.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -851,6 +854,8 @@ void SvxBitmapPickTabPage::dispose()
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pErrorText.disposeAndClear();
+    m_pExamplesVS.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -1165,12 +1170,44 @@ void SvxNumOptionsTabPage::dispose()
     if (m_pBitmapMB)
     {
         delete m_pBitmapMB->GetPopupMenu()->GetPopupMenu(m_nGalleryId);
-        m_pBitmapMB = NULL;
     }
     delete pActNum;
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pLevelLB.disposeAndClear();
+    m_pFmtLB.disposeAndClear();
+    m_pSeparatorFT.disposeAndClear();
+    m_pPrefixFT.disposeAndClear();
+    m_pPrefixED.disposeAndClear();
+    m_pSuffixFT.disposeAndClear();
+    m_pSuffixED.disposeAndClear();
+    m_pCharFmtFT.disposeAndClear();
+    m_pCharFmtLB.disposeAndClear();
+    m_pBulColorFT.disposeAndClear();
+    m_pBulColLB.disposeAndClear();
+    m_pBulRelSizeFT.disposeAndClear();
+    m_pBulRelSizeMF.disposeAndClear();
+    m_pAllLevelFT.disposeAndClear();
+    m_pAllLevelNF.disposeAndClear();
+    m_pStartFT.disposeAndClear();
+    m_pStartED.disposeAndClear();
+    m_pBulletFT.disposeAndClear();
+    m_pBulletPB.disposeAndClear();
+    m_pAlignFT.disposeAndClear();
+    m_pAlignLB.disposeAndClear();
+    m_pBitmapFT.disposeAndClear();
+    m_pBitmapMB.disposeAndClear();
+    m_pWidthFT.disposeAndClear();
+    m_pWidthMF.disposeAndClear();
+    m_pHeightFT.disposeAndClear();
+    m_pHeightMF.disposeAndClear();
+    m_pRatioCB.disposeAndClear();
+    m_pOrientFT.disposeAndClear();
+    m_pOrientLB.disposeAndClear();
+    m_pAllLevelsFrame.disposeAndClear();
+    m_pSameLevelCB.disposeAndClear();
+    m_pPreviewWIN.disposeAndClear();
     SfxTabPage::dispose();
 }
 
@@ -2736,6 +2773,28 @@ void SvxNumPositionTabPage::dispose()
     pActNum = NULL;
     delete pSaveNum;
     pSaveNum = NULL;
+    m_pLevelLB.disposeAndClear();
+    m_pDistBorderFT.disposeAndClear();
+    m_pDistBorderMF.disposeAndClear();
+    m_pRelativeCB.disposeAndClear();
+    m_pIndentFT.disposeAndClear();
+    m_pIndentMF.disposeAndClear();
+    m_pDistNumFT.disposeAndClear();
+    m_pDistNumMF.disposeAndClear();
+    m_pAlignFT.disposeAndClear();
+    m_pAlignLB.disposeAndClear();
+    m_pLabelFollowedByFT.disposeAndClear();
+    m_pLabelFollowedByLB.disposeAndClear();
+    m_pListtabFT.disposeAndClear();
+    m_pListtabMF.disposeAndClear();
+    m_pAlign2FT.disposeAndClear();
+    m_pAlign2LB.disposeAndClear();
+    m_pAlignedAtFT.disposeAndClear();
+    m_pAlignedAtMF.disposeAndClear();
+    m_pIndentAtFT.disposeAndClear();
+    m_pIndentAtMF.disposeAndClear();
+    m_pStandardPB.disposeAndClear();
+    m_pPreviewWIN.disposeAndClear();
     SfxTabPage::dispose();
 }
 

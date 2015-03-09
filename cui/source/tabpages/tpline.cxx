@@ -253,6 +253,35 @@ void SvxLineTabPage::dispose()
     }
     aGrfBrushItems.clear();
 
+    m_pBoxColor.disposeAndClear();
+    m_pLbLineStyle.disposeAndClear();
+    m_pLbColor.disposeAndClear();
+    m_pBoxWidth.disposeAndClear();
+    m_pMtrLineWidth.disposeAndClear();
+    m_pBoxTransparency.disposeAndClear();
+    m_pMtrTransparent.disposeAndClear();
+    m_pFlLineEnds.disposeAndClear();
+    m_pBoxArrowStyles.disposeAndClear();
+    m_pLbStartStyle.disposeAndClear();
+    m_pBoxStart.disposeAndClear();
+    m_pMtrStartWidth.disposeAndClear();
+    m_pTsbCenterStart.disposeAndClear();
+    m_pBoxEnd.disposeAndClear();
+    m_pLbEndStyle.disposeAndClear();
+    m_pMtrEndWidth.disposeAndClear();
+    m_pTsbCenterEnd.disposeAndClear();
+    m_pCbxSynchronize.disposeAndClear();
+    m_pCtlPreview.disposeAndClear();
+    m_pFLEdgeStyle.disposeAndClear();
+    m_pGridEdgeCaps.disposeAndClear();
+    m_pLBEdgeStyle.disposeAndClear();
+    m_pLBCapStyle.disposeAndClear();
+    m_pFlSymbol.disposeAndClear();
+    m_pGridIconSize.disposeAndClear();
+    m_pSymbolMB.disposeAndClear();
+    m_pSymbolWidthMF.disposeAndClear();
+    m_pSymbolHeightMF.disposeAndClear();
+    m_pSymbolRatioCB.disposeAndClear();
     SvxTabPage::dispose();
 }
 

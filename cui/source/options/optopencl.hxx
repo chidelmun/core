@@ -31,19 +31,19 @@ class SvxOpenCLTabPage : public SfxTabPage
 private:
     OpenCLConfig maConfig;
 
-    CheckBox* mpUseOpenCL;
+    VclPtr<CheckBox> mpUseOpenCL;
 
-    VclFrame* mpBlackListFrame;
-    ListBox* mpBlackList;
-    PushButton* mpBlackListEdit;
-    PushButton* mpBlackListAdd;
-    PushButton* mpBlackListDelete;
+    VclPtr<VclFrame> mpBlackListFrame;
+    VclPtr<ListBox> mpBlackList;
+    VclPtr<PushButton> mpBlackListEdit;
+    VclPtr<PushButton> mpBlackListAdd;
+    VclPtr<PushButton> mpBlackListDelete;
 
-    VclFrame* mpWhiteListFrame;
-    ListBox* mpWhiteList;
-    PushButton* mpWhiteListEdit;
-    PushButton* mpWhiteListAdd;
-    PushButton* mpWhiteListDelete;
+    VclPtr<VclFrame> mpWhiteListFrame;
+    VclPtr<ListBox> mpWhiteList;
+    VclPtr<PushButton> mpWhiteListEdit;
+    VclPtr<PushButton> mpWhiteListAdd;
+    VclPtr<PushButton> mpWhiteListDelete;
 
     DECL_LINK(BlackListEditHdl, void*);
     DECL_LINK(BlackListAddHdl, void*);
@@ -62,6 +62,8 @@ private:
 
 public:
     SvxOpenCLTabPage( vcl::Window* pParent, const SfxItemSet& rSet );
+    virtual ~SvxOpenCLTabPage();
+    virtual void dispose() SAL_OVERRIDE;
 
     static SfxTabPage*      Create( vcl::Window* pParent, const SfxItemSet* rSet );
 

@@ -67,6 +67,17 @@ namespace dbmm
         get(m_pCloseDocError, "closedocerror");
     }
 
+    PreparationPage::~PreparationPage()
+    {
+        dispose();
+    }
+
+    void PreparationPage::dispose()
+    {
+        m_pCloseDocError.disposeAndClear();
+        MacroMigrationPage::dispose();
+    }
+
     void PreparationPage::showCloseDocsError( bool _bShow )
     {
         m_pCloseDocError->Show( _bShow );
@@ -101,6 +112,9 @@ namespace dbmm
     void SaveDBDocPage::dispose()
     {
         delete m_pLocationController;
+        m_pSaveAsLocation.disposeAndClear();
+        m_pBrowseSaveAsLocation.disposeAndClear();
+        m_pStartMigration.disposeAndClear();
         MacroMigrationPage::dispose();
     }
 
@@ -178,6 +192,21 @@ namespace dbmm
         get(m_pAllProgressText, "overall");
         m_aAllProgress.Set(get<ProgressBar>("allprogress"));
         get(m_pMigrationDone, "done");
+    }
+
+    ProgressPage::~ProgressPage()
+    {
+        dispose();
+    }
+
+    void ProgressPage::dispose()
+    {
+        m_pObjectCount.disposeAndClear();
+        m_pCurrentObject.disposeAndClear();
+        m_pCurrentAction.disposeAndClear();
+        m_pAllProgressText.disposeAndClear();
+        m_pMigrationDone.disposeAndClear();
+        MacroMigrationPage::dispose();
     }
 
     TabPage* ProgressPage::Create(::svt::RoadmapWizard& _rParentDialog)
@@ -260,6 +289,19 @@ namespace dbmm
         m_pChanges->set_width_request(approximate_char_width() * 40);
         get(m_pSuccessLabel, "success");
         get(m_pFailureLabel, "failure");
+    }
+
+    ResultPage::~ResultPage()
+    {
+        dispose();
+    }
+
+    void ResultPage::dispose()
+    {
+        m_pSuccessLabel.disposeAndClear();
+        m_pFailureLabel.disposeAndClear();
+        m_pChanges.disposeAndClear();
+        MacroMigrationPage::dispose();
     }
 
     TabPage* ResultPage::Create(::svt::RoadmapWizard& _rParentDialog)

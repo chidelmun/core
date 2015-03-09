@@ -78,7 +78,7 @@ void ThumbnailView::dispose()
     if (xComponent.is())
         xComponent->dispose ();
 
-    delete mpScrBar;
+    mpScrBar.disposeAndClear();
     delete mpItemAttrs;
     delete mpProcessor;
 

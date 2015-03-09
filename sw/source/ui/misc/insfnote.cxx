@@ -214,6 +214,16 @@ void SwInsFootNoteDlg::dispose()
     if (bEdit)
         rSh.ResetSelect(0, false);
 
+    m_pNumberFrame.disposeAndClear();
+    m_pNumberAutoBtn.disposeAndClear();
+    m_pNumberCharBtn.disposeAndClear();
+    m_pNumberCharEdit.disposeAndClear();
+    m_pNumberExtChar.disposeAndClear();
+    m_pFtnBtn.disposeAndClear();
+    m_pEndNoteBtn.disposeAndClear();
+    m_pOkBtn.disposeAndClear();
+    m_pPrevBT.disposeAndClear();
+    m_pNextBT.disposeAndClear();
     SvxStandardDialog::dispose();
 }
 

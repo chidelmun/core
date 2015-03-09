@@ -397,7 +397,7 @@ public:
         mpGridWindow->UpdateDPFromFieldPopupMenu();
     }
 private:
-    ScGridWindow* mpGridWindow;
+    VclPtr<ScGridWindow> mpGridWindow;
 };
 
 class PopupSortAction : public ScMenuFloatingWindow::Action

@@ -273,6 +273,34 @@ DataSourceTabPage::DataSourceTabPage(
     m_pBTN_DOWN->SetAccessibleName(SCH_RESSTR(STR_BUTTON_DOWN));
 }
 
+DataSourceTabPage::~DataSourceTabPage()
+{
+    dispose();
+}
+
+void DataSourceTabPage::dispose()
+{
+    m_pFT_CAPTION.disposeAndClear();
+    m_pFT_SERIES.disposeAndClear();
+    m_pLB_SERIES.disposeAndClear();
+    m_pBTN_ADD.disposeAndClear();
+    m_pBTN_REMOVE.disposeAndClear();
+    m_pBTN_UP.disposeAndClear();
+    m_pBTN_DOWN.disposeAndClear();
+    m_pFT_ROLE.disposeAndClear();
+    m_pLB_ROLE.disposeAndClear();
+    m_pFT_RANGE.disposeAndClear();
+    m_pEDT_RANGE.disposeAndClear();
+    m_pIMB_RANGE_MAIN.disposeAndClear();
+    m_pFT_CATEGORIES.disposeAndClear();
+    m_pFT_DATALABELS.disposeAndClear();
+    m_pEDT_CATEGORIES.disposeAndClear();
+    m_pIMB_RANGE_CAT.disposeAndClear();
+    m_pCurrentRangeChoosingField.disposeAndClear();
+    m_pParentDialog.disposeAndClear();
+    ::svt::OWizardPage::dispose();
+}
+
 void DataSourceTabPage::ActivatePage()
 {
     OWizardPage::ActivatePage();

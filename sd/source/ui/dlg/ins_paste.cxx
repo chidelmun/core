@@ -28,6 +28,18 @@ SdInsertPasteDlg::SdInsertPasteDlg(vcl::Window* pWindow)
     m_pRbAfter->Check( true );
 }
 
+SdInsertPasteDlg::~SdInsertPasteDlg()
+{
+    dispose();
+}
+
+void SdInsertPasteDlg::dispose()
+{
+    m_pRbBefore.disposeAndClear();
+    m_pRbAfter.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 bool SdInsertPasteDlg::IsInsertBefore() const
 {
     return( m_pRbBefore->IsChecked() );

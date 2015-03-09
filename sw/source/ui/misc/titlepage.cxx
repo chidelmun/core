@@ -276,6 +276,18 @@ SwTitlePageDlg::~SwTitlePageDlg()
 void SwTitlePageDlg::dispose()
 {
     delete mpPageFmtDesc;
+    m_pUseExistingPagesRB.disposeAndClear();
+    m_pPageCountNF.disposeAndClear();
+    m_pDocumentStartRB.disposeAndClear();
+    m_pPageStartRB.disposeAndClear();
+    m_pPageStartNF.disposeAndClear();
+    m_pRestartNumberingCB.disposeAndClear();
+    m_pRestartNumberingNF.disposeAndClear();
+    m_pSetPageNumberCB.disposeAndClear();
+    m_pSetPageNumberNF.disposeAndClear();
+    m_pPagePropertiesLB.disposeAndClear();
+    m_pPagePropertiesPB.disposeAndClear();
+    m_pOkPB.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

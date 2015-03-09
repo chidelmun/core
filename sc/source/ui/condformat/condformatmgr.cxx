@@ -138,8 +138,11 @@ ScCondFormatManagerDlg::~ScCondFormatManagerDlg()
 
 void ScCondFormatManagerDlg::dispose()
 {
-    delete m_pCtrlManager;
     delete mpFormatList;
+    m_pBtnAdd.disposeAndClear();
+    m_pBtnRemove.disposeAndClear();
+    m_pBtnEdit.disposeAndClear();
+    m_pCtrlManager.disposeAndClear();
     ModalDialog::dispose();
 }
 

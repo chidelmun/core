@@ -348,8 +348,8 @@ SvtFileDialog::SvtFileDialog ( vcl::Window* _pParent, WinBits nBits )
 class CustomContainer : public vcl::Window
 {
     SvtExpFileDlg_Impl* _pImp;
-    SvtFileView* _pFileView;
-    Splitter* _pSplitter;
+    VclPtr<SvtFileView> _pFileView;
+    VclPtr<Splitter>    _pSplitter;
 
 public:
     CustomContainer(vcl::Window *pParent)
@@ -358,6 +358,13 @@ public:
         , _pFileView(NULL)
         , _pSplitter(NULL)
     {
+    }
+    virtual ~CustomContainer() { dispose(); }
+    virtual void dispose() SAL_OVERRIDE
+    {
+        _pFileView.disposeAndClear();
+        _pSplitter.disposeAndClear();
+        vcl::Window::dispose();
     }
 
     void init(SvtExpFileDlg_Impl* pImp,
@@ -437,10 +444,16 @@ void SvtFileDialog::dispose()
     }
 
     delete _pImp;
-    delete _pFileView;
-    delete _pSplitter;
-    delete _pContainer;
-    delete _pPrevBmp;
+    _pFileView.disposeAndClear();
+    _pSplitter.disposeAndClear();
+    _pContainer.disposeAndClear();
+    _pPrevBmp.disposeAndClear();
+    _pCbReadOnly.disposeAndClear();
+    _pCbLinkBox.disposeAndClear();
+    _pCbPreviewBox.disposeAndClear();
+    _pCbSelection.disposeAndClear();
+    _pPbPlay.disposeAndClear();
+    _pPrevWin.disposeAndClear();
     ModalDialog::dispose();
 }
 
@@ -1631,7 +1644,7 @@ long SvtFileDialog::OK()
 class SvtDefModalDialogParent_Impl
 {
 private:
-    vcl::Window* _pOld;
+    VclPtr<vcl::Window> _pOld;
 
 public:
     SvtDefModalDialogParent_Impl( vcl::Window *pNew ) :
@@ -1818,7 +1831,7 @@ void SvtFileDialog::EnableUI( bool _bEnable )
 
     if ( _bEnable )
     {
-        for ( ::std::set< Control* >::iterator aLoop = m_aDisabledControls.begin();
+        for ( auto aLoop = m_aDisabledControls.begin();
               aLoop != m_aDisabledControls.end();
               ++aLoop
             )
@@ -1841,7 +1854,7 @@ void SvtFileDialog::EnableControl( Control* _pControl, bool _bEnable )
 
     if ( _bEnable )
     {
-        ::std::set< Control* >::iterator aPos = m_aDisabledControls.find( _pControl );
+        auto aPos = m_aDisabledControls.find( _pControl );
         if ( m_aDisabledControls.end() != aPos )
             m_aDisabledControls.erase( aPos );
     }
@@ -2853,6 +2866,18 @@ QueryFolderNameDialog::QueryFolderNameDialog(vcl::Window* _pParent,
         m_pNameLine->set_label( *pGroupName );
 };
 
+QueryFolderNameDialog::~QueryFolderNameDialog()
+{
+    dispose();
+}
+
+void QueryFolderNameDialog::dispose()
+{
+    m_pNameEdit.disposeAndClear();
+    m_pNameLine.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
+    ModalDialog::dispose();
+}
 
 IMPL_LINK_NOARG(QueryFolderNameDialog, OKHdl)
 {

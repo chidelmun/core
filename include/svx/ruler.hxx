@@ -57,7 +57,7 @@ class SVX_DLLPUBLIC SvxRuler: public Ruler, public SfxListener
     boost::scoped_ptr<SvxColumnItem>      mpColumnItem;     // columns
     boost::scoped_ptr<SvxObjectItem>      mpObjectItem;     // object
 
-    vcl::Window*         pEditWin;
+    VclPtr<vcl::Window>         pEditWin;
 
     boost::scoped_ptr<SvxRuler_Impl> mpRulerImpl;
 

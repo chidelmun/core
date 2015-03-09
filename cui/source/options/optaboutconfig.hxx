@@ -42,9 +42,9 @@ public:
 class CuiAboutConfigTabPage : public ModelessDialog
 {
 private:
-    SvSimpleTableContainer* m_pPrefCtrl;
-    PushButton* m_pResetBtn;
-    PushButton* m_pEditBtn;
+    VclPtr<SvSimpleTableContainer> m_pPrefCtrl;
+    VclPtr<PushButton> m_pResetBtn;
+    VclPtr<PushButton> m_pEditBtn;
 
     std::vector< boost::shared_ptr< Prop_Impl > > m_vectorOfModified;
     boost::scoped_ptr< SvSimpleTable > m_pPrefBox;
@@ -57,6 +57,8 @@ private:
 
 public:
    CuiAboutConfigTabPage(vcl::Window* pParent);
+   virtual ~CuiAboutConfigTabPage();
+   virtual void dispose() SAL_OVERRIDE;
    void     InsertEntry(const OUString& rProp, const OUString& rStatus, const OUString& rType, const OUString& rValue);
    void     Reset();
    void     FillItems(const com::sun::star::uno::Reference<com::sun::star::container::XNameAccess>& xNameAccess);
@@ -67,10 +69,12 @@ public:
 class CuiAboutConfigValueDialog : public ModalDialog
 {
 private:
-    CuiCustomMultilineEdit* m_pEDValue;
+    VclPtr<CuiCustomMultilineEdit> m_pEDValue;
 
 public:
     CuiAboutConfigValueDialog( vcl::Window* pWindow, const OUString& rValue , int limit = 0);
+    virtual ~CuiAboutConfigValueDialog();
+    virtual void dispose() SAL_OVERRIDE;
 
     OUString getValue()
     {

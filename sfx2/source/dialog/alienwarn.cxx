@@ -61,6 +61,8 @@ void SfxAlienWarningDialog::dispose()
     bool bChecked = m_pWarningOnBox->IsChecked();
     if ( aSaveOpt.IsWarnAlienFormat() != bChecked )
         aSaveOpt.SetWarnAlienFormat( bChecked );
+    m_pKeepCurrentBtn.disposeAndClear();
+    m_pWarningOnBox.disposeAndClear();
     MessageDialog::dispose();
 }
 

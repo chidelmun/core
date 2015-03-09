@@ -193,8 +193,6 @@ void SwPostItMgr::CheckForRemovedPostIts()
             mvPostItFlds.remove(*it);
             if (GetActiveSidebarWin() == p->pPostIt)
                 SetActiveSidebarWin(0);
-            if (p->pPostIt)
-                delete p->pPostIt;
             delete p;
             bRemoved = true;
         }
@@ -244,7 +242,6 @@ void SwPostItMgr::RemoveItem( SfxBroadcaster* pBroadcast )
             if (GetActiveSidebarWin() == p->pPostIt)
                 SetActiveSidebarWin(0);
             mvPostItFlds.erase(i);
-            delete p->pPostIt;
             delete p;
             break;
         }
@@ -1178,8 +1175,6 @@ void SwPostItMgr::RemoveSidebarWin()
         for(std::list<SwSidebarItem*>::iterator i = mvPostItFlds.begin(); i != mvPostItFlds.end() ; ++i)
         {
             EndListening( *(const_cast<SfxBroadcaster*>((*i)->GetBroadCaster())) );
-            if ((*i)->pPostIt)
-                delete (*i)->pPostIt;
             delete (*i);
         }
         mvPostItFlds.clear();
@@ -1498,7 +1493,7 @@ sw::annotation::SwAnnotationWin* SwPostItMgr::GetAnnotationWin(const SwPostItFie
     for(const_iterator i = mvPostItFlds.begin(); i != mvPostItFlds.end() ; ++i)
     {
         if ( (*i)->GetFmtFld().GetField() == pFld )
-            return dynamic_cast<sw::annotation::SwAnnotationWin*>((*i)->pPostIt);
+            return dynamic_cast<sw::annotation::SwAnnotationWin*>((*i)->pPostIt.get());
     }
     return NULL;
 }
@@ -2031,13 +2026,13 @@ void SwPostItMgr::AssureStdModeAtShell()
 
 bool SwPostItMgr::HasActiveSidebarWin() const
 {
-    return mpActivePostIt != 0;
+    return mpActivePostIt != nullptr;
 }
 
 bool SwPostItMgr::HasActiveAnnotationWin() const
 {
     return HasActiveSidebarWin() &&
-           dynamic_cast<sw::annotation::SwAnnotationWin*>(mpActivePostIt) != 0;
+           dynamic_cast<sw::annotation::SwAnnotationWin*>(mpActivePostIt.get()) != 0;
 }
 
 void SwPostItMgr::GrabFocusOnActiveSidebarWin()

@@ -96,7 +96,7 @@ SvxIMapDlgChildWindow::SvxIMapDlgChildWindow( vcl::Window* _pParent, sal_uInt16 
             SfxChildWindow( _pParent, nId )
 {
     pWindow = new SvxIMapDlg( pBindings, this, _pParent );
-    SvxIMapDlg* pDlg = static_cast<SvxIMapDlg*>(pWindow);
+    SvxIMapDlg* pDlg = static_cast<SvxIMapDlg*>(pWindow.get());
 
     if ( pInfo->nFlags & SFX_CHILDWIN_ZOOMIN )
         pDlg->RollUp();
@@ -223,8 +223,16 @@ SvxIMapDlg::~SvxIMapDlg()
 void SvxIMapDlg::dispose()
 {
     // Delete URL-List
-    delete pIMapWnd;
+    pIMapWnd.disposeAndClear();
     delete pOwnData;
+    m_pTbxIMapDlg1.disposeAndClear();
+    m_pFtURL.disposeAndClear();
+    m_pURLBox.disposeAndClear();
+    m_pFtText.disposeAndClear();
+    m_pEdtText.disposeAndClear();
+    m_pFtTarget.disposeAndClear();
+    m_pCbbTarget.disposeAndClear();
+    m_pStbStatus.disposeAndClear();
     SfxModelessDialog::dispose();
 }
 

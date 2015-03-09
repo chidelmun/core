@@ -28,6 +28,19 @@ QueryPropertiesDialog::QueryPropertiesDialog(
     m_pLB_Limit->SetValue( nLimit );
 }
 
+QueryPropertiesDialog::~QueryPropertiesDialog()
+{
+    dispose();
+}
+
+void QueryPropertiesDialog::dispose()
+{
+    m_pRB_Distinct.disposeAndClear();
+    m_pRB_NonDistinct.disposeAndClear();
+    m_pLB_Limit.disposeAndClear();
+    ModalDialog::dispose();
+}
+
 } ///dbaui namespace
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

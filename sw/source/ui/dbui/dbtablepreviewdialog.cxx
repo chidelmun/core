@@ -91,6 +91,8 @@ void SwDBTablePreviewDialog::dispose()
         m_xFrame->setComponent(NULL, NULL);
         m_xFrame->dispose();
     }
+    m_pDescriptionFI.disposeAndClear();
+    m_pBeamerWIN.disposeAndClear();
     SfxModalDialog::dispose();
 }
 

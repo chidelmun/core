@@ -88,6 +88,8 @@ SfxNewStyleDlg::~SfxNewStyleDlg()
 void SfxNewStyleDlg::dispose()
 {
     aQueryOverwriteBox.disposeAndClear();
+    m_pColBox.disposeAndClear();
+    m_pOKBtn.disposeAndClear();
     ModalDialog::dispose();
 }
 

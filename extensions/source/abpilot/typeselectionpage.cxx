@@ -161,6 +161,17 @@ namespace abp
         {
             loop->m_bVisible = false;
         }
+        m_pEvolution.disposeAndClear();
+        m_pEvolutionGroupwise.disposeAndClear();
+        m_pEvolutionLdap.disposeAndClear();
+        m_pMORK.disposeAndClear();
+        m_pThunderbird.disposeAndClear();
+        m_pKab.disposeAndClear();
+        m_pMacab.disposeAndClear();
+        m_pLDAP.disposeAndClear();
+        m_pOutlook.disposeAndClear();
+        m_pOE.disposeAndClear();
+        m_pOther.disposeAndClear();
         AddressBookSourcePage::dispose();
     }
 

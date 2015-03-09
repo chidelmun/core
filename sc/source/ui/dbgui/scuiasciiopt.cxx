@@ -470,6 +470,28 @@ ScImportAsciiDlg::~ScImportAsciiDlg()
 void ScImportAsciiDlg::dispose()
 {
     delete[] mpRowPosArray;
+    pFtCharSet.disposeAndClear();
+    pLbCharSet.disposeAndClear();
+    pFtCustomLang.disposeAndClear();
+    pLbCustomLang.disposeAndClear();
+    pFtRow.disposeAndClear();
+    pNfRow.disposeAndClear();
+    pRbFixed.disposeAndClear();
+    pRbSeparated.disposeAndClear();
+    pCkbTab.disposeAndClear();
+    pCkbSemicolon.disposeAndClear();
+    pCkbComma.disposeAndClear();
+    pCkbSpace.disposeAndClear();
+    pCkbOther.disposeAndClear();
+    pEdOther.disposeAndClear();
+    pCkbAsOnce.disposeAndClear();
+    pFtTextSep.disposeAndClear();
+    pCbTextSep.disposeAndClear();
+    pCkbQuotedAsText.disposeAndClear();
+    pCkbDetectNumber.disposeAndClear();
+    pFtType.disposeAndClear();
+    pLbType.disposeAndClear();
+    mpTableBox.disposeAndClear();
     ModalDialog::dispose();
 }
 

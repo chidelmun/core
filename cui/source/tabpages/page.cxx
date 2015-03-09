@@ -385,6 +385,35 @@ void SvxPageDescPage::dispose()
         mpDefPrinter = NULL;
         mbDelPrinter = false;
     }
+    m_pPaperSizeBox.disposeAndClear();
+    m_pPaperWidthEdit.disposeAndClear();
+    m_pPaperHeightEdit.disposeAndClear();
+    m_pOrientationFT.disposeAndClear();
+    m_pPortraitBtn.disposeAndClear();
+    m_pLandscapeBtn.disposeAndClear();
+    m_pBspWin.disposeAndClear();
+    m_pTextFlowLbl.disposeAndClear();
+    m_pTextFlowBox.disposeAndClear();
+    m_pPaperTrayBox.disposeAndClear();
+    m_pLeftMarginLbl.disposeAndClear();
+    m_pLeftMarginEdit.disposeAndClear();
+    m_pRightMarginLbl.disposeAndClear();
+    m_pRightMarginEdit.disposeAndClear();
+    m_pTopMarginEdit.disposeAndClear();
+    m_pBottomMarginEdit.disposeAndClear();
+    m_pPageText.disposeAndClear();
+    m_pLayoutBox.disposeAndClear();
+    m_pNumberFormatBox.disposeAndClear();
+    m_pTblAlignFT.disposeAndClear();
+    m_pHorzBox.disposeAndClear();
+    m_pVertBox.disposeAndClear();
+    m_pAdaptBox.disposeAndClear();
+    m_pRegisterCB.disposeAndClear();
+    m_pRegisterFT.disposeAndClear();
+    m_pRegisterLB.disposeAndClear();
+    m_pInsideLbl.disposeAndClear();
+    m_pOutsideLbl.disposeAndClear();
+    m_pPrintRangeQueryText.disposeAndClear();
     SfxTabPage::dispose();
 }
 

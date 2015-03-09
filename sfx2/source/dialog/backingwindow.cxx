@@ -201,8 +201,7 @@ void BackingWindow::dispose()
     // deregister drag&drop helper
     if (mxDropTargetListener.is())
     {
-        for (std::vector<vcl::Window*>::iterator aI = maDndWindows.begin(),
-            aEnd = maDndWindows.end(); aI != aEnd; ++aI)
+        for (auto aI = maDndWindows.begin(), aEnd = maDndWindows.end(); aI != aEnd; ++aI)
         {
             vcl::Window *pDndWin = *aI;
             css::uno::Reference< css::datatransfer::dnd::XDropTarget > xDropTarget =
@@ -216,6 +215,27 @@ void BackingWindow::dispose()
         mxDropTargetListener = css::uno::Reference< css::datatransfer::dnd::XDropTargetListener >();
     }
     disposeBuilder();
+    mpOpenButton.disposeAndClear();
+    mpRecentButton.disposeAndClear();
+    mpTemplateButton.disposeAndClear();
+    mpCreateLabel.disposeAndClear();
+    mpWriterAllButton.disposeAndClear();
+    mpCalcAllButton.disposeAndClear();
+    mpImpressAllButton.disposeAndClear();
+    mpDrawAllButton.disposeAndClear();
+    mpDBAllButton.disposeAndClear();
+    mpMathAllButton.disposeAndClear();
+    mpHelpButton.disposeAndClear();
+    mpExtensionsButton.disposeAndClear();
+    mpAllButtonsBox.disposeAndClear();
+    mpButtonsBox.disposeAndClear();
+    mpSmallButtonsBox.disposeAndClear();
+    mpThinBox1.disposeAndClear();
+    mpThinBox2.disposeAndClear();
+    mpHelpBox.disposeAndClear();
+    mpExtensionsBox.disposeAndClear();
+    mpAllRecentThumbnails.disposeAndClear();
+    mpLocalView.disposeAndClear();
     vcl::Window::dispose();
 }
 
@@ -467,8 +487,7 @@ void BackingWindow::setOwningFrame( const com::sun::star::uno::Reference< com::s
     // establish drag&drop mode
     mxDropTargetListener.set(new OpenFileDropTargetListener(mxContext, mxFrame));
 
-    for (std::vector<vcl::Window*>::iterator aI = maDndWindows.begin(),
-        aEnd = maDndWindows.end(); aI != aEnd; ++aI)
+    for (auto aI = maDndWindows.begin(), aEnd = maDndWindows.end(); aI != aEnd; ++aI)
     {
         vcl::Window *pDndWin = *aI;
         css::uno::Reference< css::datatransfer::dnd::XDropTarget > xDropTarget =

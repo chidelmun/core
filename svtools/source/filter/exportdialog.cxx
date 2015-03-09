@@ -986,6 +986,39 @@ void ExportDialog::dispose()
 {
     delete mpFilterOptionsItem;
     delete mpOptionsItem;
+    mpMfSizeX.disposeAndClear();
+    mpLbSizeX.disposeAndClear();
+    mpMfSizeY.disposeAndClear();
+    mpFtResolution.disposeAndClear();
+    mpNfResolution.disposeAndClear();
+    mpLbResolution.disposeAndClear();
+    mpColorDepth.disposeAndClear();
+    mpLbColorDepth.disposeAndClear();
+    mpJPGQuality.disposeAndClear();
+    mpPNGCompression.disposeAndClear();
+    mpSbCompression.disposeAndClear();
+    mpNfCompression.disposeAndClear();
+    mpMode.disposeAndClear();
+    mpCbInterlaced.disposeAndClear();
+    mpBMPCompression.disposeAndClear();
+    mpCbRLEEncoding.disposeAndClear();
+    mpDrawingObjects.disposeAndClear();
+    mpCbSaveTransparency.disposeAndClear();
+    mpEncoding.disposeAndClear();
+    mpRbBinary.disposeAndClear();
+    mpRbText.disposeAndClear();
+    mpEPSGrid.disposeAndClear();
+    mpCbEPSPreviewTIFF.disposeAndClear();
+    mpCbEPSPreviewEPSI.disposeAndClear();
+    mpRbEPSLevel1.disposeAndClear();
+    mpRbEPSLevel2.disposeAndClear();
+    mpRbEPSColorFormat1.disposeAndClear();
+    mpRbEPSColorFormat2.disposeAndClear();
+    mpRbEPSCompressionLZW.disposeAndClear();
+    mpRbEPSCompressionNone.disposeAndClear();
+    mpInfo.disposeAndClear();
+    mpFtEstimatedSize.disposeAndClear();
+    mpBtnOK.disposeAndClear();
     ModalDialog::dispose();
 }
 

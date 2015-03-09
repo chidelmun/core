@@ -113,6 +113,23 @@ AreaPropertyPanel::AreaPropertyPanel(
 }
 
 
+AreaPropertyPanel::~AreaPropertyPanel()
+{
+    dispose();
+}
+
+void AreaPropertyPanel::dispose()
+{
+    mpColorTextFT.disposeAndClear();
+    mpLbFillType.disposeAndClear();
+    mpLbFillAttr.disposeAndClear();
+    mpToolBoxColor.disposeAndClear();
+    mpTrspTextFT.disposeAndClear();
+    mpLBTransType.disposeAndClear();
+    mpMTRTransparent.disposeAndClear();
+    mpBTNGradient.disposeAndClear();
+    PanelLayout::dispose();
+}
 
 void AreaPropertyPanel::Initialize()
 {

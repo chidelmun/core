@@ -99,6 +99,23 @@ AboutDialog::AboutDialog(vcl::Window* pParent)
     get<PushButton>("close")->GrabFocus();
 }
 
+AboutDialog::~AboutDialog()
+{
+    dispose();
+}
+
+void AboutDialog::dispose()
+{
+    m_pVersion.disposeAndClear();
+    m_pDescriptionText.disposeAndClear();
+    m_pCopyrightText.disposeAndClear();
+    m_pLogoImage.disposeAndClear();
+    m_pLogoReplacement.disposeAndClear();
+    m_pCreditsButton.disposeAndClear();
+    m_pWebsiteButton.disposeAndClear();
+    SfxModalDialog::dispose();
+}
+
 IMPL_LINK( AboutDialog, HandleClick, PushButton*, pButton )
 {
     OUString sURL = "";

@@ -73,6 +73,22 @@ SvxHyperlinkMailTp::SvxHyperlinkMailTp ( vcl::Window *pParent, IconChoiceDialog*
         m_pBtAdrBook->Hide();
 }
 
+SvxHyperlinkMailTp::~SvxHyperlinkMailTp()
+{
+    dispose();
+}
+
+void SvxHyperlinkMailTp::dispose()
+{
+    m_pRbtMail.disposeAndClear();
+    m_pRbtNews.disposeAndClear();
+    m_pCbbReceiver.disposeAndClear();
+    m_pBtAdrBook.disposeAndClear();
+    m_pFtSubject.disposeAndClear();
+    m_pEdSubject.disposeAndClear();
+    SvxHyperlinkTabPageBase::dispose();
+}
+
 /*************************************************************************
 |*
 |* Fill the all dialog-controls except controls in groupbox "more..."
