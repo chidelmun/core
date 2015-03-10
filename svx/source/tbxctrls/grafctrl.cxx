@@ -295,7 +295,7 @@ ImplGrafControl::ImplGrafControl(
 
 ImplGrafControl::~ImplGrafControl()
 {
-   dispose();
+    disposeOnce();
 }
 
 void ImplGrafControl::dispose()

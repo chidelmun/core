@@ -196,7 +196,7 @@ LinePropertyPanel::LinePropertyPanel(
 
 LinePropertyPanel::~LinePropertyPanel()
 {
-    dispose();
+    disposeOnce();
 }
 
 void LinePropertyPanel::dispose()

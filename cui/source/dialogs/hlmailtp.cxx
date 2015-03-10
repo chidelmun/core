@@ -75,7 +75,7 @@ SvxHyperlinkMailTp::SvxHyperlinkMailTp ( vcl::Window *pParent, IconChoiceDialog*
 
 SvxHyperlinkMailTp::~SvxHyperlinkMailTp()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxHyperlinkMailTp::dispose()

@@ -62,7 +62,7 @@ DictionaryList::DictionaryList(SvSimpleTableContainer& rParent, WinBits nBits)
 
 DictionaryList::~DictionaryList()
 {
-    dispose();
+    disposeOnce();
 }
 
 void DictionaryList::dispose()
@@ -556,7 +556,7 @@ ChineseDictionaryDialog::ChineseDictionaryDialog( vcl::Window* pParent )
 
 ChineseDictionaryDialog::~ChineseDictionaryDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ChineseDictionaryDialog::dispose()

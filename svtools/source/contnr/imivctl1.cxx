@@ -3323,7 +3323,7 @@ IcnViewEdit_Impl::IcnViewEdit_Impl( SvtIconChoiceCtrl* pParent, const Point& rPo
 
 IcnViewEdit_Impl::~IcnViewEdit_Impl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void IcnViewEdit_Impl::dispose()

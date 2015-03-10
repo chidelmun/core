@@ -69,7 +69,7 @@ SvxOpenCLTabPage::SvxOpenCLTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 SvxOpenCLTabPage::~SvxOpenCLTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxOpenCLTabPage::dispose()
@@ -173,7 +173,7 @@ public:
     DECL_LINK(EditModifiedHdl, Edit*);
 
     ListEntryDialog(vcl::Window* pParent, const OpenCLConfig::ImplMatcher& rEntry, const OString& rTag);
-    virtual ~ListEntryDialog() { dispose(); }
+    virtual ~ListEntryDialog() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE
     {
         mpOS.disposeAndClear();

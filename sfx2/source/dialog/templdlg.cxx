@@ -284,7 +284,7 @@ SfxTemplatePanelControl::SfxTemplatePanelControl (
 
 SfxTemplatePanelControl::~SfxTemplatePanelControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 

@@ -330,7 +330,7 @@ SfxPopupWindow* SvxLineEndWindow::Clone() const
 
 SvxLineEndWindow::~SvxLineEndWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxLineEndWindow::dispose()

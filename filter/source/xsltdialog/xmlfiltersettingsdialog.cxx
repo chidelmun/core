@@ -104,7 +104,7 @@ XMLFilterSettingsDialog::XMLFilterSettingsDialog(vcl::Window* pParent,
 
 XMLFilterSettingsDialog::~XMLFilterSettingsDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void XMLFilterSettingsDialog::dispose()
@@ -1417,7 +1417,7 @@ Size SvxPathControl::GetOptimalSize() const
 
 SvxPathControl::~SvxPathControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxPathControl::dispose()
@@ -1474,7 +1474,7 @@ XMLFilterListBox::XMLFilterListBox(Window* pParent, SvxPathControl* pPathControl
 
 XMLFilterListBox::~XMLFilterListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void XMLFilterListBox::dispose()

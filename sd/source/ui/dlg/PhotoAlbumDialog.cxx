@@ -75,7 +75,7 @@ SdPhotoAlbumDialog::SdPhotoAlbumDialog(vcl::Window* pWindow, SdDrawDocument* pAc
 
 SdPhotoAlbumDialog::~SdPhotoAlbumDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SdPhotoAlbumDialog::dispose()

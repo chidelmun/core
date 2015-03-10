@@ -1578,7 +1578,7 @@ ToolBox::ToolBox( vcl::Window* pParent, const ResId& rResId ) :
 
 ToolBox::~ToolBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ToolBox::dispose()

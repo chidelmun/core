@@ -253,7 +253,7 @@ void FmPropBrw::Resize()
 
 FmPropBrw::~FmPropBrw()
 {
-    dispose();
+    disposeOnce();
 }
 
 void FmPropBrw::dispose()

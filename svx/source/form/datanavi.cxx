@@ -142,7 +142,7 @@ namespace svxform
 
     DataTreeListBox::~DataTreeListBox()
     {
-        dispose();
+        disposeOnce();
     }
 
     void DataTreeListBox::dispose()
@@ -379,7 +379,7 @@ namespace svxform
 
     XFormsPage::~XFormsPage()
     {
-        dispose();
+        disposeOnce();
     }
 
     void XFormsPage::dispose()
@@ -1424,7 +1424,7 @@ namespace svxform
 
     DataNavigatorWindow::~DataNavigatorWindow()
     {
-        dispose();
+        disposeOnce();
     }
 
     void DataNavigatorWindow::dispose()
@@ -2176,7 +2176,7 @@ namespace svxform
 
     DataNavigator::~DataNavigator()
     {
-        dispose();
+        disposeOnce();
     }
 
     void DataNavigator::dispose()
@@ -2319,7 +2319,7 @@ namespace svxform
 
     AddDataItemDialog::~AddDataItemDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void AddDataItemDialog::dispose()
@@ -2837,7 +2837,7 @@ namespace svxform
 
     AddConditionDialog::~AddConditionDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void AddConditionDialog::dispose()
@@ -2961,7 +2961,7 @@ namespace svxform
 
     NamespaceItemDialog::~NamespaceItemDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void NamespaceItemDialog::dispose()
@@ -3115,7 +3115,7 @@ namespace svxform
 
     ManageNamespaceDialog::~ManageNamespaceDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void ManageNamespaceDialog::dispose()
@@ -3176,7 +3176,7 @@ namespace svxform
 
     AddSubmissionDialog::~AddSubmissionDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void AddSubmissionDialog::dispose()
@@ -3395,7 +3395,7 @@ namespace svxform
 
     AddModelDialog::~AddModelDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void AddModelDialog::dispose()
@@ -3426,7 +3426,7 @@ namespace svxform
 
     AddInstanceDialog::~AddInstanceDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void AddInstanceDialog::dispose()

@@ -93,7 +93,7 @@ Window::Window(vcl::Window* pParent)
 
 Window::~Window (void)
 {
-    dispose();
+    disposeOnce();
 }
 
 void Window::dispose()

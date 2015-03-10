@@ -44,7 +44,7 @@ PrintMonitor::PrintMonitor(vcl::Window *pParent, PrintMonitorType eType )
 
 PrintMonitor::~PrintMonitor()
 {
-    dispose();
+    disposeOnce();
 }
 
 void PrintMonitor::dispose()
@@ -73,7 +73,7 @@ CreateMonitor::CreateMonitor( vcl::Window *pParent )
 
 CreateMonitor::~CreateMonitor()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CreateMonitor::dispose()
@@ -112,7 +112,7 @@ CancelableModelessDialog::CancelableModelessDialog( vcl::Window *pParent,
 
 CancelableModelessDialog::~CancelableModelessDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CancelableModelessDialog::dispose()

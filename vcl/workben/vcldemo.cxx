@@ -1206,7 +1206,7 @@ public:
     }
     virtual ~DemoWin()
     {
-        dispose();
+        disposeOnce();
     }
     virtual void dispose() SAL_OVERRIDE
     {
@@ -1278,7 +1278,7 @@ public:
 
         Show();
     }
-    virtual ~DemoWidgets() { dispose(); }
+    virtual ~DemoWidgets() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE { mpBox.disposeAndClear(); WorkWindow::dispose(); }
     virtual void Paint(const Rectangle&) SAL_OVERRIDE
     {

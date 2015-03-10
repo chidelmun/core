@@ -92,7 +92,7 @@ ScRandomNumberGeneratorDialog::ScRandomNumberGeneratorDialog(
 
 ScRandomNumberGeneratorDialog::~ScRandomNumberGeneratorDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ScRandomNumberGeneratorDialog::dispose()

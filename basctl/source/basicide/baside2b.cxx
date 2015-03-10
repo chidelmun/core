@@ -250,7 +250,7 @@ EditorWindow::EditorWindow (vcl::Window* pParent, ModulWindow* pModulWindow) :
 
 EditorWindow::~EditorWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void EditorWindow::dispose()
@@ -1652,7 +1652,7 @@ WatchWindow::WatchWindow (Layout* pParent) :
 
 WatchWindow::~WatchWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void WatchWindow::dispose()
@@ -1902,7 +1902,7 @@ StackWindow::StackWindow (Layout* pParent) :
 
 StackWindow::~StackWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void StackWindow::dispose()
@@ -2038,7 +2038,7 @@ ComplexEditorWindow::ComplexEditorWindow( ModulWindow* pParent ) :
 
 ComplexEditorWindow::~ComplexEditorWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ComplexEditorWindow::dispose()
@@ -2147,7 +2147,7 @@ WatchTreeListBox::WatchTreeListBox( vcl::Window* pParent, WinBits nWinBits )
 
 WatchTreeListBox::~WatchTreeListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void WatchTreeListBox::dispose()
@@ -2659,7 +2659,7 @@ pCodeCompleteWindow( pPar )
 
 CodeCompleteListBox::~CodeCompleteListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CodeCompleteListBox::dispose()
@@ -2841,7 +2841,7 @@ pListBox( new CodeCompleteListBox(this) )
 
 CodeCompleteWindow::~CodeCompleteWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CodeCompleteWindow::dispose()

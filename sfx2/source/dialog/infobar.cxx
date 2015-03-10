@@ -132,7 +132,7 @@ SfxInfoBarWindow::SfxInfoBarWindow( vcl::Window* pParent, const OUString& sId,
 
 SfxInfoBarWindow::~SfxInfoBarWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxInfoBarWindow::dispose()
@@ -233,7 +233,7 @@ SfxInfoBarContainerWindow::SfxInfoBarContainerWindow( SfxInfoBarContainerChild* 
 
 SfxInfoBarContainerWindow::~SfxInfoBarContainerWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxInfoBarContainerWindow::dispose()

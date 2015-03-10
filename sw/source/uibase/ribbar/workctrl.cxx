@@ -444,7 +444,7 @@ SwScrollNaviPopup::SwScrollNaviPopup(sal_uInt16 nId, const Reference< XFrame >& 
 
 SwScrollNaviPopup::~SwScrollNaviPopup()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwScrollNaviPopup::dispose()

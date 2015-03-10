@@ -74,7 +74,7 @@ SchAxisLabelTabPage::SchAxisLabelTabPage( vcl::Window* pParent, const SfxItemSet
 
 SchAxisLabelTabPage::~SchAxisLabelTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SchAxisLabelTabPage::dispose()

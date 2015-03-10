@@ -169,7 +169,7 @@ SfxModalDialog::SfxModalDialog(vcl::Window *pParent, const OUString& rID, const 
 
 SfxModalDialog::~SfxModalDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxModalDialog::dispose()
@@ -361,7 +361,7 @@ bool SfxModelessDialog::Notify( NotifyEvent& rEvt )
 
 SfxModelessDialog::~SfxModelessDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxModelessDialog::dispose()
@@ -511,7 +511,7 @@ bool SfxFloatingWindow::Close()
 
 SfxFloatingWindow::~SfxFloatingWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxFloatingWindow::dispose()
@@ -706,7 +706,7 @@ SfxSingleTabDialog::SfxSingleTabDialog(vcl::Window* pParent, const SfxItemSet* p
 
 SfxSingleTabDialog::~SfxSingleTabDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxSingleTabDialog::dispose()

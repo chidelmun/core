@@ -335,7 +335,7 @@ void SfxVersionDialog::Init_Impl()
 
 SfxVersionDialog::~SfxVersionDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxVersionDialog::dispose()
@@ -514,7 +514,7 @@ SfxViewVersionDialog_Impl::SfxViewVersionDialog_Impl(vcl::Window *pParent, SfxVe
 
 SfxViewVersionDialog_Impl::~SfxViewVersionDialog_Impl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxViewVersionDialog_Impl::dispose()
@@ -592,7 +592,7 @@ SfxCmisVersionsDialog::SfxCmisVersionsDialog ( SfxViewFrame* pVwFrame, bool bIsS
 
 SfxCmisVersionsDialog::~SfxCmisVersionsDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxCmisVersionsDialog::dispose()

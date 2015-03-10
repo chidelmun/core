@@ -118,7 +118,7 @@ SvxNewDictionaryDialog::SvxNewDictionaryDialog( vcl::Window* pParent,
 
 SvxNewDictionaryDialog::~SvxNewDictionaryDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxNewDictionaryDialog::dispose()
@@ -345,7 +345,7 @@ SvxEditDictionaryDialog::SvxEditDictionaryDialog(
 
 SvxEditDictionaryDialog::~SvxEditDictionaryDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxEditDictionaryDialog::dispose()

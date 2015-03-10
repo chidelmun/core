@@ -83,7 +83,7 @@ PlaceEditDialog::PlaceEditDialog( vcl::Window* pParent, const boost::shared_ptr<
 
 PlaceEditDialog::~PlaceEditDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void PlaceEditDialog::dispose()

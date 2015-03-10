@@ -242,7 +242,7 @@ void ScFormulaDlg::fill()
 
 ScFormulaDlg::~ScFormulaDlg()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ScFormulaDlg::dispose()

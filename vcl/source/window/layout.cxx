@@ -1288,7 +1288,7 @@ void VclBin::setAllocation(const Size &rAllocation)
 
 VclFrame::~VclFrame()
 {
-    dispose();
+    disposeOnce();
 }
 
 void VclFrame::dispose()
@@ -2027,7 +2027,7 @@ void MessageDialog::dispose()
 
 MessageDialog::~MessageDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void MessageDialog::response(short nResponseId)

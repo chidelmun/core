@@ -534,7 +534,7 @@ void SAL_CALL OConnection::close()
         MutexGuard aGuard(m_aMutex);
         checkDisposed(OConnection_BASE::rBHelper.bDisposed);
     }
-    dispose();
+    disposeOnce();
 }
 
 // XWarningsSupplier

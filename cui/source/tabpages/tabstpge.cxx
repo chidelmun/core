@@ -50,7 +50,7 @@ public:
         , nTabStyle(0)
     {
     }
-    virtual ~TabWin_Impl() { dispose(); }
+    virtual ~TabWin_Impl() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE { mpPage.disposeAndClear(); vcl::Window::dispose(); }
 
     virtual void    Paint( const Rectangle& rRect ) SAL_OVERRIDE;
@@ -189,7 +189,7 @@ SvxTabulatorTabPage::SvxTabulatorTabPage( vcl::Window* pParent, const SfxItemSet
 
 SvxTabulatorTabPage::~SvxTabulatorTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxTabulatorTabPage::dispose()

@@ -98,7 +98,7 @@ namespace dbaui
 
     OTableSubscriptionPage::~OTableSubscriptionPage()
     {
-        dispose();
+        disposeOnce();
     }
 
     void OTableSubscriptionPage::dispose()

@@ -51,7 +51,7 @@ OWizTypeSelectControl::OWizTypeSelectControl(vcl::Window* pParent, vcl::Window* 
 
 OWizTypeSelectControl::~OWizTypeSelectControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OWizTypeSelectControl::dispose()
@@ -261,7 +261,7 @@ OWizTypeSelect::OWizTypeSelect( vcl::Window* pParent, SvStream* _pStream )
 
 OWizTypeSelect::~OWizTypeSelect()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OWizTypeSelect::dispose()
@@ -364,7 +364,7 @@ IMPL_LINK( OWizTypeSelect, ButtonClickHdl, Button *, /*pButton*/ )
 
 OWizTypeSelectList::~OWizTypeSelectList()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OWizTypeSelectList::dispose()

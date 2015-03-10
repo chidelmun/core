@@ -322,7 +322,7 @@ SwMultiTOXTabDialog::SwMultiTOXTabDialog(vcl::Window* pParent, const SfxItemSet&
 
 SwMultiTOXTabDialog::~SwMultiTOXTabDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwMultiTOXTabDialog::dispose()
@@ -718,7 +718,7 @@ SwAddStylesDlg_Impl::SwAddStylesDlg_Impl(vcl::Window* pParent,
 
 SwAddStylesDlg_Impl::~SwAddStylesDlg_Impl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwAddStylesDlg_Impl::dispose()
@@ -901,7 +901,7 @@ SwTOXSelectTabPage::SwTOXSelectTabPage(vcl::Window* pParent, const SfxItemSet& r
 
 SwTOXSelectTabPage::~SwTOXSelectTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwTOXSelectTabPage::dispose()
@@ -1537,7 +1537,7 @@ public:
         m_pParent( pTokenWin )
     {
     }
-    virtual ~SwTOXEdit() { dispose(); }
+    virtual ~SwTOXEdit() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE { m_pParent.disposeAndClear(); Edit::dispose(); }
 
     virtual void    KeyInput( const KeyEvent& rKEvt ) SAL_OVERRIDE;
@@ -1624,7 +1624,7 @@ public:
         m_pParent(pTokenWin)
     {
     }
-    virtual ~SwTOXButton() { dispose(); }
+    virtual ~SwTOXButton() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE { m_pParent.disposeAndClear(); PushButton::dispose(); }
 
     virtual void KeyInput( const KeyEvent& rKEvt ) SAL_OVERRIDE;
@@ -1748,7 +1748,7 @@ SwIdxTreeListBox::SwIdxTreeListBox(vcl::Window* pPar, WinBits nStyle)
 
 SwIdxTreeListBox::~SwIdxTreeListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwIdxTreeListBox::dispose()
@@ -1958,7 +1958,7 @@ SwTOXEntryTabPage::SwTOXEntryTabPage(vcl::Window* pParent, const SfxItemSet& rAt
 
 SwTOXEntryTabPage::~SwTOXEntryTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwTOXEntryTabPage::dispose()
@@ -2762,7 +2762,7 @@ void SwTokenWindow::setAllocation(const Size &rAllocation)
 
 SwTokenWindow::~SwTokenWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwTokenWindow::dispose()
@@ -3653,7 +3653,7 @@ SwTOXStylesTabPage::SwTOXStylesTabPage(vcl::Window* pParent, const SfxItemSet& r
 
 SwTOXStylesTabPage::~SwTOXStylesTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwTOXStylesTabPage::dispose()
@@ -3912,7 +3912,7 @@ SwEntryBrowseBox::SwEntryBrowseBox(vcl::Window* pParent, VclBuilderContainer* pB
 
 SwEntryBrowseBox::~SwEntryBrowseBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwEntryBrowseBox::dispose()
@@ -4211,7 +4211,7 @@ SwAutoMarkDlg_Impl::SwAutoMarkDlg_Impl(vcl::Window* pParent, const OUString& rAu
 
 SwAutoMarkDlg_Impl::~SwAutoMarkDlg_Impl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwAutoMarkDlg_Impl::dispose()

@@ -359,7 +359,7 @@ public:
         , _pSplitter(NULL)
     {
     }
-    virtual ~CustomContainer() { dispose(); }
+    virtual ~CustomContainer() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE
     {
         _pFileView.disposeAndClear();
@@ -406,7 +406,7 @@ public:
 
 SvtFileDialog::~SvtFileDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvtFileDialog::dispose()
@@ -2868,7 +2868,7 @@ QueryFolderNameDialog::QueryFolderNameDialog(vcl::Window* _pParent,
 
 QueryFolderNameDialog::~QueryFolderNameDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void QueryFolderNameDialog::dispose()

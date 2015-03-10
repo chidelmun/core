@@ -163,7 +163,7 @@ SvTreeListEntry* SwChangeDBDlg::Insert(const OUString& rDBName)
 // destroy dialog
 SwChangeDBDlg::~SwChangeDBDlg()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwChangeDBDlg::dispose()

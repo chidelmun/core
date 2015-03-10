@@ -714,7 +714,7 @@ SwFrmPage::SwFrmPage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwFrmPage::~SwFrmPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwFrmPage::dispose()
@@ -2408,7 +2408,7 @@ SwGrfExtPage::SwGrfExtPage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwGrfExtPage::~SwGrfExtPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwGrfExtPage::dispose()
@@ -2762,7 +2762,7 @@ SwFrmURLPage::SwFrmURLPage( vcl::Window *pParent, const SfxItemSet &rSet ) :
 
 SwFrmURLPage::~SwFrmURLPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwFrmURLPage::dispose()
@@ -2917,7 +2917,7 @@ SwFrmAddPage::SwFrmAddPage(vcl::Window *pParent, const SfxItemSet &rSet)
 
 SwFrmAddPage::~SwFrmAddPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwFrmAddPage::dispose()

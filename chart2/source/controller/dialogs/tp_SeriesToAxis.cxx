@@ -64,7 +64,7 @@ SchOptionTabPage::SchOptionTabPage(vcl::Window* pWindow,const SfxItemSet& rInAtt
 
 SchOptionTabPage::~SchOptionTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SchOptionTabPage::dispose()

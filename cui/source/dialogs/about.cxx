@@ -101,7 +101,7 @@ AboutDialog::AboutDialog(vcl::Window* pParent)
 
 AboutDialog::~AboutDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void AboutDialog::dispose()

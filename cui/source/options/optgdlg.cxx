@@ -308,7 +308,7 @@ OfaMiscTabPage::OfaMiscTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 OfaMiscTabPage::~OfaMiscTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OfaMiscTabPage::dispose()
@@ -690,7 +690,7 @@ OfaViewTabPage::OfaViewTabPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 OfaViewTabPage::~OfaViewTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OfaViewTabPage::dispose()
@@ -1234,7 +1234,7 @@ OfaLanguagesTabPage::OfaLanguagesTabPage(vcl::Window* pParent, const SfxItemSet&
 
 OfaLanguagesTabPage::~OfaLanguagesTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OfaLanguagesTabPage::dispose()

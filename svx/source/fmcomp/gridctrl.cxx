@@ -404,7 +404,7 @@ DbGridControl::NavigationBar::NavigationBar(vcl::Window* pParent, WinBits nStyle
 
 DbGridControl::NavigationBar::~NavigationBar()
 {
-    dispose();
+    disposeOnce();
 }
 
 void DbGridControl::NavigationBar::dispose()
@@ -952,7 +952,7 @@ void DbGridControl::Init()
 
 DbGridControl::~DbGridControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void DbGridControl::dispose()

@@ -56,7 +56,7 @@ OfaMSFilterTabPage::OfaMSFilterTabPage(vcl::Window* pParent, const SfxItemSet& r
 
 OfaMSFilterTabPage::~OfaMSFilterTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OfaMSFilterTabPage::dispose()
@@ -174,7 +174,7 @@ OfaMSFilterTabPage2::OfaMSFilterTabPage2( vcl::Window* pParent, const SfxItemSet
 
 OfaMSFilterTabPage2::~OfaMSFilterTabPage2()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OfaMSFilterTabPage2::dispose()

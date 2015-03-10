@@ -288,7 +288,7 @@ SvxZoomDialog::SvxZoomDialog( vcl::Window* pParent, const SfxItemSet& rCoreSet )
 
 SvxZoomDialog::~SvxZoomDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxZoomDialog::dispose()

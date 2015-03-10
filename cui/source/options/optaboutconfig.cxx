@@ -156,7 +156,7 @@ CuiAboutConfigTabPage::CuiAboutConfigTabPage( vcl::Window* pParent/*, const SfxI
 
 CuiAboutConfigTabPage::~CuiAboutConfigTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CuiAboutConfigTabPage::dispose()
@@ -478,7 +478,7 @@ CuiAboutConfigValueDialog::CuiAboutConfigValueDialog( vcl::Window* pWindow,
 
 CuiAboutConfigValueDialog::~CuiAboutConfigValueDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CuiAboutConfigValueDialog::dispose()

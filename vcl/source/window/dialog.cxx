@@ -547,7 +547,7 @@ void Dialog::settingOptimalLayoutSize(VclBox *pBox)
 
 Dialog::~Dialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Dialog::dispose()

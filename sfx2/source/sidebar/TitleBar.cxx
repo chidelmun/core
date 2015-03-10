@@ -56,7 +56,7 @@ TitleBar::TitleBar (
 
 TitleBar::~TitleBar()
 {
-    dispose();
+    disposeOnce();
 }
 
 void TitleBar::dispose()

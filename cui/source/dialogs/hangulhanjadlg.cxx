@@ -338,7 +338,7 @@ namespace svx
 
     SuggestionSet::~SuggestionSet()
     {
-        dispose();
+        disposeOnce();
     }
 
     void SuggestionSet::dispose()
@@ -395,7 +395,7 @@ namespace svx
 
     SuggestionDisplay::~SuggestionDisplay()
     {
-        dispose();
+        disposeOnce();
     }
 
     void SuggestionDisplay::dispose()
@@ -607,7 +607,7 @@ namespace svx
 
     HangulHanjaConversionDialog::~HangulHanjaConversionDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void HangulHanjaConversionDialog::dispose()
@@ -1163,7 +1163,7 @@ namespace svx
 
     HangulHanjaOptionsDialog::~HangulHanjaOptionsDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void HangulHanjaOptionsDialog::dispose()
@@ -1240,7 +1240,7 @@ namespace svx
 
     HangulHanjaNewDictDialog::~HangulHanjaNewDictDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void HangulHanjaNewDictDialog::dispose()
@@ -1427,7 +1427,7 @@ namespace svx
 
     SuggestionEdit::~SuggestionEdit()
     {
-        dispose();
+        disposeOnce();
     }
 
     void SuggestionEdit::dispose()
@@ -1846,7 +1846,7 @@ namespace svx
 
     HangulHanjaEditDictDialog::~HangulHanjaEditDictDialog()
     {
-        dispose();
+        disposeOnce();
     }
 
     void HangulHanjaEditDictDialog::dispose()

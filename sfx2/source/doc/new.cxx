@@ -453,7 +453,7 @@ SfxNewFileDialog::SfxNewFileDialog(vcl::Window *pParent, sal_uInt16 nFlags)
 
 SfxNewFileDialog::~SfxNewFileDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SfxNewFileDialog::dispose()

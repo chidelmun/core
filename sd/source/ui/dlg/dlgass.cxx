@@ -1768,7 +1768,7 @@ IMPL_LINK_NOARG(AssistentDlg, FinishHdl)
 
 AssistentDlg::~AssistentDlg()
 {
-    dispose();
+    disposeOnce();
 }
 
 void AssistentDlg::dispose()

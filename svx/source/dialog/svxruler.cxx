@@ -316,7 +316,7 @@ SvxRuler::SvxRuler(
 
 SvxRuler::~SvxRuler()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxRuler::dispose()

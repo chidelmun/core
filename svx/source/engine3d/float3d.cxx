@@ -430,7 +430,7 @@ Svx3DWin::Svx3DWin( SfxBindings* pInBindings,
 
 Svx3DWin::~Svx3DWin()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Svx3DWin::dispose()

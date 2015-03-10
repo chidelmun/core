@@ -230,7 +230,7 @@ void BackgroundPreviewImpl::setBmp(bool bBmp)
 
 BackgroundPreviewImpl::~BackgroundPreviewImpl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void BackgroundPreviewImpl::dispose()
@@ -428,7 +428,7 @@ SvxBackgroundTabPage::SvxBackgroundTabPage(vcl::Window* pParent, const SfxItemSe
 
 SvxBackgroundTabPage::~SvxBackgroundTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxBackgroundTabPage::dispose()

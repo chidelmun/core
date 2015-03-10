@@ -232,7 +232,7 @@ DigitalSignaturesDialog::DigitalSignaturesDialog(
 
 DigitalSignaturesDialog::~DigitalSignaturesDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void DigitalSignaturesDialog::dispose()

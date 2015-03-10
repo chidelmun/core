@@ -443,7 +443,7 @@ TabBar::TabBar( vcl::Window* pParent, WinBits nWinStyle ) :
 
 TabBar::~TabBar()
 {
-    dispose();
+    disposeOnce();
 }
 
 void TabBar::dispose()

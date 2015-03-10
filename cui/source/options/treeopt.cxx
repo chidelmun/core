@@ -549,7 +549,7 @@ OfaTreeOptionsDialog::OfaTreeOptionsDialog( vcl::Window* pParent, const OUString
 
 OfaTreeOptionsDialog::~OfaTreeOptionsDialog()
 {
-   dispose();
+    disposeOnce();
 }
 
 void OfaTreeOptionsDialog::dispose()
@@ -2161,7 +2161,7 @@ ExtensionsTabPage::ExtensionsTabPage(
 
 ExtensionsTabPage::~ExtensionsTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ExtensionsTabPage::dispose()

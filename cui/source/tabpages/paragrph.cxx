@@ -656,7 +656,7 @@ SvxStdParagraphTabPage::SvxStdParagraphTabPage( vcl::Window* pParent,  const Sfx
 
 SvxStdParagraphTabPage::~SvxStdParagraphTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxStdParagraphTabPage::dispose()
@@ -1046,7 +1046,7 @@ SvxParaAlignTabPage::SvxParaAlignTabPage( vcl::Window* pParent, const SfxItemSet
 
 SvxParaAlignTabPage::~SvxParaAlignTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxParaAlignTabPage::dispose()
@@ -1955,7 +1955,7 @@ SvxExtParagraphTabPage::SvxExtParagraphTabPage( vcl::Window* pParent, const SfxI
 
 SvxExtParagraphTabPage::~SvxExtParagraphTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxExtParagraphTabPage::dispose()
@@ -2197,7 +2197,7 @@ SvxAsianTabPage::SvxAsianTabPage( vcl::Window* pParent, const SfxItemSet& rSet )
 
 SvxAsianTabPage::~SvxAsianTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxAsianTabPage::dispose()

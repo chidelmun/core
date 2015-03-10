@@ -76,7 +76,7 @@ Panel::Panel (
 
 Panel::~Panel()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Panel::dispose()

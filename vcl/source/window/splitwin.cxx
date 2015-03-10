@@ -1348,7 +1348,7 @@ SplitWindow::SplitWindow( vcl::Window* pParent, WinBits nStyle ) :
 
 SplitWindow::~SplitWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SplitWindow::dispose()

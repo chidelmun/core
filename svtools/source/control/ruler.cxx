@@ -295,7 +295,7 @@ Ruler::Ruler( vcl::Window* pParent, WinBits nWinStyle ) :
 
 Ruler::~Ruler()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Ruler::dispose()

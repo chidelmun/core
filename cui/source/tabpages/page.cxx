@@ -374,7 +374,7 @@ SvxPageDescPage::SvxPageDescPage( vcl::Window* pParent, const SfxItemSet& rAttr 
 
 SvxPageDescPage::~SvxPageDescPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxPageDescPage::dispose()

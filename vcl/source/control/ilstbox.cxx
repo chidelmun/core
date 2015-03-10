@@ -536,7 +536,7 @@ ImplListBoxWindow::ImplListBoxWindow( vcl::Window* pParent, WinBits nWinStyle ) 
 
 ImplListBoxWindow::~ImplListBoxWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ImplListBoxWindow::dispose()
@@ -2164,7 +2164,7 @@ ImplListBox::ImplListBox( vcl::Window* pParent, WinBits nWinStyle ) :
 
 ImplListBox::~ImplListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ImplListBox::dispose()
@@ -2928,7 +2928,7 @@ ImplListBoxFloatingWindow::ImplListBoxFloatingWindow( vcl::Window* pParent ) :
 
 ImplListBoxFloatingWindow::~ImplListBoxFloatingWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ImplListBoxFloatingWindow::dispose()

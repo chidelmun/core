@@ -184,7 +184,7 @@ void FloatingWindow::doDeferredInit(WinBits nBits)
 
 FloatingWindow::~FloatingWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void FloatingWindow::dispose()

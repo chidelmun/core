@@ -179,7 +179,7 @@ SmPrintOptionsTabPage::SmPrintOptionsTabPage(vcl::Window *pParent, const SfxItem
 
 SmPrintOptionsTabPage::~SmPrintOptionsTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmPrintOptionsTabPage::dispose()
@@ -387,7 +387,7 @@ SmFontDialog::SmFontDialog(vcl::Window * pParent, OutputDevice *pFntListDevice, 
 
 SmFontDialog::~SmFontDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmFontDialog::dispose()
@@ -477,7 +477,7 @@ SmFontSizeDialog::SmFontSizeDialog(vcl::Window * pParent)
 
 SmFontSizeDialog::~SmFontSizeDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmFontSizeDialog::dispose()
@@ -592,7 +592,7 @@ SmFontTypeDialog::SmFontTypeDialog(vcl::Window * pParent, OutputDevice *pFntList
 
 SmFontTypeDialog::~SmFontTypeDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmFontTypeDialog::dispose()
@@ -962,7 +962,7 @@ SmDistanceDialog::SmDistanceDialog(vcl::Window *pParent)
 
 SmDistanceDialog::~SmDistanceDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmDistanceDialog::dispose()
@@ -1087,7 +1087,7 @@ SmAlignDialog::SmAlignDialog(vcl::Window * pParent)
 
 SmAlignDialog::~SmAlignDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmAlignDialog::dispose()
@@ -1159,7 +1159,7 @@ SmShowSymbolSetWindow::SmShowSymbolSetWindow(vcl::Window *pParent, WinBits nStyl
 
 SmShowSymbolSetWindow::~SmShowSymbolSetWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmShowSymbolSetWindow::dispose()
@@ -1307,7 +1307,7 @@ SmShowSymbolSet::SmShowSymbolSet(vcl::Window *pParent)
 
 SmShowSymbolSet::~SmShowSymbolSet()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmShowSymbolSet::dispose()
@@ -1612,7 +1612,7 @@ SmSymbolDialog::SmSymbolDialog(vcl::Window *pParent, OutputDevice *pFntListDevic
 
 SmSymbolDialog::~SmSymbolDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmSymbolDialog::dispose()
@@ -2175,7 +2175,7 @@ SmSymDefineDialog::SmSymDefineDialog(vcl::Window * pParent,
 
 SmSymDefineDialog::~SmSymDefineDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SmSymDefineDialog::dispose()

@@ -101,7 +101,7 @@ extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSFTreeListBox(vcl::Win
 
 SFTreeListBox::~SFTreeListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SFTreeListBox::dispose()
@@ -449,7 +449,7 @@ CuiInputDialog::CuiInputDialog(vcl::Window * pParent, sal_uInt16 nMode )
 
 CuiInputDialog::~CuiInputDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CuiInputDialog::dispose()
@@ -508,7 +508,7 @@ SvxScriptOrgDialog::SvxScriptOrgDialog( vcl::Window* pParent, const OUString& la
 
 SvxScriptOrgDialog::~SvxScriptOrgDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxScriptOrgDialog::dispose()

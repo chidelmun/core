@@ -91,7 +91,7 @@ class MaskSet : public ValueSet
 
 public:
     MaskSet(SvxBmpMask* pMask, vcl::Window* pParent);
-    virtual ~MaskSet() { dispose(); }
+    virtual ~MaskSet() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE { pSvxBmpMask.disposeAndClear(); ValueSet::dispose(); }
     virtual void    Select() SAL_OVERRIDE;
     virtual void KeyInput( const KeyEvent& rKEvt ) SAL_OVERRIDE;
@@ -486,7 +486,7 @@ SvxBmpMask::SvxBmpMask(SfxBindings *pBindinx, SfxChildWindow *pCW, vcl::Window* 
 
 SvxBmpMask::~SvxBmpMask()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxBmpMask::dispose()

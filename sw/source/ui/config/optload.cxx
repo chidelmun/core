@@ -127,7 +127,7 @@ SwLoadOptPage::SwLoadOptPage(vcl::Window* pParent, const SfxItemSet& rSet)
 
 SwLoadOptPage::~SwLoadOptPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwLoadOptPage::dispose()
@@ -542,7 +542,7 @@ SwCaptionOptPage::SwCaptionOptPage( vcl::Window* pParent, const SfxItemSet& rSet
 
 SwCaptionOptPage::~SwCaptionOptPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SwCaptionOptPage::dispose()

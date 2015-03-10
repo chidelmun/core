@@ -60,7 +60,7 @@ FilterDialog::FilterDialog( vcl::Window* pParentWindow )
 
 FilterDialog::~FilterDialog()
 {
-    dispose();
+    disposeOnce();
 }
 
 void FilterDialog::dispose()

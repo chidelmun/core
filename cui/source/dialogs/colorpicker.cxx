@@ -363,7 +363,7 @@ ColorFieldControl::ColorFieldControl( vcl::Window* pParent, const WinBits& nStyl
 
 ColorFieldControl::~ColorFieldControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ColorFieldControl::dispose()
@@ -756,7 +756,7 @@ ColorSliderControl::ColorSliderControl( vcl::Window* pParent, const WinBits& nSt
 
 ColorSliderControl::~ColorSliderControl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ColorSliderControl::dispose()
@@ -976,7 +976,7 @@ class ColorPickerDialog : public ModalDialog
 {
 public:
     ColorPickerDialog( vcl::Window* pParent, sal_Int32 nColor, sal_Int16 nMode );
-    virtual ~ColorPickerDialog() { dispose(); }
+    virtual ~ColorPickerDialog() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE;
 
     void update_color( sal_uInt16 n = UPDATE_ALL );

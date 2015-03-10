@@ -1559,7 +1559,7 @@ OUString SvTreeListBox::SearchEntryTextWithHeadTitle( SvTreeListEntry* pEntry )
 
 SvTreeListBox::~SvTreeListBox()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvTreeListBox::dispose()

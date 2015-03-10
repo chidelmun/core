@@ -193,7 +193,7 @@ BackingWindow::BackingWindow( vcl::Window* i_pParent ) :
 
 BackingWindow::~BackingWindow()
 {
-    dispose();
+    disposeOnce();
 }
 
 void BackingWindow::dispose()

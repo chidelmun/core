@@ -371,7 +371,7 @@ public:
             get(m_pBreakNF, "wordlength");
         }
     }
-    virtual ~OptionsBreakSet() { dispose(); }
+    virtual ~OptionsBreakSet() { disposeOnce(); }
     virtual void dispose() SAL_OVERRIDE
     {
         m_pBeforeFrame.disposeAndClear();
@@ -1138,7 +1138,7 @@ SvxLinguTabPage::SvxLinguTabPage( vcl::Window* pParent, const SfxItemSet& rSet )
 
 SvxLinguTabPage::~SvxLinguTabPage()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxLinguTabPage::dispose()
@@ -1932,7 +1932,7 @@ SvxEditModulesDlg::SvxEditModulesDlg(vcl::Window* pParent, SvxLinguData_Impl& rD
 
 SvxEditModulesDlg::~SvxEditModulesDlg()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxEditModulesDlg::dispose()

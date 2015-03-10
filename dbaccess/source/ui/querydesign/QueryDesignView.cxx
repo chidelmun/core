@@ -2515,7 +2515,7 @@ OQueryDesignView::OQueryDesignView( OQueryContainerWindow* _pParent,
 
 OQueryDesignView::~OQueryDesignView()
 {
-    dispose();
+    disposeOnce();
 }
 
 void OQueryDesignView::dispose()

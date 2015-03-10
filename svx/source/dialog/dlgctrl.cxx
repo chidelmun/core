@@ -106,7 +106,7 @@ extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSvxRectCtl(vcl::Window
 
 SvxRectCtl::~SvxRectCtl()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxRectCtl::dispose()
@@ -847,7 +847,7 @@ extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSvxPixelCtl(vcl::Windo
 
 SvxPixelCtl::~SvxPixelCtl( )
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxPixelCtl::dispose()
@@ -1845,7 +1845,7 @@ SvxPreviewBase::SvxPreviewBase(vcl::Window* pParent)
 
 SvxPreviewBase::~SvxPreviewBase()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxPreviewBase::dispose()
@@ -2006,7 +2006,7 @@ Size SvxXLinePreview::GetOptimalSize() const
 
 SvxXLinePreview::~SvxXLinePreview()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxXLinePreview::dispose()
@@ -2118,7 +2118,7 @@ extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSvxXRectPreview(vcl::W
 
 SvxXRectPreview::~SvxXRectPreview()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxXRectPreview::dispose()
@@ -2179,7 +2179,7 @@ extern "C" SAL_DLLPUBLIC_EXPORT vcl::Window* SAL_CALL makeSvxXShadowPreview (vcl
 
 SvxXShadowPreview::~SvxXShadowPreview()
 {
-    dispose();
+    disposeOnce();
 }
 
 void SvxXShadowPreview::dispose()

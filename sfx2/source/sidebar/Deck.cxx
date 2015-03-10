@@ -79,7 +79,7 @@ Deck::Deck (
 
 Deck::~Deck()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Deck::dispose()

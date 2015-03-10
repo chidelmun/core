@@ -257,7 +257,7 @@ Calendar::Calendar( vcl::Window* pParent, WinBits nWinStyle ) :
 
 Calendar::~Calendar()
 {
-    dispose();
+    disposeOnce();
 }
 
 void Calendar::dispose()
@@ -2227,7 +2227,7 @@ ImplCFieldFloatWin::ImplCFieldFloatWin( vcl::Window* pParent ) :
 
 ImplCFieldFloatWin::~ImplCFieldFloatWin()
 {
-    dispose();
+    disposeOnce();
 }
 
 void ImplCFieldFloatWin::dispose()
@@ -2386,7 +2386,7 @@ CalendarField::CalendarField(vcl::Window* pParent, WinBits nWinStyle)
 
 CalendarField::~CalendarField()
 {
-    dispose();
+    disposeOnce();
 }
 
 void CalendarField::dispose()
