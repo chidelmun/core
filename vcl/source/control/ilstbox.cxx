@@ -2173,6 +2173,7 @@ void ImplListBox::dispose()
     mpVScrollBar.disposeAndClear();
     mpScrollBarBox.disposeAndClear();
     maLBWindow.clear();
+    maLBWindow.disposeAndClear();
     Control::dispose();
 }
 
@@ -2979,7 +2980,7 @@ void ImplListBoxFloatingWindow::setPosSizePixel( long nX, long nY, long nWidth, 
         // this the presence of the vertical Scrollbar has to be known.
         mpImplLB->SetSizePixel( GetOutputSizePixel() );
         ((vcl::Window*)mpImplLB)->Resize();
-        ((vcl::Window*)mpImplLB->GetMainWindow().get())->Resize();
+        ((vcl::Window*)mpImplLB->GetMainWindow())->Resize();
     }
 }
 

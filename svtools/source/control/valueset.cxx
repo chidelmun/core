@@ -135,6 +135,7 @@ void ValueSet::dispose()
         xComponent->dispose();
 
     ImplDeleteItems();
+    mpScrollBar.disposeAndClear();
     Control::dispose();
 }
 
@@ -350,7 +351,7 @@ void ValueSet::Format()
     long        nOff;
     long        nNoneHeight;
     long        nNoneSpace;
-    boost::scoped_ptr<ScrollBar> pDeletedScrollBar(NULL);
+    VclPtr<ScrollBar> pDeletedScrollBar;
 
     // consider the scrolling
     if ( nStyle & WB_VSCROLL )
@@ -360,7 +361,8 @@ void ValueSet::Format()
         if ( mpScrollBar.get() )
         {
             // delete ScrollBar not until later, to prevent recursive calls
-            pDeletedScrollBar.swap(mpScrollBar);
+            pDeletedScrollBar = mpScrollBar;
+            mpScrollBar.disposeAndClear();
         }
     }
 

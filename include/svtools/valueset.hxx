@@ -201,7 +201,7 @@ private:
     Timer           maTimer;
     ValueItemList   mItemList;
     ValueSetItemPtr mpNoneItem;
-    boost::scoped_ptr<ScrollBar> mpScrollBar;
+    VclPtr<ScrollBar> mpScrollBar;
     Rectangle       maNoneItemRect;
     Rectangle       maItemListRect;
     long            mnItemWidth;

@@ -19,7 +19,7 @@ public:
     OpenGLContext& getContext() { return maContext;}
 private:
     OpenGLContext maContext;
-    boost::scoped_ptr<SystemChildWindow> mpChildWindow;
+    VclPtr<SystemChildWindow> mpChildWindow;
 };
 
 OpenGLWindowImpl::OpenGLWindowImpl(vcl::Window* pWindow)

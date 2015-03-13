@@ -1083,7 +1083,6 @@ bool OpenGLContext::initWindow()
         if( !m_pChildWindow )
         {
             m_pChildWindow = new SystemChildWindow(mpWindow, 0, &winData, false);
-            m_pChildWindowGC.reset(m_pChildWindow);
         }
         pChildSysData = m_pChildWindow->GetSystemData();
     }

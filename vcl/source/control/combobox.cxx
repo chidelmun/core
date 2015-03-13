@@ -587,19 +587,19 @@ void ComboBox::FillLayoutData() const
     mpControlData->mpLayoutData = new vcl::ControlLayoutData();
     AppendLayoutData( *mpSubEdit );
     mpSubEdit->SetLayoutDataParent( this );
-    ImplListBoxWindowPtr rMainWindow = mpImplLB->GetMainWindow();
+    ImplListBoxWindow* rMainWindow = mpImplLB->GetMainWindow();
     if( mpFloatWin )
     {
         // dropdown mode
         if( mpFloatWin->IsReallyVisible() )
         {
-            AppendLayoutData( *(rMainWindow.get()) );
+            AppendLayoutData( *rMainWindow );
             rMainWindow->SetLayoutDataParent( this );
         }
     }
     else
     {
-        AppendLayoutData( *(rMainWindow.get()) );
+        AppendLayoutData( *rMainWindow );
         rMainWindow->SetLayoutDataParent( this );
     }
 }
@@ -771,7 +771,7 @@ bool ComboBox::Notify( NotifyEvent& rNEvt )
             nDone = false;  // don't eat this event, let the default handling happen (i.e. scroll the context)
         }
     }
-    else if( ( rNEvt.GetType() == MouseNotifyEvent::MOUSEBUTTONDOWN ) && ( rNEvt.GetWindow() == mpImplLB->GetMainWindow().get() ) )
+    else if( ( rNEvt.GetType() == MouseNotifyEvent::MOUSEBUTTONDOWN ) && ( rNEvt.GetWindow() == mpImplLB->GetMainWindow() ) )
     {
         mpSubEdit->GrabFocus();
     }
@@ -1249,7 +1249,7 @@ void ComboBox::EnableUserDraw( bool bUserDraw )
 
 void ComboBox::DrawEntry( const UserDrawEvent& rEvt, bool bDrawImage, bool bDrawText, bool bDrawTextAtImagePos )
 {
-    DBG_ASSERT( rEvt.GetDevice() == mpImplLB->GetMainWindow().get(), "DrawEntry?!" );
+    DBG_ASSERT( rEvt.GetDevice() == mpImplLB->GetMainWindow(), "DrawEntry?!" );
     mpImplLB->GetMainWindow()->DrawEntry( rEvt.GetItemId(), bDrawImage, bDrawText, bDrawTextAtImagePos );
 }
 
@@ -1388,7 +1388,7 @@ long ComboBox::GetIndexForPoint( const Point& rPoint, sal_Int32& rPos ) const
     {
         // point must be either in main list window
         // or in impl window (dropdown case)
-        ImplListBoxWindowPtr rMain = mpImplLB->GetMainWindow();
+        ImplListBoxWindow* rMain = mpImplLB->GetMainWindow();
 
         // convert coordinates to ImplListBoxWindow pixel coordinate space
         Point aConvPoint = LogicToPixel( rPoint );
