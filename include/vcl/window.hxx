@@ -405,8 +405,6 @@ private:
     // OutputDevice
     ::OutputDevice* mpOutputDevice;
 
-    mutable int mnRefCnt;         // reference count
-
 #ifdef DBG_UTIL
     friend const char* ::ImplDbgCheckWindow( const void* pObj );
 #endif
@@ -485,27 +483,10 @@ public:
 
     SAL_DLLPRIVATE static void          ImplCalcSymbolRect( Rectangle& rRect );
 
-private:
-    template<typename T> friend class ::rtl::Reference;
-    template<typename T> friend class ::VclPtr;
-
-    inline void acquire() const
-    {
-        mnRefCnt++;
-    }
-
-    inline void release() const
-    {
-        if (!--mnRefCnt)
-            delete const_cast<Window*>(this);
-    }
-
 protected:
 
     /** This is intended to be used to clear any locally held references to other Window-subclass objects */
     virtual void                        dispose();
-    /* call the dispose() method if we have not already been disposed */
-    void                                disposeOnce();
 
     SAL_DLLPRIVATE void                 ImplInit( vcl::Window* pParent, WinBits nStyle, SystemParentData* pSystemParentData );
 
