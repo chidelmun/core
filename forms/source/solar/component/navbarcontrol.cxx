@@ -292,7 +292,7 @@ namespace frm
     {
         SolarMutexGuard aGuard;
 
-        NavigationToolBar* pNavBar = static_cast< NavigationToolBar* >( GetWindow() );
+        VclPtr< NavigationToolBar > pNavBar = GetAs< NavigationToolBar >();
         if ( !pNavBar )
         {
             VCLXWindow::setProperty( _rPropertyName, _rValue );
@@ -373,7 +373,7 @@ namespace frm
         SolarMutexGuard aGuard;
 
         Any aReturn;
-        NavigationToolBar* pNavBar = static_cast< NavigationToolBar* >( GetWindow() );
+        VclPtr< NavigationToolBar > pNavBar = GetAs< NavigationToolBar >();
 
         if ( _rPropertyName == PROPERTY_BACKGROUNDCOLOR )
         {
@@ -425,7 +425,7 @@ namespace frm
     void ONavigationBarPeer::featureStateChanged( sal_Int16 _nFeatureId, bool _bEnabled )
     {
         // enable this button on the toolbox
-        NavigationToolBar* pNavBar = static_cast< NavigationToolBar* >( GetWindow() );
+        VclPtr< NavigationToolBar > pNavBar = GetAs< NavigationToolBar >();
         if ( pNavBar )
         {
             pNavBar->enableFeature( _nFeatureId, _bEnabled );
@@ -453,7 +453,7 @@ namespace frm
     void ONavigationBarPeer::allFeatureStatesChanged( )
     {
         // force the control to update it's states
-        NavigationToolBar* pNavBar = static_cast< NavigationToolBar* >( GetWindow() );
+        VclPtr< NavigationToolBar > pNavBar = GetAs< NavigationToolBar >();
         if ( pNavBar )
             pNavBar->setDispatcher( this );
 
