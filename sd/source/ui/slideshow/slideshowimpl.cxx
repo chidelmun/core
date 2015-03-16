@@ -3363,7 +3363,8 @@ void PresentationSettingsEx::SetPropertyValue( const OUString& rProperty, const 
         Reference< XWindow > xWindow;
         if( rValue >>= xWindow )
         {
-            mpParentWindow = xWindow.is() ? VCLUnoHelper::GetWindow( xWindow ) : 0;
+            mpParentWindow = xWindow.is() ? VCLUnoHelper::GetWindow( xWindow )
+                                          : VclPtr<vcl::Window>();
             return;
         }
     }
