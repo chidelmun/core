@@ -120,6 +120,7 @@ public:
                                       sal_uInt16 nBitCount);
 
     virtual             ~VirtualDevice();
+    virtual void        dispose() SAL_OVERRIDE;
 
     virtual void        EnableRTL( bool bEnable = true ) SAL_OVERRIDE;
 

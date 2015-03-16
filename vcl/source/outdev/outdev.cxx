@@ -80,6 +80,7 @@ namespace {
 // Begin initializer and accessor public functions
 
 OutputDevice::OutputDevice() :
+    mnRefCnt(0),
     maRegion(true),
     maFillColor( COL_WHITE ),
     maTextLineColor( COL_TRANSPARENT ),
@@ -177,6 +178,8 @@ OutputDevice::OutputDevice() :
     // #i75163#
     mpOutDevData->mpViewTransform   = NULL;
     mpOutDevData->mpInverseViewTransform = NULL;
+
+    mbDisposed = false;
 }
 
 OutputDevice::~OutputDevice()
@@ -192,10 +195,10 @@ void OutputDevice::disposeOnce()
 
     // catch badness where our OutputDevice sub-class was not
     // wrapped safely in a VclPtr cosily.
-    assert( mnRefCnt > 0 );
+    // FIXME: as/when we make our destructors all protected,
+    // we should introduce this assert:
+    //    assert( mnRefCnt > 0 );
 
-    // hold a ref in case something unusual happens during dispose.
-    VclPtr<OutputDevice> aRef(this);
     dispose();
 }
 
