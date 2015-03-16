@@ -184,7 +184,7 @@ VCLXAccessibleToolBox::~VCLXAccessibleToolBox()
 VCLXAccessibleToolBoxItem* VCLXAccessibleToolBox::GetItem_Impl( sal_Int32 _nPos, bool _bMustHaveFocus )
 {
     VCLXAccessibleToolBoxItem* pItem = NULL;
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox && ( !_bMustHaveFocus || pToolBox->HasFocus() ) )
     {
         ToolBoxItemsMap::iterator aIter = m_aAccessibleChildren.find( _nPos );
@@ -198,7 +198,7 @@ VCLXAccessibleToolBoxItem* VCLXAccessibleToolBox::GetItem_Impl( sal_Int32 _nPos,
 
 void VCLXAccessibleToolBox::UpdateFocus_Impl()
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if( !pToolBox )
         return;
 
@@ -250,7 +250,7 @@ void VCLXAccessibleToolBox::UpdateFocus_Impl()
 
 void VCLXAccessibleToolBox::ReleaseFocus_Impl( sal_Int32 _nPos )
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox ) // #107124#, do not check for focus because this message is also handled in losefocus
     {
         ToolBoxItemsMap::iterator aIter = m_aAccessibleChildren.find( _nPos );
@@ -266,7 +266,7 @@ void VCLXAccessibleToolBox::ReleaseFocus_Impl( sal_Int32 _nPos )
 
 void VCLXAccessibleToolBox::UpdateChecked_Impl( sal_Int32 _nPos )
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         sal_uInt16 nFocusId = pToolBox->GetItemId( (sal_uInt16)_nPos );
@@ -291,7 +291,7 @@ void VCLXAccessibleToolBox::UpdateChecked_Impl( sal_Int32 _nPos )
 
 void VCLXAccessibleToolBox::UpdateIndeterminate_Impl( sal_Int32 _nPos )
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         sal_uInt16 nItemId = pToolBox->GetItemId( (sal_uInt16)_nPos );
@@ -347,7 +347,7 @@ void VCLXAccessibleToolBox::UpdateItem_Impl( sal_Int32 _nPos, bool _bItemAdded )
         return;
     }
 
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         if ( !_bItemAdded )
@@ -403,7 +403,7 @@ void VCLXAccessibleToolBox::UpdateItem_Impl( sal_Int32 _nPos, bool _bItemAdded )
 
 void VCLXAccessibleToolBox::UpdateAllItems_Impl()
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         // deregister the old items
@@ -427,7 +427,7 @@ void VCLXAccessibleToolBox::UpdateAllItems_Impl()
 
 void VCLXAccessibleToolBox::UpdateCustomPopupItemp_Impl( vcl::Window* pWindow, bool bOpen )
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if( pWindow && pToolBox )
     {
         const sal_uInt16 nDownItem = pToolBox->GetDownItemId();
@@ -465,7 +465,7 @@ void VCLXAccessibleToolBox::UpdateItemEnabled_Impl( sal_Int32 _nPos )
 void VCLXAccessibleToolBox::HandleSubToolBarEvent( const VclWindowEvent& rVclWindowEvent, bool _bShow )
 {
     vcl::Window* pChildWindow = (vcl::Window *) rVclWindowEvent.GetData();
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pChildWindow
         && pToolBox
         && pToolBox == pChildWindow->GetParent()
@@ -486,7 +486,7 @@ void VCLXAccessibleToolBox::HandleSubToolBarEvent( const VclWindowEvent& rVclWin
 
 void VCLXAccessibleToolBox::ReleaseSubToolBox( ToolBox* _pSubToolBox )
 {
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( !pToolBox )
         return;
 
@@ -512,7 +512,7 @@ void VCLXAccessibleToolBox::FillAccessibleStateSet( utl::AccessibleStateSetHelpe
 {
     VCLXAccessibleComponent::FillAccessibleStateSet( rStateSet );
 
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         rStateSet.AddState( AccessibleStateType::FOCUSABLE );
@@ -528,7 +528,7 @@ void VCLXAccessibleToolBox::ProcessWindowEvent( const VclWindowEvent& rVclWindow
     // to prevent an early release of the toolbox (VCLEVENT_OBJECT_DYING)
     Reference< XAccessibleContext > xTemp = this;
 
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     switch ( rVclWindowEvent.GetId() )
     {
         case VCLEVENT_TOOLBOX_CLICK:
@@ -618,7 +618,7 @@ void VCLXAccessibleToolBox::ProcessWindowEvent( const VclWindowEvent& rVclWindow
         case VCLEVENT_OBJECT_DYING :
         {
             // if this toolbox is a subtoolbox, we have to relese it from its parent
-            ToolBox* pBox = static_cast< ToolBox* >( GetWindow() );
+            VclPtr< ToolBox > pBox = GetAs< ToolBox >();
             if ( pBox && pBox->GetParent() &&
                  pBox->GetParent()->GetType() == WINDOW_TOOLBOX )
             {
@@ -705,7 +705,7 @@ sal_Int32 SAL_CALL VCLXAccessibleToolBox::getAccessibleChildCount(  ) throw (Run
     comphelper::OExternalLockGuard aGuard( this );
 
     sal_Int32 nCount = 0;
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
         nCount = pToolBox->GetItemCount();
 
@@ -719,7 +719,7 @@ Reference< XAccessible > SAL_CALL VCLXAccessibleToolBox::getAccessibleChild( sal
 
     comphelper::OExternalLockGuard aGuard( this );
 
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         Reference< XAccessible > xChild;
@@ -764,7 +764,7 @@ Reference< XAccessible > SAL_CALL VCLXAccessibleToolBox::getAccessibleAtPoint( c
     comphelper::OExternalLockGuard aGuard( this );
 
     Reference< XAccessible > xAccessible;
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pToolBox )
     {
         sal_uInt16 nItemPos = pToolBox->GetItemPos( VCLPoint( _rPoint ) );
@@ -779,7 +779,7 @@ Reference< XAccessible > VCLXAccessibleToolBox::GetItemWindowAccessible( const V
 {
     Reference< XAccessible > xReturn;
     vcl::Window* pChildWindow = (vcl::Window *) rVclWindowEvent.GetData();
-    ToolBox* pToolBox = static_cast< ToolBox* >( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     if ( pChildWindow && pToolBox )
     {
         sal_uInt16 nCount = pToolBox->GetItemCount();
@@ -809,7 +809,7 @@ void VCLXAccessibleToolBox::selectAccessibleChild( sal_Int32 nChildIndex ) throw
     OExternalLockGuard aGuard( this );
     if ( nChildIndex < 0 || nChildIndex >= getAccessibleChildCount() )
         throw IndexOutOfBoundsException();
-    ToolBox * pToolBox = static_cast < ToolBox * > ( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     sal_uInt16 nPos = static_cast < sal_uInt16 > (nChildIndex);
     pToolBox->ChangeHighlight( nPos );
 }
@@ -819,9 +819,9 @@ sal_Bool VCLXAccessibleToolBox::isAccessibleChildSelected( sal_Int32 nChildIndex
     OExternalLockGuard aGuard( this );
     if ( nChildIndex < 0 || nChildIndex >= getAccessibleChildCount() )
         throw IndexOutOfBoundsException();
-    ToolBox * pToolBox = static_cast < ToolBox * > ( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     sal_uInt16 nPos = static_cast < sal_uInt16 > (nChildIndex);
-    if ( pToolBox != NULL && pToolBox->GetHighlightItemId() == pToolBox->GetItemId( nPos ) )
+    if ( pToolBox && pToolBox->GetHighlightItemId() == pToolBox->GetItemId( nPos ) )
         return true;
     else
         return false;
@@ -830,7 +830,7 @@ sal_Bool VCLXAccessibleToolBox::isAccessibleChildSelected( sal_Int32 nChildIndex
 void VCLXAccessibleToolBox::clearAccessibleSelection(  ) throw (RuntimeException, std::exception)
 {
     OExternalLockGuard aGuard( this );
-    ToolBox * pToolBox = static_cast < ToolBox * > ( GetWindow() );
+    VclPtr< ToolBox > pToolBox = GetAs< ToolBox >();
     pToolBox -> LoseFocus();
 }
 
