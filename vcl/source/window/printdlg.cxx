@@ -631,13 +631,13 @@ PrintDialog::PrintDialog( vcl::Window* i_pParent, const boost::shared_ptr<Printe
         if( maJobPage.mpPrinters->GetEntryPos( aValue ) != LISTBOX_ENTRY_NOTFOUND )
         {
             maJobPage.mpPrinters->SelectEntry( aValue );
-            maPController->setPrinter( boost::shared_ptr<Printer>( new Printer( aValue ) ) );
+            maPController->setPrinter( VclPtr<Printer>( new Printer( aValue ) ) );
         }
         else
         {
             // fall back to default printer
             maJobPage.mpPrinters->SelectEntry( Printer::GetDefaultPrinterName() );
-            maPController->setPrinter( boost::shared_ptr<Printer>( new Printer( Printer::GetDefaultPrinterName() ) ) );
+            maPController->setPrinter( VclPtr<Printer>( new Printer( Printer::GetDefaultPrinterName() ) ) );
         }
     }
     // not printing to file
@@ -1337,7 +1337,7 @@ void PrintDialog::preparePreview( bool i_bNewPage, bool i_bMayUseCache )
     {
         const MapMode aMapMode( MAP_100TH_MM );
         GDIMetaFile aMtf;
-        boost::shared_ptr<Printer> aPrt( maPController->getPrinter() );
+        VclPtr<Printer> aPrt( maPController->getPrinter() );
         if( nPages > 0 )
         {
             PrinterController::PageSize aPageSize =
@@ -1530,7 +1530,7 @@ IMPL_LINK( PrintDialog, SelectHdl, ListBox*, pBox )
     {
         OUString aNewPrinter( pBox->GetSelectEntry() );
         // set new printer
-        maPController->setPrinter( boost::shared_ptr<Printer>( new Printer( aNewPrinter ) ) );
+        maPController->setPrinter( VclPtr<Printer>( new Printer( aNewPrinter ) ) );
         maPController->resetPrinterOptions( maOptionsPage.mpToFileBox->IsChecked() );
         // update text fields
         updatePrinterText();

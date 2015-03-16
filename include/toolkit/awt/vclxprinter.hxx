@@ -56,11 +56,11 @@ class VCLXPrinterPropertySet    :public VCLXPrinterPropertySet_Base
                                 ,public ::cppu::OPropertySetHelper
 {
 protected:
-    boost::shared_ptr<Printer>                      mpPrinter;
+    VclPtr<Printer>             mpPrinter;
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XDevice >  mxPrnDevice;
 
     sal_Int16                   mnOrientation;
-    bool                    mbHorizontal;
+    bool                        mbHorizontal;
 public:
     VCLXPrinterPropertySet( const OUString& rPrinterName );
     virtual ~VCLXPrinterPropertySet();
