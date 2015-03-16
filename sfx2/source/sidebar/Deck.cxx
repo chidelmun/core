@@ -93,6 +93,11 @@ void Deck::dispose()
         maPanels[i]->dispose();
 
     maPanels.clear();
+    mpTitleBar.disposeAndClear();
+    mpScrollClipWindow.disposeAndClear();
+    mpScrollContainer.disposeAndClear();
+    mpFiller.disposeAndClear();
+    mpVerticalScrollBar.disposeAndClear();
     vcl::Window::dispose();
 }
 
@@ -112,7 +117,6 @@ void Deck::Dispose (void)
         if (*iPanel)
         {
             (*iPanel)->Dispose();
-            OSL_ASSERT(iPanel->unique());
             iPanel->reset();
         }
     }

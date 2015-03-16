@@ -140,8 +140,8 @@ class ScGridWindow : public vcl::Window, public DropTargetHelper, public DragSou
 
     VclPtr<ScFilterListBox>        pFilterBox;
     VclPtr<FloatingWindow>         pFilterFloat;
-    boost::scoped_ptr<ScCheckListMenuWindow> mpAutoFilterPopup;
-    boost::scoped_ptr<ScCheckListMenuWindow> mpDPFieldPopup;
+    VclPtr<ScCheckListMenuWindow>  mpAutoFilterPopup;
+    VclPtr<ScCheckListMenuWindow>  mpDPFieldPopup;
     boost::scoped_ptr<ScDPFieldButton>       mpFilterButton;
 
     sal_uInt16              nCursorHideCount;

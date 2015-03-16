@@ -539,9 +539,11 @@ void ScGridWindow::dispose()
     // #114409#
     ImpDestroyOverlayObjects();
 
+    delete pNoteMarker;
     pFilterBox.disposeAndClear();
     pFilterFloat.disposeAndClear();
-    delete pNoteMarker;
+    mpAutoFilterPopup.disposeAndClear();
+    mpDPFieldPopup.disposeAndClear();
     vcl::Window::dispose();
 }
 

@@ -293,7 +293,7 @@ void SidebarController::NotifyResize (void)
 {
     if (mpTabBar == 0)
     {
-        OSL_ASSERT(mpTabBar!=0);
+        OSL_ASSERT(mpTabBar!=nullptr);
         return;
     }
 
@@ -613,10 +613,12 @@ void SidebarController::SwitchToDeck (
         }
         else
         {
-            iPanel = ::std::find_if(
-                rCurrentPanels.begin(),
-                rCurrentPanels.end(),
-                ::boost::bind(&Panel::HasIdPredicate, _1, ::boost::cref(rPanelContexDescriptor.msId)));
+            for (auto a = rCurrentPanels.begin(); a != rCurrentPanels.end(); ++a)
+            {
+                iPanel = a;
+                if ((*iPanel)->HasIdPredicate(rPanelContexDescriptor.msId))
+                    break;
+            }
         }
         if (iPanel != rCurrentPanels.end())
         {
@@ -635,7 +637,7 @@ void SidebarController::SwitchToDeck (
                 rContext);
             bHasPanelSetChanged = true;
         }
-        if (aNewPanels[nWriteIndex] != 0)
+        if (aNewPanels[nWriteIndex] != nullptr)
         {
             // Depending on the context we have to change the command
             // for the "more options" dialog.
@@ -676,7 +678,7 @@ void SidebarController::SwitchToDeck (
     UpdateTitleBarIcons();
 }
 
-SharedPanel SidebarController::CreatePanel (
+Panel* SidebarController::CreatePanel (
     const OUString& rsPanelId,
     vcl::Window* pParentWindow,
     const bool bIsInitiallyExpanded,
@@ -684,15 +686,15 @@ SharedPanel SidebarController::CreatePanel (
 {
     const PanelDescriptor* pPanelDescriptor = ResourceManager::Instance().GetPanelDescriptor(rsPanelId);
     if (pPanelDescriptor == NULL)
-        return SharedPanel();
+        return NULL;
 
     // Create the panel which is the parent window of the UIElement.
-    SharedPanel pPanel (new Panel(
+    Panel *pPanel = new Panel(
         *pPanelDescriptor,
         pParentWindow,
         bIsInitiallyExpanded,
         ::boost::bind(&Deck::RequestLayout, mpCurrentDeck.get()),
-        ::boost::bind(&SidebarController::GetCurrentContext, this)));
+        ::boost::bind(&SidebarController::GetCurrentContext, this));
 
     // Create the XUIElement.
     Reference<ui::XUIElement> xUIElement (CreateUIElement(
@@ -707,7 +709,7 @@ SharedPanel SidebarController::CreatePanel (
     }
     else
     {
-        pPanel.reset();
+        pPanel = NULL;
     }
 
     return pPanel;

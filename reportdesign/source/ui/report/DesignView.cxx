@@ -410,7 +410,7 @@ void ODesignView::GetFocus()
 
     if ( !m_bDeleted )
     {
-        ::boost::shared_ptr<OSectionWindow> pSectionWindow = m_aScrollWindow->getMarkedSection();
+        OSectionWindow* pSectionWindow = m_aScrollWindow->getMarkedSection();
         if ( pSectionWindow )
             pSectionWindow->GrabFocus();
     }
@@ -571,12 +571,12 @@ uno::Reference< report::XReportComponent > ODesignView::getCurrentControlModel()
     return xModel;
 }
 
-::boost::shared_ptr<OSectionWindow> ODesignView::getMarkedSection(NearSectionAccess nsa) const
+OSectionWindow* ODesignView::getMarkedSection(NearSectionAccess nsa) const
 {
     return  m_aScrollWindow->getMarkedSection(nsa);
 }
 
-::boost::shared_ptr<OSectionWindow> ODesignView::getSectionWindow(const ::com::sun::star::uno::Reference< ::com::sun::star::report::XSection>& _xSection) const
+OSectionWindow* ODesignView::getSectionWindow(const ::com::sun::star::uno::Reference< ::com::sun::star::report::XSection>& _xSection) const
 {
     return  m_aScrollWindow->getSectionWindow(_xSection);
 }
@@ -654,7 +654,7 @@ void ODesignView::MouseButtonDown( const MouseEvent& rMEvt )
 uno::Any ODesignView::getCurrentlyShownProperty() const
 {
     uno::Any aRet;
-    ::boost::shared_ptr<OSectionWindow> pSectionWindow = getMarkedSection();
+    OSectionWindow* pSectionWindow = getMarkedSection();
     if ( pSectionWindow )
     {
         ::std::vector< uno::Reference< uno::XInterface > > aSelection;

@@ -216,6 +216,10 @@ namespace pcr
         m_pMasterLabel.disposeAndClear();
         m_pOK.disposeAndClear();
         m_pSuggest.disposeAndClear();
+        m_aRow1.disposeAndClear();
+        m_aRow2.disposeAndClear();
+        m_aRow3.disposeAndClear();
+        m_aRow4.disposeAndClear();
         ModalDialog::dispose();
     }
 

@@ -78,7 +78,7 @@ public :
     void SetPopupModeEndHandler (const ::boost::function<void(void)>& rCallback);
 
 protected:
-    ::boost::scoped_ptr<PopupControl> mpControl;
+    VclPtr<PopupControl> mpControl;
 
     /** Make sure that both PopupContainer and PopupControl objects
         exist.  Calls the maControlCreator functor if necessary.
@@ -95,7 +95,7 @@ private:
     ::boost::function<PopupControl*(PopupContainer*)> maControlCreator;
     ::boost::function<void(void)> maPopupModeEndCallback;
     const ::rtl::OUString msAccessibleName;
-    ::boost::scoped_ptr<PopupContainer> mpContainer;
+    VclPtr<PopupContainer> mpContainer;
 
     DECL_LINK(PopupModeEndHandler, void*);
 };

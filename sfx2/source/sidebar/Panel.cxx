@@ -82,6 +82,7 @@ Panel::~Panel()
 void Panel::dispose()
 {
     Dispose();
+    mpTitleBar.disposeAndClear();
     vcl::Window::dispose();
 }
 

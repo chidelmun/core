@@ -164,6 +164,7 @@ void CuiAboutConfigTabPage::dispose()
     m_pPrefCtrl.disposeAndClear();
     m_pResetBtn.disposeAndClear();
     m_pEditBtn.disposeAndClear();
+    m_pPrefBox.disposeAndClear();
     ModelessDialog::dispose();
 }
 

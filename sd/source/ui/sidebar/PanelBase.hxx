@@ -64,7 +64,7 @@ public:
             ::com::sun::star::accessibility::XAccessible>& rxParent);
 
 protected:
-    ::boost::scoped_ptr< vcl::Window> mpWrappedControl;
+    VclPtr< vcl::Window> mpWrappedControl;
     virtual vcl::Window* CreateWrappedControl (
         vcl::Window* pParentWindow,
         ViewShellBase& rViewShellBase) = 0;

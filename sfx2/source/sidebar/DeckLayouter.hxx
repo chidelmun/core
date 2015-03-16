@@ -65,7 +65,7 @@ private:
     class LayoutItem
     {
     public:
-        SharedPanel mpPanel;
+        VclPtr<Panel> mpPanel;
         css::ui::LayoutSize maLayoutSize;
         sal_Int32 mnDistributedHeight;
         sal_Int32 mnWeight;

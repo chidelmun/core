@@ -243,6 +243,7 @@ SmElementsControl::~SmElementsControl()
 void SmElementsControl::dispose()
 {
     mpDocShell->DoClose();
+    mpScroll.disposeAndClear();
     Control::dispose();
 }
 

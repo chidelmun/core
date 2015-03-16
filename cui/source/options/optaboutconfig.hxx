@@ -47,7 +47,7 @@ private:
     VclPtr<PushButton> m_pEditBtn;
 
     std::vector< boost::shared_ptr< Prop_Impl > > m_vectorOfModified;
-    boost::scoped_ptr< SvSimpleTable > m_pPrefBox;
+    VclPtr< SvSimpleTable > m_pPrefBox;
 
     void AddToModifiedVector( const boost::shared_ptr< Prop_Impl >& rProp );
     std::vector< OUString > commaStringToSequence( const OUString& rCommaSepString );

@@ -132,7 +132,7 @@ TYPEINIT1(SlideSorterView, ::sd::View);
 SlideSorterView::SlideSorterView (SlideSorter& rSlideSorter)
     : ::sd::View (
           *rSlideSorter.GetModel().GetDocument(),
-          rSlideSorter.GetContentWindow().get(),
+          rSlideSorter.GetContentWindow(),
           rSlideSorter.GetViewShell()),
       mrSlideSorter(rSlideSorter),
       mrModel(rSlideSorter.GetModel()),
@@ -217,7 +217,7 @@ sal_Int32 SlideSorterView::GetPageIndexAtPoint (const Point& rWindowPosition) co
 {
     sal_Int32 nIndex (-1);
 
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         nIndex = mpLayouter->GetIndexAtPoint(pWindow->PixelToLogic(rWindowPosition), false, false);
@@ -317,7 +317,7 @@ void SlideSorterView::Rearrange (void)
     if (mrModel.GetPageCount() <= 0)
         return;
 
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if ( ! pWindow)
         return;
     const Size aWindowSize (pWindow->GetSizePixel());
@@ -348,7 +348,7 @@ void SlideSorterView::UpdateOrientation (void)
     else
     {
         // Get access to the docking window.
-        vcl::Window* pWindow = mrSlideSorter.GetContentWindow().get();
+        vcl::Window* pWindow = mrSlideSorter.GetContentWindow();
         PaneDockingWindow* pDockingWindow = NULL;
         while (pWindow!=NULL && pDockingWindow==NULL)
         {
@@ -409,7 +409,7 @@ void SlideSorterView::UpdateOrientation (void)
 
 void SlideSorterView::Layout ()
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         // Set the model area, i.e. the smallest rectangle that includes all
@@ -451,7 +451,7 @@ void SlideSorterView::InvalidatePageObjectVisibilities (void)
 
 void SlideSorterView::DeterminePageObjectVisibilities (void)
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         // Set this flag to true here so that an invalidate during the
@@ -548,7 +548,7 @@ bool SlideSorterView::SetOrientation (const Layouter::Orientation eOrientation)
 
 void SlideSorterView::RequestRepaint (void)
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         mpLayeredDevice->InvalidateAllLayers(
@@ -567,7 +567,7 @@ void SlideSorterView::RequestRepaint (const model::SharedPageDescriptor& rpDescr
 
 void SlideSorterView::RequestRepaint (const Rectangle& rRepaintBox)
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         mpLayeredDevice->InvalidateAllLayers(rRepaintBox);
@@ -577,7 +577,7 @@ void SlideSorterView::RequestRepaint (const Rectangle& rRepaintBox)
 
 void SlideSorterView::RequestRepaint (const vcl::Region& rRepaintRegion)
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow)
     {
         mpLayeredDevice->InvalidateAllLayers(rRepaintRegion);
@@ -613,7 +613,7 @@ void SlideSorterView::CompleteRedraw (
         mnLockRedrawSmph ? "locked" : "");
 #endif
 
-    if (pDevice == NULL || pDevice!=mrSlideSorter.GetContentWindow().get())
+    if (pDevice == NULL || pDevice!=mrSlideSorter.GetContentWindow())
         return;
 
     // The parent implementation of CompleteRedraw is called only when
@@ -701,7 +701,7 @@ void SlideSorterView::ConfigurationChanged (
 
 ::boost::shared_ptr<cache::PageCache> SlideSorterView::GetPreviewCache (void)
 {
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow && mpPreviewCache.get() == NULL)
     {
         mpPreviewCache.reset(
@@ -776,7 +776,7 @@ void SlideSorterView::UpdatePageUnderMouse ()
         return;
     }
 
-    SharedSdWindow pWindow (mrSlideSorter.GetContentWindow());
+    sd::Window *pWindow (mrSlideSorter.GetContentWindow());
     if (pWindow && pWindow->IsVisible() && ! pWindow->IsMouseCaptured())
     {
         const Window::PointerState aPointerState (pWindow->GetPointerState());

@@ -96,7 +96,7 @@ class SmElementsControl : public Control
     SmElementList maElementList;
     Size          maMaxElementDimensions;
     bool          mbVerticalMode;
-    boost::scoped_ptr< ScrollBar > mpScroll;
+    VclPtr< ScrollBar > mpScroll;
 
     void addElement(const OUString& aElementVisual, const OUString& aElementSource, const OUString& aHelpText);
 

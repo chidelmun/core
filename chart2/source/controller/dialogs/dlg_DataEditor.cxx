@@ -107,6 +107,7 @@ void DataEditor::dispose()
 
     OSL_TRACE( "DataEditor: DTOR" );
     m_pTbxData.disposeAndClear();
+    m_xBrwData.disposeAndClear();
     ModalDialog::dispose();
 }
 

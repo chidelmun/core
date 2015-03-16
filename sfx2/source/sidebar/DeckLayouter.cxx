@@ -301,7 +301,7 @@ void DeckLayouter::GetRequestedSizes (
     IterateLayoutItems(iItem,rLayoutItems)
     {
         ui::LayoutSize aLayoutSize (ui::LayoutSize(0,0,0));
-        if (iItem->mpPanel != 0)
+        if (iItem->mpPanel != nullptr)
         {
             if (rLayoutItems.size() == 1
                 && iItem->mpPanel->IsTitleBarOptional())

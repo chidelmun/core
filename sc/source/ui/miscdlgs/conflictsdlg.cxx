@@ -452,6 +452,7 @@ void ScConflictsDlg::dispose()
     m_pBtnKeepOther.disposeAndClear();
     m_pBtnKeepAllMine.disposeAndClear();
     m_pBtnKeepAllOthers.disposeAndClear();
+    m_pLbConflicts.disposeAndClear();
     ModalDialog::dispose();
 }
 
