@@ -1889,6 +1889,11 @@ void VclEventBox::Command(const CommandEvent&)
     //discard events by default to block them reaching children
 }
 
+VclEventBox::~VclEventBox()
+{
+    disposeOnce();
+}
+
 void VclEventBox::dispose()
 {
     m_aEventBoxHelper.disposeAndClear();
