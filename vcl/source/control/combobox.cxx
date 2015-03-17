@@ -75,9 +75,9 @@ void ComboBox::dispose()
 {
     mpSubEdit.disposeAndClear();
 
-    ImplListBox *pImplLB = mpImplLB;
-    mpImplLB = NULL;
-    delete pImplLB;
+    VclPtr< ImplListBox > pImplLB = mpImplLB;
+    mpImplLB.clear();
+    pImplLB.disposeAndClear();
 
     mpFloatWin.disposeAndClear();
     mpBtn.disposeAndClear();
