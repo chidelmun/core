@@ -4835,7 +4835,7 @@ Size ToolBox::CalcMinimumWindowSizePixel() const
     else
     {
         // create dummy toolbox for measurements
-        ToolBox *pToolBox = new ToolBox( GetParent(), GetStyle() );
+        VclPtr< ToolBox > pToolBox = new ToolBox( GetParent(), GetStyle() );
 
         // copy until first useful item
         std::vector< ImplToolItem >::iterator it = mpData->m_aItems.begin();
@@ -4863,7 +4863,8 @@ Size ToolBox::CalcMinimumWindowSizePixel() const
 
         ImplGetDockingManager()->RemoveWindow( pToolBox );
         pToolBox->Clear();
-        delete pToolBox;
+
+        pToolBox.disposeAndClear();
 
         return aSize;
     }
