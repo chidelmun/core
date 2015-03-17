@@ -1502,6 +1502,7 @@ SfxViewFrame::~SfxViewFrame()
         KillDispatcher_Impl();
 
     pImp->pWindow.disposeAndClear();
+    pImp->pFocusWin.clear();
 
     if ( GetFrame().GetCurrentViewFrame() == this )
         GetFrame().SetCurrentViewFrame_Impl( NULL );
