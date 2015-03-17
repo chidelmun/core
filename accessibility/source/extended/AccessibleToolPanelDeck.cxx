@@ -141,7 +141,7 @@ namespace accessibility
     {
         ENSURE_OR_RETURN_VOID( !isDisposed(), "disposed twice" );
         m_pPanelDeck->RemoveListener( *this );
-        m_pPanelDeck.disposeAndClear();
+        m_pPanelDeck.clear();
         m_xAccessibleParent.clear();
     }
 

@@ -258,7 +258,7 @@ void SvxPathSelectDialog::dispose()
         while ( nPos-- )
             delete (OUString*)m_pPathLB->GetEntryData(nPos);
     }
-    m_pPathLB.disposeAndClear();
+    m_pPathLB.clear();
     m_pAddBtn.disposeAndClear();
     m_pDelBtn.disposeAndClear();
     ModalDialog::dispose();

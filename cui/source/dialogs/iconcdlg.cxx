@@ -283,7 +283,7 @@ void IconChoiceDialog::dispose()
     delete pOutSet;
     pOutSet = NULL;
 
-    m_pIconCtrl.disposeAndClear();
+    m_pIconCtrl.clear();
     m_pOKBtn.disposeAndClear();
     m_pApplyBtn.disposeAndClear();
     m_pCancelBtn.disposeAndClear();

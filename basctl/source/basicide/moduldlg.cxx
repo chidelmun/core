@@ -496,7 +496,7 @@ void OrganizeDialog::dispose()
         for ( sal_uInt16 i = 0; i < m_pTabCtrl->GetPageCount(); i++ )
             delete m_pTabCtrl->GetTabPage( m_pTabCtrl->GetPageId( i ) );
     }
-    m_pTabCtrl.disposeAndClear();
+    m_pTabCtrl.clear();
 
     TabDialog::dispose();
 };

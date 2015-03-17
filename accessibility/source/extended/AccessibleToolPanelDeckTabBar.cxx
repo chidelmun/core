@@ -163,7 +163,7 @@ namespace accessibility
 
         m_pTabBar->GetScrollButton( true ).RemoveEventListener( LINK( this, AccessibleToolPanelTabBar_Impl, OnWindowEvent ) );
         m_pTabBar->GetScrollButton( false ).RemoveEventListener( LINK( this, AccessibleToolPanelTabBar_Impl, OnWindowEvent ) );
-        m_pTabBar.disposeAndClear();
+        m_pTabBar.clear();
 
         m_xAccessibleParent.clear();
     }

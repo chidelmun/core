@@ -5006,7 +5006,7 @@ void SvxIconSelectorDialog::dispose()
         }
     }
 
-    pTbSymbol.disposeAndClear();
+    pTbSymbol.clear();
     pFtNote.disposeAndClear();
     pBtnImport.disposeAndClear();
     pBtnDelete.disposeAndClear();

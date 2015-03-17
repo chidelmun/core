@@ -139,7 +139,7 @@ namespace accessibility
         m_xAccessibleParent.clear();
         m_pPanelDeck->RemoveListener( *this );
         m_pPanelDeck = NULL;
-        m_pTabBar.disposeAndClear();
+        m_pTabBar.clear();
     }
 
     Reference< XAccessibleComponent > AccessibleToolPanelDeckTabBarItem_Impl::getParentAccessibleComponent() const

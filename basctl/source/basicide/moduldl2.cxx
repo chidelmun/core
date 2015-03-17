@@ -533,7 +533,7 @@ void LibPage::dispose()
             delete pEntry;
         }
     }
-    m_pBasicsBox.disposeAndClear();
+    m_pBasicsBox.clear();
     m_pLibBox.disposeAndClear();
     m_pEditButton.disposeAndClear();
     m_pPasswordButton.disposeAndClear();
