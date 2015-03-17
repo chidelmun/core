@@ -77,7 +77,6 @@ TabBar::~TabBar()
 void TabBar::dispose()
 {
     maItems.clear();
-    mpMenuButton.reset();
     mpMenuButton.disposeAndClear();
     vcl::Window::dispose();
 }
@@ -116,7 +115,7 @@ void TabBar::SetDecks (
             iItem!=iEnd;
             ++iItem)
         {
-            iItem->mpButton.reset();
+            iItem->mpButton.disposeAndClear();
         }
         maItems.clear();
     }
@@ -138,7 +137,8 @@ void TabBar::SetDecks (
 
         Item& rItem (maItems[nIndex++]);
         rItem.msDeckId = pDescriptor->msId;
-        rItem.mpButton.reset(CreateTabItem(*pDescriptor));
+        rItem.mpButton.disposeAndClear();
+        rItem.mpButton = CreateTabItem(*pDescriptor);
         rItem.mpButton->SetClickHdl(LINK(&rItem, TabBar::Item, HandleClick));
         rItem.maDeckActivationFunctor = maDeckActivationFunctor;
         rItem.mbIsHiddenByDefault = false;

@@ -93,16 +93,8 @@ void Deck::dispose()
         maPanels[i]->dispose();
 
     maPanels.clear();
-    mpTitleBar.disposeAndClear();
-    mpScrollClipWindow.disposeAndClear();
-    mpScrollContainer.disposeAndClear();
-    mpFiller.disposeAndClear();
-    mpVerticalScrollBar.disposeAndClear();
     vcl::Window::dispose();
 }
-
-
-
 
 void Deck::Dispose (void)
 {
@@ -121,19 +113,12 @@ void Deck::Dispose (void)
         }
     }
 
-    mpTitleBar.reset();
-    mpFiller.reset();
-    mpVerticalScrollBar.reset();
-    mpScrollContainer.reset();
-    mpScrollClipWindow.reset();
+    mpTitleBar.disposeAndClear();
+    mpFiller.disposeAndClear();
+    mpVerticalScrollBar.disposeAndClear();
+    mpScrollContainer.disposeAndClear();
+    mpScrollClipWindow.disposeAndClear();
 }
-
-
-
-
-
-
-
 
 DeckTitleBar* Deck::GetTitleBar (void) const
 {

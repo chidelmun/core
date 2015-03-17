@@ -82,7 +82,6 @@ Panel::~Panel()
 void Panel::dispose()
 {
     Dispose();
-    mpTitleBar.disposeAndClear();
     vcl::Window::dispose();
 }
 
@@ -103,23 +102,13 @@ void Panel::Dispose (void)
             xComponent->dispose();
     }
 
-    mpTitleBar.reset();
+    mpTitleBar.disposeAndClear();
 }
-
-
-
 
 PanelTitleBar* Panel::GetTitleBar (void) const
 {
     return mpTitleBar.get();
 }
-
-
-
-
-
-
-
 
 void Panel::SetUIElement (const Reference<ui::XUIElement>& rxElement)
 {
