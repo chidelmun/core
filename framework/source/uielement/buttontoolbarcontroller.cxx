@@ -152,7 +152,7 @@ void SAL_CALL ButtonToolbarController::dispose() throw (::com::sun::star::uno::R
         m_xContext.clear();
         m_xURLTransformer.clear();
         m_xFrame.clear();
-        m_pToolbar.disposeAndClear();
+        m_pToolbar.clear();
         m_bDisposed = true;
     }
 }
