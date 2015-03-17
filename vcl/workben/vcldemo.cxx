@@ -1358,12 +1358,12 @@ public:
             }
 
             VclPtr<DemoWin> aMainWin(new DemoWin(aRenderer));
-            boost::scoped_ptr<DemoWidgets> aWidgets;
+            VclPtr<DemoWidgets> aWidgets;
 
             aMainWin->SetText("Interactive VCL demo #1");
 
             if (bWidgets)
-                aWidgets.reset(new DemoWidgets());
+                aWidgets = new DemoWidgets();
             else
                 aMainWin->Show();
 

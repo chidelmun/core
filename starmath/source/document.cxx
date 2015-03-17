@@ -997,7 +997,7 @@ void SmDocShell::Execute(SfxRequest& rReq)
                 pDev = &SM_MOD()->GetDefaultVirtualDev();
             OSL_ENSURE (pDev, "device for font list missing" );
 
-            boost::scoped_ptr<SmFontTypeDialog> pFontTypeDialog(new SmFontTypeDialog( NULL, pDev ));
+            VclPtr<SmFontTypeDialog> pFontTypeDialog(new SmFontTypeDialog( NULL, pDev ));
 
             SmFormat aOldFormat  = GetFormat();
             pFontTypeDialog->ReadFrom( aOldFormat );
@@ -1019,7 +1019,7 @@ void SmDocShell::Execute(SfxRequest& rReq)
 
         case SID_FONTSIZE:
         {
-            boost::scoped_ptr<SmFontSizeDialog> pFontSizeDialog(new SmFontSizeDialog(NULL));
+            VclPtr<SmFontSizeDialog> pFontSizeDialog(new SmFontSizeDialog(NULL));
 
             SmFormat aOldFormat  = GetFormat();
             pFontSizeDialog->ReadFrom( aOldFormat );
@@ -1042,7 +1042,7 @@ void SmDocShell::Execute(SfxRequest& rReq)
 
         case SID_DISTANCE:
         {
-            boost::scoped_ptr<SmDistanceDialog> pDistanceDialog(new SmDistanceDialog(NULL));
+            VclPtr<SmDistanceDialog> pDistanceDialog(new SmDistanceDialog(NULL));
 
             SmFormat aOldFormat  = GetFormat();
             pDistanceDialog->ReadFrom( aOldFormat );
@@ -1065,7 +1065,7 @@ void SmDocShell::Execute(SfxRequest& rReq)
 
         case SID_ALIGN:
         {
-            boost::scoped_ptr<SmAlignDialog> pAlignDialog(new SmAlignDialog(NULL));
+            VclPtr<SmAlignDialog> pAlignDialog(new SmAlignDialog(NULL));
 
             SmFormat aOldFormat  = GetFormat();
             pAlignDialog->ReadFrom( aOldFormat );

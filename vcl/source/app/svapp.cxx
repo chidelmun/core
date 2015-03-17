@@ -176,7 +176,7 @@ struct ImplPostEventData
     ~ImplPostEventData() {}
 };
 
-typedef ::std::pair< vcl::Window*, ImplPostEventData* > ImplPostEventPair;
+typedef ::std::pair< VclPtr<vcl::Window>, ImplPostEventData* > ImplPostEventPair;
 
 static ::std::list< ImplPostEventPair > aPostedEventList;
 

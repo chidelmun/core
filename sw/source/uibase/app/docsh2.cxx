@@ -494,7 +494,7 @@ void SwDocShell::Execute(SfxRequest& rReq)
                 if ( aFileName.isEmpty() )
                 {
                     SvtPathOptions aPathOpt;
-                    boost::scoped_ptr<SfxNewFileDialog> pNewFileDlg(
+                    VclPtr<SfxNewFileDialog> pNewFileDlg(
                         new SfxNewFileDialog(&GetView()->GetViewFrame()->GetWindow(), SFXWB_LOAD_TEMPLATE));
                     pNewFileDlg->SetTemplateFlags(nFlags);
 
