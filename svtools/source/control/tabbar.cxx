@@ -364,8 +364,11 @@ struct TabBar_Impl
     ::svt::AccessibleFactoryAccess  maAccessibleFactory;
 
     TabBar_Impl()
-        :mpSizer( NULL )
     {
+    }
+    ~TabBar_Impl()
+    {
+        mpSizer.disposeAndClear();
     }
 };
 

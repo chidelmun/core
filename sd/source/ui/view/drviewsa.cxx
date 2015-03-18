@@ -190,6 +190,8 @@ DrawViewShell::~DrawViewShell()
 
     mpFrameView->Disconnect();
     delete [] mpSlotArray;
+
+    maTabControl.disposeAndClear();
 }
 
 /**

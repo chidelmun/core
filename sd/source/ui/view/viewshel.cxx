@@ -150,7 +150,7 @@ ViewShell::~ViewShell()
 
     delete mpZoomList;
 
-    mpLayerTabBar.reset();
+    mpLayerTabBar.disposeAndClear();
 
     if (mpImpl->mpSubShellFactory.get() != NULL)
         GetViewShellBase().GetViewShellManager()->RemoveSubShellFactory(
@@ -160,8 +160,14 @@ ViewShell::~ViewShell()
     {
         OSL_TRACE("destroying mpContentWindow at %x with parent %x", mpContentWindow.get(),
             mpContentWindow->GetParent());
-        mpContentWindow.reset();
+        mpContentWindow.disposeAndClear();
     }
+
+    mpScrollBarBox.disposeAndClear();
+    mpVerticalRuler.disposeAndClear();
+    mpHorizontalRuler.disposeAndClear();
+    mpVerticalScrollBar.disposeAndClear();
+    mpHorizontalScrollBar.disposeAndClear();
 }
 
 /**
