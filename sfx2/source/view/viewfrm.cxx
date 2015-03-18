@@ -1489,7 +1489,6 @@ SfxViewFrame::SfxViewFrame
 
 SfxViewFrame::~SfxViewFrame()
 {
-
     SetDowning_Impl();
 
     if ( SfxViewFrame::Current() == this )
