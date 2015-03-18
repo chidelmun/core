@@ -171,7 +171,7 @@ protected:
     SdrOutliner*    pDrawOutliner;  // an Outliner for outputting text
     SdrOutliner*    pHitTestOutliner;// an Outliner for the HitTest
     sal_uIntPtr           nDefTextHgt;    // Default text heigth in logical units
-    OutputDevice*   pRefOutDev;     // ReferenceDevice for the EditEngine
+    VclPtr< OutputDevice> pRefOutDev;     // ReferenceDevice for the EditEngine
     sal_uIntPtr           nProgressAkt;   // for the
     sal_uIntPtr           nProgressMax;   // ProgressBar-
     sal_uIntPtr           nProgressOfs;   // -Handler
@@ -336,7 +336,7 @@ public:
 
     // ReferenceDevice for the EditEngine
     void                 SetRefDevice(OutputDevice* pDev);
-    OutputDevice*        GetRefDevice() const                   { return pRefOutDev; }
+    OutputDevice*        GetRefDevice() const                   { return pRefOutDev.get(); }
     // If a new MapMode is set on the RefDevice (or similar)
     void                 RefDeviceChanged(); // not yet implemented
     // default font heigth in logical units

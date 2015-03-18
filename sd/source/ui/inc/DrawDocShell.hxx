@@ -209,7 +209,7 @@ protected:
 
     SdDrawDocument*         mpDoc;
     SfxUndoManager*         mpUndoManager;
-    SfxPrinter*             mpPrinter;
+    VclPtr<SfxPrinter>      mpPrinter;
     ::sd::ViewShell*        mpViewShell;
     FontList*               mpFontList;
     rtl::Reference<FuPoor> mxDocShellFunction;

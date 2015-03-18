@@ -562,7 +562,7 @@ public:
 
     // The functions from SvEmbeddedObject
     virtual Printer *       GetDocumentPrinter();
-    virtual OutputDevice*    GetDocumentRefDev();
+    virtual OutputDevice*   GetDocumentRefDev();
     virtual void            OnDocumentPrinterChanged( Printer * pNewPrinter );
     virtual Rectangle GetVisArea( sal_uInt16 nAspect ) const;
     virtual void    SetVisArea( const Rectangle & rVisArea );

@@ -68,13 +68,13 @@ class EditEngine;
 
 class SmPrinterAccess
 {
-    Printer* pPrinter;
-    OutputDevice* pRefDev;
+    VclPtr<Printer> pPrinter;
+    VclPtr<OutputDevice> pRefDev;
 public:
     SmPrinterAccess( SmDocShell &rDocShell );
     ~SmPrinterAccess();
-    Printer* GetPrinter()  { return pPrinter; }
-    OutputDevice* GetRefDev()  { return pRefDev; }
+    Printer* GetPrinter()  { return pPrinter.get(); }
+    OutputDevice* GetRefDev()  { return pRefDev.get(); }
 };
 
 
@@ -97,8 +97,8 @@ class SmDocShell : public SfxObjectShell, public SfxListener
     SmNode             *pTree;
     SfxItemPool        *pEditEngineItemPool;
     EditEngine         *pEditEngine;
-    SfxPrinter         *pPrinter;       //q.v. comment to SmPrinter Access!
-    Printer            *pTmpPrinter;    //ditto
+    VclPtr<SfxPrinter>  pPrinter;       //q.v. comment to SmPrinter Access!
+    VclPtr<Printer>     pTmpPrinter;    //ditto
     sal_uInt16          nModifyCount;
     bool                bIsFormulaArranged;
     SmCursor           *pCursor;

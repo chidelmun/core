@@ -126,7 +126,7 @@ SdModule::~SdModule()
         (*ppShellPointer) = NULL;
 
     delete mpErrorHdl;
-    delete static_cast< VirtualDevice* >( mpVirtualRefDevice );
+    mpVirtualRefDevice.disposeAndClear();
 }
 
 /// get notifications
