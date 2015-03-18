@@ -858,14 +858,14 @@ bool ImplDockingWindowWrapper::ImplStartDocking( const Point& rPos )
     mbStartFloat    = mbLastFloatMode;
 
     // calculate FloatingBorder
-    FloatingWindow* pWin;
+    VclPtr<FloatingWindow> pWin;
     if ( mpFloatWin )
         pWin = mpFloatWin;
     else
         pWin = new ImplDockFloatWin2( mpParent, mnFloatBits, NULL );
     pWin->GetBorder( mnDockLeft, mnDockTop, mnDockRight, mnDockBottom );
     if ( !mpFloatWin )
-        delete pWin;
+        pWin.disposeAndClear();
 
     Point   aPos    = GetWindow()->ImplOutputToFrame( Point() );
     Size    aSize   = GetWindow()->GetOutputSizePixel();
@@ -1322,8 +1322,7 @@ void ImplDockingWindowWrapper::SetFloatingMode( bool bFloatMode )
                 GetWindow()->SetParent( pRealParent );
                 GetWindow()->mpWindowImpl->mpRealParent = pRealParent;
 
-                delete static_cast<ImplDockFloatWin2*>(mpFloatWin.get());
-                mpFloatWin = NULL;
+                mpFloatWin.disposeAndClear();
                 GetWindow()->SetPosPixel( maDockPos );
 
                 if ( bVisible )

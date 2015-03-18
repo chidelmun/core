@@ -89,8 +89,8 @@ MacroSecurity::~MacroSecurity()
 
 void MacroSecurity::dispose()
 {
-    delete m_pTabCtrl->GetTabPage(m_nSecTrustId);
-    delete m_pTabCtrl->GetTabPage(m_nSecLevelId);
+    VclPtr<vcl::Window>(m_pTabCtrl->GetTabPage(m_nSecTrustId)).disposeAndClear();
+    VclPtr<vcl::Window>(m_pTabCtrl->GetTabPage(m_nSecLevelId)).disposeAndClear();
     m_pTabCtrl.disposeAndClear();
     m_pOkBtn.disposeAndClear();
     m_pResetBtn.disposeAndClear();

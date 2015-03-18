@@ -221,10 +221,10 @@ namespace bib
 
         if( pGridWin )
         {
-            BibGridwin* pDel = pGridWin;
+            VclPtr<BibGridwin> pDel = pGridWin;
             pGridWin.disposeAndClear();
             pDel->disposeGridWin();
-            delete pDel;
+            pDel.disposeAndClear();
         }
         pToolBar.disposeAndClear();
         pGridWin.disposeAndClear();

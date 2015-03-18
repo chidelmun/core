@@ -2769,10 +2769,10 @@ void SwTokenWindow::dispose()
 {
     for (ctrl_iterator it = aControlList.begin(); it != aControlList.end(); ++it)
     {
-        Control* pControl = (*it);
+        VclPtr<Control> pControl = (*it);
         pControl->SetGetFocusHdl( Link() );
         pControl->SetLoseFocusHdl( Link() );
-        delete pControl;
+        pControl.disposeAndClear();
     }
     aControlList.clear();
     disposeBuilder();
@@ -3188,15 +3188,15 @@ void SwTokenWindow::RemoveControl(SwTOXButton* pDel, bool bInternalCall )
     ctrl_iterator itLeft = it, itRight = it;
     --itLeft;
     ++itRight;
-    Control *pLeftEdit = *itLeft;
-    Control *pRightEdit = *itRight;
+    VclPtr<Control> pLeftEdit = *itLeft;
+    VclPtr<Control> pRightEdit = *itRight;
 
-    static_cast<SwTOXEdit*>(pLeftEdit)->SetText(static_cast<SwTOXEdit*>(pLeftEdit)->GetText() +
-                                     static_cast<SwTOXEdit*>(pRightEdit)->GetText());
-    static_cast<SwTOXEdit*>(pLeftEdit)->AdjustSize();
+    static_cast<SwTOXEdit*>(pLeftEdit.get())->SetText(static_cast<SwTOXEdit*>(pLeftEdit.get())->GetText() +
+                                     static_cast<SwTOXEdit*>(pRightEdit.get())->GetText());
+    static_cast<SwTOXEdit*>(pLeftEdit.get())->AdjustSize();
 
     aControlList.erase(itRight);
-    delete pRightEdit;
+    pRightEdit.disposeAndClear();
 
     aControlList.erase(it);
     pActiveCtrl->Hide();

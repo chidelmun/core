@@ -547,12 +547,12 @@ IMPL_LINK( SmFontTypeDialog, MenuSelectHdl, Menu *, pMenu )
 
     if (pActiveListBox)
     {
-        SmFontDialog *pFontDialog = new SmFontDialog(this, pFontListDev, bHideCheckboxes);
+        VclPtr<SmFontDialog> pFontDialog = new SmFontDialog(this, pFontListDev, bHideCheckboxes);
 
         pActiveListBox->WriteTo(*pFontDialog);
         if (pFontDialog->Execute() == RET_OK)
             pActiveListBox->ReadFrom(*pFontDialog);
-        delete pFontDialog;
+        pFontDialog.disposeAndClear();
     }
     return 0;
 }
@@ -1505,7 +1505,7 @@ IMPL_LINK_NOARG( SmSymbolDialog, SymbolChangeHdl )
 
 IMPL_LINK_NOARG(SmSymbolDialog, EditClickHdl)
 {
-    SmSymDefineDialog *pDialog = new SmSymDefineDialog(this, pFontListDev, rSymbolMgr);
+    VclPtr<SmSymDefineDialog> pDialog = new SmSymDefineDialog(this, pFontListDev, rSymbolMgr);
 
     // set current symbol and SymbolSet for the new dialog
     const OUString  aSymSetName (m_pSymbolSets->GetSelectEntry()),
@@ -1542,7 +1542,7 @@ IMPL_LINK_NOARG(SmSymbolDialog, EditClickHdl)
         nSymPos = static_cast< sal_uInt16 >(aSymbolSet.size()) - 1;
     SelectSymbol( nSymPos );
 
-    delete pDialog;
+    pDialog.disposeAndClear();
     return 0;
 }
 

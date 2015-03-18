@@ -278,7 +278,7 @@ void SfxInfoBarContainerWindow::removeInfoBar( SfxInfoBarWindow* pInfoBar )
             break;
         }
     }
-    delete pInfoBar;
+    VclPtr<SfxInfoBarWindow>(pInfoBar).disposeAndClear();
 
     long nY = 0;
     for ( auto it = m_pInfoBars.begin( ); it != m_pInfoBars.end( ); ++it )

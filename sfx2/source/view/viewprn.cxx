@@ -811,7 +811,7 @@ void SfxViewShell::ExecPrint_Impl( SfxRequest &rReq )
                 nDialogRet = 0;
 
                 // execute PrinterSetupDialog
-                PrinterSetupDialog* pPrintSetupDlg = new PrinterSetupDialog( GetWindow() );
+                VclPtr<PrinterSetupDialog> pPrintSetupDlg = new PrinterSetupDialog( GetWindow() );
                 SfxDialogExecutor_Impl* pExecutor = 0;
 
                 if (pImp->m_bHasPrintOptions && HasPrintOptionsPage())
@@ -838,7 +838,7 @@ void SfxViewShell::ExecPrint_Impl( SfxRequest &rReq )
                     }
                 }
 
-                DELETEZ( pPrintSetupDlg );
+                pPrintSetupDlg.disposeAndClear();
                 delete pExecutor;
 
                 // no recording of PrinterSetup except printer name (is printer dependent)
