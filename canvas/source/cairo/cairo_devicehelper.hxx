@@ -119,7 +119,7 @@ namespace cairocanvas
          */
         SurfaceProvider*          mpSurfaceProvider;
 
-        OutputDevice*             mpRefDevice;
+        VclPtr<OutputDevice>      mpRefDevice;
         ::cairo::SurfaceSharedPtr mpSurface;
     };
 }

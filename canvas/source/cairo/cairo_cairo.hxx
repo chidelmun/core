@@ -22,6 +22,7 @@
 
 #include <sal/config.h>
 #include <boost/shared_ptr.hpp>
+#include <vcl/vclptr.hxx>
 
 struct SystemEnvData;
 struct BitmapSystemData;
@@ -61,7 +62,7 @@ namespace cairo {
         virtual boost::shared_ptr<Surface> getSimilar( Content aContent, int width, int height ) const = 0;
 
         /// factory for VirDev on this surface
-        virtual boost::shared_ptr<VirtualDevice> createVirtualDevice() const = 0;
+        virtual VclPtr<VirtualDevice> createVirtualDevice() const = 0;
 
         /// Resize the surface (possibly destroying content)
         virtual void Resize( int width, int height ) = 0;

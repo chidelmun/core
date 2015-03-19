@@ -86,7 +86,7 @@ namespace cairo {
         virtual CairoSurfaceSharedPtr getCairoSurface() const SAL_OVERRIDE { return mpSurface; }
         virtual SurfaceSharedPtr getSimilar( Content aContent, int width, int height ) const SAL_OVERRIDE;
 
-        virtual boost::shared_ptr<VirtualDevice> createVirtualDevice() const SAL_OVERRIDE;
+        virtual VclPtr<VirtualDevice> createVirtualDevice() const SAL_OVERRIDE;
 
         virtual void Resize( int width, int height ) SAL_OVERRIDE;
 

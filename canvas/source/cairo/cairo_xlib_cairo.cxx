@@ -270,7 +270,7 @@ namespace cairo
                                     &cairo_surface_destroy )));
     }
 
-    boost::shared_ptr<VirtualDevice> X11Surface::createVirtualDevice() const
+    VclPtr<VirtualDevice> X11Surface::createVirtualDevice() const
     {
         SystemGraphicsData aSystemGraphicsData;
 
@@ -281,7 +281,7 @@ namespace cairo
         int width = cairo_xlib_surface_get_width(mpSurface.get());
         int height = cairo_xlib_surface_get_height(mpSurface.get());
 
-        return boost::shared_ptr<VirtualDevice>(
+        return VclPtr<VirtualDevice>(
             new VirtualDevice(&aSystemGraphicsData,
                               Size(width, height),
                               std::max(getDepth(), 0)));
