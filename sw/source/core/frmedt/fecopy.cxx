@@ -1241,7 +1241,7 @@ bool SwFEShell::GetDrawObjGraphic( sal_uLong nFmt, Graphic& rGrf ) const
 
                             GDIMetaFile aMtf;
                             aMtf.Record( pVirtDev.get() );
-                            aGrf.Draw( &aVirtDev, aPt, aSz );
+                            aGrf.Draw( pVirtDev, aPt, aSz );
                             aMtf.Stop();
                             aMtf.SetPrefMapMode( aTmp );
                             aMtf.SetPrefSize( aSz );
