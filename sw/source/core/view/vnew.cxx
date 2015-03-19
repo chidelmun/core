@@ -361,7 +361,7 @@ SwViewShell::~SwViewShell()
             this->GetNext() : nullptr );
     }
 
-    delete mpTmpRef;
+    mpTmpRef.disposeAndClear();
     delete mpAccOptions;
 }
 

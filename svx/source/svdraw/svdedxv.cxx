@@ -1723,7 +1723,7 @@ void SdrObjEditView::ImpMacroUp(const Point& rUpPos)
         aHitRec.nTol=nMacroTol;
         aHitRec.pVisiLayer=&pMacroPV->GetVisibleLayers();
         aHitRec.pPageView=pMacroPV;
-        aHitRec.pOut=pMacroWin;
+        aHitRec.pOut=pMacroWin.get();
         pMacroObj->PaintMacro(*pMacroWin,Rectangle(),aHitRec);
         bMacroDown=false;
     }
@@ -1740,7 +1740,7 @@ void SdrObjEditView::ImpMacroDown(const Point& rDownPos)
         aHitRec.pVisiLayer=&pMacroPV->GetVisibleLayers();
         aHitRec.pPageView=pMacroPV;
         aHitRec.bDown=true;
-        aHitRec.pOut=pMacroWin;
+        aHitRec.pOut=pMacroWin.get();
         pMacroObj->PaintMacro(*pMacroWin,Rectangle(),aHitRec);
         bMacroDown=true;
     }
@@ -1756,7 +1756,7 @@ void SdrObjEditView::MovMacroObj(const Point& rPnt)
         aHitRec.pVisiLayer=&pMacroPV->GetVisibleLayers();
         aHitRec.pPageView=pMacroPV;
         aHitRec.bDown=bMacroDown;
-        aHitRec.pOut=pMacroWin;
+        aHitRec.pOut=pMacroWin.get();
         bool bDown=pMacroObj->IsMacroHit(aHitRec);
         if (bDown) ImpMacroDown(rPnt);
         else ImpMacroUp(rPnt);
@@ -1784,7 +1784,7 @@ bool SdrObjEditView::EndMacroObj()
         aHitRec.pVisiLayer=&pMacroPV->GetVisibleLayers();
         aHitRec.pPageView=pMacroPV;
         aHitRec.bDown=true;
-        aHitRec.pOut=pMacroWin;
+        aHitRec.pOut=pMacroWin.get();
         bool bRet=pMacroObj->DoMacro(aHitRec);
         pMacroObj=NULL;
         pMacroPV=NULL;

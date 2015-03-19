@@ -805,7 +805,8 @@ public:
         BitmapEx AlphaRecovery(OutputDevice &rDev, Point aPt, BitmapEx &aSrc)
         {
             // Compositing onto 2x colors beyond our control
-            VirtualDevice aWhite, aBlack;
+            ScopedVclPtr< VirtualDevice > aWhite(new VirtualDevice());
+            ScopedVclPtr< VirtualDevice > aBlack(new VirtualDevice());
             aWhite.SetOutputSizePixel(aSrc.GetSizePixel());
             aWhite.SetBackground(Wallpaper(COL_WHITE));
             aWhite.Erase();
@@ -1294,7 +1295,7 @@ public:
         DrawWallpaper(aWholeSize, aWallpaper);
         Pop();
 
-        VirtualDevice aDev(*this);
+        ScopedVclPtr< VirtualDevice > aDev(new VirtualDevice(*this));
         aDev.EnableRTL(IsRTLEnabled());
         aDev.SetOutputSizePixel(aExclude.GetSize());
 
