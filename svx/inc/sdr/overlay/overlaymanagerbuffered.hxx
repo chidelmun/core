@@ -35,11 +35,11 @@ namespace sdr
         protected:
             // The VirtualDevice for draw window content buffering, this
             // is the view content without overlay
-            VirtualDevice                           maBufferDevice;
+            ScopedVclPtr<VirtualDevice>             mpBufferDevice;
 
             // #i73602# The VirtualDevice for OverlayPaint buffering. This
             // is an extra device to avoid flickering of overlay paints
-            VirtualDevice                           maOutputBufferDevice;
+            ScopedVclPtr<VirtualDevice>             mpOutputBufferDevice;
 
             // Timer for buffering
             Idle                                    maBufferIdle;

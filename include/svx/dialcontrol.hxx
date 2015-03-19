@@ -126,9 +126,9 @@ public:
 protected:
     struct DialControl_Impl
     {
-        ::boost::scoped_ptr<DialControlBmp>      mpBmpEnabled;
-        ::boost::scoped_ptr<DialControlBmp>      mpBmpDisabled;
-        ::boost::scoped_ptr<DialControlBmp>      mpBmpBuffered;
+        ScopedVclPtr<DialControlBmp> mpBmpEnabled;
+        ScopedVclPtr<DialControlBmp> mpBmpDisabled;
+        ScopedVclPtr<DialControlBmp> mpBmpBuffered;
         Link                maModifyHdl;
         VclPtr<NumericField>       mpLinkField;
         sal_Int32           mnLinkedFieldValueMultiplyer;

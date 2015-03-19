@@ -436,7 +436,7 @@ Svx3DWin::~Svx3DWin()
 void Svx3DWin::dispose()
 {
     delete p3DView;
-    delete pVDev;
+    pVDev.disposeAndClear();
     delete pModel;
 
     delete pControllerItem;
