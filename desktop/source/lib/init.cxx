@@ -566,16 +566,16 @@ void doc_paintTile (LibreOfficeKitDocument* pThis,
     SvpSalInstance* pSalInstance = static_cast< SvpSalInstance* >(pSVData->mpDefInst);
     pSalInstance->setBitCountFormatMapping( 32, ::basebmp::FORMAT_THIRTYTWO_BIT_TC_MASK_RGBA );
 
-    VirtualDevice aDevice(0, Size(1, 1), (sal_uInt16)32);
+    ScopedVclPtr<VirtualDevice> pDevice( new VirtualDevice(0, Size(1, 1), (sal_uInt16)32)) ;
     boost::shared_array< sal_uInt8 > aBuffer( pBuffer, NoDelete< sal_uInt8 >() );
-    aDevice.SetOutputSizePixelScaleOffsetAndBuffer(
+    pDevice->SetOutputSizePixelScaleOffsetAndBuffer(
                 Size(nCanvasWidth, nCanvasHeight), Fraction(1.0), Point(),
                 aBuffer, true );
 
-    pDoc->paintTile(aDevice, nCanvasWidth, nCanvasHeight,
+    pDoc->paintTile(*pDevice.get(), nCanvasWidth, nCanvasHeight,
                     nTilePosX, nTilePosY, nTileWidth, nTileHeight);
 
-    SvpSalVirtualDevice* pSalDev = static_cast< SvpSalVirtualDevice* >(aDevice.getSalVirtualDevice());
+    SvpSalVirtualDevice* pSalDev = static_cast< SvpSalVirtualDevice* >(pDevice->getSalVirtualDevice());
     basebmp::BitmapDeviceSharedPtr pBmpDev = pSalDev->getBitmapDevice();
 
     *pRowStride = pBmpDev->getScanlineStride();

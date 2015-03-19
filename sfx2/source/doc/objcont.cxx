@@ -127,11 +127,11 @@ SfxObjectShell::CreatePreviewMetaFile_Impl( bool bFullContent ) const
 
     ::boost::shared_ptr<GDIMetaFile> pFile(new GDIMetaFile);
 
-    VirtualDevice aDevice;
-    aDevice.EnableOutput( false );
+    ScopedVclPtr<VirtualDevice> pDevice( new VirtualDevice() );
+    pDevice->EnableOutput( false );
 
     MapMode aMode( ((SfxObjectShell*)this)->GetMapUnit() );
-    aDevice.SetMapMode( aMode );
+    pDevice->SetMapMode( aMode );
     pFile->SetPrefMapMode( aMode );
 
     Size aTmpSize;
@@ -151,7 +151,7 @@ SfxObjectShell::CreatePreviewMetaFile_Impl( bool bFullContent ) const
     DBG_ASSERT( aTmpSize.Height()*aTmpSize.Width(),
                 "size of first page is 0, overload GetFirstPageSize or set vis-area!" );
 
-    pFile->Record( &aDevice );
+    pFile->Record( pDevice );
 
     LanguageType eLang;
     SvtCTLOptions aCTLOptions;
@@ -162,11 +162,11 @@ SfxObjectShell::CreatePreviewMetaFile_Impl( bool bFullContent ) const
     else
         eLang = (LanguageType) Application::GetSettings().GetLanguageTag().getLanguageType();
 
-    aDevice.SetDigitLanguage( eLang );
+    pDevice->SetDigitLanguage( eLang );
 
     {
         SAL_INFO( "sfx.doc", "PERFORMANCE SfxObjectShell::CreatePreviewMetaFile_Impl" );
-        ((SfxObjectShell*)this)->DoDraw( &aDevice, Point(0,0), aTmpSize, JobSetup(), nAspect );
+        ((SfxObjectShell*)this)->DoDraw( pDevice, Point(0,0), aTmpSize, JobSetup(), nAspect );
     }
     pFile->Stop();
 
