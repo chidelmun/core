@@ -78,7 +78,7 @@ ImplAnimView::ImplAnimView( Animation* pParent, OutputDevice* pOut,
         MapMode aTempMap( mpOut->GetMapMode() );
         aTempMap.SetOrigin( Point() );
         mpBackground->SetMapMode( aTempMap );
-        static_cast<vcl::Window*>( mpOut )->SaveBackground( maDispPt, maDispSz, Point(), *mpBackground );
+        static_cast<vcl::Window*>( mpOut.get() )->SaveBackground( maDispPt, maDispSz, Point(), *mpBackground );
         mpBackground->SetMapMode( MapMode() );
     }
     else
@@ -94,8 +94,8 @@ ImplAnimView::ImplAnimView( Animation* pParent, OutputDevice* pOut,
 
 ImplAnimView::~ImplAnimView()
 {
-    delete mpBackground;
-    delete mpRestore;
+    mpBackground.disposeAndClear();
+    mpRestore.disposeAndClear();
 
     Animation::ImplDecAnimCount();
 }
@@ -154,19 +154,19 @@ void ImplAnimView::getPosSize( const AnimationBitmap& rAnm, Point& rPosPix, Size
 
 void ImplAnimView::drawToPos( sal_uLong nPos )
 {
-    VirtualDevice   aVDev;
+    ScopedVclPtr<VirtualDevice>    aVDev = new VirtualDevice;
     boost::scoped_ptr<vcl::Region> pOldClip(!maClip.IsNull() ? new vcl::Region( mpOut->GetClipRegion() ) : NULL);
 
-    aVDev.SetOutputSizePixel( maSzPix, false );
+    aVDev->SetOutputSizePixel( maSzPix, false );
     nPos = std::min( nPos, (sal_uLong) mpParent->Count() - 1UL );
 
     for( sal_uLong i = 0UL; i <= nPos; i++ )
-        draw( i, &aVDev );
+        draw( i, aVDev.get() );
 
     if( pOldClip )
         mpOut->SetClipRegion( maClip );
 
-    mpOut->DrawOutDev( maDispPt, maDispSz, Point(), maSzPix, aVDev );
+    mpOut->DrawOutDev( maDispPt, maDispSz, Point(), maSzPix, *aVDev.get() );
 
     if( pOldClip )
         mpOut->SetClipRegion( *pOldClip );
@@ -181,7 +181,7 @@ void ImplAnimView::draw( sal_uLong nPos, VirtualDevice* pVDev )
         setMarked( true );
     else if( !mbPause )
     {
-        VirtualDevice*          pDev;
+        VclPtr<VirtualDevice>   pDev;
         Point                   aPosPix;
         Point                   aBmpPosPix;
         Size                    aSizePix;
@@ -274,10 +274,10 @@ void ImplAnimView::draw( sal_uLong nPos, VirtualDevice* pVDev )
                 pOldClip.reset();
             }
 
-            delete pDev;
+            pDev.disposeAndClear();
 
             if( mpOut->GetOutDevType() == OUTDEV_WINDOW )
-                static_cast<vcl::Window*>( mpOut )->Sync();
+                static_cast<vcl::Window*>( mpOut.get() )->Sync();
         }
     }
 }
@@ -291,7 +291,7 @@ void ImplAnimView::repaint()
         MapMode aTempMap( mpOut->GetMapMode() );
         aTempMap.SetOrigin( Point() );
         mpBackground->SetMapMode( aTempMap );
-        static_cast<vcl::Window*>( mpOut )->SaveBackground( maDispPt, maDispSz, Point(), *mpBackground );
+        static_cast<vcl::Window*>( mpOut.get() )->SaveBackground( maDispPt, maDispSz, Point(), *mpBackground );
         mpBackground->SetMapMode( MapMode() );
     }
     else

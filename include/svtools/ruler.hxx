@@ -607,7 +607,7 @@ class ImplRulerData;
 class SVT_DLLPUBLIC Ruler : public vcl::Window
 {
 private:
-    VirtualDevice   maVirDev;
+    ScopedVclPtr<VirtualDevice>   maVirDev;
     MapMode         maMapMode;
     long            mnBorderOff;
     long            mnWinOff;

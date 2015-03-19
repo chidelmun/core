@@ -281,8 +281,8 @@ private:
 
 private:
     mutable SalGraphics*            mpGraphics;         ///< Graphics context to draw on
-    mutable OutputDevice*           mpPrevGraphics;     ///< Previous output device in list
-    mutable OutputDevice*           mpNextGraphics;     ///< Next output device in list
+    mutable VclPtr<OutputDevice>    mpPrevGraphics;     ///< Previous output device in list
+    mutable VclPtr<OutputDevice>    mpNextGraphics;     ///< Next output device in list
     GDIMetaFile*                    mpMetaFile;
     mutable ImplFontEntry*          mpFontEntry;
     mutable ImplFontCache*          mpFontCache;
@@ -296,7 +296,7 @@ private:
     vcl::ExtOutDevData*             mpExtOutDevData;
 
     // TEMP TEMP TEMP
-    VirtualDevice*                  mpAlphaVDev;
+    VclPtr<VirtualDevice>           mpAlphaVDev;
 
     /// Additional output pixel offset, applied in LogicToPixel (used by SetPixelOffset/GetPixelOffset)
     long                            mnOutOffOrigX;

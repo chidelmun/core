@@ -26,9 +26,9 @@
 #include <vcl/keycod.hxx>
 #include <vcl/cmdevt.hxx>
 #include <vcl/vclptr.hxx>
+#include <vcl/outdev.hxx>
 
 class AllSettings;
-class OutputDevice;
 namespace vcl { class Window; }
 struct IDataObject;
 
@@ -302,7 +302,7 @@ inline HelpEvent::HelpEvent( HelpEventMode nHelpMode )
 class VCL_DLLPUBLIC UserDrawEvent
 {
 private:
-    OutputDevice*       mpOutDev;
+    VclPtr<OutputDevice> mpOutDev;
     Rectangle           maOutRect;
     sal_uInt16          mnItemId;
     sal_uInt16          mnStyle;
