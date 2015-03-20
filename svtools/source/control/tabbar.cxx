@@ -153,6 +153,7 @@ public:
 private:
     void            ImplTrack( const Point& rScreenPos );
 
+    virtual void    dispose() SAL_OVERRIDE;
     virtual void    MouseButtonDown( const MouseEvent& rMEvt ) SAL_OVERRIDE;
     virtual void    Tracking( const TrackingEvent& rTEvt ) SAL_OVERRIDE;
     virtual void    Paint( const Rectangle& rRect ) SAL_OVERRIDE;
@@ -172,6 +173,10 @@ ImplTabSizer::ImplTabSizer( TabBar* pParent, WinBits nWinStyle )
     SetSizePixel(Size(7 * nScaleFactor, 0));
 }
 
+void ImplTabSizer::dispose()
+{
+    vcl::Window::dispose();
+}
 
 
 void ImplTabSizer::ImplTrack( const Point& rScreenPos )
