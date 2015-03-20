@@ -157,8 +157,8 @@ protected:
     SwViewShell    *m_pVsh;
 
     // m_pOut is the output device, m_pRef is the device used for formatting
-    OutputDevice* m_pOut;
-    OutputDevice* m_pRef;
+    VclPtr<OutputDevice> m_pOut;
+    VclPtr<OutputDevice> m_pRef;
 
     SwFont *m_pFnt;
     SwUnderlineFont *m_pUnderFnt; // Font for underlining

@@ -303,7 +303,7 @@ public:
 class SwHookOut
 {
     SwTxtSizeInfo* pInf;
-    OutputDevice* pOut;
+    VclPtr<OutputDevice> pOut;
     bool bOnWin;
 public:
     SwHookOut( SwTxtSizeInfo& rInfo );

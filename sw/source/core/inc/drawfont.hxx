@@ -38,7 +38,7 @@ class SwUnderlineFont;
 class SwDrawTextInfo
 {
     const SwTxtFrm* pFrm;
-    OutputDevice* pOut;
+    VclPtr<OutputDevice> pOut;
     SwViewShell const * pSh;
     const SwScriptInfo* pScriptInfo;
     Point m_aPos;
