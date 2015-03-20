@@ -178,11 +178,11 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                     {
                         if (pPrinter->GetName() != sPrinterName)
                         {
-                            SfxPrinter* pNewPrinter = new SfxPrinter( pPrinter->GetOptions().Clone(), sPrinterName );
+                            VclPtr<SfxPrinter> pNewPrinter = new SfxPrinter( pPrinter->GetOptions().Clone(), sPrinterName );
                             if (pNewPrinter->IsKnown())
                                 pDocShell->SetPrinter( pNewPrinter, SFX_PRINTER_PRINTER );
                             else
-                                delete pNewPrinter;
+                                pNewPrinter.disposeAndClear();
                         }
                     }
                     else
