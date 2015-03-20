@@ -67,7 +67,7 @@ SwLabPrtPage::~SwLabPrtPage()
 
 void SwLabPrtPage::dispose()
 {
-    delete pPrinter;
+    pPrinter.disposeAndClear();
     m_pPageButton.disposeAndClear();
     m_pSingleButton.disposeAndClear();
     m_pSingleGrid.disposeAndClear();

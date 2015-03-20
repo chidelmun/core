@@ -250,7 +250,7 @@ namespace {
     {
     public:
         PrintInfo (
-            const Printer* pPrinter,
+            Printer* pPrinter,
             const bool bPrintMarkedOnly)
             : mpPrinter(pPrinter),
               mnDrawMode(DRAWMODE_DEFAULT),
@@ -263,7 +263,7 @@ namespace {
               mbPrintMarkedOnly(bPrintMarkedOnly)
         {}
 
-        const Printer* mpPrinter;
+        const VclPtr<Printer> mpPrinter;
         sal_uLong mnDrawMode;
         OUString msTimeDate;
         OUString msPageString;
@@ -1332,7 +1332,7 @@ private:
     SfxObjectShellRef mxObjectShell; // destroying mpPrintView
     ViewShellBase& mrBase;
     bool mbIsDisposed;
-    Printer* mpPrinter;
+    VclPtr<Printer> mpPrinter;
     Size maPrinterPageSizePixel;
     ::boost::scoped_ptr<PrintOptions> mpOptions;
     ::std::vector< ::boost::shared_ptr< ::sd::PrinterPage> > maPrinterPages;
@@ -1420,7 +1420,7 @@ private:
 
         PrintInfo aInfo (mpPrinter, mpOptions->IsPrintMarkedOnly());
 
-        if (aInfo.mpPrinter!=NULL && pShell!=NULL)
+        if (aInfo.mpPrinter!=nullptr && pShell!=NULL)
         {
 
             MapMode aMap (aInfo.mpPrinter->GetMapMode());
@@ -1877,7 +1877,7 @@ private:
         const PageKind ePageKind,
         PrintInfo& rInfo)
     {
-        OSL_ASSERT(rInfo.mpPrinter != NULL);
+        OSL_ASSERT(rInfo.mpPrinter != nullptr);
 
         // Fill in page kind specific data.
         SdDrawDocument* pDocument = mrBase.GetMainViewShell()->GetDoc();

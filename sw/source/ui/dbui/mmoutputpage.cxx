@@ -312,7 +312,7 @@ SwMailMergeOutputPage::~SwMailMergeOutputPage()
 
 void SwMailMergeOutputPage::dispose()
 {
-    delete m_pTempPrinter;
+    m_pTempPrinter.disposeAndClear();
     m_pSaveStartDocRB.disposeAndClear();
     m_pSaveMergedDocRB.disposeAndClear();
     m_pPrintRB.disposeAndClear();
@@ -848,7 +848,7 @@ IMPL_LINK(SwMailMergeOutputPage, PrinterChangeHdl_Impl, ListBox*, pBox)
                 if( (m_pTempPrinter->GetName() != pInfo->GetPrinterName()) ||
                      (m_pTempPrinter->GetDriverName() != pInfo->GetDriver()) )
                 {
-                    delete m_pTempPrinter;
+                    m_pTempPrinter.disposeAndClear();
                     m_pTempPrinter = new Printer( *pInfo );
                 }
             }
