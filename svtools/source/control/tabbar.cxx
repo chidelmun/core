@@ -360,7 +360,7 @@ IMPL_LINK_NOARG(TabBarEdit, ImplEndTimerHdl)
 
 struct TabBar_Impl
 {
-    VclPtr<ImplTabSizer>            mpSizer;
+    ScopedVclPtr<ImplTabSizer>      mpSizer;
     ::svt::AccessibleFactoryAccess  maAccessibleFactory;
 
     TabBar_Impl()
@@ -368,7 +368,6 @@ struct TabBar_Impl
     }
     ~TabBar_Impl()
     {
-        mpSizer.disposeAndClear();
     }
 };
 

@@ -64,6 +64,11 @@ ButtonDialog::~ButtonDialog()
 
 void ButtonDialog::dispose()
 {
+    for ( btn_iterator it = maItemList.begin(); it != maItemList.end(); ++it)
+    {
+        if ( it->mbOwnButton )
+            it->mpPushButton.disposeAndClear();
+    }
     maItemList.clear();
     Dialog::dispose();
 }
@@ -345,6 +350,7 @@ void ButtonDialog::Clear()
     for (btn_iterator it = maItemList.begin(); it != maItemList.end(); ++it)
     {
         it->mpPushButton->Hide();
+        it->mpPushButton.disposeAndClear();
     }
 
     maItemList.clear();

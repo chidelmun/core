@@ -1439,6 +1439,9 @@ namespace svxform
         m_pSubmissionPage.disposeAndClear();
         m_pBindingPage.disposeAndClear();
 
+        sal_Int32 i, nCount = m_aPageList.size();
+        for ( i = 0; i < nCount; ++i )
+            m_aPageList[i].disposeAndClear();
         m_aPageList.clear();
 
         Reference< XFrameActionListener > xListener(

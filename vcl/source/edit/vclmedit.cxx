@@ -185,6 +185,7 @@ void ImpVclMEdit::ImpUpdateSrollBarVis( WinBits nWinStyle )
     bool bScrollbarsChanged = false;
     if ( bHaveVScroll != bNeedVScroll )
     {
+        mpVScrollBar.disposeAndClear();
         mpVScrollBar = bNeedVScroll ? new ScrollBar( pVclMultiLineEdit, WB_VSCROLL|WB_DRAG ) : NULL;
 
         if ( bNeedVScroll )
@@ -198,6 +199,7 @@ void ImpVclMEdit::ImpUpdateSrollBarVis( WinBits nWinStyle )
 
     if ( bHaveHScroll != bNeedHScroll )
     {
+        mpHScrollBar.disposeAndClear();
         mpHScrollBar = bNeedHScroll ? new ScrollBar( pVclMultiLineEdit, WB_HSCROLL|WB_DRAG ) : NULL;
 
         if ( bNeedHScroll )
@@ -211,6 +213,7 @@ void ImpVclMEdit::ImpUpdateSrollBarVis( WinBits nWinStyle )
 
     if ( bHaveScrollBox != bNeedScrollBox )
     {
+        mpScrollBox.disposeAndClear();
         mpScrollBox = bNeedScrollBox ? new ScrollBarBox( pVclMultiLineEdit, WB_SIZEABLE ) : NULL;
 
         if ( bNeedScrollBox )
@@ -256,10 +259,10 @@ void ImpVclMEdit::InitFromStyle( WinBits nWinStyle )
 ImpVclMEdit::~ImpVclMEdit()
 {
     EndListening( *mpTextWindow->GetTextEngine() );
-    mpScrollBox.disposeAndClear();
-    mpVScrollBar.disposeAndClear();
-    mpHScrollBar.disposeAndClear();
     mpTextWindow.disposeAndClear();
+    mpHScrollBar.disposeAndClear();
+    mpVScrollBar.disposeAndClear();
+    mpScrollBox.disposeAndClear();
     pVclMultiLineEdit.disposeAndClear();
 }
 

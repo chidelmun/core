@@ -262,6 +262,7 @@ void IconChoiceDialog::dispose()
 
             if ( pData->bOnDemand )
                 delete (SfxItemSet*)&pData->pPage->GetItemSet();
+            pData->pPage.disposeAndClear();
         }
         delete pData;
     }

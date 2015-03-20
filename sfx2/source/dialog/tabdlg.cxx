@@ -398,6 +398,7 @@ void SfxTabDialog::dispose()
 
             if ( pDataObject->bOnDemand )
                 delete (SfxItemSet*)&pDataObject->pTabPage->GetItemSet();
+            pDataObject->pTabPage.disposeAndClear();
         }
         delete pDataObject;
     }
@@ -696,6 +697,7 @@ void SfxTabDialog::RemoveTabPage( sal_uInt16 nId )
 
             if ( pDataObject->bOnDemand )
                 delete (SfxItemSet*)&pDataObject->pTabPage->GetItemSet();
+            pDataObject->pTabPage.disposeAndClear();
         }
 
         delete pDataObject;

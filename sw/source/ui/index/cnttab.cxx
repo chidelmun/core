@@ -2791,6 +2791,8 @@ void SwTokenWindow::SetForm(SwForm& rForm, sal_uInt16 nL)
 
     if(pForm)
     {
+        for (ctrl_iterator iter = aControlList.begin(); iter != aControlList.end(); ++iter)
+            iter->disposeAndClear();
         //apply current level settings to the form
         aControlList.clear();
     }

@@ -137,6 +137,9 @@ SfxInfoBarWindow::~SfxInfoBarWindow()
 
 void SfxInfoBarWindow::dispose()
 {
+    for ( auto it = m_aActionBtns.begin( ); it != m_aActionBtns.end( ); ++it )
+        it->disposeAndClear();
+
     m_pMessage.disposeAndClear();
     m_pCloseBtn.disposeAndClear();
     m_aActionBtns.clear( );
@@ -238,6 +241,8 @@ SfxInfoBarContainerWindow::~SfxInfoBarContainerWindow()
 
 void SfxInfoBarContainerWindow::dispose()
 {
+    for ( auto it = m_pInfoBars.begin( ); it != m_pInfoBars.end( ); ++it )
+        it->disposeAndClear();
     m_pInfoBars.clear( );
     Window::dispose();
 }

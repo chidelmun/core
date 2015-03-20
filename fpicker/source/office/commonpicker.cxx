@@ -148,7 +148,11 @@ namespace svt
         {
             stopWindowListening();
 
-            m_pDlg.disposeAndClear();
+            if ( !bDialogDying )    // it's the parent which is dying -> delete the dialog
+                m_pDlg.disposeAndClear();
+            else
+                m_pDlg.clear();
+
             m_xWindow = NULL;
             m_xDialogParent = NULL;
         }

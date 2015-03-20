@@ -711,6 +711,8 @@ SfxSingleTabDialog::~SfxSingleTabDialog()
 
 void SfxSingleTabDialog::dispose()
 {
+    pImpl->m_pSfxPage.disposeAndClear();
+    pImpl->m_pLine.disposeAndClear();
     delete pImpl;
     pOKBtn.disposeAndClear();
     pCancelBtn.disposeAndClear();
