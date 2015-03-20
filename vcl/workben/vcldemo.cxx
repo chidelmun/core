@@ -634,7 +634,7 @@ public:
         void SizeAndRender(OutputDevice &rDev, Rectangle r, RenderType eType,
                            const RenderContext &rCtx)
         {
-            VirtualDevice *pNested;
+            ScopedVclPtr<VirtualDevice> pNested;
 
             if ((int)eType < RENDER_AS_BITMAPEX)
                 pNested = new VirtualDevice(rDev);
@@ -664,7 +664,6 @@ public:
                                 aWhole.TopLeft(), aWhole.GetSize(),
                                 *pNested);
             }
-            delete pNested;
         }
         virtual void RenderRegion(OutputDevice &rDev, Rectangle r,
                                   const RenderContext &rCtx) SAL_OVERRIDE
