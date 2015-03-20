@@ -1018,7 +1018,7 @@ void DrawViewShell::FuTemporary(SfxRequest& rReq)
                 if( pObj && pObj->ISA( SdrGrafObj ) && static_cast<SdrGrafObj*>(pObj)->GetGraphicType() == GRAPHIC_BITMAP )
                 {
                     SdrGrafObj* pGraphicObj = static_cast<SdrGrafObj*>(pObj);
-                    VclPtr<CompressGraphicsDialog> dialog(new CompressGraphicsDialog( GetParentWindow(), pGraphicObj, GetViewFrame()->GetBindings() ) );
+                    ScopedVclPtr<CompressGraphicsDialog> dialog(new CompressGraphicsDialog( GetParentWindow(), pGraphicObj, GetViewFrame()->GetBindings() ) );
                     if ( dialog->Execute() == RET_OK )
                     {
                         SdrGrafObj* pNewObject = dialog->GetCompressedSdrGrafObj();
@@ -1447,7 +1447,7 @@ void DrawViewShell::FuTemporary(SfxRequest& rReq)
                             || aLayerName.isEmpty() )
                         {
                             // name already exists
-                            VclPtr<WarningBox> aWarningBox (new WarningBox(
+                            ScopedVclPtr<WarningBox> aWarningBox (new WarningBox(
                                 GetParentWindow(),
                                 WinBits( WB_OK ),
                                 SD_RESSTR(STR_WARN_NAME_DUPLICATE)));
@@ -1616,7 +1616,7 @@ void DrawViewShell::FuTemporary(SfxRequest& rReq)
                              aLayerName != aOldLayerName) || aLayerName.isEmpty() )
                         {
                             // name already exists
-                            VclPtr<WarningBox> aWarningBox (new WarningBox(
+                            ScopedVclPtr<WarningBox> aWarningBox (new WarningBox(
                                 GetParentWindow(),
                                 WinBits( WB_OK ),
                                 SD_RESSTR(STR_WARN_NAME_DUPLICATE)));

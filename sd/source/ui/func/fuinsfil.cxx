@@ -305,7 +305,7 @@ void FuInsertFile::DoExecute( SfxRequest& rReq )
 
     if( !bInserted )
     {
-        VclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR( STR_READ_DATA_ERROR)));
+        ScopedVclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR( STR_READ_DATA_ERROR)));
         aErrorBox->Execute();
         delete pMedium;
     }
@@ -455,7 +455,7 @@ void FuInsertFile::InsTextOrRTFinDrMode(SfxMedium* pMedium)
 
         if (nErr || pOutliner->GetEditEngine().GetText().isEmpty())
         {
-            VclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR(STR_READ_DATA_ERROR)));
+            ScopedVclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR(STR_READ_DATA_ERROR)));
             aErrorBox->Execute();
         }
         else
@@ -599,7 +599,7 @@ void FuInsertFile::InsTextOrRTFinOlMode(SfxMedium* pMedium)
 
     if (nErr || pOutliner->GetEditEngine().GetText().isEmpty())
     {
-        VclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR(STR_READ_DATA_ERROR)));
+        ScopedVclPtr<MessageDialog> aErrorBox(new MessageDialog(mpWindow, SD_RESSTR(STR_READ_DATA_ERROR)));
         aErrorBox->Execute();
     }
     else

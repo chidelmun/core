@@ -102,9 +102,9 @@ void SelectPersonaDialog::dispose()
     m_pEdit.disposeAndClear();
     m_pSearchButton.disposeAndClear();
     m_pProgressLabel.disposeAndClear();
-    for (VclPtr<PushButton> vp : m_vResultList)
+    for (VclPtr<PushButton>& vp : m_vResultList)
         vp.disposeAndClear();
-    for (VclPtr<PushButton> vp : m_vSearchSuggestions)
+    for (VclPtr<PushButton>& vp : m_vSearchSuggestions)
         vp.disposeAndClear();
     m_pOkButton.disposeAndClear();
     m_pCancelButton.disposeAndClear();
@@ -476,7 +476,7 @@ void SvxPersonalizationTabPage::LoadExtensionThemes()
 
 IMPL_LINK( SvxPersonalizationTabPage, SelectPersona, PushButton*, /*pButton*/ )
 {
-    VclPtr<SelectPersonaDialog> aDialog( new SelectPersonaDialog(NULL) );
+    ScopedVclPtr<SelectPersonaDialog> aDialog( new SelectPersonaDialog(NULL) );
 
     while ( aDialog->Execute() == RET_OK )
     {

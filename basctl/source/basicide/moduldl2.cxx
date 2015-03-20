@@ -1127,7 +1127,7 @@ void LibPage::Export( void )
             return;
     }
 
-    VclPtr<ExportDialog> aNewDlg(new ExportDialog(this));
+    ScopedVclPtr<ExportDialog> aNewDlg(new ExportDialog(this));
     if (aNewDlg->Execute() == RET_OK)
     {
         try
@@ -1505,7 +1505,7 @@ void createLibImpl( vcl::Window* pWin, const ScriptDocument& rDocument,
         i++;
     }
 
-    VclPtr<NewObjectDialog> aNewDlg(new NewObjectDialog(pWin, ObjectMode::Library));
+    ScopedVclPtr<NewObjectDialog> aNewDlg(new NewObjectDialog(pWin, ObjectMode::Library));
     aNewDlg->SetObjectName(aLibName);
 
     if (aNewDlg->Execute())

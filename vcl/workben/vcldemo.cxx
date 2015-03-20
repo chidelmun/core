@@ -1358,7 +1358,7 @@ public:
                     bWidgets = true;
             }
 
-            VclPtr<DemoWin> aMainWin(new DemoWin(aRenderer));
+            ScopedVclPtr<DemoWin> aMainWin(new DemoWin(aRenderer));
             VclPtr<DemoWidgets> aWidgets;
 
             aMainWin->SetText("Interactive VCL demo #1");

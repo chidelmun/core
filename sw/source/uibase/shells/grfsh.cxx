@@ -153,7 +153,7 @@ void SwGrfShell::Execute(SfxRequest &rReq)
 
                 Graphic aGraphic = Graphic( *pGraphic );
 
-                VclPtr<CompressGraphicsDialog> aDialog(new CompressGraphicsDialog( GetView().GetWindow(), aGraphic, aSize, aCropRectangle, GetView().GetViewFrame()->GetBindings() ) );
+                ScopedVclPtr<CompressGraphicsDialog> aDialog(new CompressGraphicsDialog( GetView().GetWindow(), aGraphic, aSize, aCropRectangle, GetView().GetViewFrame()->GetBindings() ) );
                 if( aDialog->Execute() == RET_OK )
                 {
                     rSh.StartAllAction();
