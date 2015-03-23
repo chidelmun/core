@@ -383,6 +383,7 @@ protected:
 public:
     /// call the dispose() method if we have not already been disposed.
     void                                disposeOnce();
+    bool                                isDisposed() const { return mbDisposed; }
 
 public:
 
