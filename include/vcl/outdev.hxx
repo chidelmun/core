@@ -270,11 +270,13 @@ private:
 
     inline void acquire() const
     {
+        assert(!mbDisposed);
         mnRefCnt++;
     }
 
     inline void release() const
     {
+        assert(mnRefCnt>0);
         if (!--mnRefCnt)
             delete const_cast<OutputDevice*>(this);
     }
