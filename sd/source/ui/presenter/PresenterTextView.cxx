@@ -101,7 +101,7 @@ public:
 private:
     Reference<rendering::XBitmap> mxBitmap;
     cppcanvas::CanvasSharedPtr mpCanvas;
-    VirtualDevice* mpOutputDevice;
+    VclPtr<VirtualDevice> mpOutputDevice;
     EditEngine* mpEditEngine;
     SfxItemPool* mpEditEngineItemPool;
     Size maSize;
@@ -280,7 +280,7 @@ PresenterTextView::Implementation::~Implementation (void)
 {
     delete mpEditEngine;
     SfxItemPool::Free(mpEditEngineItemPool);
-    delete mpOutputDevice;
+    mpOutputDevice.disposeAndClear();
 }
 
 EditEngine * PresenterTextView::Implementation::GetEditEngine (void)
@@ -473,8 +473,7 @@ Reference<rendering::XBitmap> PresenterTextView::Implementation::GetBitmap (void
 
     if ( ! mxBitmap.is())
     {
-        if (mpOutputDevice != NULL)
-            delete mpOutputDevice;
+        mpOutputDevice.disposeAndClear();
         mpOutputDevice = new VirtualDevice(*Application::GetDefaultDevice(), 0, 0);
         mpOutputDevice->SetMapMode(MAP_PIXEL);
         mpOutputDevice->SetOutputSizePixel(maSize, true);
