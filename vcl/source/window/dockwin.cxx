@@ -121,7 +121,7 @@ void ImplDockFloatWin::dispose()
 
     disposeBuilder();
 
-    mpDockWin.disposeAndClear();
+    mpDockWin.clear();
     FloatingWindow::dispose();
 }
 
@@ -482,9 +482,9 @@ void DockingWindow::dispose()
     }
     delete mpImplData;
     mpImplData = NULL;
-    mpFloatWin.disposeAndClear();
-    mpOldBorderWin.disposeAndClear();
-    mpDialogParent.disposeAndClear();
+    mpFloatWin.clear();
+    mpOldBorderWin.clear();
+    mpDialogParent = NULL;
     Window::dispose();
 }
 

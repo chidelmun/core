@@ -117,7 +117,7 @@ void SystemWindow::dispose()
 
     disposeBuilder();
 
-    mpDialogParent.disposeAndClear();
+    mpDialogParent = NULL;
     Window::dispose();
 }
 
