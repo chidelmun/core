@@ -492,7 +492,7 @@ OUString VclBuilderContainer::getUIRootDir()
 //do the init. Find the real parent stashed in mpDialogParent.
 void Dialog::doDeferredInit(WinBits nBits)
 {
-    vcl::Window *pParent = mpDialogParent;
+    VclPtr<vcl::Window> pParent = mpDialogParent;
     mpDialogParent = NULL;
     ImplInit(pParent, nBits);
     mbIsDefferedInit = false;
@@ -554,9 +554,10 @@ void Dialog::dispose()
 {
     delete mpDialogImpl;
     mpDialogImpl = NULL;
-    mpPrevExecuteDlg.disposeAndClear();
-    mpActionArea.disposeAndClear();
-    mpContentArea.disposeAndClear();
+
+    mpPrevExecuteDlg.clear();
+    mpActionArea.clear();
+    mpContentArea.clear();
     SystemWindow::dispose();
 }
 
