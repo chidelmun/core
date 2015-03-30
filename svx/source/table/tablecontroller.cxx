@@ -3169,8 +3169,12 @@ bool SvxTableController::setCursorLogicPosition(const Point& rPosition, bool bPo
             return true;
         }
         else if (aCellPos != maMouseDownPos)
+        {
             // No selection, but rPosition is at an other cell: start table selection.
             StartSelection(maMouseDownPos);
+            // Update graphic selection, should be hidden now.
+            mpView->AdjustMarkHdl();
+        }
     }
 
     return false;
