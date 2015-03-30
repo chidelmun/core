@@ -632,13 +632,13 @@ PrintDialog::PrintDialog( vcl::Window* i_pParent, const boost::shared_ptr<Printe
         if( maJobPage.mpPrinters->GetEntryPos( aValue ) != LISTBOX_ENTRY_NOTFOUND )
         {
             maJobPage.mpPrinters->SelectEntry( aValue );
-            maPController->setPrinter( VclPtr<Printer>( new Printer( aValue ) ) );
+            maPController->setPrinter( VclPtrInstance<Printer>( aValue ) );
         }
         else
         {
             // fall back to default printer
             maJobPage.mpPrinters->SelectEntry( Printer::GetDefaultPrinterName() );
-            maPController->setPrinter( VclPtr<Printer>( new Printer( Printer::GetDefaultPrinterName() ) ) );
+            maPController->setPrinter( VclPtrInstance<Printer>( Printer::GetDefaultPrinterName() ) );
         }
     }
     // not printing to file
@@ -1531,7 +1531,7 @@ IMPL_LINK( PrintDialog, SelectHdl, ListBox*, pBox )
     {
         OUString aNewPrinter( pBox->GetSelectEntry() );
         // set new printer
-        maPController->setPrinter( VclPtr<Printer>( new Printer( aNewPrinter ) ) );
+        maPController->setPrinter( VclPtrInstance<Printer>( aNewPrinter ) );
         maPController->resetPrinterOptions( maOptionsPage.mpToFileBox->IsChecked() );
         // update text fields
         updatePrinterText();
